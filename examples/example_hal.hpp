@@ -55,7 +55,7 @@ public:
     /**
      * @brief Initialize SPI hardware
      */
-    [[nodiscard]] HALResult<void> init() override {
+    [[nodiscard]] HALResult<void> init() noexcept override {
         // Example initialization sequence
         // TODO: Replace with actual hardware initialization
 
@@ -80,7 +80,7 @@ public:
     /**
      * @brief Deinitialize SPI hardware
      */
-    [[nodiscard]] HALResult<void> deinit() override {
+    [[nodiscard]] HALResult<void> deinit() noexcept override {
         // TODO: Replace with actual hardware deinitialization
         // spi_deinit(spi_device_);
         // gpio_deinit(cs_pin_);
@@ -92,10 +92,10 @@ public:
     /**
      * @brief Transfer 16-bit data via SPI
      */
-    [[nodiscard]] HALResult<uint16_t> transfer(uint16_t tx_data) override {
+    [[nodiscard]] HALResult<uint16_t> transfer(uint16_t tx_data) noexcept override {
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return std::unexpected(HALError::HardwareNotReady);
+            return unexpected(HALError::HardwareNotReady);
         }
 
         // TODO: Replace with actual SPI transfer
@@ -129,16 +129,16 @@ public:
      */
     [[nodiscard]] HALResult<void> transfer_multi(
         std::span<const uint16_t> tx_data,
-        std::span<uint16_t> rx_data) override {
+        std::span<uint16_t> rx_data) noexcept override {
 
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return std::unexpected(HALError::HardwareNotReady);
+            return unexpected(HALError::HardwareNotReady);
         }
 
         if (tx_data.size() != rx_data.size()) {
             last_error_ = HALError::InvalidParameter;
-            return std::unexpected(HALError::InvalidParameter);
+            return unexpected(HALError::InvalidParameter);
         }
 
         // Assert chip select once for entire transfer
@@ -152,7 +152,7 @@ public:
             auto result = transfer(tx_data[i]);
             if (!result) {
                 chip_deselect();
-                return std::unexpected(result.error());
+                return unexpected(result.error());
             }
             rx_data[i] = *result;
         }
@@ -164,7 +164,7 @@ public:
     /**
      * @brief Assert chip select
      */
-    [[nodiscard]] HALResult<void> chip_select() override {
+    [[nodiscard]] HALResult<void> chip_select() noexcept override {
         // TODO: Replace with actual GPIO control
         // gpio_set_level(cs_pin_, LOW);
         
@@ -175,7 +175,7 @@ public:
     /**
      * @brief Deassert chip select
      */
-    [[nodiscard]] HALResult<void> chip_deselect() override {
+    [[nodiscard]] HALResult<void> chip_deselect() noexcept override {
         // TODO: Replace with actual GPIO control
         // gpio_set_level(cs_pin_, HIGH);
         
@@ -186,7 +186,7 @@ public:
     /**
      * @brief Delay for specified duration
      */
-    [[nodiscard]] HALResult<void> delay(std::chrono::microseconds duration) override {
+    [[nodiscard]] HALResult<void> delay(std::chrono::microseconds duration) noexcept override {
         // TODO: Replace with platform-specific delay
         // For example:
         // - STM32: HAL_Delay() or use timer
@@ -203,10 +203,10 @@ public:
     /**
      * @brief Configure SPI parameters
      */
-    [[nodiscard]] HALResult<void> configure(const SPIConfig& config) override {
+    [[nodiscard]] HALResult<void> configure(const SPIConfig& config) noexcept override {
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return std::unexpected(HALError::HardwareNotReady);
+            return unexpected(HALError::HardwareNotReady);
         }
 
         // TODO: Replace with actual SPI reconfiguration
@@ -222,21 +222,21 @@ public:
     /**
      * @brief Check if hardware is ready
      */
-    [[nodiscard]] bool is_ready() const override {
+    [[nodiscard]] bool is_ready() const noexcept override {
         return initialized_;
     }
 
     /**
      * @brief Get last error
      */
-    [[nodiscard]] HALError get_last_error() const override {
+    [[nodiscard]] HALError get_last_error() const noexcept override {
         return last_error_;
     }
 
     /**
      * @brief Clear errors
      */
-    [[nodiscard]] HALResult<void> clear_errors() override {
+    [[nodiscard]] HALResult<void> clear_errors() noexcept override {
         last_error_ = HALError::None;
         return {};
     }

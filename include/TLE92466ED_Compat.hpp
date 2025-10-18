@@ -32,8 +32,8 @@
         template<typename E>
         class unexpected {
         public:
-            constexpr explicit unexpected(const E& e) : error_(e) {}
-            constexpr explicit unexpected(E&& e) : error_(std::move(e)) {}
+            constexpr explicit unexpected(const E& e) noexcept(std::is_nothrow_copy_constructible_v<E>) : error_(e) {}
+            constexpr explicit unexpected(E&& e) noexcept(std::is_nothrow_move_constructible_v<E>) : error_(std::move(e)) {}
             
             constexpr const E& error() const& noexcept { return error_; }
             constexpr E& error() & noexcept { return error_; }
@@ -61,24 +61,24 @@
             using unexpected_type = unexpected<E>;
             
             // Constructors
-            constexpr expected() : storage_(T{}) {}
-            constexpr expected(const T& value) : storage_(value) {}
-            constexpr expected(T&& value) : storage_(std::move(value)) {}
-            constexpr expected(const unexpected_type& unex) : storage_(unex.error()) {}
-            constexpr expected(unexpected_type&& unex) : storage_(std::move(unex.error())) {}
+            constexpr expected() noexcept(std::is_nothrow_default_constructible_v<T>) : storage_(T{}) {}
+            constexpr expected(const T& value) noexcept(std::is_nothrow_copy_constructible_v<T>) : storage_(value) {}
+            constexpr expected(T&& value) noexcept(std::is_nothrow_move_constructible_v<T>) : storage_(std::move(value)) {}
+            constexpr expected(const unexpected_type& unex) noexcept(std::is_nothrow_copy_constructible_v<E>) : storage_(unex.error()) {}
+            constexpr expected(unexpected_type&& unex) noexcept(std::is_nothrow_move_constructible_v<E>) : storage_(std::move(unex.error())) {}
             
             // Assignment
-            constexpr expected& operator=(const T& value) {
+            constexpr expected& operator=(const T& value) noexcept(std::is_nothrow_copy_assignable_v<T>) {
                 storage_ = value;
                 return *this;
             }
             
-            constexpr expected& operator=(T&& value) {
+            constexpr expected& operator=(T&& value) noexcept(std::is_nothrow_move_assignable_v<T>) {
                 storage_ = std::move(value);
                 return *this;
             }
             
-            constexpr expected& operator=(const unexpected_type& unex) {
+            constexpr expected& operator=(const unexpected_type& unex) noexcept(std::is_nothrow_copy_assignable_v<E>) {
                 storage_ = unex.error();
                 return *this;
             }
@@ -159,9 +159,9 @@
             using unexpected_type = unexpected<E>;
             
             // Constructors
-            constexpr expected() : has_value_(true), error_() {}
-            constexpr expected(const unexpected_type& unex) : has_value_(false), error_(unex.error()) {}
-            constexpr expected(unexpected_type&& unex) : has_value_(false), error_(std::move(unex.error())) {}
+            constexpr expected() noexcept : has_value_(true), error_() {}
+            constexpr expected(const unexpected_type& unex) noexcept(std::is_nothrow_copy_constructible_v<E>) : has_value_(false), error_(unex.error()) {}
+            constexpr expected(unexpected_type&& unex) noexcept(std::is_nothrow_move_constructible_v<E>) : has_value_(false), error_(std::move(unex.error())) {}
             
             // Observers
             constexpr explicit operator bool() const noexcept {

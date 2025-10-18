@@ -148,7 +148,7 @@ public:
      * }
      * @endcode
      */
-    [[nodiscard]] virtual HALResult<void> init() = 0;
+    [[nodiscard]] virtual HALResult<void> init() noexcept = 0;
 
     /**
      * @brief Deinitialize the hardware interface
@@ -159,7 +159,7 @@ public:
      *
      * @return HALResult<void> Success or error code
      */
-    [[nodiscard]] virtual HALResult<void> deinit() = 0;
+    [[nodiscard]] virtual HALResult<void> deinit() noexcept = 0;
 
     /**
      * @brief Transfer 16-bit data via SPI (full-duplex)
@@ -193,7 +193,7 @@ public:
      * }
      * @endcode
      */
-    [[nodiscard]] virtual HALResult<uint16_t> transfer(uint16_t tx_data) = 0;
+    [[nodiscard]] virtual HALResult<uint16_t> transfer(uint16_t tx_data) noexcept = 0;
 
     /**
      * @brief Transfer multiple 16-bit words via SPI
@@ -220,7 +220,7 @@ public:
      */
     [[nodiscard]] virtual HALResult<void> transfer_multi(
         std::span<const uint16_t> tx_data,
-        std::span<uint16_t> rx_data) = 0;
+        std::span<uint16_t> rx_data) noexcept = 0;
 
     /**
      * @brief Assert (activate) chip select
@@ -234,7 +234,7 @@ public:
      *
      * @note Some implementations may handle CS automatically in transfer()
      */
-    [[nodiscard]] virtual HALResult<void> chip_select() = 0;
+    [[nodiscard]] virtual HALResult<void> chip_select() noexcept = 0;
 
     /**
      * @brief Deassert (deactivate) chip select
@@ -246,7 +246,7 @@ public:
      * @return HALResult<void> Success or error code
      * @retval HALError::ChipselectError CS control failed
      */
-    [[nodiscard]] virtual HALResult<void> chip_deselect() = 0;
+    [[nodiscard]] virtual HALResult<void> chip_deselect() noexcept = 0;
 
     /**
      * @brief Delay for specified duration
@@ -268,7 +268,7 @@ public:
      * hal->delay(1ms);  // 1 millisecond delay
      * @endcode
      */
-    [[nodiscard]] virtual HALResult<void> delay(std::chrono::microseconds duration) = 0;
+    [[nodiscard]] virtual HALResult<void> delay(std::chrono::microseconds duration) noexcept = 0;
 
     /**
      * @brief Configure SPI parameters
@@ -287,7 +287,7 @@ public:
      * - Bit order: MSB first
      * - Frame size: 16 bits
      */
-    [[nodiscard]] virtual HALResult<void> configure(const SPIConfig& config) = 0;
+    [[nodiscard]] virtual HALResult<void> configure(const SPIConfig& config) noexcept = 0;
 
     /**
      * @brief Check if hardware is ready for communication
@@ -305,7 +305,7 @@ public:
      * }
      * @endcode
      */
-    [[nodiscard]] virtual bool is_ready() const = 0;
+    [[nodiscard]] virtual bool is_ready() const noexcept = 0;
 
     /**
      * @brief Get the last error that occurred
@@ -316,7 +316,7 @@ public:
      *
      * @return HALError The last error code
      */
-    [[nodiscard]] virtual HALError get_last_error() const = 0;
+    [[nodiscard]] virtual HALError get_last_error() const noexcept = 0;
 
     /**
      * @brief Clear any pending errors
@@ -327,7 +327,7 @@ public:
      *
      * @return HALResult<void> Success or error code
      */
-    [[nodiscard]] virtual HALResult<void> clear_errors() = 0;
+    [[nodiscard]] virtual HALResult<void> clear_errors() noexcept = 0;
 
 protected:
     /**

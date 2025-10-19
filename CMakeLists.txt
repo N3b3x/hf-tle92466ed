@@ -7,8 +7,8 @@ project(TLE92466ED_Driver
     LANGUAGES CXX
 )
 
-# Set C++20 standard
-set(CMAKE_CXX_STANDARD 20)
+# Set C++23 standard (required for std::expected)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

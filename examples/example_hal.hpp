@@ -95,7 +95,7 @@ public:
     [[nodiscard]] HALResult<uint16_t> transfer(uint16_t tx_data) noexcept override {
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return unexpected(HALError::HardwareNotReady);
+            return std::unexpected(HALError::HardwareNotReady);
         }
 
         // TODO: Replace with actual SPI transfer
@@ -133,12 +133,12 @@ public:
 
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return unexpected(HALError::HardwareNotReady);
+            return std::unexpected(HALError::HardwareNotReady);
         }
 
         if (tx_data.size() != rx_data.size()) {
             last_error_ = HALError::InvalidParameter;
-            return unexpected(HALError::InvalidParameter);
+            return std::unexpected(HALError::InvalidParameter);
         }
 
         // Assert chip select once for entire transfer
@@ -152,7 +152,7 @@ public:
             auto result = transfer(tx_data[i]);
             if (!result) {
                 chip_deselect();
-                return unexpected(result.error());
+                return std::unexpected(result.error());
             }
             rx_data[i] = *result;
         }
@@ -206,7 +206,7 @@ public:
     [[nodiscard]] HALResult<void> configure(const SPIConfig& config) noexcept override {
         if (!initialized_) {
             last_error_ = HALError::HardwareNotReady;
-            return unexpected(HALError::HardwareNotReady);
+            return std::unexpected(HALError::HardwareNotReady);
         }
 
         // TODO: Replace with actual SPI reconfiguration

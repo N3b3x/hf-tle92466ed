@@ -66,7 +66,7 @@
 
 #include "TLE92466ED_HAL.hpp"
 #include "TLE92466ED_Registers.hpp"
-#include "TLE92466ED_Compat.hpp"
+#include <expected>
 #include <array>
 #include <optional>
 #include <functional>
@@ -92,10 +92,10 @@ enum class DriverError : uint8_t {
 };
 
 /**
- * @brief Driver result type using expected (C++20/23 compatible)
+ * @brief Driver result type using std::expected (C++23)
  */
 template<typename T>
-using DriverResult = expected<T, DriverError>;
+using DriverResult = std::expected<T, DriverError>;
 
 /**
  * @brief Channel configuration structure
@@ -678,7 +678,7 @@ private:
      */
     [[nodiscard]] DriverResult<void> check_initialized() const noexcept {
         if (!initialized_) {
-            return unexpected(DriverError::NotInitialized);
+            return std::unexpected(DriverError::NotInitialized);
         }
         return {};
     }

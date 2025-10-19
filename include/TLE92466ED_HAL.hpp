@@ -28,7 +28,7 @@
 #include <concepts>
 #include <span>
 #include <chrono>
-#include "TLE92466ED_Compat.hpp"  // For std::expected compatibility
+#include <expected>
 
 namespace TLE92466ED {
 
@@ -51,14 +51,14 @@ enum class HALError : uint8_t {
 };
 
 /**
- * @brief Result type for HAL operations using expected (C++20/23 compatible)
+ * @brief Result type for HAL operations using std::expected (C++23)
  * 
  * @tparam T The success type
  * 
  * This provides a modern, safe way to return either a success value or an error.
  */
 template<typename T>
-using HALResult = expected<T, HALError>;
+using HALResult = std::expected<T, HALError>;
 
 /**
  * @brief SPI transaction configuration

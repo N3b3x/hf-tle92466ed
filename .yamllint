@@ -1,0 +1,57 @@
+---
+# yamllint configuration for TLE92466ED driver
+
+extends: default
+
+rules:
+  # Line length is set to 120 to accommodate long URLs and paths
+  line-length:
+    max: 120
+    level: warning
+
+  # Allow multiple spaces for alignment in YAML
+  key-duplicates: enable
+  
+  # Document start is optional for small configs
+  document-start:
+    present: false
+
+  # Allow truthy values (yes, no, on, off)
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
+    check-keys: false
+
+  # Indentation is 2 spaces
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+
+  # Comments should have a space after the hash
+  comments:
+    min-spaces-from-content: 2
+
+  # Allow empty values
+  empty-values:
+    forbid-in-block-mappings: false
+    forbid-in-flow-mappings: false
+
+  # Bracket spacing
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+
+  # Brace spacing for flow mappings
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 0
+
+ignore: |
+  .git/
+  node_modules/
+  venv/
+  .venv/
+  _site/
+  docs/doxygen/
+  _config/doxygen-extensions/
+

@@ -1,3 +1,11 @@
+---
+layout: default
+title: HAL Implementation
+nav_order: 10
+parent: Documentation Index
+description: "Hardware abstraction layer implementation guide"
+---
+
 # HAL Implementation Guide
 
 ## Overview

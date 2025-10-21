@@ -40,5 +40,42 @@
 # debug information files
 *.dwo
 
-*.DS_Store
+**/build/
+**/build_*/
+**/build*/
+**/dependencies.lock
+
+# Don't exclude .vscode folder
+# .vscode/
+# But exclude user-specific files
+.vscode/settings.json.user
+.vscode/*.backup
+
+**/docs/doxygen/
+docs/doxygen/
 .DS_Store
+**/.cache/
+
+**/compile_commands.json
+
+.venv/
+**/venv/
+**/.venv/
+
+__pycache__/
+**/__pycache__/
+
+actionlint*
+**/actionlint*
+
+# Log files
+**/logs/
+**/*.log
+logs/
+
+ci_build_path/
+**/node_modules/
+node_modules/
+
+package-lock.json
+package*.json

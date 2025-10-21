@@ -1,3 +1,11 @@
+---
+layout: default
+title: Register Map
+nav_order: 5
+parent: Documentation Index
+description: "Complete register reference for all 108 registers"
+---
+
 # Register Map
 
 ## Register Organization

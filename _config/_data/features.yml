@@ -1,0 +1,194 @@
+# Feature definitions for the TLE92466ED Driver
+
+hardware_features:
+  - title: "6-Channel Control"
+    description: "Independent control of six low-side outputs with individual current monitoring and diagnostics"
+    icon: "fas fa-layer-group"
+    badges:
+      - text: "6 Channels"
+        type: "success"
+      - text: "Low-Side"
+        type: "info"
+      - text: "Independent"
+        type: "primary"
+
+  - title: "Precision Current Control"
+    description: "15-bit resolution current control (0.061mA steps) with integrated current control (ICC) up to 2A per channel or 4A in parallel mode"
+    icon: "fas fa-bolt"
+    badges:
+      - text: "15-bit"
+        type: "success"
+      - text: "0-2A/4A"
+        type: "info"
+      - text: "0.061mA Steps"
+        type: "primary"
+
+  - title: "PWM & Dither"
+    description: "Configurable PWM frequency and dither support for noise reduction and precision control"
+    icon: "fas fa-wave-square"
+    badges:
+      - text: "PWM"
+        type: "success"
+      - text: "Dither"
+        type: "info"
+      - text: "Configurable"
+        type: "primary"
+
+  - title: "Comprehensive Diagnostics"
+    description: "Extensive fault detection including overcurrent, overtemperature, open load, short circuit, and supply monitoring"
+    icon: "fas fa-shield-alt"
+    badges:
+      - text: "Overcurrent"
+        type: "success"
+      - text: "Temperature"
+        type: "info"
+      - text: "Load Detection"
+        type: "primary"
+
+communication:
+  - title: "32-bit SPI Interface"
+    description: "High-speed SPI communication with 32-bit frame structure and integrated CRC-8 (SAE J1850) for data integrity"
+    icon: "fas fa-exchange-alt"
+    badges:
+      - text: "32-bit Frames"
+        type: "success"
+      - text: "CRC-8"
+        type: "info"
+      - text: "SAE J1850"
+        type: "primary"
+
+  - title: "Register Access"
+    description: "Complete access to all 108 registers with read/write operations and automatic CRC verification"
+    icon: "fas fa-database"
+    badges:
+      - text: "108 Registers"
+        type: "success"
+      - text: "Read/Write"
+        type: "info"
+      - text: "CRC Verified"
+        type: "primary"
+
+driver_features:
+  - title: "C++23 Modern Code"
+    description: "Written in C++23 with std::expected for error handling, no exceptions, and full noexcept guarantee"
+    icon: "fas fa-code"
+    badges:
+      - text: "C++23"
+        type: "success"
+      - text: "std::expected"
+        type: "info"
+      - text: "noexcept"
+        type: "primary"
+
+  - title: "Hardware Agnostic HAL"
+    description: "Clean hardware abstraction layer allowing easy porting to any microcontroller platform with SPI support"
+    icon: "fas fa-microchip"
+    badges:
+      - text: "HAL Interface"
+        type: "success"
+      - text: "Platform Independent"
+        type: "info"
+      - text: "Easy Porting"
+        type: "primary"
+
+  - title: "Zero Dependencies"
+    description: "Freestanding-compatible code with no external dependencies, suitable for embedded systems and bare-metal applications"
+    icon: "fas fa-cube"
+    badges:
+      - text: "No Dependencies"
+        type: "success"
+      - text: "Freestanding"
+        type: "info"
+      - text: "Bare Metal"
+        type: "primary"
+
+  - title: "Production Ready"
+    description: "Well-tested, documented code with comprehensive error handling and diagnostics for production deployment"
+    icon: "fas fa-check-circle"
+    badges:
+      - text: "Tested"
+        type: "success"
+      - text: "Documented"
+        type: "info"
+      - text: "Production"
+        type: "primary"
+
+documentation_features:
+  - title: "Complete Register Map"
+    description: "All 108 registers documented with bit field definitions, reset values, and access modes"
+    icon: "fas fa-book"
+    badges:
+      - text: "108 Registers"
+        type: "success"
+      - text: "Bit Fields"
+        type: "info"
+      - text: "Complete"
+        type: "primary"
+
+  - title: "API Reference"
+    description: "Comprehensive Doxygen-generated API documentation with examples and usage guidelines"
+    icon: "fas fa-book-open"
+    badges:
+      - text: "Doxygen"
+        type: "success"
+      - text: "Examples"
+        type: "info"
+      - text: "Guidelines"
+        type: "primary"
+
+  - title: "Usage Examples"
+    description: "Practical code examples demonstrating initialization, configuration, current control, and diagnostics"
+    icon: "fas fa-laptop-code"
+    badges:
+      - text: "Practical"
+        type: "success"
+      - text: "Complete"
+        type: "info"
+      - text: "Ready to Use"
+        type: "primary"
+
+  - title: "Datasheet Integration"
+    description: "Documentation extracted from official Infineon datasheet (Rev. 1.2) with verified specifications"
+    icon: "fas fa-file-pdf"
+    badges:
+      - text: "Official"
+        type: "success"
+      - text: "Verified"
+        type: "info"
+      - text: "Rev 1.2"
+        type: "primary"
+
+safety_features:
+  - title: "Overcurrent Protection"
+    description: "Hardware-level overcurrent detection and protection with configurable thresholds"
+    icon: "fas fa-exclamation-triangle"
+    badges:
+      - text: "Hardware"
+        type: "success"
+      - text: "Configurable"
+        type: "info"
+      - text: "Protected"
+        type: "primary"
+
+  - title: "Thermal Monitoring"
+    description: "Temperature monitoring with overtemperature shutdown and warning thresholds"
+    icon: "fas fa-thermometer-half"
+    badges:
+      - text: "Monitoring"
+        type: "success"
+      - text: "Shutdown"
+        type: "info"
+      - text: "Warnings"
+        type: "primary"
+
+  - title: "Load Diagnostics"
+    description: "Open load and short circuit detection for all channels with real-time monitoring"
+    icon: "fas fa-stethoscope"
+    badges:
+      - text: "Open Load"
+        type: "success"
+      - text: "Short Circuit"
+        type: "info"
+      - text: "Real-time"
+        type: "primary"
+

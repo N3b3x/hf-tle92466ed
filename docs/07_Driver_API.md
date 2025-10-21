@@ -1,3 +1,11 @@
+---
+layout: default
+title: Driver API
+nav_order: 9
+parent: Documentation Index
+description: "C++23 driver interface reference"
+---
+
 # Driver API Reference
 
 ## Driver Class Overview

@@ -1,3 +1,11 @@
+---
+layout: default
+title: Diagnostics
+nav_order: 8
+parent: Documentation Index
+description: "Fault detection and monitoring capabilities"
+---
+
 # Diagnostics & Protection
 
 ## Diagnostic System Overview

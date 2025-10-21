@@ -1,3 +1,11 @@
+---
+layout: default
+title: SPI Protocol
+nav_order: 4
+parent: Documentation Index
+description: "32-bit SPI communication protocol with CRC-8"
+---
+
 # SPI Protocol
 
 ## Overview

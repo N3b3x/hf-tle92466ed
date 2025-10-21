@@ -1,3 +1,11 @@
+---
+layout: default
+title: Current Control
+nav_order: 6
+parent: Documentation Index
+description: "Integrated Current Control (ICC) system documentation"
+---
+
 # Current Control (ICC)
 
 ## Integrated Current Controller

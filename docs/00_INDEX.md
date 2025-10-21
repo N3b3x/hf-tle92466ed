@@ -1,3 +1,10 @@
+---
+layout: default
+title: Documentation Index
+nav_order: 2
+description: "Navigation guide for TLE92466ED driver documentation"
+---
+
 # TLE92466ED Driver Documentation
 
 ## Quick Navigation

@@ -1,3 +1,11 @@
+---
+layout: default
+title: Channel Modes
+nav_order: 7
+parent: Documentation Index
+description: "Operating modes and configuration options"
+---
+
 # Channel Modes
 
 ## Operation Modes Overview

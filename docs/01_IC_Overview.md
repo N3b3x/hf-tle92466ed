@@ -1,3 +1,11 @@
+---
+layout: default
+title: IC Overview
+nav_order: 3
+parent: Documentation Index
+description: "TLE92466ED hardware specifications and architecture"
+---
+
 # TLE92466ED IC Overview
 
 ## Device Description

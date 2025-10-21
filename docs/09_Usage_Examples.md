@@ -1,3 +1,11 @@
+---
+layout: default
+title: Usage Examples
+nav_order: 11
+parent: Documentation Index
+description: "Practical implementation examples and code samples"
+---
+
 # Usage Examples
 
 ## Complete Application Examples

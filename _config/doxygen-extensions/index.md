@@ -47,7 +47,7 @@ HTML_EXTRA_FILES       = _config/doxygen-extensions/doxygen-awesome-css/doxygen-
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-paragraph-link.js \
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js
-```
+```text
 
 ## Resources
 

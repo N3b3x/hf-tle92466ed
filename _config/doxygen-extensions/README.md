@@ -35,7 +35,7 @@ git pull origin main
 cd ../../../
 git add _config/doxygen-extensions/doxygen-awesome-css
 git commit -m "Update doxygen-awesome-css"
-```
+```text
 
 ## Resources
 

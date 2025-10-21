@@ -185,7 +185,7 @@ struct SPIPins {
     static constexpr int SCLK = 6;   // GPIO6
     static constexpr int CS = 10;    // GPIO10
 };
-```
+```text
 
 **Read**: [Configuration Guide - Hardware Configuration](README_CONFIGURATION.md#1-hardware-configuration-maintle92466ed_confighpp)
 
@@ -209,7 +209,7 @@ apps:
     description: "Basic usage example for TLE92466ED"
     source_file: "BasicUsageExample.cpp"
     build_types: ["Debug", "Release"]
-```
+```text
 
 **Read**: [Configuration Guide - Application Configuration](README_CONFIGURATION.md#2-application-configuration-app_configyml)
 
@@ -228,7 +228,7 @@ apps:
 #define ENABLE_INITIALIZATION_TESTS 1     // Enable
 #define ENABLE_BASIC_OPERATION_TESTS 1    // Enable
 #define ENABLE_CURRENT_CONTROL_TESTS 0    // Disable
-```
+```text
 
 **Read**: [Configuration Guide - Test Section Configuration](README_CONFIGURATION.md#3-test-section-configuration)
 
@@ -271,7 +271,7 @@ The examples use a **production-grade test framework** with:
 
 ### Test Execution
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║         TLE92466ED BASIC USAGE TEST SUITE - ESP32-C6            ║
 ╚══════════════════════════════════════════════════════════════════╝
@@ -304,7 +304,7 @@ I (1235) TLE92466ED_Basic: ✅ HAL initialized successfully
 ╚══════════════════════════════════════════════════════════════════╝
 
 I (5000) TLE92466ED_Basic: ✅ ALL TESTS PASSED!
-```
+```text
 
 ---
 
@@ -324,7 +324,7 @@ I (5000) TLE92466ED_Basic: ✅ ALL TESTS PASSED!
 
 ## 📦 Project Structure
 
-```
+```text
 examples/esp32/
 ├── app_config.yml                  # Build metadata
 ├── CMakeLists.txt                  # Main CMake configuration
@@ -354,7 +354,7 @@ examples/esp32/
     ├── build_app.sh
     ├── flash_app.sh
     └── monitor_app.sh
-```
+```text
 
 ---
 
@@ -504,7 +504,7 @@ You've successfully set up the examples when:
 - ✅ System restarts automatically after tests
 
 Example success output:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║                    TEST RESULTS SUMMARY                          ║
 ╠══════════════════════════════════════════════════════════════════╣
@@ -516,7 +516,7 @@ Example success output:
 ╚══════════════════════════════════════════════════════════════════╝
 
 ✅ ALL TESTS PASSED! System will restart in 10 seconds...
-```
+```text
 
 ---
 
@@ -525,4 +525,3 @@ Example success output:
 **Status**: ✅ Complete
 
 **Next**: Start with [Basic Usage Test Suite](README_BASIC_USAGE.md) →
-

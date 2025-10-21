@@ -10,7 +10,9 @@ description: "32-bit SPI communication protocol with CRC-8"
 
 ## Overview
 
-The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust communication. This is a full-duplex, synchronous serial interface operating in SPI Mode 0.
+The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust
+communication. This is a full-duplex, synchronous serial interface operating in
+SPI Mode 0.
 
 ### Protocol Specifications
 
@@ -27,7 +29,7 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
 
 ### 32-Bit Frame Layout
 
-```
+```text
    Bit Position:  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16  15 ...  0
                  ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────────┐
    MOSI (Write): │              CRC (8)              │    ADDR (7)   │R/W│   DATA (16)   │
@@ -46,11 +48,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
    │ Bit  [16]    │ R/W      │ 1=Write, 0=Read                             │
    │ Bits [15:0]  │ DATA     │ 16-bit data payload                         │
    └──────────────┴──────────┴─────────────────────────────────────────────┘
-```
+```text
 
 ### MOSI (Master Out, Slave In) - Write Frame
 
-```
+```text
     Write Transaction Format:
 
     31                24  23        17  16  15                 0
@@ -73,11 +75,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
       
     Step 3: Complete frame
       [31:24] = CRC, [23:0] = 0x012341234
-```
+```text
 
 ### MOSI (Master Out, Slave In) - Read Frame
 
-```
+```text
     Read Transaction Format:
 
     31                24  23        17  16  15                 0
@@ -100,13 +102,13 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
       
     Step 3: Complete frame
       [31:24] = CRC, [23:0] = 0x00000100
-```
+```text
 
 ### MISO (Master In, Slave Out) - Reply Frame Types
 
 #### Type 1: 16-Bit Reply Frame (Standard)
 
-```
+```text
     31                24  23 22  21        17  16  15                 0
     ┌───────────────────┬──┬──┬────────────┬───┬───────────────────┐
     │     CRC (8)       │ 0│ 0│ STATUS (5) │R/W│    DATA (16)      │
@@ -118,11 +120,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     Status [21:17]: Error/status indication
     R/W [16]: Echoes request R/W bit
     Data [15:0]: Register value or last write acknowledgment
-```
+```text
 
 #### Type 2: 22-Bit Reply Frame (Extended Data)
 
-```
+```text
     31                24  23 22  21                             0
     ┌───────────────────┬──┬──┬──────────────────────────────────┐
     │     CRC (8)       │ 0│ 1│       EXTENDED DATA (22)        │
@@ -132,11 +134,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
 
     Reply Mode [23:22] = 01b: Extended 22-bit data
     Used for: High-resolution feedback registers
-```
+```text
 
 #### Type 3: Critical Fault Frame
 
-```
+```text
     31                24  23 22  21                             0
     ┌───────────────────┬──┬──┬──────────────────────────────────┐
     │     CRC (8)       │ 1│ 0│        Don't Care               │
@@ -146,13 +148,13 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
 
     Reply Mode [23:22] = 10b: Critical fault condition
     Indicates: Severe hardware fault, device in safe state
-```
+```text
 
 ## SPI Status Codes
 
 ### Status Field [21:17] Encoding
 
-```
+```text
     Status Bits: 5-bit field in MISO reply
 
     ┌──────┬─────────────────────────────────────────────────┐
@@ -170,13 +172,13 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
 
     Priority: Lower encoding = higher priority
     (If multiple errors, lowest code is reported)
-```
+```text
 
 ## CRC Calculation
 
 ### SAE J1850 CRC-8 Algorithm
 
-```
+```text
     Polynomial: 0x1D (x^8 + x^4 + x^3 + x^2 + 1)
     Init Value: 0xFF
     Final XOR:  0xFF
@@ -195,11 +197,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     │                 crc = (crc << 1)                       │
     │     return crc XOR 0xFF     // Final inversion         │
     └────────────────────────────────────────────────────────┘
-```
+```text
 
 ### CRC Calculation Example
 
-```
+```text
     Example: Calculate CRC for write to GLOBAL_CONFIG
     
     Frame contents (before CRC):
@@ -235,13 +237,13 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
         
     Result: CRC = 0xDC
     Complete frame: 0xDC024005
-```
+```text
 
 ## Communication Timing
 
 ### SPI Timing Diagram
 
-```
+```text
     CSN     ─────────┐                                         ┌──────
                      └─────────────────────────────────────────┘
                        tCSS                           tCSH
@@ -266,11 +268,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     │ tH (Data hold)     │  20  │   -     │  -   │  ns  │
     │ tCSI (CS inactive) │ 100  │   -     │  -   │  ns  │
     └────────────────────┴──────┴─────────┴──────┴──────┘
-```
+```text
 
 ### Transaction Sequence
 
-```
+```text
     Complete Read/Write Sequence:
 
     Transaction 1: Write Command
@@ -292,13 +294,13 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     - Response to write contains previous value
     - Read returns current value from addressed register
     - Minimum 100ns between transactions
-```
+```text
 
 ## Transaction Examples
 
 ### Example 1: Initialize Global Configuration
 
-```
+```text
     Objective: Enable CRC, watchdogs, 3.3V VIO
     
     Register: GLOBAL_CONFIG (0x0002)
@@ -320,11 +322,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     │ Step 3: Verify (optional)                              │
     │   Read back GLOBAL_CONFIG to confirm                   │
     └────────────────────────────────────────────────────────┘
-```
+```text
 
 ### Example 2: Read Channel Status
 
-```
+```text
     Objective: Read CH0 current setpoint
     
     Register: CH0_SETPOINT (0x0100)
@@ -347,11 +349,11 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     │   Status [21:17]: Check for errors                     │
     │   Data [15:0]: 0x0567 = current setpoint              │
     └────────────────────────────────────────────────────────┘
-```
+```text
 
 ### Example 3: Error Handling
 
-```
+```text
     Scenario: Write to read-only register
     
     Transaction:
@@ -372,7 +374,7 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
     │   - Check register address                             │
     │   - Verify register is writable                        │
     └────────────────────────────────────────────────────────┘
-```
+```text
 
 ## Best Practices
 
@@ -413,7 +415,7 @@ The TLE92466ED uses a 32-bit SPI protocol with 8-bit CRC (SAE J1850) for robust 
 
 ### Performance Optimization
 
-```
+```text
 Recommended SPI Frequency:
 ┌─────────────────────┬──────────────────────────────────┐
 │ Application         │ Frequency                        │
@@ -427,9 +429,8 @@ Transaction Rate:
 - 32 bits @ 1 MHz = 32 µs per transaction
 - +100ns CS gap = ~33 µs total
 - Max rate: ~30,000 transactions/second
-```
+```text
 
 ---
 
 **Navigation**: [← IC Overview](01_IC_Overview.md) | [Next: Register Map →](03_Register_Map.md)
-

@@ -8,12 +8,12 @@ This component wraps the TLE92466ED driver for use as an ESP-IDF managed compone
 
 ## Component Structure
 
-```
+```text
 tle92466ed-espidf/
 ├── CMakeLists.txt          # Component build configuration
 ├── idf_component.yml       # ESP-IDF Component Manager manifest
 └── README.md              # This file
-```
+```text
 
 ## How It Works
 
@@ -54,7 +54,7 @@ idf_component_register(
     INCLUDE_DIRS "."
     REQUIRES tle92466ed-espidf  # Add this requirement
 )
-```
+```text
 
 ## Configuration
 
@@ -74,7 +74,7 @@ The component is configured to use C++23 standard:
 
 ```cmake
 target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_23)
-```
+```text
 
 ### Compiler Optimizations
 
@@ -85,12 +85,12 @@ target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_23)
 
 ### Compiler Flags
 
-```
+```text
 -Wall -Wextra -Wpedantic
 -O2 -g
 -ffunction-sections -fdata-sections
 -fno-rtti -fno-exceptions
-```
+```text
 
 ## ESP-IDF Dependencies
 
@@ -126,13 +126,13 @@ The component requires these ESP-IDF components:
 ```bash
 cd examples/esp32
 idf.py reconfigure
-```
+```text
 
 ### Viewing Component Information
 
 ```bash
 idf.py show-components
-```
+```text
 
 ### Debugging Component Issues
 
@@ -140,7 +140,7 @@ Enable verbose output:
 
 ```bash
 idf.py -v build
-```
+```text
 
 ## Component Manager
 
@@ -160,7 +160,7 @@ The component is automatically available when building the examples from the `ex
 
 During build, the component will display:
 
-```
+```text
 TLE92466ED Driver - ESP32 Component Configuration
 Project Root: /path/to/project
 Source Root: /path/to/driver
@@ -173,7 +173,7 @@ C++ Standard: C++23
 Driver Version: 2.0.0
 Optimization: LTO enabled (if configured)
 ==========================================
-```
+```text
 
 ## Troubleshooting
 

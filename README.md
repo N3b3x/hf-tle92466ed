@@ -72,7 +72,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
         // Handle overcurrent condition
     }
 }
-```
+```text
 
 ### HAL Implementation
 
@@ -92,7 +92,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```text
 
 ## 📋 Requirements
 
@@ -117,7 +117,7 @@ public:
 add_subdirectory(external/hf-tle92466ed-driver)
 
 target_link_libraries(your_target PRIVATE TLE92466ED)
-```
+```text
 
 ### Manual Integration
 
@@ -138,7 +138,7 @@ Simply include the header and source files in your project:
 
 ## 📖 Documentation Structure
 
-```
+```text
 docs/
 ├── 00_INDEX.md              - Documentation navigation
 ├── 01_IC_Overview.md        - Hardware specifications
@@ -150,7 +150,7 @@ docs/
 ├── 07_Driver_API.md         - C++ API reference
 ├── 08_HAL_Implementation.md - Platform porting guide
 └── 09_Usage_Examples.md     - Practical examples
-```
+```text
 
 ## 🔧 IC Specifications
 
@@ -194,4 +194,3 @@ This software is released into the **Public Domain**. You can use, modify, and d
 ---
 
 **Version**: 2.0.0 | **Status**: Production Ready | **Last Updated**: 2025-10-21
-

@@ -16,4 +16,3 @@ jobs:
       config_file: '.yamllint'
       strict_mode: true
       exclude_patterns: '.git/**,node_modules/**,venv/**,.venv/**,_site/**'
-

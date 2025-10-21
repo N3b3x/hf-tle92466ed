@@ -43,7 +43,7 @@ source ~/esp/esp-idf/export.sh
 
 # Verify installation
 idf.py --version
-```
+```text
 
 ### 2. Setup Repository
 
@@ -54,7 +54,7 @@ cd hf-tle92466ed-driver/examples/esp32
 
 # Initialize build environment
 ./scripts/setup_repo.sh
-```
+```text
 
 ### 3. Build and Flash
 
@@ -67,7 +67,7 @@ cd hf-tle92466ed-driver/examples/esp32
 
 # Monitor output
 idf.py monitor
-```
+```text
 
 ## 📱 Available Examples
 
@@ -83,7 +83,7 @@ idf.py monitor
 ```bash
 ./scripts/build_app.sh basic_usage Debug
 ./scripts/flash_app.sh basic_usage Debug
-```
+```text
 
 #### `multi_channel`
 **Independent control of all 6 channels**
@@ -95,7 +95,7 @@ idf.py monitor
 ```bash
 ./scripts/build_app.sh multi_channel Release
 ./scripts/flash_app.sh multi_channel Release
-```
+```text
 
 ### 🟡 Advanced Examples
 
@@ -167,7 +167,7 @@ apps:
     category: "basic"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
-```
+```text
 
 ### Build Commands
 
@@ -186,7 +186,7 @@ python3 scripts/get_app_info.py info basic_usage
 
 # Clean build
 ./scripts/build_app.sh <app_name> <build_type> --clean
-```
+```text
 
 ### Build Types
 
@@ -219,7 +219,7 @@ struct SPIParams {
     static constexpr int FREQUENCY = 1000000;  // 1MHz
     static constexpr int MODE = 0;             // SPI Mode 0
 };
-```
+```text
 
 ### Current Limits
 
@@ -230,7 +230,7 @@ struct CurrentLimits {
     static constexpr uint16_t SINGLE_CHANNEL_MAX = 2000;   // 2A per channel
     static constexpr uint16_t PARALLEL_CHANNEL_MAX = 4000; // 4A parallel mode
 };
-```
+```text
 
 ### Hardware Specifications
 
@@ -245,7 +245,7 @@ struct SupplyVoltage {
 struct Temperature {
     static constexpr int JUNCTION_MAX = 150;   // Maximum temp (°C)
 };
-```
+```text
 
 ## 🔍 Debugging
 
@@ -260,16 +260,16 @@ idf.py monitor -p /dev/ttyUSB0
 
 # Monitor with filtering
 idf.py monitor | grep "TLE92466ED"
-```
+```text
 
 ### Log Levels
 
 Set in `sdkconfig` or via menuconfig:
 
-```
+```text
 CONFIG_LOG_DEFAULT_LEVEL_DEBUG=y  # Debug level
 CONFIG_TLE92466ED_DEBUG_ENABLED=y # Driver debug
-```
+```text
 
 ### Common Issues
 
@@ -314,7 +314,7 @@ Each example has detailed documentation in `docs/`:
 # Run all tests
 ./scripts/build_app.sh stress_test Debug
 ./scripts/flash_app.sh stress_test Debug
-```
+```text
 
 ### Performance Testing
 
@@ -322,7 +322,7 @@ Each example has detailed documentation in `docs/`:
 # Performance monitoring
 ./scripts/build_app.sh multi_channel Release
 ./scripts/flash_app.sh multi_channel Release
-```
+```text
 
 ### Continuous Integration
 

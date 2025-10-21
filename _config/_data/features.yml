@@ -13,7 +13,9 @@ hardware_features:
         type: "primary"
 
   - title: "Precision Current Control"
-    description: "15-bit resolution current control (0.061mA steps) with integrated current control (ICC) up to 2A per channel or 4A in parallel mode"
+    description: >
+      15-bit resolution current control (0.061mA steps) with integrated current
+      control (ICC) up to 2A per channel or 4A in parallel mode
     icon: "fas fa-bolt"
     badges:
       - text: "15-bit"
@@ -35,7 +37,9 @@ hardware_features:
         type: "primary"
 
   - title: "Comprehensive Diagnostics"
-    description: "Extensive fault detection including overcurrent, overtemperature, open load, short circuit, and supply monitoring"
+    description: >
+      Extensive fault detection including overcurrent, overtemperature, open load,
+      short circuit, and supply monitoring
     icon: "fas fa-shield-alt"
     badges:
       - text: "Overcurrent"
@@ -47,7 +51,9 @@ hardware_features:
 
 communication:
   - title: "32-bit SPI Interface"
-    description: "High-speed SPI communication with 32-bit frame structure and integrated CRC-8 (SAE J1850) for data integrity"
+    description: >
+      High-speed SPI communication with 32-bit frame structure and integrated
+      CRC-8 (SAE J1850) for data integrity
     icon: "fas fa-exchange-alt"
     badges:
       - text: "32-bit Frames"
@@ -81,7 +87,9 @@ driver_features:
         type: "primary"
 
   - title: "Hardware Agnostic HAL"
-    description: "Clean hardware abstraction layer allowing easy porting to any microcontroller platform with SPI support"
+    description: >
+      Clean hardware abstraction layer allowing easy porting to any microcontroller
+      platform with SPI support
     icon: "fas fa-microchip"
     badges:
       - text: "HAL Interface"
@@ -92,7 +100,9 @@ driver_features:
         type: "primary"
 
   - title: "Zero Dependencies"
-    description: "Freestanding-compatible code with no external dependencies, suitable for embedded systems and bare-metal applications"
+    description: >
+      Freestanding-compatible code with no external dependencies, suitable for
+      embedded systems and bare-metal applications
     icon: "fas fa-cube"
     badges:
       - text: "No Dependencies"
@@ -103,7 +113,9 @@ driver_features:
         type: "primary"
 
   - title: "Production Ready"
-    description: "Well-tested, documented code with comprehensive error handling and diagnostics for production deployment"
+    description: >
+      Well-tested, documented code with comprehensive error handling and
+      diagnostics for production deployment
     icon: "fas fa-check-circle"
     badges:
       - text: "Tested"
@@ -191,4 +203,3 @@ safety_features:
         type: "info"
       - text: "Real-time"
         type: "primary"
-

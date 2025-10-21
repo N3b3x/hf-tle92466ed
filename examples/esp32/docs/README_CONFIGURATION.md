@@ -6,7 +6,7 @@ This guide explains all configuration files and settings for the TLE92466ED ESP3
 
 ## 📁 Configuration File Structure
 
-```
+```text
 examples/esp32/
 ├── app_config.yml                    # Build metadata and app definitions
 ├── main/
@@ -18,7 +18,7 @@ examples/esp32/
     └── tle92466ed-espidf/
         ├── CMakeLists.txt            # Component build config
         └── idf_component.yml         # Component metadata
-```
+```text
 
 ---
 
@@ -28,9 +28,9 @@ examples/esp32/
 **Centralized hardware-specific settings** for ESP32-C6 and TLE92466ED interface.
 
 ### Location
-```
+```text
 examples/esp32/main/TLE92466ED_Config.hpp
-```
+```text
 
 ### Complete Configuration
 
@@ -94,7 +94,7 @@ struct TestConfig {
 };
 
 } // namespace TLE92466ED_Config
-```
+```text
 
 ### Configuration Sections
 
@@ -179,7 +179,7 @@ struct SPIPins {
     static constexpr int SCLK = 3;   // Changed to GPIO3
     static constexpr int CS = 11;    // Changed to GPIO11
 };
-```
+```text
 
 #### Example: Higher SPI Frequency
 
@@ -189,7 +189,7 @@ struct SPIParams {
     static constexpr int MODE = 0;
     static constexpr int QUEUE_SIZE = 7;
 };
-```
+```text
 
 #### Example: Custom Test Currents
 
@@ -200,7 +200,7 @@ struct TestConfig {
     static constexpr uint32_t TEST_DURATION_MS = 10000;  // 10 seconds
     static constexpr uint32_t DIAGNOSTICS_POLL_INTERVAL_MS = 50;  // 50ms
 };
-```
+```text
 
 ---
 
@@ -210,9 +210,9 @@ struct TestConfig {
 **Build metadata and app definitions** for the dynamic build system.
 
 ### Location
-```
+```text
 examples/esp32/app_config.yml
-```
+```text
 
 ### Structure
 
@@ -237,7 +237,7 @@ apps:
     ci_enabled: true
     featured: true
     documentation: "docs/README_MULTI_CHANNEL.md"
-```
+```text
 
 ### App Definition Fields
 
@@ -257,7 +257,7 @@ apps:
 #### Debug
 ```yaml
 build_types: ["Debug"]
-```
+```text
 - **Optimization**: `-Og` (debug-friendly)
 - **Symbols**: Full debug symbols
 - **Assertions**: Enabled
@@ -268,7 +268,7 @@ build_types: ["Debug"]
 #### Release
 ```yaml
 build_types: ["Release"]
-```
+```text
 - **Optimization**: `-O2` (performance)
 - **Symbols**: Minimal symbols
 - **Assertions**: Disabled
@@ -283,7 +283,7 @@ idf_versions:
   - "release/v5.5"    # ESP-IDF v5.5.x (recommended)
   - "release/v5.4"    # ESP-IDF v5.4.x (compatible)
   - "release/v5.3"    # ESP-IDF v5.3.x (minimum)
-```
+```text
 
 **Requirements**:
 - **Minimum**: ESP-IDF v5.3 (C++23 support)
@@ -302,13 +302,13 @@ apps:
     ci_enabled: false
     featured: false
     documentation: "docs/README_MY_CUSTOM_APP.md"
-```
+```text
 
 Then create:
-```
+```text
 examples/esp32/main/MyCustomApp.cpp
 examples/esp32/docs/README_MY_CUSTOM_APP.md
-```
+```text
 
 ---
 
@@ -328,7 +328,7 @@ In each example source file (e.g., `BasicUsageExample.cpp`):
 #define ENABLE_INITIALIZATION_TESTS 1
 #define ENABLE_BASIC_OPERATION_TESTS 1
 #define ENABLE_CURRENT_CONTROL_TESTS 1
-```
+```text
 
 ### Test Sections
 
@@ -346,7 +346,7 @@ Set to `0` to disable:
 #define ENABLE_INITIALIZATION_TESTS 1     // Enabled
 #define ENABLE_BASIC_OPERATION_TESTS 1    // Enabled
 #define ENABLE_CURRENT_CONTROL_TESTS 0    // DISABLED
-```
+```text
 
 **Benefits**:
 - Faster iteration during development
@@ -362,7 +362,7 @@ RUN_TEST_SECTION_IF_ENABLED(
     // Tests only run if flag is 1
     RUN_TEST_IN_TASK("hal_init", test_hal_initialization, 8192, 5);
 );
-```
+```text
 
 ---
 
@@ -372,9 +372,9 @@ RUN_TEST_SECTION_IF_ENABLED(
 **ESP-IDF framework configuration** - compiler, components, features.
 
 ### Location
-```
+```text
 examples/esp32/sdkconfig
-```
+```text
 
 ### Key Settings
 
@@ -384,7 +384,7 @@ examples/esp32/sdkconfig
 CONFIG_COMPILER_OPTIMIZATION_SIZE=n
 CONFIG_COMPILER_OPTIMIZATION_PERF=y
 CONFIG_COMPILER_OPTIMIZATION_DEBUG=n
-```
+```text
 
 **Options**:
 - `SIZE`: Optimize for size (`-Os`)
@@ -395,7 +395,7 @@ CONFIG_COMPILER_OPTIMIZATION_DEBUG=n
 
 ```ini
 CONFIG_COMPILER_CXX_STD_GNUXX23=y
-```
+```text
 
 **Required**: TLE92466ED driver uses C++23 features (`std::expected`)
 
@@ -404,7 +404,7 @@ CONFIG_COMPILER_CXX_STD_GNUXX23=y
 ```ini
 CONFIG_LOG_DEFAULT_LEVEL_INFO=y
 CONFIG_LOG_DEFAULT_LEVEL_DEBUG=n
-```
+```text
 
 **Options**:
 - `NONE`: No logging
@@ -419,7 +419,7 @@ CONFIG_LOG_DEFAULT_LEVEL_DEBUG=n
 ```ini
 CONFIG_ESP_MAIN_TASK_STACK_SIZE=8192
 CONFIG_ESP_SYSTEM_EVENT_TASK_STACK_SIZE=4096
-```
+```text
 
 **Recommendations**:
 - Main task: 8KB (default sufficient)
@@ -431,7 +431,7 @@ CONFIG_ESP_SYSTEM_EVENT_TASK_STACK_SIZE=4096
 CONFIG_FREERTOS_HZ=1000
 CONFIG_FREERTOS_USE_TRACE_FACILITY=y
 CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y
-```
+```text
 
 **Important**:
 - `HZ=1000`: 1ms tick resolution (for accurate timing)
@@ -444,7 +444,7 @@ CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y
 ```bash
 cd examples/esp32
 idf.py menuconfig
-```
+```text
 
 Navigate with arrow keys, space to select, 'S' to save.
 
@@ -457,13 +457,13 @@ Create `sdkconfig.defaults`:
 CONFIG_COMPILER_OPTIMIZATION_PERF=y
 CONFIG_LOG_DEFAULT_LEVEL_DEBUG=y
 CONFIG_ESP_MAIN_TASK_STACK_SIZE=16384
-```
+```text
 
 Then:
 ```bash
 idf.py fullclean
 idf.py reconfigure
-```
+```text
 
 ---
 
@@ -495,7 +495,7 @@ idf_component_register(
 
 # C++23 standard
 target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_23)
-```
+```text
 
 **Key Points**:
 - Automatically finds driver sources
@@ -518,7 +518,7 @@ targets:
   - esp32
   - esp32s3
   - esp32c3
-```
+```text
 
 **Purpose**: ESP-IDF Component Manager metadata
 
@@ -598,7 +598,7 @@ struct SPIPins {
     static constexpr int MISO = 4;   // Try different GPIO
     // ...
 };
-```
+```text
 
 #### SPI Communication Failure
 
@@ -632,7 +632,7 @@ struct SPIPins {
 # Clean and rebuild with explicit build type
 idf.py fullclean
 idf.py -DCMAKE_BUILD_TYPE=Debug build
-```
+```text
 
 ---
 
@@ -651,7 +651,7 @@ idf.py -DCMAKE_BUILD_TYPE=Debug build
 
 ### Configuration Hierarchy
 
-```
+```text
 Hardware Layer
 └── TLE92466ED_Config.hpp          (SPI pins, frequencies, limits)
 
@@ -662,11 +662,10 @@ Application Layer
 Framework Layer
 ├── sdkconfig                       (ESP-IDF configuration)
 └── components/                     (Component configuration)
-```
+```text
 
 ---
 
 **Document Version**: 1.0.0  
 **Last Updated**: 2025-10-21  
 **Status**: ✅ Complete
-

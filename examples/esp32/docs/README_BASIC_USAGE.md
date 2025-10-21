@@ -68,7 +68,7 @@ Tests advanced current control:
 All test functions follow this pattern:
 ```cpp
 static bool test_function_name() noexcept;
-```
+```text
 
 **Key Characteristics**:
 - Return `bool` (true = passed, false = failed)
@@ -89,7 +89,7 @@ static bool test_function_name() noexcept;
 
 ### Wiring Diagram
 
-```
+```text
 ESP32-C6          TLE92466ED        Function
 --------          ----------        --------
 GPIO2    -------> MISO              SPI Data In
@@ -109,7 +109,7 @@ Test Load         TLE92466ED
 ---------         ----------
 Load+     ------>  OUT0             Channel 0 Output
 Load-     ------>  GND (via sense)  Return Path
-```
+```text
 
 ### Complete Pin Configuration
 
@@ -126,12 +126,12 @@ Load-     ------>  GND (via sense)  Return Path
 
 ### GPIO14 Test Indicator Setup
 
-```
+```text
 ESP32-C6 GPIO14 ──┬── LED (Anode)
                   │   └── LED (Cathode) ── 220Ω ── GND
                   │
                   └── Oscilloscope/Logic Analyzer Probe
-```
+```text
 
 **Purpose**: Visual and measurable feedback showing test progression
 
@@ -169,7 +169,7 @@ struct HardwareSpecs {
 };
 
 } // namespace TLE92466ED_Config
-```
+```text
 
 **To modify hardware settings**: Edit `main/TLE92466ED_Config.hpp`
 
@@ -181,7 +181,7 @@ Enable/disable test sections at compile time:
 #define ENABLE_INITIALIZATION_TESTS 1       // HAL, driver, chip ID
 #define ENABLE_BASIC_OPERATION_TESTS 1      // Enable, current, diagnostics
 #define ENABLE_CURRENT_CONTROL_TESTS 1      // Ramping tests
-```
+```text
 
 **To disable a section**: Set to `0` and rebuild
 
@@ -199,7 +199,7 @@ apps:
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-```
+```text
 
 **Note**: This is for build metadata only. Hardware config is in `TLE92466ED_Config.hpp`.
 
@@ -218,7 +218,7 @@ cd examples/esp32
 
 # Monitor output
 ./scripts/monitor_app.sh basic_usage
-```
+```text
 
 ### Manual Build
 
@@ -239,7 +239,7 @@ idf.py -p /dev/ttyUSB0 flash
 
 # Monitor
 idf.py -p /dev/ttyUSB0 monitor
-```
+```text
 
 ### Build Targets
 
@@ -249,13 +249,13 @@ idf.py -DAPP_TYPE=basic_usage -DCMAKE_BUILD_TYPE=Debug build
 
 # Release build (optimized for performance)
 idf.py -DAPP_TYPE=basic_usage -DCMAKE_BUILD_TYPE=Release build
-```
+```text
 
 ## 📊 Expected Output
 
 ### Professional Test Header
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║              TLE92466ED BASIC USAGE TEST SUITE - ESP32-C6                   ║
 ║                         HardFOC Core Drivers                                 ║
@@ -269,11 +269,11 @@ ESP-IDF Version: v5.5.0
 ║ Test sections will execute based on compile-time configuration              ║
 ║ GPIO14 test progression indicator: ENABLED                                   ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
-```
+```text
 
 ### Test Execution
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║ SECTION: INITIALIZATION TESTS                                                ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -311,11 +311,11 @@ I (1285) TLE92466ED_Basic: ✅ Chip ID: 0x123456789ABC
 [SUCCESS] PASSED (task): chip_id (5.23 ms)
 Test task completed: chip_id
 [GPIO14: Toggle HIGH]
-```
+```text
 
 ### Test Results Summary
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════════════════════╗
 ║                           TEST RESULTS SUMMARY                               ║
 ╠══════════════════════════════════════════════════════════════════════════════╣
@@ -327,11 +327,11 @@ Test task completed: chip_id
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
 I (5000) TLE92466ED_Basic: ✅ ALL TESTS PASSED! System will restart in 10 seconds...
-```
+```text
 
 ### GPIO14 Signal Pattern
 
-```
+```text
 Time    │ GPIO14 │ Event
 ────────┼────────┼──────────────────────────────
 0ms     │   LOW  │ Boot
@@ -343,7 +343,7 @@ Time    │ GPIO14 │ Event
 500ms   │ BLINK  │ Section 2 start (5 blinks)
 600ms   │   LOW  │ Test 4 complete
 ...
-```
+```text
 
 ## 🧪 Individual Test Details
 
@@ -536,7 +536,7 @@ Test current settings at:
 # Re-flash
 idf.py -p /dev/ttyUSB0 erase-flash
 idf.py -p /dev/ttyUSB0 flash
-```
+```text
 
 ---
 
@@ -646,13 +646,13 @@ In `sdkconfig`:
 ```ini
 CONFIG_LOG_DEFAULT_LEVEL_DEBUG=y
 CONFIG_ESP_SYSTEM_PANIC_PRINT_HALT=y
-```
+```text
 
 Or via menuconfig:
 ```bash
 idf.py menuconfig
 # Component config -> Log output -> Default log verbosity -> Debug
-```
+```text
 
 #### SPI Signal Analysis
 
@@ -745,10 +745,10 @@ Attach oscilloscope to GPIO14:
 
 The test suite produces structured output suitable for parsing:
 
-```
+```text
 [SUCCESS] PASSED (task): test_name (12.34 ms)
 [FAILED] FAILED (task): test_name (45.67 ms)
-```
+```text
 
 ### Exit Codes
 
@@ -764,7 +764,7 @@ grep "Success Rate:" output.log
 
 # Check for failures
 grep "\[FAILED\]" output.log && echo "Tests failed!" || echo "All passed!"
-```
+```text
 
 ---
 

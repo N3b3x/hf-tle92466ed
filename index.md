@@ -38,7 +38,7 @@ The TLE92466ED driver is a production-ready C++23 implementation for controlling
 ```cpp
 #include "TLE92466ED.hpp"
 #include "your_platform_hal.hpp"
-```
+```text
 
 ### 2. Create and Initialize
 
@@ -49,7 +49,7 @@ TLE92466ED driver(hal);
 if (auto result = driver.initialize(); !result) {
     // Handle initialization error
 }
-```
+```text
 
 ### 3. Control Channels
 
@@ -66,7 +66,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
         // Handle overcurrent
     }
 }
-```
+```text
 
 ## Documentation
 
@@ -119,7 +119,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
 ```cmake
 add_subdirectory(external/hf-tle92466ed-driver)
 target_link_libraries(your_target PRIVATE TLE92466ED)
-```
+```text
 
 ### Manual
 
@@ -147,7 +147,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```text
 
 ## Use Cases
 

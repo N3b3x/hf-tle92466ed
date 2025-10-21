@@ -59,7 +59,7 @@ Professional Arduino examples for the TLE92466ED Six-Channel Low-Side Solenoid D
 
 ### Arduino Uno / Nano Pinout
 
-```
+```text
 TLE92466ED Evalboard         Arduino Uno/Nano        Function
 ----------------------       ----------------        --------
 MISO                    --> Pin 12 (MISO)           SPI Data In
@@ -71,11 +71,11 @@ RESN (Reset)            --> Pin 8                   Hardware Reset
 VDD                     --> 5V                      Logic Supply (5V)
 VIO                     --> 5V                      I/O Supply (5V)
 GND                     --> GND                     Ground
-```
+```text
 
 ### Arduino Mega 2560 Pinout
 
-```
+```text
 TLE92466ED Evalboard         Arduino Mega            Function
 ----------------------       ----------------        --------
 MISO                    --> Pin 50 (MISO)           SPI Data In
@@ -87,11 +87,11 @@ RESN (Reset)            --> Pin 8                   Hardware Reset
 VDD                     --> 5V                      Logic Supply (5V)
 VIO                     --> 5V                      I/O Supply (5V)
 GND                     --> GND                     Ground
-```
+```text
 
 ### Arduino Due Pinout (3.3V Logic)
 
-```
+```text
 TLE92466ED Evalboard         Arduino Due             Function
 ----------------------       ----------------        --------
 MISO                    --> ICSP MISO               SPI Data In
@@ -103,29 +103,29 @@ RESN (Reset)            --> Pin 8                   Hardware Reset
 VDD                     --> 3.3V                    Logic Supply (3.3V)
 VIO                     --> 3.3V                    I/O Supply (3.3V)
 GND                     --> GND                     Ground
-```
+```text
 
 **⚠️ IMPORTANT for 3.3V boards**: TLE92466ED VIO must match your Arduino logic level!
 
 ### Power Supply Connections
 
-```
+```text
 External 12-24V Supply       TLE92466ED Evalboard
 ----------------------       --------------------
 +12V to +24V            --> VBAT
 GND                     --> GND (power ground)
 
 ⚠️ Connect Arduino GND to TLE92466ED GND for common ground!
-```
+```text
 
 ### Load Connections
 
-```
+```text
 Load                         TLE92466ED Evalboard
 ----                         --------------------
 Load Positive (+)       --> OUT0 (or OUT1-OUT5)
 Load Negative (-)       --> Load return terminal
-```
+```text
 
 ---
 
@@ -174,7 +174,7 @@ build_flags =
     -std=gnu++17
     -Wall
     -Wextra
-```
+```text
 
 ---
 
@@ -222,12 +222,12 @@ Arduino_HAL::SPIConfig config;
 config.cs_pin = 10;         // Change if using different pin
 config.en_pin = 9;          // Change if using different pin
 config.resn_pin = 8;        // Change if using different pin
-```
+```text
 
 **For Arduino Mega**, change CS pin:
 ```cpp
 config.cs_pin = 53;         // Mega SS pin
-```
+```text
 
 ### Step 4: Compile and Upload
 
@@ -247,7 +247,7 @@ config.cs_pin = 53;         // Mega SS pin
 
 ### Successful Execution
 
-```
+```text
 ╔══════════════════════════════════════════════════════════════╗
 ║    TLE92466ED Basic Usage Example - Arduino Platform        ║
 ║              HardFOC Core Drivers v2.0.0                     ║
@@ -316,7 +316,7 @@ Sample 2/5:
 ╔══════════════════════════════════════════════════════════════╗
 ║              Demo Complete - Restarting Sequence             ║
 ╚══════════════════════════════════════════════════════════════╝
-```
+```text
 
 ---
 
@@ -442,7 +442,7 @@ config.resn_pin = 8;        // Reset (optional, use 255 to disable)
 config.spi_frequency = 1000000;  // 1MHz (100kHz - 8MHz)
 config.spi_mode = SPI_MODE0;     // TLE92466ED requires Mode 0
 config.spi_bit_order = MSBFIRST; // Must be MSB first
-```
+```text
 
 ### Current Configuration
 
@@ -453,7 +453,7 @@ const uint16_t TEST_CURRENT_MA = 500;    // Test current (0-2000mA)
 const uint16_t RAMP_START_MA = 100;      // Ramp start
 const uint16_t RAMP_END_MA = 1000;       // Ramp end
 const uint16_t RAMP_STEP_MA = 100;       // Ramp step size
-```
+```text
 
 ### Timing Configuration
 
@@ -461,7 +461,7 @@ Edit delays:
 
 ```cpp
 const uint32_t STEP_DELAY_MS = 500;      // Delay between steps (ms)
-```
+```text
 
 ---
 
@@ -567,7 +567,7 @@ Serial.begin(115200);  // High baud rate for faster logging
 
 // Add debug prints in HAL:
 Serial.println(F("DEBUG: Entering spiTransfer()"));
-```
+```text
 
 ### SPI Signal Analysis
 
@@ -580,14 +580,14 @@ Use logic analyzer/oscilloscope:
 - **Mode**: Verify Mode 0 (CPOL=0, CPHA=0)
 
 Expected transaction:
-```
+```text
 CS:   ──┐             ┌────
         └─────────────┘
 SCK:  ────┐ ┌ ┐ ┌ ┐ ┌─────
           └─┘ └─┘ └─┘
 MOSI: ────DATA────────────
 MISO: ────DATA────────────
-```
+```text
 
 ---
 
@@ -627,7 +627,7 @@ MISO: ────DATA────────────
 
 ## 📚 Project Structure
 
-```
+```text
 examples/arduino/
 ├── README.md                           # This file (comprehensive guide)
 ├── platformio.ini                      # PlatformIO multi-board configuration
@@ -645,7 +645,7 @@ examples/arduino/
 │
 └── PWMDitherExample/                   # ⭐⭐⭐ Intermediate
     └── PWMDitherExample.ino           # PWM & dither features
-```
+```text
 
 ---
 
@@ -756,4 +756,3 @@ Your setup is working correctly when:
 **Status**: ✅ Production Ready
 
 **Next**: Try [BasicUsageExample](BasicUsageExample/BasicUsageExample.ino) →
-

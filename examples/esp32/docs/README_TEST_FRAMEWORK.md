@@ -2,7 +2,9 @@
 
 ## Overview
 
-The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides professional testing infrastructure for ESP32-based examples, adapted from the HardFOC Internal Interface Wrap test framework.
+The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides professional
+testing infrastructure for ESP32-based examples, adapted from the HardFOC Internal
+Interface Wrap test framework.
 
 ## 🎯 Purpose
 
@@ -17,7 +19,8 @@ The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides prof
 ### 1. GPIO14 Test Progression Indicator
 
 #### Purpose
-Provides **hardware-level visual feedback** showing test progression on oscilloscope, logic analyzer, or LED.
+Provides **hardware-level visual feedback** showing test progression on oscilloscope,
+logic analyzer, or LED.
 
 #### Functions
 
@@ -603,7 +606,9 @@ fi
 ## 📚 References
 
 - [BasicUsageExample.cpp](../main/BasicUsageExample.cpp) - Example implementation
-- [HardFOC Internal TestFramework.h](../../../../internal/hf-internal-interface-wrap/examples/esp32/main/TestFramework.h) - Original framework
+- [HardFOC Internal TestFramework.h](
+  ../../../../internal/hf-internal-interface-wrap/examples/esp32/main/TestFramework.h) -
+  Original framework
 
 ---
 

@@ -4,7 +4,8 @@ This directory contains comprehensive examples demonstrating the TLE92466ED driv
 
 ## 🎯 Overview
 
-The ESP32-C6 examples showcase real-world usage of the TLE92466ED six-channel low-side solenoid driver with:
+The ESP32-C6 examples showcase real-world usage of the TLE92466ED six-channel low-side
+solenoid driver with:
 
 - **Hardware-specific HAL** implementation for ESP32-C6
 - **Multiple example applications** covering different use cases
@@ -19,6 +20,7 @@ The ESP32-C6 examples showcase real-world usage of the TLE92466ED six-channel lo
 - USB-C cable for programming and power
 
 ### TLE92466ED Connections
+
 | TLE92466ED Pin | ESP32-C6 GPIO | Function |
 |----------------|---------------|----------|
 | MOSI | GPIO7 | SPI Data Out |
@@ -199,9 +201,11 @@ python3 scripts/get_app_info.py info basic_usage
 
 ### Hardware Configuration File
 
-All hardware configuration is defined in `main/TLE92466ED_Config.hpp`. This is the **actual** configuration used by the HAL and examples.
+All hardware configuration is defined in `main/TLE92466ED_Config.hpp`. This is the
+**actual** configuration used by the HAL and examples.
 
-**Important**: The `app_config.yml` file only contains application definitions and build configuration, NOT hardware settings.
+**Important**: The `app_config.yml` file only contains application definitions and build
+configuration, NOT hardware settings.
 
 ### SPI Configuration
 
@@ -351,7 +355,8 @@ The examples are automatically tested in CI with:
 
 ## 📄 License
 
-This software is released into the **Public Domain**. You can use, modify, and distribute it freely without any restrictions.
+This software is released into the **Public Domain**. You can use, modify, and distribute
+it freely without any restrictions.
 
 ## 🔗 Resources
 

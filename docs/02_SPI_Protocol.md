@@ -386,10 +386,10 @@ SPI Mode 0.
    - Outgoing CRC before transmission
    - Incoming CRC after reception
    - Reject frames with CRC mismatch
-   ```
+   ```text
 
 2. **Status Checking**
-   ```
+   ```text
    After every transaction:
    - Parse status field [21:17]
    - Handle errors appropriately
@@ -397,7 +397,7 @@ SPI Mode 0.
    ```
 
 3. **Timing Compliance**
-   ```
+   ```text
    Ensure:
    - Minimum CS inactive time (100ns)
    - Proper setup/hold times
@@ -405,7 +405,7 @@ SPI Mode 0.
    ```
 
 4. **Error Recovery**
-   ```
+   ```text
    On error:
    - Check CRC first
    - Verify register address

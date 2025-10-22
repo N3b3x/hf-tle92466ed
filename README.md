@@ -6,7 +6,8 @@
 
 > **C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC**
 
-A modern, production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support.
+A modern, production-ready C++23 driver implementation for the Infineon TLE92466ED with
+comprehensive SPI interface, precision current control, and extensive diagnostics support.
 
 ## 🌟 Key Features
 
@@ -27,8 +28,10 @@ A modern, production-ready C++23 driver implementation for the Infineon TLE92466
 
 ## 📚 Documentation
 
-- **[Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Jekyll site with full guides
-- **[API Reference](https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/)** - Doxygen-generated API docs
+- **[Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Jekyll
+  site with full guides
+- **[API Reference](https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/)** -
+  Doxygen-generated API docs
 - **[IC Overview](docs/01_IC_Overview.md)** - Hardware specifications
 - **[Usage Examples](docs/09_Usage_Examples.md)** - Practical code examples
 - **[HAL Implementation](docs/08_HAL_Implementation.md)** - Platform porting guide

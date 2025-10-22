@@ -10,7 +10,8 @@ description: "Operating modes and configuration options"
 
 ## Operation Modes Overview
 
-The TLE92466ED supports multiple channel operation modes, each designed for specific applications. Modes are configured per-channel in Config Mode.
+The TLE92466ED supports multiple channel operation modes, each designed for specific
+applications. Modes are configured per-channel in Config Mode.
 
 ### Mode Architecture
 

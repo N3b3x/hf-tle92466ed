@@ -6,7 +6,9 @@ nav_order: 90
 
 # Doxygen Extensions
 
-The TLE92466ED driver documentation uses [Doxygen Awesome CSS](https://github.com/jothepro/doxygen-awesome-css) for modern, responsive API documentation.
+The TLE92466ED driver documentation uses
+[Doxygen Awesome CSS](https://github.com/jothepro/doxygen-awesome-css) for modern,
+responsive API documentation.
 
 ## Features
 

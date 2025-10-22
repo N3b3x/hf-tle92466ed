@@ -22,7 +22,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 **Comprehensive guide to the basic usage example**
 
-#### Contents:
+#### Contents
 - ✅ **Test Framework Architecture** - How the test infrastructure works
 - ✅ **Test Suite Structure** - All test sections and functions
 - ✅ **Hardware Setup** - Complete wiring diagrams and pin configurations
@@ -41,7 +41,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 **Complete reference for all configuration files and options**
 
-#### Contents:
+#### Contents
 - ✅ **Hardware Configuration** (`TLE92466ED_Config.hpp`) - SPI pins, frequencies, current limits
 - ✅ **Application Configuration** (`app_config.yml`) - Build metadata and app definitions
 - ✅ **Test Section Configuration** - Compile-time test enable/disable
@@ -58,7 +58,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 **Detailed API reference for the TLE92466ED Test Framework**
 
-#### Contents:
+#### Contents
 - ✅ **GPIO14 Progress Indicator** - Visual feedback system
 - ✅ **Test Result Tracking** - Automatic pass/fail counting
 - ✅ **Test Execution Macros** - `RUN_TEST`, `RUN_TEST_IN_TASK`, sections

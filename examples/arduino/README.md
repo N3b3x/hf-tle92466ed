@@ -2,7 +2,9 @@
 
 ## 📚 Overview
 
-Professional Arduino examples for the TLE92466ED Six-Channel Low-Side Solenoid Driver using the **TLE92466ED Evaluation Board**. These examples demonstrate driver integration on Arduino platforms with the same high-quality standards as the ESP32 examples.
+Professional Arduino examples for the TLE92466ED Six-Channel Low-Side Solenoid Driver
+using the **TLE92466ED Evaluation Board**. These examples demonstrate driver integration
+on Arduino platforms with the same high-quality standards as the ESP32 examples.
 
 ## 🎯 Features
 
@@ -150,18 +152,18 @@ Load Negative (-)       --> Load return terminal
 platform = atmelavr
 board = uno
 framework = arduino
-build_flags = 
+build_flags =
     -std=gnu++17
     -Wall
     -Wextra
-lib_deps = 
+lib_deps =
     SPI
 
 [env:mega2560]
 platform = atmelavr
 board = megaatmega2560
 framework = arduino
-build_flags = 
+build_flags =
     -std=gnu++17
     -Wall
     -Wextra
@@ -170,7 +172,7 @@ build_flags =
 platform = atmelsam
 board = due
 framework = arduino
-build_flags = 
+build_flags =
     -std=gnu++17
     -Wall
     -Wextra
@@ -205,7 +207,7 @@ build_flags =
      ln -s ../../../include include
      ln -s ../Arduino_HAL.hpp Arduino_HAL.hpp
      ```
-   
+
    - **Option B**: Copy files to sketch folder:
      ```bash
      cp -r ../../include BasicUsageExample/
@@ -473,12 +475,12 @@ const uint32_t STEP_DELAY_MS = 500;      // Delay between steps (ms)
 
 **Error**: `'std::expected' has not been declared`
 
-**Solution**: 
+**Solution**:
 - Use Arduino IDE 2.0+ (has better C++17 support)
 - Or add compiler flag in `platform.txt`:
-  ```
+  ```text
   compiler.cpp.extra_flags=-std=gnu++17
-  ```
+  ```text
 - Or use PlatformIO with `build_flags = -std=gnu++17`
 
 **Error**: `'TLE92466ED.hpp' not found`
@@ -750,9 +752,9 @@ Your setup is working correctly when:
 
 ---
 
-**Platform**: Arduino (Uno, Mega, Due, Zero, etc.)  
-**Evaluation Board**: TLE92466ED-EVALBOARD  
-**Driver Version**: 2.0.0  
+**Platform**: Arduino (Uno, Mega, Due, Zero, etc.)
+**Evaluation Board**: TLE92466ED-EVALBOARD
+**Driver Version**: 2.0.0
 **Status**: ✅ Production Ready
 
 **Next**: Try [BasicUsageExample](BasicUsageExample/BasicUsageExample.ino) →

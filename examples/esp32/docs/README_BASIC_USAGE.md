@@ -2,7 +2,10 @@
 
 ## Overview
 
-The Basic Usage example is a **comprehensive test suite** that demonstrates fundamental TLE92466ED operations on ESP32-C6 using a professional FreeRTOS-based test framework. This suite provides structured validation of driver functionality with automatic result tracking, GPIO14 progress indicators, and detailed execution timing.
+The Basic Usage example is a **comprehensive test suite** that demonstrates fundamental
+TLE92466ED operations on ESP32-C6 using a professional FreeRTOS-based test framework.
+This suite provides structured validation of driver functionality with automatic result
+tracking, GPIO14 progress indicators, and detailed execution timing.
 
 ## 🎯 Purpose
 

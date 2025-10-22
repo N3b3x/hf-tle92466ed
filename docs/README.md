@@ -8,7 +8,8 @@ permalink: /
 
 # TLE92466ED Driver Documentation
 
-Complete technical documentation for the TLE92466ED Six-Channel Low-Side Solenoid Driver IC and its C++23 driver implementation.
+Complete technical documentation for the TLE92466ED Six-Channel Low-Side Solenoid Driver
+IC and its C++23 driver implementation.
 
 ## Quick Links
 

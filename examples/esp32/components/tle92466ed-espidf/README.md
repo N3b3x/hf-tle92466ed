@@ -4,7 +4,8 @@ This directory contains the ESP-IDF component configuration for the TLE92466ED d
 
 ## Overview
 
-This component wraps the TLE92466ED driver for use as an ESP-IDF managed component, making it easy to integrate into ESP32 projects.
+This component wraps the TLE92466ED driver for use as an ESP-IDF managed component,
+making it easy to integrate into ESP32 projects.
 
 ## Component Structure
 
@@ -42,7 +43,8 @@ This component can be used with the ESP-IDF Component Manager by adding it to yo
 
 ### In Local Projects
 
-The component is automatically discovered by ESP-IDF when located in the `components/` directory of your project.
+The component is automatically discovered by ESP-IDF when located in the `components/`
+directory of your project.
 
 ### Requirements
 

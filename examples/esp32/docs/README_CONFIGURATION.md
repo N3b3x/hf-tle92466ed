@@ -2,7 +2,8 @@
 
 ## Overview
 
-This guide explains all configuration files and settings for the TLE92466ED ESP32 examples, including hardware configuration, build settings, and test options.
+This guide explains all configuration files and settings for the TLE92466ED ESP32
+examples, including hardware configuration, build settings, and test options.
 
 ## 📁 Configuration File Structure
 

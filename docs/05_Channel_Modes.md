@@ -10,11 +10,12 @@ description: "Operating modes and configuration options"
 
 ## Operation Modes Overview
 
-The TLE92466ED supports multiple channel operation modes, each designed for specific applications. Modes are configured per-channel in Config Mode.
+The TLE92466ED supports multiple channel operation modes, each designed for specific
+applications. Modes are configured per-channel in Config Mode.
 
 ### Mode Architecture
 
-```
+```text
     Device Modes:              Channel Modes:
     
     ┌──────────────┐          ┌─────────────────┐
@@ -34,7 +35,7 @@ The TLE92466ED supports multiple channel operation modes, each designed for spec
     │ - Outputs ON │
     │ - Control    │
     └──────────────┘
-```
+```text
 
 ## Device Operating Modes
 
@@ -80,7 +81,7 @@ The TLE92466ED supports multiple channel operation modes, each designed for spec
 
 ### Mode Switching
 
-```
+```text
     Transition Sequence:
     
     Config → Mission:
@@ -94,7 +95,7 @@ The TLE92466ED supports multiple channel operation modes, each designed for spec
     2. All channels disabled automatically
     3. Device transitions (immediate)
     4. Configuration registers unlocked
-```
+```text
 
 ## Channel Operation Modes
 
@@ -105,7 +106,7 @@ The TLE92466ED supports multiple channel operation modes, each designed for spec
 **Configuration**:
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::OFF);
-```
+```text
 
 **Behavior**:
 - Output stage disabled
@@ -126,7 +127,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::OFF);
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::ICC);
 driver.set_current_setpoint(Channel::CH0, 1500); // 1.5A
-```
+```text
 
 **Behavior**:
 - Closed-loop current control
@@ -136,11 +137,11 @@ driver.set_current_setpoint(Channel::CH0, 1500); // 1.5A
 - Current feedback available
 
 **Control Loop**:
-```
+```text
     Setpoint → Difference → Integrator → PWM → Output
                    ▲                              │
                    └──────── Sense ◄──────────────┘
-```
+```text
 
 **Use Cases**:
 - Solenoid actuators (primary use)
@@ -162,7 +163,7 @@ driver.set_current_setpoint(Channel::CH0, 1500); // 1.5A
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_SPI);
 // Configure on-time in TON register
-```
+```text
 
 **Behavior**:
 - Output ON for specified duration
@@ -171,12 +172,12 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_SPI);
 - Repeated automatically
 
 **Timing**:
-```
+```text
     t_on = [(TON_MANT + 1) × 2^EXP] × (1/f_sys)
     
     Where: EXP from DITHER_CLK_DIV register
            f_sys ≈ 8 MHz
-```
+```text
 
 **Use Cases**:
 - Simple ON/OFF control
@@ -191,7 +192,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_SPI);
 **Configuration**:
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_DRV0);
-```
+```text
 
 **Behavior**:
 - Output follows DRV0 pin state
@@ -200,14 +201,14 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_DRV0);
 - No SPI communication needed
 
 **Pin Control**:
-```
+```text
     DRV0 Pin:  ─────┐      ┌─────┐      ┌─────
                     └──────┘     └──────┘
                     
     Output:    ─────┐      ┌─────┐      ┌─────
                     └──────┘     └──────┘
                     (Follows DRV0)
-```
+```text
 
 **Use Cases**:
 - External PWM control
@@ -222,7 +223,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_DRV0);
 **Configuration**:
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_DRV1);
-```
+```text
 
 **Behavior**: Same as DRV0 but using DRV1 pin
 
@@ -238,7 +239,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_DRV1);
 **Configuration**:
 ```cpp
 driver.set_channel_mode(Channel::CH0, ChannelMode::FREE_RUN_MEAS);
-```
+```text
 
 **Behavior**:
 - Output disabled
@@ -258,7 +259,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::FREE_RUN_MEAS);
 
 The TLE92466ED allows three parallel pairs:
 
-```
+```text
     ┌─────────┬─────────┐
     │  CH0    │   CH3   │ ◄── Pair 0/3 (4A max)
     ├─────────┼─────────┤
@@ -271,11 +272,11 @@ The TLE92466ED allows three parallel pairs:
     - Bit 14: CH_PAR_1_2
     - Bit 13: CH_PAR_0_3
     - Bit 12: CH_PAR_4_5
-```
+```text
 
 ### Parallel Configuration Sequence
 
-```
+```text
 1. Enter Config Mode
    └─ Write CH_CTRL with OP_MODE=0
 
@@ -293,20 +294,20 @@ The TLE92466ED allows three parallel pairs:
 
 5. Enable Both Channels
    └─ Set EN_CH0 and EN_CH3 in CH_CTRL
-```
+```text
 
 ### Parallel Mode Considerations
 
 **Current Calculation**:
-```
+```text
 Single:   I_max = 2000 mA
 Parallel: I_max = 4000 mA
 
 TARGET value same for both, but total current doubles
-```
+```text
 
 **Load Connection**:
-```
+```text
     Parallel Connection:
     
     VBAT ──┬─────────────┬─────────────┐
@@ -322,7 +323,7 @@ TARGET value same for both, but total current doubles
               └──┬──┘                  │
                  │                     │
                 GND◄───────────────────┘
-```
+```text
 
 **Restrictions**:
 - Only predefined pairs can be paralleled
@@ -350,14 +351,14 @@ TARGET value same for both, but total current doubles
 - Must return to Config Mode first
 
 **Proper Sequence**:
-```
+```text
 1. Disable channel (clear EN_CHx)
 2. Enter Config Mode (OP_MODE=0)
 3. Change mode (write MODE register)
 4. Reconfigure channel parameters
 5. Enter Mission Mode (OP_MODE=1)
 6. Enable channel (set EN_CHx)
-```
+```text
 
 ## Mode Configuration Examples
 
@@ -380,7 +381,7 @@ driver.configure_dither(Channel::CH0,
 // Enter Mission Mode and enable
 driver.enter_mission_mode();
 driver.enable_channel(Channel::CH0, true);
-```
+```text
 
 ### Example 2: Parallel Operation
 
@@ -405,7 +406,7 @@ driver.configure_channel(Channel::CH3, config);
 driver.enter_mission_mode();
 driver.enable_channel(Channel::CH0, true);
 driver.enable_channel(Channel::CH3, true);
-```
+```text
 
 ### Example 3: Direct Drive
 
@@ -423,7 +424,7 @@ driver.set_channel_mode(Channel::CH0, ChannelMode::DIRECT_DRIVE_SPI);
 // Enter Mission Mode and enable
 driver.enter_mission_mode();
 driver.enable_channel(Channel::CH0, true);
-```
+```text
 
 ---
 

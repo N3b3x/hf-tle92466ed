@@ -12,7 +12,7 @@ description: "Complete register reference for all 108 registers"
 
 The TLE92466ED contains 108 registers organized into two categories:
 
-```
+```text
 Register Space (10-bit addressing: 0x000 - 0x3FF)
 
 ├── Central/Global Registers (0x0000 - 0x0207)
@@ -32,7 +32,7 @@ Register Space (10-bit addressing: 0x000 - 0x3FF)
 Channel Address Calculation:
   Base = 0x0100 + (Channel_Number × 0x0020)
   Register = Base + Offset
-```
+```text
 
 ## Register Access Types
 
@@ -122,13 +122,13 @@ Channel Address Calculation:
 
 ### CH_CTRL (0x0000) - Channel Control
 
-```
+```text
 Bits: 15  14  13  12  11-6  5   4   3   2   1   0
      ┌───┬───┬───┬───┬────┬───┬───┬───┬───┬───┬───┐
      │OP │PR │PR │PR │Res │EN │EN │EN │EN │EN │EN │
      │MOD│1_2│0_3│4_5│    │CH5│CH4│CH3│CH2│CH1│CH0│
      └───┴───┴───┴───┴────┴───┴───┴───┴───┴───┴───┘
-```
+```text
 
 | Bit | Field | Type | Description |
 |-----|-------|------|-------------|
@@ -144,13 +144,13 @@ Bits: 15  14  13  12  11-6  5   4   3   2   1   0
 
 ### GLOBAL_CONFIG (0x0002) - Global Configuration
 
-```
+```text
 Bits: 15 14  13  12  11-6 5   4   3  2   1   0
      ┌──┬───┬───┬───┬────┬───┬───┬──┬───┬───┬───┐
      │Res│VIO│UV │OT │Res │V15│V15│Rs│CRC│SPI│CLK│
      │   │SEL│OV │TST│    │OV │UV │  │EN │WD │WD │
      └──┴───┴───┴───┴────┴───┴───┴──┴───┴───┴───┘
-```
+```text
 
 | Bit | Field | Description |
 |-----|-------|-------------|
@@ -167,13 +167,13 @@ Bits: 15 14  13  12  11-6 5   4   3  2   1   0
 
 ### SETPOINT (0x0100 + Ch×0x20) - Current Setpoint
 
-```
+```text
 Bits: 15        14                                0
      ┌──────────┬──────────────────────────────────┐
      │AUTO_LIMIT│         TARGET (15-bit)          │
      │   _DIS   │                                  │
      └──────────┴──────────────────────────────────┘
-```
+```text
 
 | Bits | Field | Description |
 |------|-------|-------------|
@@ -181,13 +181,14 @@ Bits: 15        14                                0
 | 15 | AUTO_LIMIT_DIS | Disable auto-limit feature |
 
 **Current Calculation**:
-```
+```text
 Single mode: I_set = 2000mA × TARGET / 32767
 Parallel mode: I_set = 4000mA × TARGET / 32767
 Resolution: 0.061mA (single), 0.122mA (parallel)
-```
+```text
 
 **Example Values**:
+
 | TARGET | Current (Single) | Current (Parallel) |
 |--------|------------------|---------------------|
 | 0x0000 | 0 mA | 0 mA |
@@ -198,13 +199,13 @@ Resolution: 0.061mA (single), 0.122mA (parallel)
 
 ### CH_CONFIG (0x0107 + Ch×0x20) - Channel Configuration
 
-```
+```text
 Bits: 15 14     13   12        7 6    4 3  2 1  0
      ┌───┬───┬──────┬───────────┬──────┬────┬────┐
      │OFF│OFF│OC_DG │ OL_TH_FIX │OL_TH │IDAG│SLEW│
      │DG1│DG0│  _EN │           │      │    │    │
      └───┴───┴──────┴───────────┴──────┴────┴────┘
-```
+```text
 
 | Bits | Field | Description |
 |------|-------|-------------|
@@ -217,12 +218,12 @@ Bits: 15 14     13   12        7 6    4 3  2 1  0
 
 ### MODE (0x010C + Ch×0x20) - Channel Mode
 
-```
+```text
 Bits: 15                    4 3            0
      ┌──────────────────────┬──────────────┐
      │      Reserved        │   CH_MODE    │
      └──────────────────────┴──────────────┘
-```
+```text
 
 | Value | Mode | Description |
 |-------|------|-------------|
@@ -239,7 +240,7 @@ Bits: 15                    4 3            0
 
 ### Initialization Sequence
 
-```
+```text
 1. Power-on / Reset
    ├─ Device in Config Mode (OP_MODE=0)
    └─ All channels disabled
@@ -261,11 +262,11 @@ Bits: 15                    4 3            0
 
 5. Enable Channels
    └─ Write CH_CTRL with EN_CHx=1
-```
+```text
 
 ### Runtime Monitoring
 
-```
+```text
 Periodic Reads:
 ├─ GLOBAL_DIAG0 (supply faults, temperature)
 ├─ DIAG_ERR_CHGRx (channel error flags)
@@ -276,7 +277,7 @@ Periodic Reads:
 
 Watchdog Service:
 └─ Write WD_RELOAD periodically (if enabled)
-```
+```text
 
 ---
 

@@ -10,13 +10,14 @@ description: "Integrated Current Control (ICC) system documentation"
 
 ## Integrated Current Controller
 
-The ICC (Integrated Current Controller) is the primary current regulation system providing precise 15-bit current control.
+The ICC (Integrated Current Controller) is the primary current regulation system
+providing precise 15-bit current control.
 
 ### ICC Architecture
 
 \`\`\`
     Current Control Loop:
-    
+
     Setpoint ───▶┌────────────┐     ┌──────────┐     ┌─────────┐
     (15-bit)     │ Difference │────▶│Integrator│────▶│   PWM   │
                  │    Amp     │     │  (ICC)   │     │  Driver │
@@ -26,7 +27,7 @@ The ICC (Integrated Current Controller) is the primary current regulation system
                        └────┤  Current  │◀─────────────────┘
                             │  Sense    │        Output
                             └───────────┘
-                            
+
     PWM Frequency: Configurable via PERIOD register
     Dither Overlay: Optional current modulation
     Regulation: Closed-loop with integrator
@@ -47,6 +48,7 @@ Where: I_max = 2000mA (single) or 4000mA (parallel)
 \`\`\`
 
 **Examples**:
+
 | Desired Current | TARGET Value | Hex |
 |-----------------|--------------|-----|
 | 100 mA | 1638 | 0x0666 |
@@ -76,6 +78,7 @@ Where f_sys ≈ 8 MHz (internal clock)
 \`\`\`
 
 **Example Calculations**:
+
 | MANT | EXP | Low Freq | Frequency | Period |
 |------|-----|----------|-----------|--------|
 | 100 | 0 | No | 80 kHz | 12.5 µs |
@@ -88,7 +91,7 @@ Where f_sys ≈ 8 MHz (internal clock)
 
 \`\`\`
     Current vs Time (Dither Enabled):
-    
+
     I_max  ┐     ╱▔▔▔▔▔▔▔╲     ╱▔▔▔▔▔▔▔╲
            │   ╱            ╲ ╱            ╲
     I_set  ├──────────────────O──────────────────
@@ -96,7 +99,7 @@ Where f_sys ≈ 8 MHz (internal clock)
     I_min  ┘                  ╲___________╱
            └────────────────────────────────────▶ Time
            ◄─────  T_dither  ─────▶
-           
+
     Components:
     - Steps: Number of increments in quarter period
     - Flat: Hold time at peak/valley
@@ -139,7 +142,7 @@ Bits: 15 14              10 9              0
      └──┴─────────────────┴─────────────────┘
 \`\`\`
 
-**Purpose**: 
+**Purpose**:
 - Prevents integrator windup
 - Faster settling after setpoint changes
 - Two limits: Normal and Auto (after setpoint change)
@@ -155,7 +158,7 @@ Bits: 15 14              10 9              0
 
 \`\`\`
     Measurement Path:
-    
+
     Load Current ──▶ Sense ──▶ ADC ──▶ Filter ──▶ FB_I_AVG
                        │
                        ├──▶ Min/Max ──▶ FB_IMIN_IMAX
@@ -178,7 +181,7 @@ Bits: 15 14              10 9              0
 
 \`\`\`
     Available Pairs:
-    
+
     ┌─────────┬─────────┐
     │  CH0    │   CH3   │ ◀── Can be paralleled (4A)
     ├─────────┼─────────┤
@@ -208,11 +211,11 @@ Max: 4000 mA (4A)
 \`\`\`
     Fast Response          Stability
     (High Gains)           (Low Gains)
-    
+
     ◄────────────────────────────────▶
     │         │          │           │
     Unstable  Aggressive  Balanced   Slow
-    
+
     Recommended: Balanced (middle range)
 \`\`\`
 

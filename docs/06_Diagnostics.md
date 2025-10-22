@@ -14,7 +14,7 @@ The TLE92466ED provides comprehensive diagnostics for fault detection, protectio
 
 ### Diagnostic Architecture
 
-```
+```text
     Diagnostic Flow:
     
     Channels (6) ──┬──▶ Per-Channel Errors ──▶ DIAG_ERR_CHGRx
@@ -30,7 +30,7 @@ The TLE92466ED provides comprehensive diagnostics for fault detection, protectio
                    └──▶ Memory Faults ────────▶ GLOBAL_DIAG2
                    
     Fault Output ──▶ FAULTN Pin (open drain, active low)
-```
+```text
 
 ## Global Diagnostics
 
@@ -94,7 +94,7 @@ auto diag = driver.get_channel_diagnostics(Channel::CH0);
 if (diag->overcurrent) {
     // Handle OC fault
 }
-```
+```text
 
 ### DIAG_WARN_CHGRx - Warning Flags
 
@@ -110,13 +110,13 @@ if (diag->overcurrent) {
 ### Over-Current Protection
 
 **Detection**:
-```
+```text
     I_load > I_setpoint + margin
     
     Threshold: Configurable per channel
     Response: Immediate shutdown
     Recovery: Clear fault, re-enable
-```
+```text
 
 **Configuration**:
 - Automatic in ICC mode
@@ -126,18 +126,18 @@ if (diag->overcurrent) {
 ### Open Load Detection
 
 **ON-State Detection**:
-```
+```text
     I_load < OL_TH × I_setpoint
     
     Where: OL_TH = 1/8 to 7/8 (configurable)
-```
+```text
 
 **OFF-State Detection**:
-```
+```text
     Diagnostic current applied
     Voltage measured
     Load impedance calculated
-```
+```text
 
 **Configuration**:
 ```cpp
@@ -146,7 +146,7 @@ ChannelConfig config{
     .open_load_threshold = 3  // 3/8 threshold
 };
 driver.configure_channel(Channel::CH0, config);
-```
+```text
 
 ### Short to Ground Detection
 
@@ -175,7 +175,7 @@ driver.configure_channel(Channel::CH0, config);
    - Cooling required
 
 **Temperature Monitoring**:
-```
+```text
     Tj (Junction) ──▶ Comparison ──▶ Flags
          │                │
          │                ├──▶ OTW (165°C)
@@ -183,12 +183,12 @@ driver.configure_channel(Channel::CH0, config);
          │
          ▼
     Thermal Shutdown (auto-recovery)
-```
+```text
 
 ### Supply Voltage Monitoring
 
 **VBAT Monitoring**:
-```
+```text
 Configurable thresholds:
   UV: V_BAT_UV = VBAT_UV_TH × 0.16208V
   OV: V_BAT_OV = VBAT_OV_TH × 0.16208V
@@ -196,7 +196,7 @@ Configurable thresholds:
 Example: UV=7V, OV=40V
   VBAT_UV_TH = 7V / 0.16208V ≈ 43 (0x2B)
   VBAT_OV_TH = 40V / 0.16208V ≈ 247 (0xF7)
-```
+```text
 
 **Configuration**:
 ```cpp
@@ -204,7 +204,7 @@ driver.set_vbat_thresholds(
     43,   // UV threshold (7V)
     247   // OV threshold (40V)
 );
-```
+```text
 
 ## Watchdog Systems
 
@@ -213,13 +213,13 @@ driver.set_vbat_thresholds(
 **Purpose**: Detect communication loss
 
 **Operation**:
-```
+```text
     WD_RELOAD counter ──▶ Decrement ──▶ Timeout?
          ▲                               │
          │                               ├─▶ No: Continue
          │                               │
          └───────── Reload ◄─────────────┴─▶ Yes: Fault
-```
+```text
 
 **Configuration**:
 ```cpp
@@ -231,14 +231,14 @@ while (running) {
     driver.reload_spi_watchdog(1000);
     // ... other operations
 }
-```
+```text
 
 **Timeout Calculation**:
-```
+```text
 t_timeout = WD_TIME / f_spi_wd
 
 Where: f_spi_wd configurable
-```
+```text
 
 ### Clock Watchdog
 
@@ -261,30 +261,30 @@ Where: f_spi_wd configurable
 Control which faults assert the FAULTN pin:
 
 **FAULT_MASK0** (0x0016):
-```
+```text
 Per-channel error masking:
 Bit 0: CH0_ERR_MASK
 Bit 1: CH1_ERR_MASK
 ...
 Bit 5: CH5_ERR_MASK
-```
+```text
 
 **FAULT_MASK1** (0x0017):
-```
+```text
 Per-channel warning masking:
 Bit 0: CH0_WARN_MASK
 Bit 1: CH1_WARN_MASK
 ...
 Bit 5: CH5_WARN_MASK
-```
+```text
 
 **FAULT_MASK2** (0x0018):
-```
+```text
 Global fault masking:
 - Supply faults
 - Temperature faults
 - Communication faults
-```
+```text
 
 **Usage**:
 ```cpp
@@ -293,7 +293,7 @@ write_register(FAULT_MASK1, (1 << 0));
 
 // Enable all error reporting
 write_register(FAULT_MASK0, 0x0000);
-```
+```text
 
 ## Diagnostic Monitoring Strategy
 
@@ -333,7 +333,7 @@ void monitor_system() {
         }
     }
 }
-```
+```text
 
 ### Interrupt-Driven Approach
 
@@ -359,13 +359,13 @@ void FAULTN_IRQHandler() {
     // Clear faults
     driver.clear_faults();
 }
-```
+```text
 
 ## Fault Recovery Procedures
 
 ### Over-Current Recovery
 
-```
+```text
 1. Disable affected channel
 2. Read actual current (FB_I_AVG)
 3. Check if transient or persistent
@@ -373,22 +373,22 @@ void FAULTN_IRQHandler() {
 5. Clear fault flags
 6. Re-enable with lower current
 7. Monitor for recurrence
-```
+```text
 
 ### Open Load Recovery
 
-```
+```text
 1. Verify load connection
 2. Check wiring integrity
 3. Confirm load not damaged
 4. Clear fault flags
 5. Re-enable channel
 6. Adjust OL threshold if false positive
-```
+```text
 
 ### Temperature Recovery
 
-```
+```text
 1. Disable channel immediately (automatic)
 2. Allow cooling period (>10s)
 3. Check thermal management
@@ -396,30 +396,30 @@ void FAULTN_IRQHandler() {
 5. Clear fault flags
 6. Re-enable with lower current
 7. Monitor temperature (OTW flag)
-```
+```text
 
 ### Supply Fault Recovery
 
-```
+```text
 1. Check supply voltage
 2. Verify within operating range
 3. Check supply stability
 4. Adjust thresholds if transient
 5. Clear fault flags
 6. Resume operation
-```
+```text
 
 ## Best Practices
 
 ### Monitoring Frequency
 
-```
+```text
 Recommended polling rates:
 - Critical channels: 10 Hz (100ms)
 - Normal channels: 1 Hz (1s)
 - Global status: 1 Hz (1s)
 - FAULTN pin: Interrupt-driven (immediate)
-```
+```text
 
 ### Fault Logging
 
@@ -435,7 +435,7 @@ struct FaultLog {
 
 // Log faults for analysis
 void log_fault(const FaultLog& log);
-```
+```text
 
 ### Preventive Measures
 

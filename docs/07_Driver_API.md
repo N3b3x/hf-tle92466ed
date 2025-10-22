@@ -123,7 +123,8 @@ Initialize driver and verify device.
 DriverResult<void> init() noexcept;
 ```
 
-**Description**: Performs complete initialization sequence including HAL setup, device verification, and default configuration.
+**Description**: Performs complete initialization sequence including HAL setup, device
+verification, and default configuration.
 
 **Returns**: Success or error code
 

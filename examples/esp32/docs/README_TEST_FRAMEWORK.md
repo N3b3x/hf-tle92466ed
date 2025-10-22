@@ -2,7 +2,9 @@
 
 ## Overview
 
-The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides professional testing infrastructure for ESP32-based examples, adapted from the HardFOC Internal Interface Wrap test framework.
+The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides professional
+testing infrastructure for ESP32-based examples, adapted from the HardFOC Internal
+Interface Wrap test framework.
 
 ## 🎯 Purpose
 
@@ -17,13 +19,14 @@ The **TLE92466ED Test Framework** (`TLE92466ED_TestFramework.hpp`) provides prof
 ### 1. GPIO14 Test Progression Indicator
 
 #### Purpose
-Provides **hardware-level visual feedback** showing test progression on oscilloscope, logic analyzer, or LED.
+Provides **hardware-level visual feedback** showing test progression on oscilloscope,
+logic analyzer, or LED.
 
 #### Functions
 
 ```cpp
 bool init_test_progress_indicator() noexcept;
-```
+```text
 **Initialize GPIO14** as output for test progression indicator
 - Configures GPIO14 as push-pull output
 - Sets initial state to LOW
@@ -31,7 +34,7 @@ bool init_test_progress_indicator() noexcept;
 
 ```cpp
 void flip_test_progress_indicator() noexcept;
-```
+```text
 **Toggle GPIO14** state to indicate test completion
 - Alternates between HIGH and LOW
 - Called automatically after each test
@@ -39,7 +42,7 @@ void flip_test_progress_indicator() noexcept;
 
 ```cpp
 void output_section_indicator(uint8_t blink_count = 5) noexcept;
-```
+```text
 **Blink GPIO14** to indicate section boundaries
 - Default: 5 blinks (50ms ON, 50ms OFF each)
 - Custom blink count for different sections
@@ -47,7 +50,7 @@ void output_section_indicator(uint8_t blink_count = 5) noexcept;
 
 ```cpp
 void cleanup_test_progress_indicator() noexcept;
-```
+```text
 **Cleanup and reset** GPIO14
 - Sets pin to LOW
 - Resets pin configuration
@@ -55,7 +58,7 @@ void cleanup_test_progress_indicator() noexcept;
 
 #### Signal Patterns
 
-```
+```text
 Section Start:  ┌─┐ ┌─┐ ┌─┐ ┌─┐ ┌─┐
                 └─┘ └─┘ └─┘ └─┘ └─┘  (5 blinks, 50ms each)
 
@@ -63,16 +66,16 @@ Test Complete:  ┌─────────────┐       (Toggle HIGH
                 └─────────────┘       
                 
 Next Test:      ────────────────      (Toggle LOW)
-```
+```text
 
 #### Hardware Setup
 
-```
+```text
 ESP32-C6 GPIO14 ──┬── LED Anode
                   │   └── LED Cathode ── 220Ω ── GND
                   │
                   └── Oscilloscope/Logic Analyzer Probe
-```
+```text
 
 ---
 
@@ -92,13 +95,13 @@ struct TestResults {
     double get_total_time_ms() const noexcept;
     void print_summary(const char* tag) const noexcept;
 };
-```
+```text
 
 #### Global Instance
 
 ```cpp
 static TestResults g_test_results;
-```
+```text
 
 Automatically accumulates results from all tests. Accessed via macros.
 
@@ -120,7 +123,7 @@ Automatically accumulates results from all tests. Accessed via macros.
 
 **`print_summary(tag)`**
 - Prints professional formatted summary:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║                    TEST RESULTS SUMMARY                          ║
 ╠══════════════════════════════════════════════════════════════════╣
@@ -130,7 +133,7 @@ Automatically accumulates results from all tests. Accessed via macros.
 ║  Success Rate:     100.00%                                       ║
 ║  Total Time:       234.56 ms                                     ║
 ╚══════════════════════════════════════════════════════════════════╝
-```
+```text
 
 ---
 
@@ -142,7 +145,7 @@ Automatically accumulates results from all tests. Accessed via macros.
 
 ```cpp
 RUN_TEST(test_hal_initialization);
-```
+```text
 
 **Features**:
 - Executes test in current task context
@@ -155,12 +158,12 @@ RUN_TEST(test_hal_initialization);
 **Use Case**: Simple tests that don't need large stack or isolation
 
 **Output**:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║ Running: test_hal_initialization                                 
 ╚══════════════════════════════════════════════════════════════════╝
 [SUCCESS] PASSED: test_hal_initialization (12.34 ms)
-```
+```text
 
 ---
 
@@ -170,7 +173,7 @@ RUN_TEST(test_hal_initialization);
 
 ```cpp
 RUN_TEST_IN_TASK("hal_init", test_hal_initialization, 8192, 5);
-```
+```text
 
 **Parameters**:
 - `name`: Test name string (for logging)
@@ -200,16 +203,16 @@ struct TestTaskContext {
 };
 
 void test_task_trampoline(void* param);
-```
+```text
 
 **Output**:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║ Running (task): hal_init                                         
 ╚══════════════════════════════════════════════════════════════════╝
 [SUCCESS] PASSED (task): hal_init (12.34 ms)
 Test task completed: hal_init
-```
+```text
 
 **Timeout Handling**:
 ```cpp
@@ -219,7 +222,7 @@ if (xSemaphoreTake(semaphore, pdMS_TO_TICKS(30000)) == pdTRUE) {
     ESP_LOGW(TAG, "Test task timeout: %s", name);
     // Still records result, continues to next test
 }
-```
+```text
 
 ---
 
@@ -233,7 +236,7 @@ RUN_TEST_SECTION_IF_ENABLED(
     RUN_TEST_IN_TASK("hal_init", test_hal_initialization, 8192, 5);
     RUN_TEST_IN_TASK("driver_init", test_driver_initialization, 8192, 5);
 );
-```
+```text
 
 **Parameters**:
 - `enabled`: Compile-time flag (`0` or `1`)
@@ -247,13 +250,13 @@ RUN_TEST_SECTION_IF_ENABLED(
 - Wraps multiple test calls
 
 **Output**:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║ SECTION: INITIALIZATION TESTS                                    ║
 ╚══════════════════════════════════════════════════════════════════╝
 [GPIO14: 5 blinks]
 ... tests ...
-```
+```text
 
 ---
 
@@ -267,7 +270,7 @@ RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN(
     // Custom 3-blink pattern
     RUN_TEST_IN_TASK("advanced_test", test_advanced, 16384, 5);
 );
-```
+```text
 
 **Parameters**:
 - `enabled`: Compile-time flag
@@ -287,17 +290,17 @@ Prints configuration information at test start:
 
 ```cpp
 print_test_section_status(TAG, "TLE92466ED");
-```
+```text
 
 **Output**:
-```
+```text
 ╔══════════════════════════════════════════════════════════════════╗
 ║ TLE92466ED TEST CONFIGURATION                                    
 ╠══════════════════════════════════════════════════════════════════╣
 ║ Test sections will execute based on compile-time configuration  ║
 ║ GPIO14 test progression indicator: ENABLED                       ║
 ╚══════════════════════════════════════════════════════════════════╝
-```
+```text
 
 ---
 
@@ -311,7 +314,7 @@ print_test_section_status(TAG, "TLE92466ED");
 #include "TLE92466ED_TestFramework.hpp"
 
 static const char* TAG = "MyTest";
-```
+```text
 
 #### 2. Define Test Sections
 
@@ -319,7 +322,7 @@ static const char* TAG = "MyTest";
 #define ENABLE_BASIC_TESTS 1
 #define ENABLE_ADVANCED_TESTS 1
 #define ENABLE_STRESS_TESTS 0    // Disabled
-```
+```text
 
 #### 3. Write Test Functions
 
@@ -338,7 +341,7 @@ static bool test_my_feature() noexcept {
         return false;
     }
 }
-```
+```text
 
 **Requirements**:
 - Return type: `bool`
@@ -382,7 +385,7 @@ extern "C" void app_main() {
     vTaskDelay(pdMS_TO_TICKS(10000));
     esp_restart();
 }
-```
+```text
 
 ---
 
@@ -405,7 +408,7 @@ static bool test_with_driver() noexcept {
     // Use driver
     return g_driver->doSomething();
 }
-```
+```text
 
 ### Stack Size Guidelines
 
@@ -434,7 +437,7 @@ Modify in framework if needed:
 if (xSemaphoreTake(ctx.completion_semaphore, pdMS_TO_TICKS(60000))) {
     // 60-second timeout for slow tests
 }
-```
+```text
 
 ---
 
@@ -455,7 +458,7 @@ RUN_TEST_SECTION_IF_ENABLED(
     RUN_TEST_IN_TASK("read", test_read, 8192, 5);
     RUN_TEST_IN_TASK("write", test_write, 8192, 5);
 );
-```
+```text
 
 ### 2. Clear Logging
 
@@ -469,7 +472,7 @@ static bool test_feature() noexcept {
     ESP_LOGI(TAG, "✅ Feature test passed");
     return true;
 }
-```
+```text
 
 ### 3. Error Reporting
 
@@ -481,7 +484,7 @@ static bool test_operation() noexcept {
     }
     return true;
 }
-```
+```text
 
 ### 4. Resource Cleanup
 
@@ -499,7 +502,7 @@ extern "C" void app_main() {
     cleanup_test_progress_indicator();
     g_test_results.print_summary(TAG);
 }
-```
+```text
 
 ---
 
@@ -539,7 +542,7 @@ extern "C" void app_main() {
 #ifdef TEST_FRAMEWORK_DEBUG
     ESP_LOGI("TestFramework", "Debug info...");
 #endif
-```
+```text
 
 ### Monitor GPIO14
 
@@ -548,14 +551,14 @@ extern "C" void app_main() {
 Sample Rate: 1MHz
 Duration: 10s
 Trigger: Rising edge on GPIO14
-```
+```text
 
 ### Analyze Test Timing
 
 ```cpp
 // Parse output for timing data
 grep "PASSED" output.log | awk '{print $NF}'
-```
+```text
 
 ---
 
@@ -580,7 +583,7 @@ else
     echo "ALL TESTS PASSED: $PASSED/$TOTAL ($SUCCESS_RATE)"
     exit 0
 fi
-```
+```text
 
 ### GitHub Actions Example
 
@@ -596,14 +599,16 @@ fi
       echo "Tests failed!"
       exit 1
     fi
-```
+```text
 
 ---
 
 ## 📚 References
 
 - [BasicUsageExample.cpp](../main/BasicUsageExample.cpp) - Example implementation
-- [HardFOC Internal TestFramework.h](../../../../internal/hf-internal-interface-wrap/examples/esp32/main/TestFramework.h) - Original framework
+- [HardFOC Internal TestFramework.h](
+  ../../../../internal/hf-internal-interface-wrap/examples/esp32/main/TestFramework.h) -
+  Original framework
 
 ---
 
@@ -611,4 +616,3 @@ fi
 **Based on**: HardFOC Internal Interface Wrap TestFramework.h  
 **Platform**: ESP32 (ESP-IDF v5.0+)  
 **Status**: ✅ Production Ready
-

@@ -19,7 +19,9 @@ Modern C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver
 
 ## Overview
 
-The TLE92466ED driver is a production-ready C++23 implementation for controlling the Infineon TLE92466ED IC, a sophisticated six-channel low-side solenoid driver with precision current control.
+The TLE92466ED driver is a production-ready C++23 implementation for controlling the
+Infineon TLE92466ED IC, a sophisticated six-channel low-side solenoid driver with
+precision current control.
 
 ### Key Features
 
@@ -38,7 +40,7 @@ The TLE92466ED driver is a production-ready C++23 implementation for controlling
 ```cpp
 #include "TLE92466ED.hpp"
 #include "your_platform_hal.hpp"
-```
+```text
 
 ### 2. Create and Initialize
 
@@ -49,7 +51,7 @@ TLE92466ED driver(hal);
 if (auto result = driver.initialize(); !result) {
     // Handle initialization error
 }
-```
+```text
 
 ### 3. Control Channels
 
@@ -66,7 +68,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
         // Handle overcurrent
     }
 }
-```
+```text
 
 ## Documentation
 
@@ -119,7 +121,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
 ```cmake
 add_subdirectory(external/hf-tle92466ed-driver)
 target_link_libraries(your_target PRIVATE TLE92466ED)
-```
+```text
 
 ### Manual
 
@@ -147,7 +149,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```text
 
 ## Use Cases
 
@@ -159,7 +161,8 @@ public:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests on [GitHub](https://github.com/n3b3x/hf-tle92466ed-driver).
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull
+requests on [GitHub](https://github.com/n3b3x/hf-tle92466ed-driver).
 
 ## License
 

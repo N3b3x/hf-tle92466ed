@@ -1,6 +1,7 @@
 # Doxygen Awesome CSS
 
-This directory contains the doxygen-awesome-css submodule for modern, responsive Doxygen documentation styling.
+This directory contains the doxygen-awesome-css submodule for modern, responsive Doxygen
+documentation styling.
 
 ## Features
 
@@ -23,7 +24,8 @@ The Doxygen Awesome CSS is integrated into the TLE92466ED driver documentation t
 
 ## Usage
 
-The CSS and JavaScript files are automatically included when running Doxygen. No manual configuration needed.
+The CSS and JavaScript files are automatically included when running Doxygen. No manual
+configuration needed.
 
 ## Updating
 
@@ -35,7 +37,7 @@ git pull origin main
 cd ../../../
 git add _config/doxygen-extensions/doxygen-awesome-css
 git commit -m "Update doxygen-awesome-css"
-```
+```text
 
 ## Resources
 

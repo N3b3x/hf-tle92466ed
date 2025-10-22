@@ -13,7 +13,7 @@ This documentation provides complete information about the TLE92466ED IC and its
 
 ### Documentation Structure
 
-```
+```text
 docs/
 ├── 00_INDEX.md                    ← You are here
 ├── 01_IC_Overview.md              Device specifications and architecture
@@ -76,4 +76,3 @@ For immediate implementation:
 ---
 
 **Navigation**: [Next: IC Overview →](01_IC_Overview.md)
-

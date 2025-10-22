@@ -79,7 +79,7 @@ build_config:
       optimization: "-O0"
       debug_level: "-g3"
       defines: ["DEBUG", "TLE92466ED_DEBUG"]
-      
+
     Release:
       description: "Release build optimized for performance"
       cmake_build_type: "Release"

@@ -10,11 +10,13 @@ description: "TLE92466ED hardware specifications and architecture"
 
 ## Device Description
 
-The TLE92466ED is a sophisticated six-channel low-side solenoid driver IC designed for automotive and industrial applications requiring precise current control of inductive loads.
+The TLE92466ED is a sophisticated six-channel low-side solenoid driver IC designed
+for automotive and industrial applications requiring precise current control of
+inductive loads.
 
 ### Device Classification
 
-```
+```text
 Device Family: Infineon PROFET™ + (Protected High-Current Switch)
 Type: Low-Side Switch with Current Control
 Application: Solenoid actuators, valves, relays
@@ -51,7 +53,7 @@ Application: Solenoid actuators, valves, relays
 
 ## Device Pinout
 
-```
+```text
                            TLE92466ED
                      ┌─────────────────┐
         VBAT (1) ────┤  1          32  ├──── GND (32)
@@ -137,7 +139,7 @@ Application: Solenoid actuators, valves, relays
 
 ## Functional Block Diagram
 
-```
+```text
                             TLE92466ED Architecture
     
     ┌──────────────────────────────────────────────────────────────────────┐
@@ -185,7 +187,7 @@ Application: Solenoid actuators, valves, relays
 
 ## Typical Application Circuit
 
-```
+```text
                     Microcontroller                    TLE92466ED
                    ┌─────────────┐                   ┌──────────┐
                    │             │                   │          │
@@ -229,7 +231,7 @@ Application: Solenoid actuators, valves, relays
 
 ### Mode Structure
 
-```
+```text
     Power-On Reset
          │
          ▼
@@ -268,7 +270,7 @@ Application: Solenoid actuators, valves, relays
 
 ## Power Sequencing
 
-```
+```text
     Time ─────────────────────────────────────────────────────▶
 
     VBAT    ┌────────────────────────────────────────────
@@ -297,7 +299,7 @@ Application: Solenoid actuators, valves, relays
 
 ### Current Control Accuracy
 
-```
+```text
     Output Current vs Setpoint (Typical, 25°C)
     
     Iout
@@ -326,4 +328,3 @@ Application: Solenoid actuators, valves, relays
 ---
 
 **Navigation**: [← Index](00_INDEX.md) | [Next: SPI Protocol →](02_SPI_Protocol.md)
-

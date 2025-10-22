@@ -6,7 +6,8 @@
 
 > **C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC**
 
-A modern, production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support.
+A modern, production-ready C++23 driver implementation for the Infineon TLE92466ED with
+comprehensive SPI interface, precision current control, and extensive diagnostics support.
 
 ## 🌟 Key Features
 
@@ -27,8 +28,10 @@ A modern, production-ready C++23 driver implementation for the Infineon TLE92466
 
 ## 📚 Documentation
 
-- **[Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Jekyll site with full guides
-- **[API Reference](https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/)** - Doxygen-generated API docs
+- **[Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Jekyll
+  site with full guides
+- **[API Reference](https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/)** -
+  Doxygen-generated API docs
 - **[IC Overview](docs/01_IC_Overview.md)** - Hardware specifications
 - **[Usage Examples](docs/09_Usage_Examples.md)** - Practical code examples
 - **[HAL Implementation](docs/08_HAL_Implementation.md)** - Platform porting guide
@@ -72,7 +75,7 @@ if (auto diag = driver.readDiagnostics(); diag) {
         // Handle overcurrent condition
     }
 }
-```
+```text
 
 ### HAL Implementation
 
@@ -92,7 +95,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```text
 
 ## 📋 Requirements
 
@@ -117,7 +120,7 @@ public:
 add_subdirectory(external/hf-tle92466ed-driver)
 
 target_link_libraries(your_target PRIVATE TLE92466ED)
-```
+```text
 
 ### Manual Integration
 
@@ -138,7 +141,7 @@ Simply include the header and source files in your project:
 
 ## 📖 Documentation Structure
 
-```
+```text
 docs/
 ├── 00_INDEX.md              - Documentation navigation
 ├── 01_IC_Overview.md        - Hardware specifications
@@ -150,7 +153,7 @@ docs/
 ├── 07_Driver_API.md         - C++ API reference
 ├── 08_HAL_Implementation.md - Platform porting guide
 └── 09_Usage_Examples.md     - Practical examples
-```
+```text
 
 ## 🔧 IC Specifications
 
@@ -194,4 +197,3 @@ This software is released into the **Public Domain**. You can use, modify, and d
 ---
 
 **Version**: 2.0.0 | **Status**: Production Ready | **Last Updated**: 2025-10-21
-

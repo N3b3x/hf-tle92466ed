@@ -196,7 +196,7 @@ files:
 #
 #  // Create driver instance
 #  TLE92466ED driver(*hal);
-#  
+#
 #  // Initialize the driver
 #  if (auto result = driver.initialize(); !result) {
 #      // Handle error

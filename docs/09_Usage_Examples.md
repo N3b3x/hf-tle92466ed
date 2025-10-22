@@ -595,4 +595,3 @@ void shutdown() {
 ---
 
 **Navigation**: [← HAL Implementation](08_HAL_Implementation.md) | [Back to Index](00_INDEX.md)
-

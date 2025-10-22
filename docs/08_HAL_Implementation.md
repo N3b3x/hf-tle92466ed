@@ -10,11 +10,13 @@ description: "Hardware abstraction layer implementation guide"
 
 ## Overview
 
-The Hardware Abstraction Layer (HAL) provides platform-independent SPI communication for the TLE92466ED driver. You must implement this interface for your specific hardware platform.
+The Hardware Abstraction Layer (HAL) provides platform-independent SPI communication
+for the TLE92466ED driver. You must implement this interface for your specific hardware
+platform.
 
 ### HAL Architecture
 
-```
+```text
     Application Code
          │
          ▼
@@ -25,7 +27,7 @@ The Hardware Abstraction Layer (HAL) provides platform-independent SPI communica
          │
          ▼
     Platform SPI ◄────────────  Your hardware (STM32, ESP32, etc.)
-```
+```text
 
 ## HAL Interface
 
@@ -51,7 +53,7 @@ public:
     [[nodiscard]] virtual HALError get_last_error() const noexcept = 0;
     [[nodiscard]] virtual HALResult<void> clear_errors() noexcept = 0;
 };
-```
+```text
 
 ### HALError Enumeration
 
@@ -68,14 +70,14 @@ enum class HALError : uint8_t {
     CRCError,
     UnknownError
 };
-```
+```text
 
 ### HALResult Type
 
 ```cpp
 template<typename T>
 using HALResult = std::expected<T, HALError>;
-```
+```text
 
 ## Platform Implementation Examples
 
@@ -162,7 +164,7 @@ private:
     uint16_t cs_pin_;
     bool initialized_;
 };
-```
+```text
 
 ### ESP32 Implementation
 
@@ -239,7 +241,7 @@ private:
     int cs_pin_;
     spi_device_handle_t spi_device_;
 };
-```
+```text
 
 ### Linux SPI Implementation
 
@@ -322,7 +324,7 @@ private:
     void set_gpio_direction(int gpio, const char* dir);
     void set_gpio_value(int gpio, int value);
 };
-```
+```text
 
 ## Implementation Checklist
 
@@ -342,7 +344,7 @@ private:
 
 ### SPI Requirements
 
-```
+```text
 Parameter           Requirement
 ─────────────────── ─────────────────────────
 Mode                0 (CPOL=0, CPHA=0)
@@ -351,11 +353,11 @@ Bit Order           MSB first
 Frame Size          32 bits (4 bytes)
 CS Polarity         Active low
 Full-Duplex         Yes
-```
+```text
 
 ### Timing Requirements
 
-```
+```text
 Parameter           Min     Max     Unit
 ───────────────── ─────── ─────── ─────
 CS Setup Time       50      -       ns
@@ -363,7 +365,7 @@ CS Hold Time        50      -       ns
 CS Inactive Time    100     -       ns
 Data Setup Time     20      -       ns
 Data Hold Time      20      -       ns
-```
+```text
 
 ## Testing Your HAL
 
@@ -393,7 +395,7 @@ assert(transfer_result.has_value());
 // Test delay
 auto delay_result = hal.delay(100);
 assert(delay_result.has_value());
-```
+```text
 
 ### Integration Test
 
@@ -420,7 +422,7 @@ auto reg_result = driver.read_register(0x0003);
 if (reg_result) {
     log("GLOBAL_DIAG0: 0x%04X", *reg_result);
 }
-```
+```text
 
 ## Common Pitfalls
 
@@ -435,7 +437,7 @@ tx_bytes[0] = (data >> 24) & 0xFF;  // MSB
 tx_bytes[1] = (data >> 16) & 0xFF;
 tx_bytes[2] = (data >> 8) & 0xFF;
 tx_bytes[3] = data & 0xFF;          // LSB
-```
+```text
 
 ### 2. CS Timing
 
@@ -450,7 +452,7 @@ spi_transfer(...);
 delay_ns(50);  // CS hold time
 gpio_set(CS, HIGH);
 delay_ns(100); // CS inactive time
-```
+```text
 
 ### 3. SPI Mode
 
@@ -462,7 +464,7 @@ delay_ns(100); // CS inactive time
 // - Clock idle state: LOW
 // - Data sampled on: RISING edge
 // - Data shifted on: FALLING edge
-```
+```text
 
 ### 4. Exception Safety
 
@@ -478,7 +480,7 @@ HALResult<uint32_t> transfer32(uint32_t data) noexcept override {
         return std::unexpected(HALError::TransferError);
     }
 }
-```
+```text
 
 ## Platform-Specific Notes
 
@@ -505,4 +507,3 @@ HALResult<uint32_t> transfer32(uint32_t data) noexcept override {
 ---
 
 **Navigation**: [← Driver API](07_Driver_API.md) | [Next: Usage Examples →](09_Usage_Examples.md)
-

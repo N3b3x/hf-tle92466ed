@@ -323,7 +323,7 @@ SPI Mode 0.
     │ Step 3: Verify (optional)                              │
     │   Read back GLOBAL_CONFIG to confirm                   │
     └────────────────────────────────────────────────────────┘
-```text
+```
 
 ### Example 2: Read Channel Status
 
@@ -350,7 +350,7 @@ SPI Mode 0.
     │   Status [21:17]: Check for errors                     │
     │   Data [15:0]: 0x0567 = current setpoint              │
     └────────────────────────────────────────────────────────┘
-```text
+```
 
 ### Example 3: Error Handling
 
@@ -375,44 +375,25 @@ SPI Mode 0.
     │   - Check register address                             │
     │   - Verify register is writable                        │
     └────────────────────────────────────────────────────────┘
-```text
+```
 
 ## Best Practices
 
 ### Transaction Management
 
-1. **CRC Verification**
-   ```
-   Always verify:
-   - Outgoing CRC before transmission
-   - Incoming CRC after reception
-   - Reject frames with CRC mismatch
-   ```text
+1. **CRC Verification**: Always verify outgoing CRC before transmission, verify
+   incoming CRC after reception, and reject frames with CRC mismatch.
 
-2. **Status Checking**
-   ```text
-   After every transaction:
-   - Parse status field [21:17]
-   - Handle errors appropriately
-   - Log unexpected status codes
-   ```
+1. **Status Checking**: After every transaction, parse the status field
+   `[21:17]`, handle errors appropriately, and log unexpected status codes.
 
-3. **Timing Compliance**
-   ```text
-   Ensure:
-   - Minimum CS inactive time (100ns)
-   - Proper setup/hold times
-   - Clock frequency within limits
-   ```
+1. **Timing Compliance**: Ensure the minimum CS inactive time is 100 ns,
+   maintain proper setup and hold times, and keep the clock frequency within
+   limits.
 
-4. **Error Recovery**
-   ```text
-   On error:
-   - Check CRC first
-   - Verify register address
-   - Retry with exponential backoff (max 3)
-   - Reset communication if persistent
-   ```
+1. **Error Recovery**: On error, check the CRC first, verify the register
+   address, retry with exponential backoff (maximum three attempts), and reset
+   communication if the issue persists.
 
 ### Performance Optimization
 
@@ -430,7 +411,7 @@ Transaction Rate:
 - 32 bits @ 1 MHz = 32 µs per transaction
 - +100ns CS gap = ~33 µs total
 - Max rate: ~30,000 transactions/second
-```text
+```
 
 ---
 

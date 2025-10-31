@@ -9,7 +9,8 @@ permalink: /CONTRIBUTING/
 
 # 🤝 Contributing to HardFOC TLE92466ED Driver
 
-Thank you for your interest in contributing to the HardFOC TLE92466ED Driver! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to the HardFOC TLE92466ED Driver!
+This document provides guidelines and information for contributors.
 
 ## 📋 **Code Standards**
 
@@ -97,4 +98,3 @@ When proposing new features:
 ## 🚀 Thank You for Contributing to HardFOC
 
 Your contributions help make HardFOC motor controller boards more accessible and powerful for everyone.
-

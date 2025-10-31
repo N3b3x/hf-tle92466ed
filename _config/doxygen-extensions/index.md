@@ -10,7 +10,8 @@ has_toc: true
 
 # 📖 Doxygen Extensions
 
-This section contains advanced Doxygen documentation features and extensions for the HardFOC TLE92466ED Driver project.
+This section contains advanced Doxygen documentation features and extensions for
+the HardFOC TLE92466ED Driver project.
 
 ## 🌟 Features
 

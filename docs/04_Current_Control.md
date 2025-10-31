@@ -16,7 +16,7 @@ providing precise 15-bit current control.
 
 ### ICC Architecture
 
-\`\`\`
+```text
     Current Control Loop:
 
     Setpoint ───▶┌────────────┐     ┌──────────┐     ┌─────────┐
@@ -32,7 +32,7 @@ providing precise 15-bit current control.
     PWM Frequency: Configurable via PERIOD register
     Dither Overlay: Optional current modulation
     Regulation: Closed-loop with integrator
-\`\`\`
+```
 
 ### Current Resolution
 
@@ -43,10 +43,11 @@ providing precise 15-bit current control.
 ### Setpoint Configuration
 
 **Formula**:
-\`\`\`
+
+```text
 TARGET = (I_desired × 32767) / I_max
 Where: I_max = 2000mA (single) or 4000mA (parallel)
-\`\`\`
+```
 
 **Examples**:
 
@@ -62,21 +63,22 @@ Where: I_max = 2000mA (single) or 4000mA (parallel)
 
 ### PERIOD Register Configuration
 
-\`\`\`
+```text
 Bits: 15   12  11   10    8 7              0
      ┌───────┬────┬────────┬───────────────┐
      │PWM_CTL│LOW │PERIOD  │   PERIOD      │
      │_PARAM │FREQ│  _EXP  │    _MANT      │
      └───────┴────┴────────┴───────────────┘
-\`\`\`
+```
 
 **Formula**:
-\`\`\`
+
+```text
 Standard: T_pwm = PERIOD_MANT × 2^PERIOD_EXP × (1/f_sys)
 Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)
 
 Where f_sys ≈ 8 MHz (internal clock)
-\`\`\`
+```
 
 **Example Calculations**:
 
@@ -90,7 +92,7 @@ Where f_sys ≈ 8 MHz (internal clock)
 
 ### Dither Waveform
 
-\`\`\`
+```text
     Current vs Time (Dither Enabled):
 
     I_max  ┐     ╱▔▔▔▔▔▔▔╲     ╱▔▔▔▔▔▔▔╲
@@ -105,7 +107,7 @@ Where f_sys ≈ 8 MHz (internal clock)
     - Steps: Number of increments in quarter period
     - Flat: Hold time at peak/valley
     - Step Size: Amplitude of each increment
-\`\`\`
+```
 
 ### Configuration Registers
 
@@ -114,14 +116,16 @@ Where f_sys ≈ 8 MHz (internal clock)
 3. **DITHER_CTRL**: Step size and control
 
 **Dither Amplitude**:
-\`\`\`
+
+```text
 I_dither = STEPS × STEP_SIZE × 2A / 32767
-\`\`\`
+```
 
 **Dither Period**:
-\`\`\`
+
+```text
 T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
-\`\`\`
+```
 
 ### Dither Use Cases
 
@@ -135,13 +139,13 @@ T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
 
 ### INTEGRATOR_LIMIT Register
 
-\`\`\`
+```text
 Bits: 15 14              10 9              0
      ┌──┬─────────────────┬─────────────────┐
      │Rs│AUTO_LIM_VALUE   │  LIM_VALUE      │
      │  │     _ABS        │    _ABS         │
      └──┴─────────────────┴─────────────────┘
-\`\`\`
+```
 
 **Purpose**:
 - Prevents integrator windup
@@ -157,7 +161,7 @@ Bits: 15 14              10 9              0
 
 ### Feedback Mechanism
 
-\`\`\`
+```text
     Measurement Path:
 
     Load Current ──▶ Sense ──▶ ADC ──▶ Filter ──▶ FB_I_AVG
@@ -165,7 +169,7 @@ Bits: 15 14              10 9              0
                        ├──▶ Min/Max ──▶ FB_IMIN_IMAX
                        │
                        └──▶ DC Calc ──▶ FB_DC
-\`\`\`
+```
 
 ### Feedback Registers (Per Channel)
 
@@ -180,7 +184,7 @@ Bits: 15 14              10 9              0
 
 ### Channel Pairing
 
-\`\`\`
+```text
     Available Pairs:
 
     ┌─────────┬─────────┐
@@ -190,7 +194,7 @@ Bits: 15 14              10 9              0
     ├─────────┼─────────┤
     │  CH4    │   CH5   │ ◀── Can be paralleled (4A)
     └─────────┴─────────┘
-\`\`\`
+```
 
 **Configuration**:
 1. Enter Config Mode
@@ -200,16 +204,17 @@ Bits: 15 14              10 9              0
 5. Enable both channels
 
 **Current Calculation** (Parallel):
-\`\`\`
+
+```text
 I_total = 4000mA × TARGET / 32767
 Max: 4000 mA (4A)
-\`\`\`
+```
 
 ## ICC Tuning Guidelines
 
 ### Response Time vs Stability
 
-\`\`\`
+```text
     Fast Response          Stability
     (High Gains)           (Low Gains)
 
@@ -218,7 +223,7 @@ Max: 4000 mA (4A)
     Unstable  Aggressive  Balanced   Slow
 
     Recommended: Balanced (middle range)
-\`\`\`
+```
 
 ### Parameter Recommendations
 
@@ -231,7 +236,7 @@ Max: 4000 mA (4A)
 
 ### Tuning Process
 
-\`\`\`
+```text
 1. Start with default values
    ├─ PWM_CTRL_PARAM = 0x6
    ├─ INT_THRESH = 0x80
@@ -247,7 +252,7 @@ Max: 4000 mA (4A)
 
 4. Fine-tune integrator limits
    └─ Reduce for faster settling
-\`\`\`
+```
 
 ---
 

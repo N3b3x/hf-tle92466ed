@@ -7,7 +7,7 @@ permalink: /
 has_children: true
 ---
 
-# 🔧 HardFOC TLE92466ED Driver:
+# 🔧 HardFOC TLE92466ED Driver
 **Six-Channel Low-Side Solenoid Driver**
 
 ![TLE92466ED](https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&logo=microchip)
@@ -17,7 +17,9 @@ has_children: true
 
 ## 🎯 Modern Solenoid Control Interface for Multi-MCU Development
 
-*A production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support*
+*A production-ready C++23 driver implementation for the Infineon TLE92466ED with
+comprehensive SPI interface, precision current control, and extensive diagnostics
+support*
 
 ---
 
@@ -37,10 +39,13 @@ has_children: true
 
 ## 🎯 **Overview**
 
-> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - 
+> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** -
 > Interactive guides, examples, and step-by-step tutorials
 
-**TLE92466ED Driver** is a modern, production-ready C++23 driver implementation for the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.
+**TLE92466ED Driver** is a modern, production-ready C++23 driver implementation for
+the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver
+provides comprehensive SPI interface, precision current control, and extensive
+diagnostics support with a clean hardware-agnostic HAL interface.
 
 ### 🏆 **Core Benefits**
 
@@ -197,7 +202,8 @@ cd examples/esp32
 ## 📖 **API Documentation**
 
 ### **Generated Documentation**
-- **[📚 Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Interactive guides and tutorials
+- **[📚 Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** -
+  Interactive guides and tutorials
 - **[API Reference](docs/00_INDEX.md)** - Complete driver API documentation
 - **[IC Overview](docs/01_IC_Overview.md)** - Hardware specifications
 
@@ -314,26 +320,32 @@ if (auto diag = driver.readDiagnostics(); diag) {
 
 ## 📄 **License**
 
-This software is released into the **Public Domain**. You can use, modify, and distribute it freely without any restrictions.
+This software is released into the **Public Domain**. You can use, modify, and
+distribute it freely without any restrictions.
 
 ---
 
 ## 🔗 **Quick Links**
 
 ### **Documentation**
-- 📚 [Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/) - Interactive guides and tutorials
-- 📋 [Documentation Index](docs/00_INDEX.md) - Complete documentation navigation
+- 📚 [Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/) -
+  Interactive guides and tutorials
+- 📋 [Documentation Index](docs/00_INDEX.md) - Complete documentation
+  navigation
 - 🔌 [IC Overview](docs/01_IC_Overview.md) - Hardware specifications
 - 📡 [SPI Protocol](docs/02_SPI_Protocol.md) - Communication protocol
 - 🎛️ [Driver API](docs/07_Driver_API.md) - C++ API reference
-- 🔧 [HAL Implementation](docs/08_HAL_Implementation.md) - Platform porting guide
+- 🔧 [HAL Implementation](docs/08_HAL_Implementation.md) - Platform porting
+  guide
 - 💻 [Usage Examples](docs/09_Usage_Examples.md) - Practical code examples
 
 ### **Development**
 - 🚀 [Examples](examples/esp32/) - Test applications and usage examples
-- 🧪 [Test Documentation](examples/esp32/docs/README.md) - Comprehensive test documentation
+- 🧪 [Test Documentation](examples/esp32/docs/README.md) - Comprehensive test
+  documentation
 - 🔧 [Scripts](examples/esp32/scripts/) - Build, flash, and development tools
-- 📊 [Configuration](examples/esp32/app_config.yml) - Application and build settings
+- 📊 [Configuration](examples/esp32/app_config.yml) - Application and build
+  settings
 
 ### **Community**
 - 🤝 [Contributing](CONTRIBUTING.md) - Development guidelines

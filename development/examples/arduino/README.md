@@ -197,10 +197,10 @@ build_flags =
    git clone https://github.com/N3b3x/hf-tle92466ed-driver.git
    ```
 
-2. **Open example in Arduino IDE**:
+1. **Open example in Arduino IDE**:
    - Open: `hf-tle92466ed-driver/examples/arduino/BasicUsageExample/BasicUsageExample.ino`
 
-3. **Add driver files to sketch**:
+1. **Add driver files to sketch**:
    - **Option A** (Recommended): Create symlinks in sketch folder:
      ```bash
      cd BasicUsageExample

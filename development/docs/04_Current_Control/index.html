@@ -621,10 +621,7 @@ providing precise 15-bit current control.</p>
 </h3>
     
 
-<p>```
-    Current Control Loop:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -637,19 +634,23 @@ providing precise 15-bit current control.</p>
 11
 12
 13
-</pre></td><td class="rouge-code"><pre>Setpoint ───▶┌────────────┐     ┌──────────┐     ┌─────────┐
-(15-bit)     │ Difference │────▶│Integrator│────▶│   PWM   │
-             │    Amp     │     │  (ICC)   │     │  Driver │
-             └─────▲──────┘     └──────────┘     └────┬────┘
-                   │                                   │
-                   │    ┌───────────┐                  │
-                   └────┤  Current  │◀─────────────────┘
-                        │  Sense    │        Output
-                        └───────────┘
+14
+15
+</pre></td><td class="rouge-code"><pre>    Current Control Loop:
 
-PWM Frequency: Configurable via PERIOD register
-Dither Overlay: Optional current modulation
-Regulation: Closed-loop with integrator \`\`\`
+    Setpoint ───▶┌────────────┐     ┌──────────┐     ┌─────────┐
+    (15-bit)     │ Difference │────▶│Integrator│────▶│   PWM   │
+                 │    Amp     │     │  (ICC)   │     │  Driver │
+                 └─────▲──────┘     └──────────┘     └────┬────┘
+                       │                                   │
+                       │    ┌───────────┐                  │
+                       └────┤  Current  │◀─────────────────┘
+                            │  Sense    │        Output
+                            └───────────┘
+
+    PWM Frequency: Configurable via PERIOD register
+    Dither Overlay: Optional current modulation
+    Regulation: Closed-loop with integrator
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="current-resolution">
   
@@ -674,11 +675,13 @@ Regulation: Closed-loop with integrator \`\`\`
 </h3>
     
 
-<p><strong>Formula</strong>:
-```
-TARGET = (I_desired × 32767) / I_max
+<p><strong>Formula</strong>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>TARGET = (I_desired × 32767) / I_max
 Where: I_max = 2000mA (single) or 4000mA (parallel)
-```</p>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Examples</strong>:</p>
 
@@ -735,21 +738,29 @@ Where: I_max = 2000mA (single) or 4000mA (parallel)
 </h3>
     
 
-<p>```
-Bits: 15   12  11   10    8 7              0
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>Bits: 15   12  11   10    8 7              0
      ┌───────┬────┬────────┬───────────────┐
      │PWM_CTL│LOW │PERIOD  │   PERIOD      │
      │_PARAM │FREQ│  _EXP  │    _MANT      │
      └───────┴────┴────────┴───────────────┘
-```</p>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p><strong>Formula</strong>:
-```
-Standard: T_pwm = PERIOD_MANT × 2^PERIOD_EXP × (1/f_sys)
-Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)</p>
+<p><strong>Formula</strong>:</p>
 
-<p>Where f_sys ≈ 8 MHz (internal clock)
-```</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>Standard: T_pwm = PERIOD_MANT × 2^PERIOD_EXP × (1/f_sys)
+Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)
+
+Where f_sys ≈ 8 MHz (internal clock)
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Example Calculations</strong>:</p>
 
@@ -804,10 +815,7 @@ Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)</p>
 </h3>
     
 
-<p>```
-    Current vs Time (Dither Enabled):</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -819,18 +827,22 @@ Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)</p>
 10
 11
 12
-</pre></td><td class="rouge-code"><pre>I_max  ┐     ╱▔▔▔▔▔▔▔╲     ╱▔▔▔▔▔▔▔╲
-       │   ╱            ╲ ╱            ╲
-I_set  ├──────────────────O──────────────────
-       │                 ╲ ╱            ╲ ╱
-I_min  ┘                  ╲___________╱
-       └────────────────────────────────────▶ Time
-       ◄─────  T_dither  ─────▶
+13
+14
+</pre></td><td class="rouge-code"><pre>    Current vs Time (Dither Enabled):
 
-Components:
-- Steps: Number of increments in quarter period
-- Flat: Hold time at peak/valley
-- Step Size: Amplitude of each increment \`\`\`
+    I_max  ┐     ╱▔▔▔▔▔▔▔╲     ╱▔▔▔▔▔▔▔╲
+           │   ╱            ╲ ╱            ╲
+    I_set  ├──────────────────O──────────────────
+           │                 ╲ ╱            ╲ ╱
+    I_min  ┘                  ╲___________╱
+           └────────────────────────────────────▶ Time
+           ◄─────  T_dither  ─────▶
+
+    Components:
+    - Steps: Number of increments in quarter period
+    - Flat: Hold time at peak/valley
+    - Step Size: Amplitude of each increment
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="configuration-registers">
   
@@ -847,15 +859,17 @@ Components:
   <li><strong>DITHER_CTRL</strong>: Step size and control</li>
 </ol>
 
-<p><strong>Dither Amplitude</strong>:
-```
-I_dither = STEPS × STEP_SIZE × 2A / 32767
-```</p>
+<p><strong>Dither Amplitude</strong>:</p>
 
-<p><strong>Dither Period</strong>:
-```
-T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
-```</p>
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>I_dither = STEPS × STEP_SIZE × 2A / 32767
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p><strong>Dither Period</strong>:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="dither-use-cases">
   
   
@@ -908,13 +922,17 @@ T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
 </h3>
     
 
-<p>```
-Bits: 15 14              10 9              0
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>Bits: 15 14              10 9              0
      ┌──┬─────────────────┬─────────────────┐
      │Rs│AUTO_LIM_VALUE   │  LIM_VALUE      │
      │  │     _ABS        │    _ABS         │
      └──┴─────────────────┴─────────────────┘
-```</p>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Purpose</strong>:</p>
 <ul>
@@ -946,19 +964,20 @@ Bits: 15 14              10 9              0
 </h3>
     
 
-<p>```
-    Measurement Path:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre>Load Current ──▶ Sense ──▶ ADC ──▶ Filter ──▶ FB_I_AVG
-                   │
-                   ├──▶ Min/Max ──▶ FB_IMIN_IMAX
-                   │
-                   └──▶ DC Calc ──▶ FB_DC \`\`\`
+6
+7
+</pre></td><td class="rouge-code"><pre>    Measurement Path:
+
+    Load Current ──▶ Sense ──▶ ADC ──▶ Filter ──▶ FB_I_AVG
+                       │
+                       ├──▶ Min/Max ──▶ FB_IMIN_IMAX
+                       │
+                       └──▶ DC Calc ──▶ FB_DC
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="feedback-registers-per-channel">
   
@@ -1017,23 +1036,24 @@ Bits: 15 14              10 9              0
 </h3>
     
 
-<p>```
-    Available Pairs:</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre>┌─────────┬─────────┐
-│  CH0    │   CH3   │ ◀── Can be paralleled (4A)
-├─────────┼─────────┤
-│  CH1    │   CH2   │ ◀── Can be paralleled (4A)
-├─────────┼─────────┤
-│  CH4    │   CH5   │ ◀── Can be paralleled (4A)
-└─────────┴─────────┘ \`\`\`
+8
+9
+</pre></td><td class="rouge-code"><pre>    Available Pairs:
+
+    ┌─────────┬─────────┐
+    │  CH0    │   CH3   │ ◀── Can be paralleled (4A)
+    ├─────────┼─────────┤
+    │  CH1    │   CH2   │ ◀── Can be paralleled (4A)
+    ├─────────┼─────────┤
+    │  CH4    │   CH5   │ ◀── Can be paralleled (4A)
+    └─────────┴─────────┘
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p><strong>Configuration</strong>:</p>
@@ -1045,11 +1065,13 @@ Bits: 15 14              10 9              0
   <li>Enable both channels</li>
 </ol>
 
-<p><strong>Current Calculation</strong> (Parallel):
-```
-I_total = 4000mA × TARGET / 32767
+<p><strong>Current Calculation</strong> (Parallel):</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>I_total = 4000mA × TARGET / 32767
 Max: 4000 mA (4A)
-```</p>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="icc-tuning-guidelines">
   
   
@@ -1067,20 +1089,22 @@ Max: 4000 mA (4A)
 </h3>
     
 
-<p>```
-    Fast Response          Stability
-    (High Gains)           (Low Gains)</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre>◄────────────────────────────────▶
-│         │          │           │
-Unstable  Aggressive  Balanced   Slow
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>    Fast Response          Stability
+    (High Gains)           (Low Gains)
 
-Recommended: Balanced (middle range) \`\`\`
+    ◄────────────────────────────────▶
+    │         │          │           │
+    Unstable  Aggressive  Balanced   Slow
+
+    Recommended: Balanced (middle range)
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="parameter-recommendations">
   
@@ -1136,30 +1160,37 @@ Recommended: Balanced (middle range) \`\`\`
 </h3>
     
 
-<p>```</p>
-<ol>
-  <li>
-    <p>Start with default values
-├─ PWM_CTRL_PARAM = 0x6
-├─ INT_THRESH = 0x80
-└─ INTEGRATOR_LIMIT = 0x3FF</p>
-  </li>
-  <li>
-    <p>Observe step response
-└─ Apply setpoint step change</p>
-  </li>
-  <li>
-    <p>Adjust based on behavior
-├─ Oscillation? → Reduce PWM_CTRL_PARAM
-├─ Too slow? → Increase PWM_CTRL_PARAM
-└─ Overshoot? → Reduce INT_THRESH</p>
-  </li>
-  <li>
-    <p>Fine-tune integrator limits
-└─ Reduce for faster settling
-```</p>
-  </li>
-</ol><hr />
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre>1. Start with default values
+   ├─ PWM_CTRL_PARAM = 0x6
+   ├─ INT_THRESH = 0x80
+   └─ INTEGRATOR_LIMIT = 0x3FF
+
+2. Observe step response
+   └─ Apply setpoint step change
+
+3. Adjust based on behavior
+   ├─ Oscillation? → Reduce PWM_CTRL_PARAM
+   ├─ Too slow? → Increase PWM_CTRL_PARAM
+   └─ Overshoot? → Reduce INT_THRESH
+
+4. Fine-tune integrator limits
+   └─ Reduce for faster settling
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
 
 <div class="table-wrapper"><table>
   <tbody>

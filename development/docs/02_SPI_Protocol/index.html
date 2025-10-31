@@ -972,65 +972,6 @@ SPI Mode 0.</p>
 290
 291
 292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
 </pre></td><td class="rouge-code"><pre>   Bit Position:  31  30  29  28  27  26  25  24  23  22  21  20  19  18  17  16  15 ...  0
                  ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬─────────┐
    MOSI (Write): │              CRC (8)              │    ADDR (7)   │R/W│   DATA (16)   │
@@ -1323,12 +1264,39 @@ SPI Mode 0.</p>
     │ Step 3: Verify (optional)                              │
     │   Read back GLOBAL_CONFIG to confirm                   │
     └────────────────────────────────────────────────────────┘
-```text
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="example-2-read-channel-status">
+  
+  
+    <a href="#example-2-read-channel-status" class="anchor-heading" aria-labelledby="example-2-read-channel-status"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example 2: Read Channel Status
+  
+  
+</h3>
+    
 
-### Example 2: Read Channel Status
-
-```text
-    Objective: Read CH0 current setpoint
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+</pre></td><td class="rouge-code"><pre>    Objective: Read CH0 current setpoint
     
     Register: CH0_SETPOINT (0x0100)
     
@@ -1350,12 +1318,37 @@ SPI Mode 0.</p>
     │   Status [21:17]: Check for errors                     │
     │   Data [15:0]: 0x0567 = current setpoint              │
     └────────────────────────────────────────────────────────┘
-```text
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="example-3-error-handling">
+  
+  
+    <a href="#example-3-error-handling" class="anchor-heading" aria-labelledby="example-3-error-handling"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Example 3: Error Handling
+  
+  
+</h3>
+    
 
-### Example 3: Error Handling
-
-```text
-    Scenario: Write to read-only register
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>    Scenario: Write to read-only register
     
     Transaction:
       MOSI: Write to ICVID (0x0200, read-only)
@@ -1375,53 +1368,42 @@ SPI Mode 0.</p>
     │   - Check register address                             │
     │   - Verify register is writable                        │
     └────────────────────────────────────────────────────────┘
-```text
-
-## Best Practices
-
-### Transaction Management
-
-1. **CRC Verification**
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<p>Always verify:</p>
-<ul>
-  <li>Outgoing CRC before transmission</li>
-  <li>Incoming CRC after reception</li>
-  <li>Reject frames with CRC mismatch
-   ```text</li>
-</ul>
+<h2 id="best-practices">
+  
+  
+    <a href="#best-practices" class="anchor-heading" aria-labelledby="best-practices"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Best Practices
+  
+  
+</h2>
+    
+<h3 id="transaction-management">
+  
+  
+    <a href="#transaction-management" class="anchor-heading" aria-labelledby="transaction-management"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Transaction Management
+  
+  
+</h3>
+    
 
 <ol>
-  <li><strong>Status Checking</strong>
-```text
-After every transaction:
-    <ul>
-      <li>Parse status field [21:17]</li>
-      <li>Handle errors appropriately</li>
-      <li>Log unexpected status codes
-```</li>
-    </ul>
+  <li>
+    <p><strong>CRC Verification</strong>: Always verify outgoing CRC before transmission, verify
+incoming CRC after reception, and reject frames with CRC mismatch.</p>
   </li>
-  <li><strong>Timing Compliance</strong>
-```text
-Ensure:
-    <ul>
-      <li>Minimum CS inactive time (100ns)</li>
-      <li>Proper setup/hold times</li>
-      <li>Clock frequency within limits
-```</li>
-    </ul>
+  <li>
+    <p><strong>Status Checking</strong>: After every transaction, parse the status field
+<code class="language-plaintext highlighter-rouge">[21:17]</code>, handle errors appropriately, and log unexpected status codes.</p>
   </li>
-  <li><strong>Error Recovery</strong>
-```text
-On error:
-    <ul>
-      <li>Check CRC first</li>
-      <li>Verify register address</li>
-      <li>Retry with exponential backoff (max 3)</li>
-      <li>Reset communication if persistent
-```</li>
-    </ul>
+  <li>
+    <p><strong>Timing Compliance</strong>: Ensure the minimum CS inactive time is 100 ns,
+maintain proper setup and hold times, and keep the clock frequency within
+limits.</p>
+  </li>
+  <li>
+    <p><strong>Error Recovery</strong>: On error, check the CRC first, verify the register
+address, retry with exponential backoff (maximum three attempts), and reset
+communication if the issue persists.</p>
   </li>
 </ol>
 <h3 id="performance-optimization">
@@ -1433,23 +1415,33 @@ On error:
 </h3>
     
 
-<p>```text
-Recommended SPI Frequency:
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>Recommended SPI Frequency:
 ┌─────────────────────┬──────────────────────────────────┐
 │ Application         │ Frequency                        │
 ├─────────────────────┼──────────────────────────────────┤
 │ Debug/Development   │ 100-500 kHz (easier to debug)    │
 │ Normal Operation    │ 1-2 MHz (good balance)           │
 │ High Performance    │ 5-10 MHz (maximum throughput)    │
-└─────────────────────┴──────────────────────────────────┘</p>
+└─────────────────────┴──────────────────────────────────┘
 
-<p>Transaction Rate:</p>
-<ul>
-  <li>32 bits @ 1 MHz = 32 µs per transaction</li>
-  <li>+100ns CS gap = ~33 µs total</li>
-  <li>Max rate: ~30,000 transactions/second
-```text</li>
-</ul><hr />
+Transaction Rate:
+- 32 bits @ 1 MHz = 32 µs per transaction
+- +100ns CS gap = ~33 µs total
+- Max rate: ~30,000 transactions/second
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
 
 <div class="table-wrapper"><table>
   <tbody>

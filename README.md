@@ -1,87 +1,156 @@
-# TLE92466ED Driver
+---
+layout: default
+title: "🔧 HardFOC TLE92466ED Driver"
+description: "C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics"
+nav_order: 1
+permalink: /
+has_children: true
+---
 
-[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://n3b3x.github.io/hf-tle92466ed-driver/)
-[![License](https://img.shields.io/badge/license-Public%20Domain-green.svg)](LICENSE)
-[![C++23](https://img.shields.io/badge/C%2B%2B-23-blue.svg)](https://en.cppreference.com/w/cpp/23)
+# 🔧 HardFOC TLE92466ED Driver:
+**Six-Channel Low-Side Solenoid Driver**
 
-> **C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC**
+![TLE92466ED](https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&logo=microchip)
+![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&logo=cplusplus)
+![Hardware-Agnostic](https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&logo=hardware)
+![License](https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&logo=opensourceinitiative)
 
-A modern, production-ready C++23 driver implementation for the Infineon TLE92466ED with
-comprehensive SPI interface, precision current control, and extensive diagnostics support.
+## 🎯 Modern Solenoid Control Interface for Multi-MCU Development
 
-## 🌟 Key Features
+*A production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support*
 
-### Hardware Capabilities
-- **6 Independent Channels**: Low-side solenoid/load control
-- **Precision Current Control**: 15-bit resolution (0.061mA steps)
-- **Current Range**: 0-2A per channel, 0-4A in parallel mode
-- **32-bit SPI Interface**: With CRC-8 (SAE J1850) data integrity
-- **PWM & Dither**: Configurable for noise reduction and precision
-- **Comprehensive Diagnostics**: Overcurrent, overtemperature, load detection
+---
 
-### Driver Features
-- **Modern C++23**: Using `std::expected` for error handling
-- **Hardware Agnostic**: Clean HAL interface for easy platform porting
-- **Zero Dependencies**: Freestanding-compatible, suitable for bare-metal
-- **noexcept Guarantee**: All functions marked noexcept for embedded safety
-- **Production Ready**: Thoroughly documented and tested
+## 📚 **Table of Contents**
 
-## 📚 Documentation
+- [🎯 **Overview**](#-overview)
+- [🏗️ **Architecture**](#-architecture)
+- [🔌 **Features**](#-features)
+- [🚀 **Quick Start**](#-quick-start)
+- [📖 **API Documentation**](#-api-documentation)
+- [🔧 **Building**](#-building)
+- [📊 **Examples**](#-examples)
+- [🤝 **Contributing**](#-contributing)
+- [📄 **License**](#-license)
 
-- **[Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Jekyll
-  site with full guides
-- **[API Reference](https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/)** -
-  Doxygen-generated API docs
-- **[IC Overview](docs/01_IC_Overview.md)** - Hardware specifications
-- **[Usage Examples](docs/09_Usage_Examples.md)** - Practical code examples
-- **[HAL Implementation](docs/08_HAL_Implementation.md)** - Platform porting guide
+---
 
-## 🚀 Quick Start
+## 🎯 **Overview**
 
-### Basic Usage
+> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - 
+> Interactive guides, examples, and step-by-step tutorials
+
+**TLE92466ED Driver** is a modern, production-ready C++23 driver implementation for the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.
+
+### 🏆 **Core Benefits**
+
+- **🔄 Hardware Portability** - Clean HAL interface for easy platform porting
+- **🎯 Modern C++23** - Using `std::expected` for type-safe error handling
+- **⚡ Precision Control** - 15-bit current resolution (0.061mA steps)
+- **🛡️ Safety Features** - Comprehensive diagnostics and protection systems
+- **📈 Zero Dependencies** - Freestanding-compatible, suitable for bare-metal
+- **🔌 Complete Coverage** - Full access to all 108 registers and features
+
+### 🎨 **Design Philosophy**
 
 ```cpp
-#include "TLE92466ED.hpp"
-#include "your_platform_hal.hpp"  // Your platform-specific HAL
-
-// Create HAL instance
-YourPlatformHAL hal;
-
-// Create driver instance
+// Write hardware-agnostic solenoid control code
+YourPlatformHAL hal;  // Your SPI implementation
 TLE92466ED driver(hal);
 
-// Initialize the IC
-if (auto result = driver.initialize(); !result) {
-    // Handle initialization error
-    return;
-}
-
-// Set current for channel 0 to 1.5A
-if (auto result = driver.setChannelCurrent(0, 1500); !result) {
-    // Handle error
-    return;
-}
-
-// Enable channel 0
-if (auto result = driver.enableChannel(0); !result) {
-    // Handle error
-    return;
-}
-
-// Read diagnostics
-if (auto diag = driver.readDiagnostics(); diag) {
-    // Process diagnostics
-    if (diag->hasOvercurrent()) {
-        // Handle overcurrent condition
-    }
-}
+// Initialize and control channels
+driver.initialize();
+driver.setChannelCurrent(0, 1500);  // 1.5A
+driver.enableChannel(0);
 ```
 
-### HAL Implementation
+---
 
-Implement the HAL interface for your platform:
+## 🏗️ **Architecture**
 
+### **HAL-Based Design**
+
+```text
+📦 TLE92466ED Driver Architecture
+├── 🎯 Driver Layer (TLE92466ED class)     # High-level channel control API
+│   ├── Channel Control                  # Current setting, enable/disable
+│   ├── Diagnostics                      # Fault detection and monitoring
+│   ├── Configuration                    # Channel modes, PWM settings
+│   └── Register Access                  # Direct register manipulation
+│
+├── 🔌 Hardware Abstraction Layer        # Platform-independent interface
+│   ├── TLE92466ED_HAL                   # Base HAL interface
+│   ├── SPI Transfer                     # 32-bit frame communication
+│   └── Delay Functions                  # Timing control
+│
+└── 🔧 Hardware Layer                   # Platform-specific implementations
+    ├── ESP32 HAL                        # ESP32 family support
+    ├── STM32 HAL                        # STM32 support
+    └── Any MCU with SPI                 # Your implementation
+```
+
+### **Abstraction Benefits**
+
+#### **1. MCU Independence**
 ```cpp
+// Application code remains the same across MCUs
+class SolenoidController {
+    TLE92466ED* driver;
+    
+public:
+    void Initialize() {
+        // Platform-specific HAL, same driver code
+        YourPlatformHAL hal;  // ESP32, STM32, or any MCU
+        driver = new TLE92466ED(hal);
+        
+        // Same API regardless of MCU
+        driver->initialize();
+        driver->setChannelCurrent(0, 1500);
+        driver->enableChannel(0);
+    }
+};
+```
+
+---
+
+## 🔌 **Features**
+
+### **Hardware Capabilities**
+
+| **Feature** | **Specification** | **Details** |
+|-------------|-------------------|-------------|
+| **Channels** | 6 independent outputs | Low-side solenoid/load control |
+| **Current Range** | 0-2A per channel | Single channel operation |
+| **Current Range** | 0-4A per channel | Parallel mode operation |
+| **Resolution** | 15-bit (0.061mA) | Precision current control |
+| **SPI Interface** | 32-bit frames | With CRC-8 (SAE J1850) |
+| **PWM & Dither** | Configurable | Noise reduction and precision |
+| **Diagnostics** | Comprehensive | Overcurrent, overtemperature, load detection |
+
+### **Driver Features**
+
+| **Feature** | **Description** | **Benefits** |
+|-------------|-----------------|--------------|
+| **Modern C++23** | Using `std::expected` | Type-safe error handling |
+| **Hardware Agnostic** | Clean HAL interface | Easy platform porting |
+| **Zero Dependencies** | Freestanding-compatible | Suitable for bare-metal |
+| **noexcept Guarantee** | All functions noexcept | Embedded safety |
+| **Production Ready** | Thoroughly documented | Industry-grade quality |
+
+---
+
+## 🚀 **Quick Start**
+
+### **1. Clone Repository**
+```bash
+git clone https://github.com/n3b3x/hf-tle92466ed-driver.git
+cd hf-tle92466ed-driver
+```
+
+### **2. Implement HAL Interface**
+```cpp
+#include "include/TLE92466ED_HAL.hpp"
+
 class YourPlatformHAL : public TLE92466ED_HAL {
 public:
     auto spiTransfer(std::span<const uint8_t> txData, 
@@ -97,103 +166,182 @@ public:
 };
 ```
 
-## 📋 Requirements
+### **3. Basic Usage**
+```cpp
+#include "include/TLE92466ED.hpp"
 
-### Compiler Support
-- **GCC** 12.0 or later
-- **Clang** 16.0 or later  
-- **MSVC** 19.33 (Visual Studio 2022) or later
+YourPlatformHAL hal;
+TLE92466ED driver(hal);
 
-### C++ Standard
-- C++23 (requires `std::expected` support)
+// Initialize the IC
+if (auto result = driver.initialize(); !result) {
+    return -1;
+}
 
-### Dependencies
-- **None** - Freestanding compatible
-- Only requires standard C++23 library features
+// Set current for channel 0 to 1.5A
+driver.setChannelCurrent(0, 1500);
 
-## 🏗️ Building
-
-### CMake Integration
-
-```cmake
-# Add to your CMakeLists.txt
-add_subdirectory(external/hf-tle92466ed-driver)
-
-target_link_libraries(your_target PRIVATE TLE92466ED)
+// Enable channel 0
+driver.enableChannel(0);
 ```
 
-### Manual Integration
-
-Simply include the header and source files in your project:
-- `include/TLE92466ED.hpp`
-- `include/TLE92466ED_Registers.hpp`
-- `include/TLE92466ED_HAL.hpp`
-- `src/TLE92466ED.cpp`
-
-## 🎯 Use Cases
-
-- Automotive solenoid control
-- Industrial valve control
-- Robotics actuator control
-- Precision motor control
-- Test and measurement equipment
-- Any application requiring precision current control
-
-## 📖 Documentation Structure
-
-```text
-docs/
-├── 00_INDEX.md              - Documentation navigation
-├── 01_IC_Overview.md        - Hardware specifications
-├── 02_SPI_Protocol.md       - Communication protocol
-├── 03_Register_Map.md       - Complete register reference
-├── 04_Current_Control.md    - ICC system documentation
-├── 05_Channel_Modes.md      - Operating modes
-├── 06_Diagnostics.md        - Fault detection
-├── 07_Driver_API.md         - C++ API reference
-├── 08_HAL_Implementation.md - Platform porting guide
-└── 09_Usage_Examples.md     - Practical examples
+### **4. Build Example**
+```bash
+cd examples/esp32
+./scripts/setup_repo.sh
+./scripts/build_app.sh basic_usage Release
 ```
-
-## 🔧 IC Specifications
-
-| Specification | Value |
-|--------------|-------|
-| **Channels** | 6 independent outputs |
-| **Current per Channel** | 0-2A (single), 0-4A (parallel) |
-| **Current Resolution** | 15-bit (0.061mA) |
-| **SPI Interface** | 32-bit frames, CRC-8 |
-| **Supply Voltage** | See datasheet |
-| **Temperature Range** | See datasheet |
-| **Package** | See datasheet |
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
-
-## 📄 License
-
-This software is released into the **Public Domain**. You can use, modify, and distribute it freely without any restrictions.
-
-## 🙏 Acknowledgments
-
-- Based on Infineon TLE92466ED datasheet Rev. 1.2 (2022-02-01)
-- Documentation extracted and verified from official datasheet
-- All register definitions verified against hardware
-
-## 🔗 Resources
-
-- **[Official Infineon TLE92466ED Product Page](https://www.infineon.com/)**
-- **[Datasheet](Datasheet/)** - Included in repository
-- **[GitHub Repository](https://github.com/n3b3x/hf-tle92466ed-driver)**
-- **[Issues & Support](https://github.com/n3b3x/hf-tle92466ed-driver/issues)**
-
-## 📞 Support
-
-- **Documentation**: [https://n3b3x.github.io/hf-tle92466ed-driver/](https://n3b3x.github.io/hf-tle92466ed-driver/)
-- **Issues**: [GitHub Issues](https://github.com/n3b3x/hf-tle92466ed-driver/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)
 
 ---
 
-**Version**: 2.0.0 | **Status**: Production Ready | **Last Updated**: 2025-10-21
+## 📖 **API Documentation**
+
+### **Generated Documentation**
+- **[📚 Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)** - Interactive guides and tutorials
+- **[API Reference](docs/00_INDEX.md)** - Complete driver API documentation
+- **[IC Overview](docs/01_IC_Overview.md)** - Hardware specifications
+
+### **Key Concepts**
+
+#### **Initialization**
+```cpp
+// Initialize the driver
+if (auto result = driver.initialize(); !result) {
+    // Handle initialization error
+    return;
+}
+```
+
+#### **Channel Control**
+```cpp
+// Set current (0-2000 mA)
+driver.setChannelCurrent(0, 1500);  // 1.5A
+
+// Enable/disable channels
+driver.enableChannel(0);
+driver.disableChannel(0);
+```
+
+#### **Diagnostics**
+```cpp
+// Read diagnostics
+if (auto diag = driver.readDiagnostics(); diag) {
+    if (diag->hasOvercurrent()) {
+        // Handle overcurrent condition
+    }
+}
+```
+
+---
+
+## 🔧 **Building**
+
+### **Build System Features**
+- **CMake Integration** - Easy project integration
+- **ESP32 Examples** - Comprehensive test applications
+- **Manual Integration** - Simple header/source inclusion
+- **CI/CD Integration** - Automated builds and validation
+
+### **Build Commands**
+```bash
+## For ESP32 development
+cd examples/esp32
+./scripts/setup_repo.sh
+./scripts/build_app.sh <app_name> <build_type>
+
+## Examples:
+./scripts/build_app.sh basic_usage Release
+./scripts/build_app.sh multi_channel Debug
+```
+
+### **CMake Integration**
+```cmake
+add_subdirectory(external/hf-tle92466ed-driver)
+target_link_libraries(your_target PRIVATE TLE92466ED)
+```
+
+---
+
+## 📊 **Examples**
+
+### **Available Test Applications**
+
+| **Application** | **Tests** | **Purpose** |
+|-----------------|-----------|-------------|
+| **basic_usage** | Single channel control | Basic current setting and enable |
+| **multi_channel** | Multi-channel operation | Parallel channel control |
+| **diagnostics** | Fault detection | Overcurrent and overtemperature |
+
+### **Usage Examples**
+```cpp
+// Single Channel Control
+driver.setChannelCurrent(0, 1500);  // 1.5A
+driver.enableChannel(0);
+
+// Multi-Channel Control
+for (uint8_t ch = 0; ch < 6; ch++) {
+    driver.setChannelCurrent(ch, 1000);  // 1A per channel
+    driver.enableChannel(ch);
+}
+
+// Diagnostics Monitoring
+if (auto diag = driver.readDiagnostics(); diag) {
+    if (diag->hasOvercurrent()) {
+        driver.disableChannel(0);
+    }
+}
+```
+
+---
+
+## 🤝 **Contributing**
+
+### **Development Workflow**
+1. **Fork** the repository
+2. **Create** feature branch (`feature/new-feature`)
+3. **Implement** following coding standards
+4. **Test** with existing applications
+5. **Document** your changes
+6. **Submit** pull request
+
+### **Coding Standards**
+- **Functions**: PascalCase (`SetChannelCurrent`, `ReadDiagnostics`)
+- **Types**: snake_case with `*t` suffix (`hal_error_t`)
+- **Error Handling**: Use `std::expected` for type safety
+- **Code Formatting**: Use `clang-format`
+
+---
+
+## 📄 **License**
+
+This software is released into the **Public Domain**. You can use, modify, and distribute it freely without any restrictions.
+
+---
+
+## 🔗 **Quick Links**
+
+### **Documentation**
+- 📚 [Complete Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/) - Interactive guides and tutorials
+- 📋 [Documentation Index](docs/00_INDEX.md) - Complete documentation navigation
+- 🔌 [IC Overview](docs/01_IC_Overview.md) - Hardware specifications
+- 📡 [SPI Protocol](docs/02_SPI_Protocol.md) - Communication protocol
+- 🎛️ [Driver API](docs/07_Driver_API.md) - C++ API reference
+- 🔧 [HAL Implementation](docs/08_HAL_Implementation.md) - Platform porting guide
+- 💻 [Usage Examples](docs/09_Usage_Examples.md) - Practical code examples
+
+### **Development**
+- 🚀 [Examples](examples/esp32/) - Test applications and usage examples
+- 🧪 [Test Documentation](examples/esp32/docs/README.md) - Comprehensive test documentation
+- 🔧 [Scripts](examples/esp32/scripts/) - Build, flash, and development tools
+- 📊 [Configuration](examples/esp32/app_config.yml) - Application and build settings
+
+### **Community**
+- 🤝 [Contributing](CONTRIBUTING.md) - Development guidelines
+- 🐛 [Issue Tracker](https://github.com/n3b3x/hf-tle92466ed-driver/issues)
+- 💬 [Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)
+
+---
+
+**Built for the HardFOC ecosystem - Enabling seamless solenoid control**
+
+*Precision current control that just works™*

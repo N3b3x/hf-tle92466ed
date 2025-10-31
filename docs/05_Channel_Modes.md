@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Channel Modes
-nav_order: 7
-parent: Documentation Index
-description: "Operating modes and configuration options"
+title: "🎛️ Channel Modes"
+description: "Operating modes and configuration options for Config and Mission modes"
+nav_order: 5
+parent: "📚 Documentation"
+permalink: /docs/05_Channel_Modes/
 ---
 
 # Channel Modes

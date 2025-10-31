@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Diagnostics
-nav_order: 8
-parent: Documentation Index
-description: "Fault detection and monitoring capabilities"
+title: "🛡️ Diagnostics"
+description: "Fault detection and monitoring capabilities with comprehensive protection features"
+nav_order: 6
+parent: "📚 Documentation"
+permalink: /docs/06_Diagnostics/
 ---
 
 # Diagnostics & Protection

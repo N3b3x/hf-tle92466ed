@@ -1,46 +1,68 @@
-# Doxygen Awesome CSS
+---
+layout: default
+title: "Configuration"
+nav_order: 1
+parent: "Doxygen Extensions"
+description: "Doxygen configuration and setup files for the HardFOC TLE92466ED Driver documentation"
+has_children: false
+has_toc: true
+---
 
-This directory contains the doxygen-awesome-css submodule for modern, responsive Doxygen
-documentation styling.
+# Doxygen Extensions Configuration
+
+This directory contains all Doxygen-related content for generating the API documentation.
+
+## Contents
+
+- **`doxygen-awesome-css/`** - Submodule containing the doxygen-awesome-css theme files
 
 ## Features
 
-- Modern, clean design
-- Dark mode support with toggle
-- Responsive layout for mobile devices
-- Interactive table of contents
-- Fragment copy buttons
-- Paragraph links
-- Tabbed content support
+The API documentation includes:
 
-## Integration
+- **🌓 Automatic Dark Mode** - Detects system preference and switches automatically
+- **📋 Copy Buttons** - Hover over code blocks to copy them
+- **🔗 Paragraph Links** - Click the ¶ symbol to get direct links to sections
+- **📑 Interactive TOC** - Dynamic table of contents with progress highlighting
+- **📑 Tabs** - Organize content in tabbed interfaces
+- **📱 Responsive** - Works on desktop and mobile devices
 
-The Doxygen Awesome CSS is integrated into the TLE92466ED driver documentation through:
+## Configuration
 
-1. **Git Submodule**: Located at `_config/doxygen-extensions/doxygen-awesome-css/`
-2. **Doxyfile Configuration**: Configured in the root `Doxyfile`
-3. **CSS Files**: Applied via `HTML_EXTRA_STYLESHEET`
-4. **JavaScript Enhancements**: Applied via `HTML_EXTRA_FILES`
+The Doxygen configuration is set up in the root `Doxyfile`:
+
+- `HTML_EXTRA_FILES` - References JavaScript extension files
+- `HTML_EXTRA_STYLESHEET` - References the main CSS files
+- `HTML_COPY_CLIPBOARD = NO` - Required for fragment copy button
+
+## Directory Structure
+
+```
+_config/doxygen-extensions/
+├── README.md                           # This file
+├── index.md                            # Main documentation page
+├── extensions.md                       # Extensions documentation
+└── doxygen-awesome-css/                # Submodule (theme files only)
+    ├── doxygen-awesome.css
+    ├── doxygen-awesome-sidebar-only.css
+    ├── doxygen-awesome-*.js
+    └── .git                            # Git submodule reference
+```
 
 ## Usage
 
-The CSS and JavaScript files are automatically included when running Doxygen. No manual
-configuration needed.
-
-## Updating
-
-To update the doxygen-awesome-css to the latest version:
+To generate the API documentation:
 
 ```bash
-cd _config/doxygen-extensions/doxygen-awesome-css
-git pull origin main
-cd ../../../
-git add _config/doxygen-extensions/doxygen-awesome-css
-git commit -m "Update doxygen-awesome-css"
-```text
+doxygen Doxyfile
+```
 
-## Resources
+The generated documentation will be output to `docs/doxygen/` (as configured in the Doxyfile).
 
-- [Doxygen Awesome CSS GitHub](https://github.com/jothepro/doxygen-awesome-css)
-- [Documentation](https://jothepro.github.io/doxygen-awesome-css/)
-- [Customization Guide](https://jothepro.github.io/doxygen-awesome-css/md_docs_2customization.html)
+## Updating Extensions
+
+When the doxygen-awesome-css submodule is updated:
+
+1. Update the submodule: `git submodule update --remote`
+2. Check if new JavaScript files need to be added to `HTML_EXTRA_FILES` in `Doxyfile`
+3. Test the documentation generation to ensure all features work correctly

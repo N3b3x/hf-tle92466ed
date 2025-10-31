@@ -1,9 +1,10 @@
 ---
 layout: default
-title: SPI Protocol
-nav_order: 4
-parent: Documentation Index
-description: "32-bit SPI communication protocol with CRC-8"
+title: "📡 SPI Protocol"
+description: "32-bit SPI communication protocol with CRC-8 (SAE J1850)"
+nav_order: 2
+parent: "📚 Documentation"
+permalink: /docs/02_SPI_Protocol/
 ---
 
 # SPI Protocol

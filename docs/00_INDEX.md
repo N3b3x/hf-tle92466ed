@@ -1,8 +1,11 @@
 ---
 layout: default
-title: Documentation Index
+title: "📚 Documentation"
+description: "Complete documentation for the HardFOC TLE92466ED Driver - IC specifications, API reference, and usage examples"
 nav_order: 2
-description: "Navigation guide for TLE92466ED driver documentation"
+parent: "🔧 HardFOC TLE92466ED Driver"
+permalink: /docs/
+has_children: true
 ---
 
 # TLE92466ED Driver Documentation

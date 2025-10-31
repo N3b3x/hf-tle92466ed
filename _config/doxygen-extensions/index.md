@@ -1,58 +1,69 @@
 ---
 layout: default
-title: Doxygen Extensions
-nav_order: 90
+title: "Doxygen Extensions"
+nav_order: 1
+parent: "Doxygen Extensions"
+description: "Advanced Doxygen documentation with automatic dark mode, interactive features, and modern styling"
+has_children: true
+has_toc: true
 ---
 
-# Doxygen Extensions
+# 📖 Doxygen Extensions
 
-The TLE92466ED driver documentation uses
-[Doxygen Awesome CSS](https://github.com/jothepro/doxygen-awesome-css) for modern,
-responsive API documentation.
+This section contains advanced Doxygen documentation features and extensions for the HardFOC TLE92466ED Driver project.
 
-## Features
+## 🌟 Features
 
-### Modern Design
-- Clean, minimalist interface
-- Professional typography
-- Consistent spacing and layout
-- Mobile-responsive design
+Our Doxygen documentation includes several modern enhancements:
 
-### Dark Mode
-- Toggle between light and dark themes
-- Automatic theme detection
-- Persistent theme selection
+- **🌓 Automatic Dark Mode** - Detects system preference and switches automatically
+- **📋 Copy Buttons** - Hover over code blocks to copy them to clipboard
+- **🔗 Paragraph Links** - Click the ¶ symbol to get direct links to sections
+- **📑 Interactive TOC** - Dynamic table of contents with progress highlighting
+- **📑 Tabs** - Organize content in tabbed interfaces
+- **📱 Responsive Design** - Works perfectly on desktop and mobile devices
 
-### Interactive Elements
-- **Copy Buttons**: One-click code snippet copying
-- **Paragraph Links**: Direct linking to sections
-- **Interactive TOC**: Collapsible table of contents
-- **Tabbed Content**: Organized information display
+## 🚀 Quick Start
 
-### Developer Experience
-- Fast page loading
-- Smooth animations
-- Keyboard navigation
-- Search integration
+The Doxygen documentation is automatically generated from the source code and includes:
 
-## Configuration
+1. **API Reference** - Complete documentation for all TLE92466ED classes and interfaces
+2. **Code Examples** - Comprehensive test examples showing proper usage
+3. **Interactive Features** - Modern UI with dark mode and copy functionality
 
-The Doxygen configuration (`Doxyfile`) includes:
+## 📁 Structure
 
-```doxyfile
-HTML_EXTRA_STYLESHEET  = _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome.css \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css
+- **[Configuration](README/)** - Doxygen configuration and setup files
+- **[Extensions](extensions/)** - Extensions documentation
+- **[Submodule](doxygen-awesome-css/)** - Doxygen-awesome-css theme files
 
-HTML_EXTRA_FILES       = _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-paragraph-link.js \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js
-```text
+## 🔧 Technical Details
 
-## Resources
+The documentation system uses:
 
-- [Doxygen Awesome CSS Documentation](https://jothepro.github.io/doxygen-awesome-css/)
-- [GitHub Repository](https://github.com/jothepro/doxygen-awesome-css)
-- [Customization Guide](https://jothepro.github.io/doxygen-awesome-css/md_docs_2customization.html)
+- **Doxygen** - For generating API documentation from source code
+- **doxygen-awesome-css** - Modern CSS theme with dark mode support
+- **Custom Extensions** - JavaScript enhancements for better user experience
+- **Automatic Detection** - System preference detection for theme switching
+
+## 📖 Usage
+
+To generate the documentation locally:
+
+```bash
+doxygen Doxyfile
+```
+
+The generated documentation will be available in the `docs/doxygen/` directory.
+
+## 🎨 Customization
+
+The documentation theme and features can be customized by modifying:
+
+- `Doxyfile` - Main Doxygen configuration
+- `_config/doxygen-extensions/doxygen-awesome-css/` - Theme CSS and JavaScript files
+
+## 🔗 Related Documentation
+
+- [Driver Documentation](../docs/) - User guides and examples
+- [API Reference](../docs/) - API documentation

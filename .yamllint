@@ -1,55 +1,69 @@
-# yamllint configuration for TLE92466ED driver
-
 extends: default
 
 rules:
-  # Line length is set to 120 to accommodate long URLs and paths
+  # Line length
   line-length:
     max: 120
     level: warning
 
-  # Allow multiple spaces for alignment in YAML
-  key-duplicates: enable
-
-  # Document start is optional for small configs
-  document-start:
-    present: false
-
-  # Allow truthy values (yes, no, on, off)
-  truthy:
-    allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
-    check-keys: false
-
-  # Indentation is 2 spaces
+  # Indentation
   indentation:
     spaces: 2
     indent-sequences: true
     check-multi-line-strings: false
 
-  # Comments should have a space after the hash
+  # Comments
   comments:
-    min-spaces-from-content: 2
+    min-spaces-from-content: 1
 
-  # Allow empty values
-  empty-values:
-    forbid-in-block-mappings: false
-    forbid-in-flow-mappings: false
+  # Document start
+  document-start:
+    present: false
 
-  # Bracket spacing
-  brackets:
-    min-spaces-inside: 0
-    max-spaces-inside: 0
+  # Trailing spaces
+  trailing-spaces:
+    level: error
 
-  # Brace spacing for flow mappings
+  # Empty lines
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 1
+
+  # Truthy values
+  truthy:
+    allowed-values: ['true', 'false', 'on', 'off', 'yes', 'no']
+
+  # Key ordering
+  key-ordering: disable
+
+  # Octal values
+  octal-values:
+    forbid-implicit-octal: true
+
+  # Braces
   braces:
     min-spaces-inside: 0
-    max-spaces-inside: 0
+    max-spaces-inside: 1
 
-ignore: |
-  .git/
-  node_modules/
-  venv/
-  .venv/
-  _site/
-  docs/doxygen/
-  _config/doxygen-extensions/
+  # Brackets
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+
+  # Colons
+  colons:
+    max-spaces-before: 0
+    max-spaces-after: 1
+
+  # Commas
+  commas:
+    max-spaces-before: 0
+    max-spaces-after: 1
+
+  # Hyphens
+  hyphens:
+    max-spaces-after: 1
+
+  # Comments indentation
+  comments-indentation: disable

@@ -1,9 +1,10 @@
 ---
 layout: default
-title: HAL Implementation
-nav_order: 10
-parent: Documentation Index
-description: "Hardware abstraction layer implementation guide"
+title: "🔌 HAL Implementation"
+description: "Hardware abstraction layer implementation guide for platform porting"
+nav_order: 8
+parent: "📚 Documentation"
+permalink: /docs/08_HAL_Implementation/
 ---
 
 # HAL Implementation Guide

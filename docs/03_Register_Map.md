@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Register Map
-nav_order: 5
-parent: Documentation Index
-description: "Complete register reference for all 108 registers"
+title: "📋 Register Map"
+description: "Complete register reference for all 108 registers with bit field definitions"
+nav_order: 3
+parent: "📚 Documentation"
+permalink: /docs/03_Register_Map/
 ---
 
 # Register Map

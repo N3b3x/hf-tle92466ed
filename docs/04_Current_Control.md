@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Current Control
-nav_order: 6
-parent: Documentation Index
-description: "Integrated Current Control (ICC) system documentation"
+title: "⚡ Current Control"
+description: "Integrated Current Control (ICC) system documentation with 15-bit resolution"
+nav_order: 4
+parent: "📚 Documentation"
+permalink: /docs/04_Current_Control/
 ---
 
 # Current Control (ICC)

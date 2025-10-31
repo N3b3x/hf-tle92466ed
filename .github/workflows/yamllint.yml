@@ -15,4 +15,4 @@ jobs:
       paths: '.github/workflows/*.yml,**/*.yml,**/*.yaml'
       config_file: '.yamllint'
       strict_mode: true
-      exclude_patterns: '.git/**,node_modules/**,venv/**,.venv/**,_site/**'
+      exclude_patterns: '.git/**,node_modules/**,venv/**,.venv/**,_site/**,_config/doxygen-extensions/**'

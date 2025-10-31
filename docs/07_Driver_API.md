@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Driver API
-nav_order: 9
-parent: Documentation Index
-description: "C++23 driver interface reference"
+title: "🔧 Driver API"
+description: "C++23 driver interface reference with std::expected error handling"
+nav_order: 7
+parent: "📚 Documentation"
+permalink: /docs/07_Driver_API/
 ---
 
 # Driver API Reference

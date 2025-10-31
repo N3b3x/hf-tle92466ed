@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Usage Examples
-nav_order: 11
-parent: Documentation Index
-description: "Practical implementation examples and code samples"
+title: "💻 Usage Examples"
+description: "Practical implementation examples and code samples for common use cases"
+nav_order: 9
+parent: "📚 Documentation"
+permalink: /docs/09_Usage_Examples/
 ---
 
 # Usage Examples

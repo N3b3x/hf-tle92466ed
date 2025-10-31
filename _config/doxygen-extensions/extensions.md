@@ -10,7 +10,8 @@ has_toc: true
 
 # Doxygen Awesome Extensions
 
-The HardFOC TLE92466ED Driver documentation uses the doxygen-awesome-css theme directly from the submodule for modern styling and interactive features.
+The HardFOC TLE92466ED Driver documentation uses the doxygen-awesome-css theme
+directly from the submodule for modern styling and interactive features.
 
 ## Theme Files
 
@@ -39,7 +40,9 @@ The theme files are located in the `doxygen-awesome-css/` submodule:
 
 ## Source
 
-These files come directly from the [doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css) submodule located at `doxygen-awesome-css/`.
+These files come directly from the
+[doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)
+submodule located at `doxygen-awesome-css/`.
 
 ## Configuration
 
@@ -51,7 +54,7 @@ The extensions are configured in the root `Doxyfile`:
 
 ## Directory Structure
 
-```
+```text
 _config/doxygen-extensions/
 ├── doxygen-awesome-css/           # Submodule with theme files only
 │   ├── doxygen-awesome.css
@@ -64,4 +67,3 @@ _config/doxygen-extensions/
 ```
 
 This streamlined organization uses the submodule directly without unnecessary file duplication.
-

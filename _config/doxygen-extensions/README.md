@@ -37,7 +37,7 @@ The Doxygen configuration is set up in the root `Doxyfile`:
 
 ## Directory Structure
 
-```
+```text
 _config/doxygen-extensions/
 ├── README.md                           # This file
 ├── index.md                            # Main documentation page

@@ -19,7 +19,7 @@ examples/esp32/
     └── tle92466ed-espidf/
         ├── CMakeLists.txt            # Component build config
         └── idf_component.yml         # Component metadata
-```text
+```
 
 ---
 
@@ -31,7 +31,7 @@ examples/esp32/
 ### Location
 ```text
 examples/esp32/main/TLE92466ED_Config.hpp
-```text
+```
 
 ### Complete Configuration
 
@@ -519,7 +519,7 @@ targets:
   - esp32
   - esp32s3
   - esp32c3
-```text
+```
 
 **Purpose**: ESP-IDF Component Manager metadata
 
@@ -534,28 +534,23 @@ targets:
    git clone https://github.com/N3b3x/hf-tle92466ed-driver.git
    cd hf-tle92466ed-driver/examples/esp32
    ```
-
 2. **Initialize submodules**
    ```bash
    git submodule update --init --recursive
    ```
-
 3. **Configure hardware** (if needed)
    ```bash
    nano main/TLE92466ED_Config.hpp
    # Modify SPI pins, frequency, etc.
    ```
-
 4. **Set ESP-IDF target**
    ```bash
    idf.py set-target esp32c6
    ```
-
 5. **Configure SDK** (optional)
    ```bash
    idf.py menuconfig
    ```
-
 6. **Build**
    ```bash
    ./scripts/build_app.sh basic_usage Debug
@@ -567,20 +562,17 @@ targets:
    ```bash
    ./scripts/build_app.sh basic_usage Release
    ```
-
 2. **Optimize sdkconfig**
    ```ini
    CONFIG_COMPILER_OPTIMIZATION_PERF=y
    CONFIG_LOG_DEFAULT_LEVEL_WARN=y
    CONFIG_BOOTLOADER_LOG_LEVEL_WARN=y
    ```
-
 3. **Disable debug features**
    ```cpp
    #define ENABLE_DEBUG_LOGGING 0
    #define ENABLE_STRESS_TESTS 0
    ```
-
 4. **Verify settings**
    ```bash
    idf.py size
@@ -599,7 +591,7 @@ struct SPIPins {
     static constexpr int MISO = 4;   // Try different GPIO
     // ...
 };
-```text
+```
 
 #### SPI Communication Failure
 
@@ -633,7 +625,7 @@ struct SPIPins {
 # Clean and rebuild with explicit build type
 idf.py fullclean
 idf.py -DCMAKE_BUILD_TYPE=Debug build
-```text
+```
 
 ---
 

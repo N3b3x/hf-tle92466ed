@@ -17,10 +17,10 @@ This branch contains the versioned documentation for this repository.
 
 ## Current Version
 
-- **Version**: preview
-- **Type**: preview
-- **Deployed**: 2025-10-31T22:31:49Z
-- **Commit**: 1c04f68b4336bded176a427f2c6cdee89ed48727
+- **Version**: development
+- **Type**: development
+- **Deployed**: 2025-10-31T22:36:34Z
+- **Commit**: 7f3e239faa79877204c1b0e87105e84f7898af81
 
 ---
 

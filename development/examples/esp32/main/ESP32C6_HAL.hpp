@@ -20,6 +20,8 @@
 #include "esp_log.h"
 #include <memory>
 
+using namespace TLE92466ED;
+
 /**
  * @class ESP32C6_HAL
  * @brief ESP32-C6 implementation of the TLE92466ED HAL interface
@@ -27,7 +29,7 @@
  * This class provides the platform-specific implementation for ESP32-C6,
  * handling SPI communication with proper timing and error handling.
  */
-class ESP32C6_HAL : public TLE92466ED_HAL {
+class ESP32C6_HAL : public TLE92466ED::HAL {
 public:
     /**
      * @brief SPI configuration structure for ESP32-C6
@@ -61,25 +63,75 @@ public:
 
     /**
      * @brief Initialize the HAL (must be called before use)
-     * @return std::expected<void, HALError> Success or error
+     * @return HALResult<void> Success or error
      */
-    auto initialize() noexcept -> std::expected<void, HALError>;
+    auto init() noexcept -> HALResult<void> override;
 
     /**
-     * @brief Perform SPI transfer (32-bit frames for TLE92466ED)
-     * @param txData Transmit data buffer
-     * @param rxData Receive data buffer  
-     * @return std::expected<void, HALError> Success or error
+     * @brief Deinitialize the HAL
+     * @return HALResult<void> Success or error
      */
-    auto spiTransfer(std::span<const uint8_t> txData, 
-                     std::span<uint8_t> rxData) noexcept 
-        -> std::expected<void, HALError> override;
+    auto deinit() noexcept -> HALResult<void> override;
 
     /**
-     * @brief Microsecond delay implementation
-     * @param us Delay in microseconds
+     * @brief Transfer 32-bit data via SPI (full-duplex)
+     * @param tx_data The 32-bit data to transmit
+     * @return HALResult<uint32_t> Received 32-bit data or error
      */
-    void delayMicroseconds(uint32_t us) noexcept override;
+    auto transfer32(uint32_t tx_data) noexcept -> HALResult<uint32_t> override;
+
+    /**
+     * @brief Transfer multiple 32-bit words via SPI
+     * @param tx_data Span of transmit data (32-bit words)
+     * @param rx_data Span to store received data (32-bit words)
+     * @return HALResult<void> Success or error
+     */
+    auto transfer_multi(std::span<const uint32_t> tx_data,
+                       std::span<uint32_t> rx_data) noexcept -> HALResult<void> override;
+
+    /**
+     * @brief Assert (activate) chip select
+     * @return HALResult<void> Success or error
+     */
+    auto chip_select() noexcept -> HALResult<void> override;
+
+    /**
+     * @brief Deassert (deactivate) chip select
+     * @return HALResult<void> Success or error
+     */
+    auto chip_deselect() noexcept -> HALResult<void> override;
+
+    /**
+     * @brief Delay for specified duration
+     * @param microseconds Duration to delay in microseconds
+     * @return HALResult<void> Success or error
+     */
+    auto delay(uint32_t microseconds) noexcept -> HALResult<void> override;
+
+    /**
+     * @brief Configure SPI parameters
+     * @param config New SPI configuration
+     * @return HALResult<void> Success or error
+     */
+    auto configure(const TLE92466ED::SPIConfig& config) noexcept -> HALResult<void> override;
+
+    /**
+     * @brief Check if hardware is ready for communication
+     * @return true if ready, false otherwise
+     */
+    bool is_ready() const noexcept override;
+
+    /**
+     * @brief Get the last error that occurred
+     * @return HALError The last error code
+     */
+    HALError get_last_error() const noexcept override;
+
+    /**
+     * @brief Clear any pending errors
+     * @return HALResult<void> Success or error
+     */
+    auto clear_errors() noexcept -> HALResult<void> override;
 
     /**
      * @brief Get the current SPI configuration
@@ -97,20 +149,21 @@ private:
     SPIConfig config_;                          ///< SPI configuration
     spi_device_handle_t spi_device_ = nullptr; ///< SPI device handle
     bool initialized_ = false;                  ///< Initialization state
+    HALError last_error_ = HALError::None;      ///< Last error that occurred
     
     static constexpr const char* TAG = "ESP32C6_HAL"; ///< Logging tag
 
     /**
      * @brief Initialize SPI bus
-     * @return std::expected<void, HALError> Success or error
+     * @return HALResult<void> Success or error
      */
-    auto initializeSPI() noexcept -> std::expected<void, HALError>;
+    auto initializeSPI() noexcept -> HALResult<void>;
 
     /**
      * @brief Add SPI device to the bus
-     * @return std::expected<void, HALError> Success or error  
+     * @return HALResult<void> Success or error  
      */
-    auto addSPIDevice() noexcept -> std::expected<void, HALError>;
+    auto addSPIDevice() noexcept -> HALResult<void>;
 };
 
 /**

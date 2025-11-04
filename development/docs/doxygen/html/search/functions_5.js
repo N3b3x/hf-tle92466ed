@@ -10,7 +10,7 @@ var searchData=
   ['get_5fdevice_5ftype_7',['get_device_type',['../namespaceTLE92466ED_1_1DeviceID.html#afc42c7f68bb3b3adfeb950d51943e99b',1,'TLE92466ED::DeviceID']]],
   ['get_5fduty_5fcycle_8',['get_duty_cycle',['../classTLE92466ED_1_1Driver.html#a9fd56d1ec673d123eec46723211adf09',1,'TLE92466ED::Driver']]],
   ['get_5fic_5fversion_9',['get_ic_version',['../classTLE92466ED_1_1Driver.html#a509c70079dabd676a16d364f648765ad',1,'TLE92466ED::Driver']]],
-  ['get_5flast_5ferror_10',['get_last_error',['../classTLE92466ED_1_1HAL.html#a15cae9dcbfd3f6161bc0b8ce776fc8ec',1,'TLE92466ED::HAL::get_last_error()'],['../classTLE92466ED_1_1ExampleHAL.html#a82b32aadebefa4c9516cdfc806adbc76',1,'TLE92466ED::ExampleHAL::get_last_error()']]],
+  ['get_5flast_5ferror_10',['get_last_error',['../classTLE92466ED_1_1HAL.html#a15cae9dcbfd3f6161bc0b8ce776fc8ec',1,'TLE92466ED::HAL::get_last_error()'],['../classESP32C6__HAL.html#a83aaf16125ff1d4b509b17d266a653b0',1,'ESP32C6_HAL::get_last_error()'],['../classTLE92466ED_1_1ExampleHAL.html#a82b32aadebefa4c9516cdfc806adbc76',1,'TLE92466ED::ExampleHAL::get_last_error()']]],
   ['get_5frevision_11',['get_revision',['../namespaceTLE92466ED_1_1DeviceID.html#aa6e3745e5e1da744274a210c38f2b7e1',1,'TLE92466ED::DeviceID']]],
   ['get_5fsuccess_5fpercentage_12',['get_success_percentage',['../structTestResults.html#abd312f39dea9e43056ca161f315c7569',1,'TestResults']]],
   ['get_5ftotal_5ftime_5fms_13',['get_total_time_ms',['../structTestResults.html#a7466f28f6ee19443a8c8510588c7844e',1,'TestResults']]],

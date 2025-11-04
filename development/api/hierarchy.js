@@ -10,6 +10,7 @@ var hierarchy =
     [ "TLE92466ED::Driver", "classTLE92466ED_1_1Driver.html", null ],
     [ "TLE92466ED::GlobalConfig", "structTLE92466ED_1_1GlobalConfig.html", null ],
     [ "TLE92466ED::HAL", "classTLE92466ED_1_1HAL.html", [
+      [ "ESP32C6_HAL", "classESP32C6__HAL.html", null ],
       [ "TLE92466ED::ExampleHAL", "classTLE92466ED_1_1ExampleHAL.html", null ]
     ] ],
     [ "Arduino_HAL::SPIConfig", "structArduino__HAL_1_1SPIConfig.html", null ],
@@ -25,7 +26,6 @@ var hierarchy =
     [ "TestTaskContext", "structTestTaskContext.html", null ],
     [ "TLE92466ED_Config::Timing", "structTLE92466ED__Config_1_1Timing.html", null ],
     [ "TLE92466ED_HAL", null, [
-      [ "Arduino_HAL", "classArduino__HAL.html", null ],
-      [ "ESP32C6_HAL", "classESP32C6__HAL.html", null ]
+      [ "Arduino_HAL", "classArduino__HAL.html", null ]
     ] ]
 ];

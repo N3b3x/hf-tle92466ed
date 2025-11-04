@@ -5,12 +5,12 @@
     <includes refid="ESP32C6__HAL_8hpp" local="no">ESP32C6_HAL.hpp</includes>
     <sectiondef kind="public-attrib">
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a358f4b5229e398508f7b40a1133d2cd9" prot="public" static="no" mutable="no">
-        <type>spi_host_device_t</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">spi_host_device_t</ref></type>
         <definition>spi_host_device_t ESP32C6_HAL::SPIConfig::host</definition>
         <argsstring></argsstring>
         <name>host</name>
         <qualifiedname>ESP32C6_HAL::SPIConfig::host</qualifiedname>
-        <initializer>= SPI2_HOST</initializer>
+        <initializer>= <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">SPI2_HOST</ref></initializer>
         <briefdescription>
 <para>SPI host (SPI2_HOST for ESP32-C6) </para>
         </briefdescription>
@@ -18,10 +18,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="36" column="27" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="36" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="38" column="27" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="38" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a0c31cedefc066672258ba6332a516a85" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::miso_pin</definition>
         <argsstring></argsstring>
         <name>miso_pin</name>
@@ -34,10 +34,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="37" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="37" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="39" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="39" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a331b2a097b48cef4befce17733f40d9d" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::mosi_pin</definition>
         <argsstring></argsstring>
         <name>mosi_pin</name>
@@ -51,10 +51,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="38" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="38" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="40" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a497b0b15f1c68a17a4a55a96e6ff6dc0" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::sclk_pin</definition>
         <argsstring></argsstring>
         <name>sclk_pin</name>
@@ -67,10 +67,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="39" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="39" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="41" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1ac58247759a8a6e565048e46cdb23df0c" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::cs_pin</definition>
         <argsstring></argsstring>
         <name>cs_pin</name>
@@ -83,10 +83,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="40" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="40" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="42" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a2aaa37a8b444d39ec4dfcfc451972689" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::frequency</definition>
         <argsstring></argsstring>
         <name>frequency</name>
@@ -99,10 +99,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="41" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="41" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="43" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a30b54e9fd84673e9f825f680376c52e8" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::mode</definition>
         <argsstring></argsstring>
         <name>mode</name>
@@ -115,10 +115,10 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="42" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="42" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="44" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structESP32C6__HAL_1_1SPIConfig_1a6d04ea69a4d07ccf993cb2c731abbc75" prot="public" static="no" mutable="no">
-        <type>int</type>
+        <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">int</ref></type>
         <definition>int ESP32C6_HAL::SPIConfig::queue_size</definition>
         <argsstring></argsstring>
         <name>queue_size</name>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="43" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="43" bodyend="-1"/>
+        <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="45" column="13" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -139,7 +139,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="35" column="5" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="35" bodyend="44"/>
+    <location file="examples/esp32/main/ESP32C6_HAL.hpp" line="37" column="5" bodyfile="examples/esp32/main/ESP32C6_HAL.hpp" bodystart="37" bodyend="46"/>
     <listofallmembers>
       <member refid="structESP32C6__HAL_1_1SPIConfig_1ac58247759a8a6e565048e46cdb23df0c" prot="public" virt="non-virtual"><scope>ESP32C6_HAL::SPIConfig</scope><name>cs_pin</name></member>
       <member refid="structESP32C6__HAL_1_1SPIConfig_1a2aaa37a8b444d39ec4dfcfc451972689" prot="public" virt="non-virtual"><scope>ESP32C6_HAL::SPIConfig</scope><name>frequency</name></member>

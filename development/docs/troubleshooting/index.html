@@ -1,0 +1,1029 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/hf-tle92466ed-driver/development/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/hf-tle92466ed-driver/development/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    .site-nav > ul.nav-list:first-child > li > a,
+    
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(3)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(8) > ul > li:nth-child(3) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(8) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(8) > ul > li:nth-child(3) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(8) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(8) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/hf-tle92466ed-driver/development/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/hf-tle92466ed-driver/development/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Troubleshooting | TLE92466ED Driver - development</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Troubleshooting" />
+<meta name="author" content="N3b3x" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Common issues and solutions for HardFOC ESP-IDF CI Tools" />
+<meta property="og:description" content="Common issues and solutions for HardFOC ESP-IDF CI Tools" />
+<link rel="canonical" href="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/troubleshooting/" />
+<meta property="og:url" content="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/troubleshooting/" />
+<meta property="og:site_name" content="TLE92466ED Driver - development" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Troubleshooting" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Common issues and solutions for HardFOC ESP-IDF CI Tools","headline":"Troubleshooting","url":"https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/troubleshooting/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- Custom head content for TLE92466ED driver documentation -->
+<link rel="stylesheet" href="/hf-tle92466ed-driver/development/assets/css/custom.css">
+<script src="/hf-tle92466ed-driver/development/assets/js/custom.js" defer></script>
+
+<!-- Version selector for multi-version documentation -->
+<!-- Version Selector Component for Multi-Version Documentation -->
+<div class="version-selector">
+  <div class="version-dropdown">
+    <label for="version-select" class="version-label">
+      <span class="version-icon">📚</span>
+      Version:
+    </label>
+    <select id="version-select" class="version-select" onchange="switchVersion(this.value)">
+      <option value="latest" data-url="/hf-tle92466ed-driver/">Development (main)</option>
+      <option value="v2.0.0" data-url="/hf-tle92466ed-driver/v2.0.0/">v2.0.0 (Latest Stable)</option>
+    </select>
+  </div>
+  
+  <div class="version-info">
+    <span class="current-version" id="current-version">Latest (main)</span>
+    <span class="version-badge" id="version-badge">dev</span>
+  </div>
+</div>
+
+<script>
+// Version switching logic
+function switchVersion(version) {
+  const select = document.getElementById('version-select');
+  const selectedOption = select.options[select.selectedIndex];
+  const targetUrl = selectedOption.getAttribute('data-url');
+  
+  if (targetUrl) {
+    // Update current page URL to new version
+    const currentPath = window.location.pathname;
+    const baseUrl = window.location.origin;
+    
+    // Extract the path after the version prefix
+    let newPath = currentPath;
+    if (currentPath.includes('/hf-tle92466ed-driver/')) {
+      const pathParts = currentPath.split('/hf-tle92466ed-driver/');
+      if (pathParts.length > 1) {
+        newPath = pathParts[1];
+      }
+    }
+    
+    // Construct new URL
+    const newUrl = baseUrl + targetUrl + newPath;
+    window.location.href = newUrl;
+  }
+}
+
+// Set current version based on URL
+document.addEventListener('DOMContentLoaded', function() {
+  const currentPath = window.location.pathname;
+  const versionSelect = document.getElementById('version-select');
+  const currentVersionSpan = document.getElementById('current-version');
+  const versionBadge = document.getElementById('version-badge');
+  
+  // Determine current version from URL
+  let currentVersion = 'latest';
+  let versionType = 'dev';
+  
+  if (currentPath.includes('/stable/')) {
+    currentVersion = 'stable';
+    versionType = 'stable';
+  } else if (currentPath.includes('/v2.0.0/')) {
+    currentVersion = 'v2.0.0';
+    versionType = 'release';
+  }
+  
+  // Update UI
+  versionSelect.value = currentVersion;
+  currentVersionSpan.textContent = currentVersion === 'latest' ? 'Latest (main)' : 
+                                  currentVersion === 'stable' ? 'Stable (latest release)' : 
+                                  currentVersion;
+  
+  // Update badge
+  versionBadge.textContent = versionType;
+  versionBadge.className = 'version-badge ' + versionType;
+});
+</script>
+
+<style>
+.version-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--nav-child-link-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.version-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.version-label {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+  color: var(--body-text-color);
+}
+
+.version-icon {
+  font-size: 1rem;
+}
+
+.version-select {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--body-bg);
+  color: var(--body-text-color);
+  font-size: 0.9rem;
+  min-width: 150px;
+}
+
+.version-select:focus {
+  outline: 2px solid var(--link-color);
+  outline-offset: 2px;
+}
+
+.version-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.current-version {
+  font-weight: 500;
+  color: var(--body-text-color);
+}
+
+.version-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.version-badge.dev {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.version-badge.stable {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.version-badge.release {
+  background: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffcc02;
+}
+
+@media (max-width: 768px) {
+  .version-selector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .version-info {
+    margin-left: 0;
+    justify-content: center;
+  }
+}
+</style>
+
+
+
+<!-- Version information display -->
+<!-- Version Information Display Component -->
+<div class="version-info-display">
+  <div class="version-details">
+    <span class="version-label">Version:</span>
+    <span class="version-value">2.0.0</span>
+    <span class="version-badge version-stable">stable</span>
+  </div>
+  
+  <div class="version-meta">
+    <span class="branch-info">
+      <span class="branch-icon">🌿</span>
+      <span class="branch-name">main</span>
+    </span>
+    
+    <span class="build-info">
+      <span class="build-icon">🔨</span>
+      <span class="build-date">2025-11-04</span>
+    </span>
+  </div>
+</div>
+
+<style>
+.version-info-display {
+  background: var(--nav-child-link-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.version-details {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.version-label {
+  font-weight: 500;
+  color: var(--body-text-color);
+}
+
+.version-value {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-weight: 600;
+  color: var(--link-color);
+  background: var(--code-bg);
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-color);
+}
+
+.version-badge {
+  padding: 0.125rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.version-badge.development {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #bbdefb;
+}
+
+.version-badge.stable {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.version-badge.release {
+  background: #fff3e0;
+  color: #f57c00;
+  border: 1px solid #ffcc02;
+}
+
+.version-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.branch-info,
+.build-info {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--body-text-color);
+  font-size: 0.85rem;
+}
+
+.branch-icon,
+.build-icon {
+  font-size: 0.9rem;
+}
+
+.branch-name {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-weight: 500;
+}
+
+.build-date {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .version-info-display {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  
+  .version-details,
+  .version-meta {
+    justify-content: center;
+  }
+  
+  .version-meta {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+}
+</style>
+
+
+
+
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="/hf-tle92466ed-driver/development/" class="site-title lh-tight">
+  TLE92466ED Driver - development
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HardFOC ESP-IDF Project Tools</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/CONTRIBUTING/" class="nav-list-link">🤝 Contributing</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Getting Started category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/getting-started/" class="nav-list-link">Getting Started</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/installation/" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/configuration/" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/project-setup/" class="nav-list-link">Project Setup</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 Core Systems category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/core-systems/" class="nav-list-link">🔧 Core Systems</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/build-system/" class="nav-list-link">Build System</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Configuration System category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/configuration/" class="nav-list-link">Configuration System</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration/centralized/" class="nav-list-link">Centralized Configuration</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/flash-system/" class="nav-list-link">Flash System</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/logging-system/" class="nav-list-link">Logging System</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in ⚡ CI Pipeline category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">⚡ CI Pipeline</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">CI Pipeline Usage</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-integration-patterns/" class="nav-list-link">CI/CD Integration Patterns</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔬 Advanced Topics category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/advanced-topics/" class="nav-list-link">🔬 Advanced Topics</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/multi-version-idf/" class="nav-list-link">Multi-Version ESP-IDF Support</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/port-detection/" class="nav-list-link">Port Detection</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/utility-scripts/" class="nav-list-link">Utility Scripts</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Reference category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/reference/" class="nav-list-link">📚 Reference</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/features/" class="nav-list-link">Features</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples/" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/" class="nav-list-link">Troubleshooting</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/contributing/" class="nav-list-link">Contributing</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_BASIC_USAGE.html" class="nav-list-link">Basic Usage Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/arduino/" class="nav-list-link">TLE92466ED Arduino Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/tle92466ed-espidf/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
+  
+</nav>
+
+
+
+
+  
+  
+    <footer class="site-nav-footer">
+  <div class="nav-footer-links">
+    <a href="https://github.com/n3b3x/hf-internal-interface-wrap" class="nav-footer-link" aria-label="GitHub Repository">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+    <a href="https://github.com/n3b3x/hf-internal-interface-wrap/issues" class="nav-footer-link" aria-label="Report Issues">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+      </svg>
+      Issues
+    </a>
+  </div>
+</footer>
+
+
+  
+</div>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search workflows, examples, and guides..." aria-label="Search workflows, examples, and guides..." autocomplete="off">
+    <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="/hf-tle92466ed-driver/development/api/index.html" class="site-button"
+          
+        >
+          📖 API Reference
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-tle92466ed-driver" class="site-button"
+          
+        >
+          📚 GitHub Repository
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-tle92466ed-driver/issues" class="site-button"
+          
+        >
+          🐛 Report Issues
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-tle92466ed-driver/stargazers" class="site-button"
+          
+        >
+          ⭐ Star on GitHub
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/" class="site-button"
+          
+        >
+          📖 API Documentation
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/reference/">📚 Reference</a></li>
+    <li class="breadcrumb-nav-list-item"><span>Troubleshooting</span></li>
+  </ol>
+</nav>
+
+
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h1 id="troubleshooting-guide">
+  
+  
+    <a href="#troubleshooting-guide" class="anchor-heading" aria-labelledby="troubleshooting-guide"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Troubleshooting Guide
+  
+  
+</h1>
+    
+
+<p>This guide helps you resolve common issues with the HardFOC ESP-IDF CI Tools.</p>
+<h2 id="-common-issues">
+  
+  
+    <a href="#-common-issues" class="anchor-heading" aria-labelledby="-common-issues"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔍 Common Issues
+  
+  
+</h2>
+    
+<h3 id="build-failures">
+  
+  
+    <a href="#build-failures" class="anchor-heading" aria-labelledby="build-failures"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build Failures
+  
+  
+</h3>
+    
+<h4 id="esp-idf-not-found">
+  
+  
+    <a href="#esp-idf-not-found" class="anchor-heading" aria-labelledby="esp-idf-not-found"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> ESP-IDF Not Found
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: Workflow fails with “ESP-IDF not found” error</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Check ESP-IDF version</strong> in workflow configuration</li>
+  <li><strong>Verify version availability</strong> in ESP-IDF releases</li>
+  <li><strong>Update to supported version</strong> (v4.4 or later)</li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1"># In .github/workflows/build.yml</span>
+<span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build Application</span>
+  <span class="na">uses</span><span class="pi">:</span> <span class="s">espressif/esp-idf-ci-action@v1</span>
+  <span class="na">with</span><span class="pi">:</span>
+    <span class="na">esp_idf_version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">release/v5.5"</span>  <span class="c1"># Use supported version</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="configuration-errors">
+  
+  
+    <a href="#configuration-errors" class="anchor-heading" aria-labelledby="configuration-errors"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Configuration Errors
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: “Configuration file not found” or “Invalid configuration”</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Verify file exists</strong>: Check <code class="language-plaintext highlighter-rouge">/examples/esp32/app_config.yml</code></li>
+  <li><strong>Validate YAML syntax</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>yq <span class="nb">eval</span> /examples/esp32/app_config.yml
+</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li><strong>Check file permissions</strong> and location</li>
+</ol>
+<h4 id="build-type-not-supported">
+  
+  
+    <a href="#build-type-not-supported" class="anchor-heading" aria-labelledby="build-type-not-supported"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build Type Not Supported
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: “Build type not supported” error</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Check app configuration</strong> in <code class="language-plaintext highlighter-rouge">app_config.yml</code></li>
+  <li><strong>Verify build types</strong> are defined for the app</li>
+  <li><strong>Update configuration</strong> to include required build types</li>
+</ol>
+<h3 id="cicd-issues">
+  
+  
+    <a href="#cicd-issues" class="anchor-heading" aria-labelledby="cicd-issues"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CI/CD Issues
+  
+  
+</h3>
+    
+<h4 id="workflow-not-triggering">
+  
+  
+    <a href="#workflow-not-triggering" class="anchor-heading" aria-labelledby="workflow-not-triggering"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Workflow Not Triggering
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: GitHub Actions workflow doesn’t run</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Check workflow file</strong> is in <code class="language-plaintext highlighter-rouge">.github/workflows/</code></li>
+  <li><strong>Verify YAML syntax</strong> is correct</li>
+  <li><strong>Check trigger conditions</strong> (branches, paths)</li>
+  <li><strong>Ensure workflow is enabled</strong> in repository settings</li>
+</ol>
+<h4 id="matrix-build-failures">
+  
+  
+    <a href="#matrix-build-failures" class="anchor-heading" aria-labelledby="matrix-build-failures"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Matrix Build Failures
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: Some matrix combinations fail</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Check excluded combinations</strong> in workflow</li>
+  <li><strong>Verify ESP-IDF version compatibility</strong></li>
+  <li><strong>Review app-specific requirements</strong></li>
+  <li><strong>Add exclusions</strong> for incompatible combinations</li>
+</ol>
+<h3 id="port-detection-issues">
+  
+  
+    <a href="#port-detection-issues" class="anchor-heading" aria-labelledby="port-detection-issues"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Port Detection Issues
+  
+  
+</h3>
+    
+<h4 id="no-esp32-devices-found">
+  
+  
+    <a href="#no-esp32-devices-found" class="anchor-heading" aria-labelledby="no-esp32-devices-found"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> No ESP32 Devices Found
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: Port detection script finds no devices</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Check USB connection</strong> and drivers</li>
+  <li><strong>Verify device permissions</strong> on Linux</li>
+  <li><strong>Try different USB port</strong> or cable</li>
+  <li><strong>Check device manager</strong> for driver issues</li>
+</ol>
+<h4 id="permission-denied">
+  
+  
+    <a href="#permission-denied" class="anchor-heading" aria-labelledby="permission-denied"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Permission Denied
+  
+  
+</h4>
+    
+<p><strong>Problem</strong>: “Permission denied” when accessing serial ports</p>
+
+<p><strong>Solutions</strong>:</p>
+<ol>
+  <li><strong>Add user to dialout group</strong> (Linux):
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>usermod <span class="nt">-a</span> <span class="nt">-G</span> dialout <span class="nv">$USER</span>
+</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li><strong>Check device permissions</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">ls</span> <span class="nt">-la</span> /dev/ttyUSB<span class="k">*</span>
+</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li><strong>Restart terminal</strong> after group changes</li>
+</ol>
+<h2 id="️-debugging">
+  
+  
+    <a href="#️-debugging" class="anchor-heading" aria-labelledby="️-debugging"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🛠️ Debugging
+  
+  
+</h2>
+    
+<h3 id="enable-debug-mode">
+  
+  
+    <a href="#enable-debug-mode" class="anchor-heading" aria-labelledby="enable-debug-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Enable Debug Mode
+  
+  
+</h3>
+    
+
+<p>Add debug output to workflows:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Debug Information</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s">echo "ESP32_PROJECT_PATH: $ESP32_PROJECT_PATH"</span>
+    <span class="s">echo "App: $"</span>
+    <span class="s">echo "Build Type: $"</span>
+    <span class="s">echo "ESP-IDF Version: $"</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="check-logs">
+  
+  
+    <a href="#check-logs" class="anchor-heading" aria-labelledby="check-logs"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Check Logs
+  
+  
+</h3>
+    
+
+<ol>
+  <li><strong>GitHub Actions logs</strong> - Check workflow execution logs</li>
+  <li><strong>Build logs</strong> - Look for specific error messages</li>
+  <li><strong>ESP-IDF logs</strong> - Check ESP-IDF build output</li>
+</ol>
+<h3 id="local-testing">
+  
+  
+    <a href="#local-testing" class="anchor-heading" aria-labelledby="local-testing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Local Testing
+  
+  
+</h3>
+    
+
+<p>Test configurations locally:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="c"># Test build configuration</span>
+<span class="nb">cd</span> /examples/esp32
+./scripts/build_app.sh validate your_app Release
+
+<span class="c"># Test port detection</span>
+./scripts/detect_ports.sh
+
+<span class="c"># Test configuration loading</span>
+./scripts/config_loader.sh
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="-diagnostic-checklist">
+  
+  
+    <a href="#-diagnostic-checklist" class="anchor-heading" aria-labelledby="-diagnostic-checklist"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📋 Diagnostic Checklist
+  
+  
+</h2>
+    
+<h3 id="pre-flight-checks">
+  
+  
+    <a href="#pre-flight-checks" class="anchor-heading" aria-labelledby="pre-flight-checks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Pre-Flight Checks
+  
+  
+</h3>
+    
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>ESP-IDF installed</strong> and accessible</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Project structure</strong> follows expected layout</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Configuration files</strong> exist and are valid</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Workflow files</strong> are in correct location</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>GitHub Actions</strong> are enabled for repository</li>
+</ul>
+<h3 id="build-system-checks">
+  
+  
+    <a href="#build-system-checks" class="anchor-heading" aria-labelledby="build-system-checks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build System Checks
+  
+  
+</h3>
+    
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>app_config.yml</strong> syntax is valid</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Applications</strong> are defined correctly</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Build types</strong> are supported</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>ESP-IDF versions</strong> are available</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Source files</strong> exist and are accessible</li>
+</ul>
+<h3 id="cicd-checks">
+  
+  
+    <a href="#cicd-checks" class="anchor-heading" aria-labelledby="cicd-checks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CI/CD Checks
+  
+  
+</h3>
+    
+
+<ul class="task-list">
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Workflow syntax</strong> is correct</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Matrix strategy</strong> is valid</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Secrets</strong> are configured (if needed)</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Triggers</strong> are set up correctly</li>
+  <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" /><strong>Permissions</strong> are sufficient</li>
+</ul>
+<h2 id="-getting-help">
+  
+  
+    <a href="#-getting-help" class="anchor-heading" aria-labelledby="-getting-help"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🆘 Getting Help
+  
+  
+</h2>
+    
+<h3 id="self-service-resources">
+  
+  
+    <a href="#self-service-resources" class="anchor-heading" aria-labelledby="self-service-resources"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Self-Service Resources
+  
+  
+</h3>
+    
+
+<ol>
+  <li><strong>Check this guide</strong> for common issues</li>
+  <li><strong>Review GitHub Actions logs</strong> for specific errors</li>
+  <li><strong>Test locally</strong> before pushing to CI</li>
+  <li><strong>Validate configuration</strong> files</li>
+</ol>
+<h3 id="community-support">
+  
+  
+    <a href="#community-support" class="anchor-heading" aria-labelledby="community-support"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Community Support
+  
+  
+</h3>
+    
+
+<ul>
+  <li><strong><a href="https://github.com/n3b3x/hf-espidf-project-tools/issues">GitHub Issues</a></strong> - Report bugs and request features</li>
+  <li><strong><a href="https://github.com/n3b3x/hf-espidf-project-tools/discussions">Discussions</a></strong> - Ask questions and share solutions</li>
+  <li><strong><a href="https://esp32.com/">ESP-IDF Forum</a></strong> - ESP-IDF specific issues</li>
+</ul>
+<h3 id="professional-support">
+  
+  
+    <a href="#professional-support" class="anchor-heading" aria-labelledby="professional-support"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Professional Support
+  
+  
+</h3>
+    
+
+<p>For enterprise or complex issues:</p>
+<ul>
+  <li><strong>Contact maintainers</strong> via GitHub</li>
+  <li><strong>Request consultation</strong> for custom setups</li>
+  <li><strong>Submit feature requests</strong> for specific needs</li>
+</ul>
+<h2 id="-additional-resources">
+  
+  
+    <a href="#-additional-resources" class="anchor-heading" aria-labelledby="-additional-resources"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📚 Additional Resources
+  
+  
+</h2>
+    
+
+<ul>
+  <li><strong><a href="/docs/build-system/">Build System</a></strong> - Detailed build documentation</li>
+  <li><strong><a href="/docs/ci-pipeline/">CI Pipeline</a></strong> - Workflow optimization</li>
+  <li><strong><a href="/docs/configuration/">Configuration</a></strong> - Configuration management</li>
+  <li><strong><a href="/docs/examples/">Examples</a></strong> - Real-world usage examples</li>
+</ul><hr />
+
+<p><strong>Still having issues?</strong> Check our <a href="https://github.com/n3b3x/hf-espidf-project-tools/issues">GitHub Issues</a> or create a new issue with detailed information about your problem.</p>
+
+          
+
+          
+            
+          
+        </main>
+        
+
+  <hr>
+  <footer>
+    
+
+    <footer class="site-footer">
+  <div class="site-footer-credits">
+    <p>Built with ❤️ using <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a></p>
+    <p><a href="https://github.com/n3b3x/hf-internal-interface-wrap/blob/main/LICENSE">GPL v3 License</a> • <a href="https://github.com/n3b3x/hf-internal-interface-wrap">View on GitHub</a></p>
+  </div>
+</footer>
+
+
+
+    
+  </footer>
+
+
+      </div>
+    </div>
+    
+      
+<button id="search-button" class="search-button btn-reset" aria-label="Focus on search">
+  <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+</button>
+
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+

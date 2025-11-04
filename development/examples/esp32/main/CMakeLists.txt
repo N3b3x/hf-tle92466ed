@@ -67,21 +67,24 @@ endif()
 message(STATUS "Using source file: ${SOURCE_FILE_PATH}")
 
 # Determine include paths based on environment
-# In CI, include is copied to ../include, in development it's at ../../include
+# In CI, include is copied to ../include, in development it's at ../../include or ../../../include
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../include")
     # CI environment - include is at project level
     set(INC_BASE_PATH "../include")
 elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../include")
-    # Development environment - include is at driver root
+    # Development environment - include is at examples level
     set(INC_BASE_PATH "../../include")
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../../include")
+    # Development environment - include is at driver root
+    set(INC_BASE_PATH "../../../include")
 else()
-    message(FATAL_ERROR "Cannot find include directory. Checked ../include and ../../include")
+    message(FATAL_ERROR "Cannot find include directory. Checked ../include, ../../include, and ../../../include")
 endif()
 
 message(STATUS "Using include base path: ${INC_BASE_PATH}")
 
 idf_component_register(
-    SRCS "${MAIN_SOURCE}"
+    SRCS "${MAIN_SOURCE}" "ESP32C6_HAL.cpp"
     INCLUDE_DIRS "." "${INC_BASE_PATH}"
     REQUIRES driver esp_timer freertos spi_flash tle92466ed-espidf
 )

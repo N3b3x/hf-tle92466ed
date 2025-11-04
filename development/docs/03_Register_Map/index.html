@@ -15,10 +15,9 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(3)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(4)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -27,16 +26,14 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(3) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(3) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(4) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(3) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(4) > ul.nav-list {
       display: block;
     }
   </style>
@@ -273,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <span class="build-info">
       <span class="build-icon">🔨</span>
-      <span class="build-date">2025-10-31</span>
+      <span class="build-date">2025-11-04</span>
     </span>
   </div>
 </div>
@@ -480,11 +477,23 @@ document.addEventListener('DOMContentLoaded', function() {
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
+    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HardFOC ESP-IDF Project Tools</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/CONTRIBUTING/" class="nav-list-link">🤝 Contributing</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/CONTRIBUTING/" class="nav-list-link">🤝 Contributing</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_BASIC_USAGE.html" class="nav-list-link">Basic Usage Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/arduino/" class="nav-list-link">TLE92466ED Arduino Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/tle92466ed-espidf/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
+      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Getting Started category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/getting-started/" class="nav-list-link">Getting Started</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/installation/" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/configuration/" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/project-setup/" class="nav-list-link">Project Setup</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 Core Systems category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/core-systems/" class="nav-list-link">🔧 Core Systems</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/build-system/" class="nav-list-link">Build System</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Configuration System category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/configuration/" class="nav-list-link">Configuration System</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration/centralized/" class="nav-list-link">Centralized Configuration</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/flash-system/" class="nav-list-link">Flash System</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/logging-system/" class="nav-list-link">Logging System</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in ⚡ CI Pipeline category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">⚡ CI Pipeline</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">CI Pipeline Usage</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-integration-patterns/" class="nav-list-link">CI/CD Integration Patterns</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔬 Advanced Topics category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/advanced-topics/" class="nav-list-link">🔬 Advanced Topics</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/multi-version-idf/" class="nav-list-link">Multi-Version ESP-IDF Support</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/port-detection/" class="nav-list-link">Port Detection</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/utility-scripts/" class="nav-list-link">Utility Scripts</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Reference category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/reference/" class="nav-list-link">📚 Reference</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/features/" class="nav-list-link">Features</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples/" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/" class="nav-list-link">Troubleshooting</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/contributing/" class="nav-list-link">Contributing</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_BASIC_USAGE.html" class="nav-list-link">Basic Usage Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/arduino/" class="nav-list-link">TLE92466ED Arduino Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/tle92466ed-espidf/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
   
 </nav>
 
@@ -583,7 +592,6 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
-    <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/">🔧 HardFOC TLE92466ED Driver</a></li>
     <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/">📚 Documentation</a></li>
     <li class="breadcrumb-nav-list-item"><span>📋 Register Map</span></li>
   </ol>

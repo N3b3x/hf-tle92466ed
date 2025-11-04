@@ -9,7 +9,7 @@ var searchData=
   ['test_5fhal_5finitialization_6',['test_hal_initialization',['../BasicUsageExample_8cpp.html#abb4b230389c72bfdce3ec626624637d7',1,'BasicUsageExample.cpp']]],
   ['test_5ftask_5ftrampoline_7',['test_task_trampoline',['../TLE92466ED__TestFramework_8hpp.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TLE92466ED_TestFramework.hpp']]],
   ['to_5findex_8',['to_index',['../namespaceTLE92466ED.html#a34fc53608a9f21c10fd2cd5c0fbfa153',1,'TLE92466ED']]],
-  ['transfer32_9',['transfer32',['../classTLE92466ED_1_1HAL.html#a3e86c206af4ae52090c56eaf2190f262',1,'TLE92466ED::HAL::transfer32()'],['../classTLE92466ED_1_1ExampleHAL.html#a94f5aee89ec1d8bfe9f9edc5c898fc5c',1,'TLE92466ED::ExampleHAL::transfer32()']]],
+  ['transfer32_9',['transfer32',['../classTLE92466ED_1_1HAL.html#a3e86c206af4ae52090c56eaf2190f262',1,'TLE92466ED::HAL::transfer32()'],['../classESP32C6__HAL.html#a5894b58f1245060b2575292f8eaa6ead',1,'ESP32C6_HAL::transfer32()'],['../classTLE92466ED_1_1ExampleHAL.html#a94f5aee89ec1d8bfe9f9edc5c898fc5c',1,'TLE92466ED::ExampleHAL::transfer32()']]],
   ['transfer_5fframe_10',['transfer_frame',['../classTLE92466ED_1_1Driver.html#a134604705e2da64cf42cb66ecf4c9c5e',1,'TLE92466ED::Driver']]],
-  ['transfer_5fmulti_11',['transfer_multi',['../classTLE92466ED_1_1HAL.html#a097041e11aeb3a03cde16520bfcb799c',1,'TLE92466ED::HAL::transfer_multi()'],['../classTLE92466ED_1_1ExampleHAL.html#a77b62a8962fa195f12ceb4a6cbf7184e',1,'TLE92466ED::ExampleHAL::transfer_multi()']]]
+  ['transfer_5fmulti_11',['transfer_multi',['../classTLE92466ED_1_1HAL.html#a097041e11aeb3a03cde16520bfcb799c',1,'TLE92466ED::HAL::transfer_multi()'],['../classESP32C6__HAL.html#a878e3f1325bbf483f6f5b0bfa4b7cf66',1,'ESP32C6_HAL::transfer_multi()'],['../classTLE92466ED_1_1ExampleHAL.html#a77b62a8962fa195f12ceb4a6cbf7184e',1,'TLE92466ED::ExampleHAL::transfer_multi()']]]
 ];

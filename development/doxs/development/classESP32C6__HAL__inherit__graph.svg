@@ -30,9 +30,9 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classTLE92466ED_1_1HAL.html" target="_top" xlink:title="Abstract Hardware Abstraction Layer (HAL) base class.">
 <polygon fill="white" stroke="#666666" points="131,-82 0,-82 0,-59 131,-59 131,-82"/>
-<text text-anchor="middle" x="65.5" y="-66.8" font-family="Arial" font-size="14.00">TLE92466ED_HAL</text>
+<text text-anchor="middle" x="65.5" y="-66.8" font-family="Arial" font-size="14.00">TLE92466ED::HAL</text>
 </a>
 </g>
 </g>

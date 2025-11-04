@@ -39,7 +39,7 @@ var searchData=
   ['spiparams_36',['SPIParams',['../structTLE92466ED__Config_1_1SPIParams.html',1,'TLE92466ED_Config']]],
   ['spipins_37',['SPIPins',['../structTLE92466ED__Config_1_1SPIPins.html',1,'TLE92466ED_Config']]],
   ['spistatus_38',['SPIStatus',['../namespaceTLE92466ED.html#aa27c516cf61148a416ccab1c79f37b51',1,'TLE92466ED']]],
-  ['spitransfer_39',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL::spiTransfer()'],['../classESP32C6__HAL.html#ae0fdf849a174a71a44046f13faa75fe9',1,'ESP32C6_HAL::spiTransfer()']]],
+  ['spitransfer_39',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL']]],
   ['stats_5freport_5finterval_5fms_40',['STATS_REPORT_INTERVAL_MS',['../structTLE92466ED__Config_1_1AppConfig.html#a8697970bd45a9c9a65b7a028d32c9c11',1,'TLE92466ED_Config::AppConfig']]],
   ['status_41',['status',['../unionTLE92466ED_1_1SPIFrame.html#a93c933f2745a3146844c77b2c48b94de',1,'TLE92466ED::SPIFrame']]],
   ['step_5fsize_5fmask_42',['STEP_SIZE_MASK',['../namespaceTLE92466ED_1_1DITHER__CTRL.html#aa44ac200c35b95ac87bd57daee5c6a97',1,'TLE92466ED::DITHER_CTRL']]],

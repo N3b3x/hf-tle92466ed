@@ -2,7 +2,7 @@ var searchData=
 [
   ['add_5fresult_0',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
   ['address_1',['address',['../unionTLE92466ED_1_1SPIFrame.html#a6ae8aaf1624755a8abbdd1e25a16fd5a',1,'TLE92466ED::SPIFrame']]],
-  ['addspidevice_2',['addSPIDevice',['../classESP32C6__HAL.html#a180bafd20ce81bfc55023ace5cd40497',1,'ESP32C6_HAL']]],
+  ['addspidevice_2',['addSPIDevice',['../classESP32C6__HAL.html#a3aa9edca91c136e97bd5185303b16ea8',1,'ESP32C6_HAL']]],
   ['all_5fch_5fmask_3',['ALL_CH_MASK',['../namespaceTLE92466ED_1_1CH__CTRL.html#a0995ac3de91dfa101be29d46cf36a267',1,'TLE92466ED::CH_CTRL']]],
   ['all_5fpar_5fmask_4',['ALL_PAR_MASK',['../namespaceTLE92466ED_1_1CH__CTRL.html#a4153924810058a7a6577c6551c24c4d4',1,'TLE92466ED::CH_CTRL']]],
   ['any_5ffault_5',['any_fault',['../structTLE92466ED_1_1DeviceStatus.html#a8c053a9d09b3f2f7ae16655bd05efd3c',1,'TLE92466ED::DeviceStatus']]],

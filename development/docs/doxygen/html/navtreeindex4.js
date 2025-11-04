@@ -1,5 +1,14 @@
 var NAVTREEINDEX4 =
 {
+"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635":[2,0,0,7,3],
+"structTLE92466ED_1_1SPIConfig.html#a927d660e463f8e1fa4173afee9756a82":[0,0,0,23,4],
+"structTLE92466ED_1_1SPIConfig.html#a927d660e463f8e1fa4173afee9756a82":[2,0,0,7,4],
+"structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939":[0,0,0,23,2],
+"structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939":[2,0,0,7,2],
+"structTLE92466ED__Config_1_1AppConfig.html":[2,0,1,0],
+"structTLE92466ED__Config_1_1AppConfig.html":[0,0,1,0],
+"structTLE92466ED__Config_1_1AppConfig.html#a032941dbfee66755ae741015eaac26d5":[0,0,1,0,1],
+"structTLE92466ED__Config_1_1AppConfig.html#a032941dbfee66755ae741015eaac26d5":[2,0,1,0,1],
 "structTLE92466ED__Config_1_1AppConfig.html#a16e1410566f5007111bfd414bbeaf979":[2,0,1,0,0],
 "structTLE92466ED__Config_1_1AppConfig.html#a16e1410566f5007111bfd414bbeaf979":[0,0,1,0,0],
 "structTLE92466ED__Config_1_1AppConfig.html#a22a3c0135ec2d12ba704cee7a68448ce":[0,0,1,0,4],

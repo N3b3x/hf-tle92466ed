@@ -55,9 +55,9 @@ var searchData=
   ['ton_52',['TON',['../namespaceTLE92466ED_1_1ChannelReg.html#abe28e7f2785b1b25f7a010dd3a810fec',1,'TLE92466ED::ChannelReg']]],
   ['total_5fexecution_5ftime_5fus_53',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5ftests_54',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['transfer32_55',['transfer32',['../classTLE92466ED_1_1HAL.html#a3e86c206af4ae52090c56eaf2190f262',1,'TLE92466ED::HAL::transfer32()'],['../classTLE92466ED_1_1ExampleHAL.html#a94f5aee89ec1d8bfe9f9edc5c898fc5c',1,'TLE92466ED::ExampleHAL::transfer32()']]],
+  ['transfer32_55',['transfer32',['../classTLE92466ED_1_1HAL.html#a3e86c206af4ae52090c56eaf2190f262',1,'TLE92466ED::HAL::transfer32()'],['../classESP32C6__HAL.html#a5894b58f1245060b2575292f8eaa6ead',1,'ESP32C6_HAL::transfer32()'],['../classTLE92466ED_1_1ExampleHAL.html#a94f5aee89ec1d8bfe9f9edc5c898fc5c',1,'TLE92466ED::ExampleHAL::transfer32()']]],
   ['transfer_5fframe_56',['transfer_frame',['../classTLE92466ED_1_1Driver.html#a134604705e2da64cf42cb66ecf4c9c5e',1,'TLE92466ED::Driver']]],
-  ['transfer_5fmulti_57',['transfer_multi',['../classTLE92466ED_1_1HAL.html#a097041e11aeb3a03cde16520bfcb799c',1,'TLE92466ED::HAL::transfer_multi()'],['../classTLE92466ED_1_1ExampleHAL.html#a77b62a8962fa195f12ceb4a6cbf7184e',1,'TLE92466ED::ExampleHAL::transfer_multi()']]],
+  ['transfer_5fmulti_57',['transfer_multi',['../classTLE92466ED_1_1HAL.html#a097041e11aeb3a03cde16520bfcb799c',1,'TLE92466ED::HAL::transfer_multi()'],['../classESP32C6__HAL.html#a878e3f1325bbf483f6f5b0bfa4b7cf66',1,'ESP32C6_HAL::transfer_multi()'],['../classTLE92466ED_1_1ExampleHAL.html#a77b62a8962fa195f12ceb4a6cbf7184e',1,'TLE92466ED::ExampleHAL::transfer_multi()']]],
   ['transfererror_58',['TransferError',['../namespaceTLE92466ED.html#ac1de4cdc9257b7d596222fcf888eb7c3ab36f64f307472d2304bafef8bebc15a9',1,'TLE92466ED']]],
   ['tx_5ffields_59',['tx_fields',['../unionTLE92466ED_1_1SPIFrame.html#aa9f850dd35c824d657936181470a0884',1,'TLE92466ED::SPIFrame']]]
 ];

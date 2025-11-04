@@ -7,6 +7,6 @@ var searchData=
   ['set_5fparallel_5foperation_4',['set_parallel_operation',['../classTLE92466ED_1_1Driver.html#ab940f704cd91be2bb185a6882a05afad',1,'TLE92466ED::Driver']]],
   ['set_5fvbat_5fthresholds_5',['set_vbat_thresholds',['../classTLE92466ED_1_1Driver.html#ae617833fafb03be9302d789cc501eef2',1,'TLE92466ED::Driver']]],
   ['software_5freset_6',['software_reset',['../classTLE92466ED_1_1Driver.html#aecf3111ef20905c3c579a3c967bb4225',1,'TLE92466ED::Driver']]],
-  ['spitransfer_7',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL::spiTransfer()'],['../classESP32C6__HAL.html#ae0fdf849a174a71a44046f13faa75fe9',1,'ESP32C6_HAL::spiTransfer()']]],
+  ['spitransfer_7',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL']]],
   ['synchronized_5fchannel_5fdemo_8',['synchronized_channel_demo',['../MultiChannelExample_8cpp.html#a391b392503f86c4ec5181f013f00dad9',1,'MultiChannelExample.cpp']]]
 ];

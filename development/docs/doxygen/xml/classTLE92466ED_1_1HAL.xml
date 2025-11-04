@@ -2,6 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classTLE92466ED_1_1HAL" kind="class" language="C++" prot="public" abstract="yes">
     <compoundname>TLE92466ED::HAL</compoundname>
+    <derivedcompoundref refid="classESP32C6__HAL" prot="public" virt="non-virtual">ESP32C6_HAL</derivedcompoundref>
     <derivedcompoundref refid="classTLE92466ED_1_1ExampleHAL" prot="public" virt="non-virtual">TLE92466ED::ExampleHAL</derivedcompoundref>
     <includes refid="TLE92466ED__HAL_8hpp" local="no">TLE92466ED_HAL.hpp</includes>
     <sectiondef kind="public-func">
@@ -26,6 +27,7 @@
         <argsstring>() noexcept=0</argsstring>
         <name>init</name>
         <qualifiedname>TLE92466ED::HAL::init</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1af2d75b2faaa787b1149e51d18ab0b379">init</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1ade76b2bdcbe732aaf5d048cf9cb5e9b8">init</reimplementedby>
         <briefdescription>
 <para>Initialize the hardware interface. </para>
@@ -71,6 +73,7 @@
         <argsstring>() noexcept=0</argsstring>
         <name>deinit</name>
         <qualifiedname>TLE92466ED::HAL::deinit</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a0cd39c4f854d92a34e7e0931e2ba63c8">deinit</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1aca2fe4367464d9c650d8639452f71e4f">deinit</reimplementedby>
         <briefdescription>
 <para>Deinitialize the hardware interface. </para>
@@ -91,6 +94,7 @@
         <argsstring>(uint32_t tx_data) noexcept=0</argsstring>
         <name>transfer32</name>
         <qualifiedname>TLE92466ED::HAL::transfer32</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a5894b58f1245060b2575292f8eaa6ead">transfer32</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a94f5aee89ec1d8bfe9f9edc5c898fc5c">transfer32</reimplementedby>
         <param>
           <type>uint32_t</type>
@@ -157,6 +161,7 @@
         <argsstring>(std::span&lt; const uint32_t &gt; tx_data, std::span&lt; uint32_t &gt; rx_data) noexcept=0</argsstring>
         <name>transfer_multi</name>
         <qualifiedname>TLE92466ED::HAL::transfer_multi</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a878e3f1325bbf483f6f5b0bfa4b7cf66">transfer_multi</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a77b62a8962fa195f12ceb4a6cbf7184e">transfer_multi</reimplementedby>
         <param>
           <type>std::span&lt; const uint32_t &gt;</type>
@@ -223,6 +228,7 @@
         <argsstring>() noexcept=0</argsstring>
         <name>chip_select</name>
         <qualifiedname>TLE92466ED::HAL::chip_select</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a2a36f2190e7f4cdc86791af78cecb504">chip_select</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1ab5ce6d1f460d9078afcbe40a21897be0">chip_select</reimplementedby>
         <briefdescription>
 <para>Assert (activate) chip select. </para>
@@ -254,6 +260,7 @@
         <argsstring>() noexcept=0</argsstring>
         <name>chip_deselect</name>
         <qualifiedname>TLE92466ED::HAL::chip_deselect</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a81780a19adefacd78f45fe679102dc9e">chip_deselect</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a2a23fe30261ec2b948bd01e3d41a14e7">chip_deselect</reimplementedby>
         <briefdescription>
 <para>Deassert (deactivate) chip select. </para>
@@ -283,6 +290,7 @@
         <argsstring>(uint32_t microseconds) noexcept=0</argsstring>
         <name>delay</name>
         <qualifiedname>TLE92466ED::HAL::delay</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a6984cad256521ecb06fda8ffadd56abf">delay</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a3f86764aa0b4e2408e826e4986893389">delay</reimplementedby>
         <param>
           <type>uint32_t</type>
@@ -323,6 +331,7 @@
         <name>configure</name>
         <qualifiedname>TLE92466ED::HAL::configure</qualifiedname>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a233bb6b92374f0ae245f62054e7850dd">configure</reimplementedby>
+        <reimplementedby refid="classESP32C6__HAL_1a1da1475a6a8062e217bd38ea11838aa7">configure</reimplementedby>
         <param>
           <type>const <ref refid="structTLE92466ED_1_1SPIConfig" kindref="compound">SPIConfig</ref> &amp;</type>
           <declname>config</declname>
@@ -372,6 +381,7 @@
         <argsstring>() const noexcept=0</argsstring>
         <name>is_ready</name>
         <qualifiedname>TLE92466ED::HAL::is_ready</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1ac8978aa80fb655cd33c96a3c3590c54e">is_ready</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1acb6f6bbc4c2c8d28892ba095386346ed">is_ready</reimplementedby>
         <briefdescription>
 <para>Check if hardware is ready for communication. </para>
@@ -392,6 +402,7 @@
         <argsstring>() const noexcept=0</argsstring>
         <name>get_last_error</name>
         <qualifiedname>TLE92466ED::HAL::get_last_error</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a83aaf16125ff1d4b509b17d266a653b0">get_last_error</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1a82b32aadebefa4c9516cdfc806adbc76">get_last_error</reimplementedby>
         <briefdescription>
 <para>Get the last error that occurred. </para>
@@ -412,6 +423,7 @@
         <argsstring>() noexcept=0</argsstring>
         <name>clear_errors</name>
         <qualifiedname>TLE92466ED::HAL::clear_errors</qualifiedname>
+        <reimplementedby refid="classESP32C6__HAL_1a71369798c2b0ba86b1effd88b98b9488">clear_errors</reimplementedby>
         <reimplementedby refid="classTLE92466ED_1_1ExampleHAL_1af3c3239541c6cee3e33679bedfb670bd">clear_errors</reimplementedby>
         <briefdescription>
 <para>Clear any pending errors. </para>
@@ -563,6 +575,12 @@
     </detaileddescription>
     <inheritancegraph>
       <node id="2">
+        <label>ESP32C6_HAL</label>
+        <link refid="classESP32C6__HAL"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
         <label>TLE92466ED::ExampleHAL</label>
         <link refid="classTLE92466ED_1_1ExampleHAL"/>
         <childnode refid="1" relation="public-inheritance">

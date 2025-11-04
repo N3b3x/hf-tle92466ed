@@ -26,9 +26,9 @@
         <argsstring></argsstring>
         <name>MODE</name>
         <qualifiedname>TLE92466ED_Config::SPIParams::MODE</qualifiedname>
-        <initializer>= 0</initializer>
+        <initializer>= 1</initializer>
         <briefdescription>
-<para>SPI Mode 0 (CPOL=0, CPHA=0) </para>
+<para>SPI Mode 1 (CPOL=0, CPHA=1) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

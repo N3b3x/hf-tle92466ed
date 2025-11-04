@@ -1,5 +1,14 @@
 var NAVTREEINDEX3 =
 {
+"namespaceTLE92466ED_1_1CentralReg.html#adf14637c8f4578e8065090cd761eaa77":[0,0,0,0,2],
+"namespaceTLE92466ED_1_1CentralReg.html#ae17567cbeba59f58af47eabe1b359a36":[0,0,0,0,25],
+"namespaceTLE92466ED_1_1CentralReg.html#ae369fa0290a36888762a5d1c81fdebee":[0,0,0,0,26],
+"namespaceTLE92466ED_1_1CentralReg.html#ae5b9e68780299a3cbac6d4a409a5b555":[0,0,0,0,31],
+"namespaceTLE92466ED_1_1CentralReg.html#af0b7381d24314bc987ab8d569254f338":[0,0,0,0,0],
+"namespaceTLE92466ED_1_1CentralReg.html#af6ef019756431e6cbfcaad1159171d90":[0,0,0,0,17],
+"namespaceTLE92466ED_1_1ChannelBase.html":[0,0,0,5],
+"namespaceTLE92466ED_1_1ChannelBase.html#a24a3653f2208456aeff89fb2b65ba094":[0,0,0,5,6],
+"namespaceTLE92466ED_1_1ChannelBase.html#a2b4759fb25e92ade6744352b27241055":[0,0,0,5,0],
 "namespaceTLE92466ED_1_1ChannelBase.html#a3b89892bdcca50a5079d5c377e17004a":[0,0,0,5,2],
 "namespaceTLE92466ED_1_1ChannelBase.html#a80088f29f74c95fd00b10ca96774b62c":[0,0,0,5,3],
 "namespaceTLE92466ED_1_1ChannelBase.html#a85267daec80d2756bd6156bf2254099c":[0,0,0,5,1],
@@ -240,14 +249,5 @@ var NAVTREEINDEX3 =
 "structTLE92466ED_1_1SPIConfig.html#a722000749df3114e8fba919c67b1556b":[2,0,0,7,0],
 "structTLE92466ED_1_1SPIConfig.html#a73f41244a2f8e6b1ac2d2b83aa83e543":[0,0,0,23,1],
 "structTLE92466ED_1_1SPIConfig.html#a73f41244a2f8e6b1ac2d2b83aa83e543":[2,0,0,7,1],
-"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635":[0,0,0,23,3],
-"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635":[2,0,0,7,3],
-"structTLE92466ED_1_1SPIConfig.html#a927d660e463f8e1fa4173afee9756a82":[0,0,0,23,4],
-"structTLE92466ED_1_1SPIConfig.html#a927d660e463f8e1fa4173afee9756a82":[2,0,0,7,4],
-"structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939":[0,0,0,23,2],
-"structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939":[2,0,0,7,2],
-"structTLE92466ED__Config_1_1AppConfig.html":[2,0,1,0],
-"structTLE92466ED__Config_1_1AppConfig.html":[0,0,1,0],
-"structTLE92466ED__Config_1_1AppConfig.html#a032941dbfee66755ae741015eaac26d5":[0,0,1,0,1],
-"structTLE92466ED__Config_1_1AppConfig.html#a032941dbfee66755ae741015eaac26d5":[2,0,1,0,1]
+"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635":[0,0,0,23,3]
 };

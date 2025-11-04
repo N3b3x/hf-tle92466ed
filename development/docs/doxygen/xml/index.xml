@@ -153,17 +153,26 @@
     <member refid="classESP32C6__HAL_1ad5036139d8a26dd2dedc3eed1a577412" kind="variable"><name>config_</name></member>
     <member refid="classESP32C6__HAL_1ad569482ba36173090bdc67b2bea55ef2" kind="variable"><name>spi_device_</name></member>
     <member refid="classESP32C6__HAL_1a3b0a1ae6dd53fe8845d459294721b2cf" kind="variable"><name>initialized_</name></member>
+    <member refid="classESP32C6__HAL_1a7c5f1d1f33b8f9f1b128d1f68f70e87d" kind="variable"><name>last_error_</name></member>
     <member refid="classESP32C6__HAL_1a13db8464f6299214182276d334d0ad3b" kind="variable"><name>TAG</name></member>
     <member refid="classESP32C6__HAL_1aeea7988bfd0b77e22cf2b590d80e278f" kind="function"><name>ESP32C6_HAL</name></member>
     <member refid="classESP32C6__HAL_1a145b7a932ac85fb8873818ea98028e65" kind="function"><name>ESP32C6_HAL</name></member>
     <member refid="classESP32C6__HAL_1a28c36989ea9876b55557d7d868970023" kind="function"><name>~ESP32C6_HAL</name></member>
-    <member refid="classESP32C6__HAL_1a567911602548f9007c467c90d5fd148e" kind="function"><name>initialize</name></member>
-    <member refid="classESP32C6__HAL_1ae0fdf849a174a71a44046f13faa75fe9" kind="function"><name>spiTransfer</name></member>
-    <member refid="classESP32C6__HAL_1a414805eae19d37e4507602f2d3754a78" kind="function"><name>delayMicroseconds</name></member>
+    <member refid="classESP32C6__HAL_1af2d75b2faaa787b1149e51d18ab0b379" kind="function"><name>init</name></member>
+    <member refid="classESP32C6__HAL_1a0cd39c4f854d92a34e7e0931e2ba63c8" kind="function"><name>deinit</name></member>
+    <member refid="classESP32C6__HAL_1a5894b58f1245060b2575292f8eaa6ead" kind="function"><name>transfer32</name></member>
+    <member refid="classESP32C6__HAL_1a878e3f1325bbf483f6f5b0bfa4b7cf66" kind="function"><name>transfer_multi</name></member>
+    <member refid="classESP32C6__HAL_1a2a36f2190e7f4cdc86791af78cecb504" kind="function"><name>chip_select</name></member>
+    <member refid="classESP32C6__HAL_1a81780a19adefacd78f45fe679102dc9e" kind="function"><name>chip_deselect</name></member>
+    <member refid="classESP32C6__HAL_1a6984cad256521ecb06fda8ffadd56abf" kind="function"><name>delay</name></member>
+    <member refid="classESP32C6__HAL_1a1da1475a6a8062e217bd38ea11838aa7" kind="function"><name>configure</name></member>
+    <member refid="classESP32C6__HAL_1ac8978aa80fb655cd33c96a3c3590c54e" kind="function"><name>is_ready</name></member>
+    <member refid="classESP32C6__HAL_1a83aaf16125ff1d4b509b17d266a653b0" kind="function"><name>get_last_error</name></member>
+    <member refid="classESP32C6__HAL_1a71369798c2b0ba86b1effd88b98b9488" kind="function"><name>clear_errors</name></member>
     <member refid="classESP32C6__HAL_1a053c2a667c59846f094a7a220f056a41" kind="function"><name>getConfig</name></member>
     <member refid="classESP32C6__HAL_1a78d464168fcb8326b05282500c38463d" kind="function"><name>isInitialized</name></member>
-    <member refid="classESP32C6__HAL_1ae9c210e3f20562c5987d8d23a00ae778" kind="function"><name>initializeSPI</name></member>
-    <member refid="classESP32C6__HAL_1a180bafd20ce81bfc55023ace5cd40497" kind="function"><name>addSPIDevice</name></member>
+    <member refid="classESP32C6__HAL_1a8250c6300b43ea23a8403f3b0b6661e4" kind="function"><name>initializeSPI</name></member>
+    <member refid="classESP32C6__HAL_1a3aa9edca91c136e97bd5185303b16ea8" kind="function"><name>addSPIDevice</name></member>
   </compound>
   <compound refid="classTLE92466ED_1_1ExampleHAL" kind="class"><name>TLE92466ED::ExampleHAL</name>
     <member refid="classTLE92466ED_1_1ExampleHAL_1a171d526c59010903735b6decc65dbfa8" kind="variable"><name>spi_device_</name></member>
@@ -613,7 +622,7 @@
     <member refid="BasicUsageExample_8cpp_1a9cc129a2aef2a2615a4c4a621e436473" kind="define"><name>ENABLE_CURRENT_CONTROL_TESTS</name></member>
     <member refid="BasicUsageExample_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
     <member refid="BasicUsageExample_8cpp_1a7f4a80000dadaa6227be7f2e885b342d" kind="variable"><name>g_hal</name></member>
-    <member refid="BasicUsageExample_8cpp_1a06a98a44466bc271f680331f37adfd33" kind="variable"><name>g_driver</name></member>
+    <member refid="BasicUsageExample_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
     <member refid="BasicUsageExample_8cpp_1abb4b230389c72bfdce3ec626624637d7" kind="function"><name>test_hal_initialization</name></member>
     <member refid="BasicUsageExample_8cpp_1ae11eb6cb1d8f2e300e874298a5d3ecb3" kind="function"><name>test_driver_initialization</name></member>
     <member refid="BasicUsageExample_8cpp_1a52b1703a7f4c0c38ded4d24e8fa4a2c5" kind="function"><name>test_chip_id</name></member>

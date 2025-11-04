@@ -58,9 +58,9 @@
         <argsstring></argsstring>
         <name>CS</name>
         <qualifiedname>TLE92466ED_Config::SPIPins::CS</qualifiedname>
-        <initializer>= 10</initializer>
+        <initializer>= 18</initializer>
         <briefdescription>
-<para>GPIO10 - Chip Select (active low) </para>
+<para>GPIO18 - Chip Select (active low) </para>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>

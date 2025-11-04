@@ -62,9 +62,9 @@ var NAVTREEINDEX =
 [
 "Arduino__HAL_8cpp.html",
 "TLE92466ED__Registers_8hpp.html#ab7d9ef2a8366caaa6d65f2389ae81635",
-"classTLE92466ED_1_1HAL.html#a15cae9dcbfd3f6161bc0b8ce776fc8ec",
-"namespaceTLE92466ED_1_1ChannelBase.html#a3b89892bdcca50a5079d5c377e17004a",
-"structTLE92466ED__Config_1_1AppConfig.html#a16e1410566f5007111bfd414bbeaf979"
+"classTLE92466ED_1_1ExampleHAL.html#af303b6513437914a99dfcfa4d265d1fb",
+"namespaceTLE92466ED_1_1CentralReg.html#adf14637c8f4578e8065090cd761eaa77",
+"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

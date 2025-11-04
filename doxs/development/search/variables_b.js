@@ -13,10 +13,11 @@ var searchData=
   ['miso_5fpin_10',['miso_pin',['../structESP32C6__HAL_1_1SPIConfig.html#a0c31cedefc066672258ba6332a516a85',1,'ESP32C6_HAL::SPIConfig']]],
   ['mission_5fmode_11',['MISSION_MODE',['../namespaceTLE92466ED_1_1CH__CTRL.html#a2ac22ee24c07def312b5874b2433e8bd',1,'TLE92466ED::CH_CTRL']]],
   ['mission_5fmode_5f_12',['mission_mode_',['../classTLE92466ED_1_1Driver.html#acb123fbe9e3735f53709f9ff455549fb',1,'TLE92466ED::Driver']]],
-  ['mode_13',['mode',['../structTLE92466ED_1_1ChannelConfig.html#a42e220c25c9eafe396a82a6c3d314f63',1,'TLE92466ED::ChannelConfig::mode'],['../structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939',1,'TLE92466ED::SPIConfig::mode'],['../structESP32C6__HAL_1_1SPIConfig.html#a30b54e9fd84673e9f825f680376c52e8',1,'ESP32C6_HAL::SPIConfig::mode']]],
-  ['mode_14',['MODE',['../structTLE92466ED__Config_1_1SPIParams.html#a01db141e580865ce7c4b08831b00110d',1,'TLE92466ED_Config::SPIParams::MODE'],['../namespaceTLE92466ED_1_1ChannelReg.html#a92248911b8a7380ede451d48747ad2c5',1,'TLE92466ED::ChannelReg::MODE']]],
-  ['mode_5fmask_15',['MODE_MASK',['../namespaceTLE92466ED_1_1CH__MODE.html#ad11ec681f37ebd98bc4820a9b2f46269',1,'TLE92466ED::CH_MODE']]],
-  ['mosi_16',['MOSI',['../structTLE92466ED__Config_1_1SPIPins.html#a53537093fb0333fbdebb49bff12f3e98',1,'TLE92466ED_Config::SPIPins']]],
-  ['mosi_5fpin_17',['mosi_pin',['../structESP32C6__HAL_1_1SPIConfig.html#a331b2a097b48cef4befce17733f40d9d',1,'ESP32C6_HAL::SPIConfig']]],
-  ['msb_5ffirst_18',['msb_first',['../structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635',1,'TLE92466ED::SPIConfig']]]
+  ['mode_13',['MODE',['../structTLE92466ED__Config_1_1SPIParams.html#a01db141e580865ce7c4b08831b00110d',1,'TLE92466ED_Config::SPIParams']]],
+  ['mode_14',['mode',['../structTLE92466ED_1_1ChannelConfig.html#a42e220c25c9eafe396a82a6c3d314f63',1,'TLE92466ED::ChannelConfig::mode'],['../structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939',1,'TLE92466ED::SPIConfig::mode'],['../structESP32C6__HAL_1_1SPIConfig.html#a30b54e9fd84673e9f825f680376c52e8',1,'ESP32C6_HAL::SPIConfig::mode']]],
+  ['mode_15',['MODE',['../namespaceTLE92466ED_1_1ChannelReg.html#a92248911b8a7380ede451d48747ad2c5',1,'TLE92466ED::ChannelReg']]],
+  ['mode_5fmask_16',['MODE_MASK',['../namespaceTLE92466ED_1_1CH__MODE.html#ad11ec681f37ebd98bc4820a9b2f46269',1,'TLE92466ED::CH_MODE']]],
+  ['mosi_17',['MOSI',['../structTLE92466ED__Config_1_1SPIPins.html#a53537093fb0333fbdebb49bff12f3e98',1,'TLE92466ED_Config::SPIPins']]],
+  ['mosi_5fpin_18',['mosi_pin',['../structESP32C6__HAL_1_1SPIConfig.html#a331b2a097b48cef4befce17733f40d9d',1,'ESP32C6_HAL::SPIConfig']]],
+  ['msb_5ffirst_19',['msb_first',['../structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635',1,'TLE92466ED::SPIConfig']]]
 ];

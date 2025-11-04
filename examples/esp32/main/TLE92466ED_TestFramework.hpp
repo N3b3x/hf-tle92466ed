@@ -151,7 +151,7 @@ struct TestResults {
         ESP_LOGI(tag, "║  Passed:           %-56d  ║", passed_tests);
         ESP_LOGI(tag, "║  Failed:           %-56d  ║", failed_tests);
         ESP_LOGI(tag, "║  Success Rate:     %-55.2f%%  ║", get_success_percentage());
-        ESP_LOGI(tag, "║  Total Time:       %-52.2f ms  ║", get_total_time_ms());
+        ESP_LOGI(tag, "║  Total Time:       %-52.2f  ms  ║", get_total_time_ms());
         ESP_LOGI(tag, "╚══════════════════════════════════════════════════════════════════════════════╝");
         ESP_LOGI(tag, "");
     }
@@ -306,7 +306,7 @@ inline void print_test_section_status(const char* tag, const char* module_name) 
     ESP_LOGI(tag, "╔══════════════════════════════════════════════════════════════════════════════╗");
     ESP_LOGI(tag, "║ %s TEST CONFIGURATION                                                    ", module_name);
     ESP_LOGI(tag, "╠══════════════════════════════════════════════════════════════════════════════╣");
-    ESP_LOGI(tag, "║ Test sections will execute based on compile-time configuration              ║");
+    ESP_LOGI(tag, "║ Test sections will execute based on compile-time configuration               ║");
     ESP_LOGI(tag, "║ GPIO14 test progression indicator: ENABLED                                   ║");
     ESP_LOGI(tag, "╚══════════════════════════════════════════════════════════════════════════════╝");
     ESP_LOGI(tag, "");

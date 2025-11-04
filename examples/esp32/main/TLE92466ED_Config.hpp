@@ -26,7 +26,7 @@ struct SPIPins {
     static constexpr int MISO = 2;          ///< GPIO2 - SPI MISO (Master In Slave Out)
     static constexpr int MOSI = 7;          ///< GPIO7 - SPI MOSI (Master Out Slave In)
     static constexpr int SCLK = 6;          ///< GPIO6 - SPI Clock
-    static constexpr int CS = 10;           ///< GPIO10 - Chip Select (active low)
+    static constexpr int CS = 18;           ///< GPIO18 - Chip Select (active low)
 };
 
 /**
@@ -37,7 +37,7 @@ struct SPIPins {
  */
 struct SPIParams {
     static constexpr int FREQUENCY = 1000000;   ///< 1MHz SPI frequency
-    static constexpr int MODE = 0;              ///< SPI Mode 0 (CPOL=0, CPHA=0)
+    static constexpr int MODE = 1;              ///< SPI Mode 1 (CPOL=0, CPHA=1)
     static constexpr int QUEUE_SIZE = 1;        ///< Transaction queue size
 };
 
@@ -168,8 +168,8 @@ static_assert(TLE92466ED_Config::CurrentLimits::PARALLEL_CHANNEL_MAX <= 4000,
 static_assert(TLE92466ED_Config::SPIParams::FREQUENCY <= 8000000,
               "SPI frequency exceeds TLE92466ED maximum of 8MHz");
 
-static_assert(TLE92466ED_Config::SPIParams::MODE == 0,
-              "TLE92466ED requires SPI Mode 0 (CPOL=0, CPHA=0)");
+static_assert(TLE92466ED_Config::SPIParams::MODE == 1,
+              "TLE92466ED requires SPI Mode 1 (CPOL=0, CPHA=1)");
 
 /**
  * @brief Helper macro for compile-time configuration validation

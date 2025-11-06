@@ -310,7 +310,7 @@ var sectionId = 'dynsection-0';
 <!-- Node17 -->
 <g id="Node000017" class="node">
 <title>Node17</title>
-<g id="a_Node000017"><a xlink:href="TLE92466ED__Registers_8hpp.html" target="_top" xlink:title="Register definitions and bit field mappings for TLE92466ED IC.">
+<g id="a_Node000017"><a xlink:href="TLE92466ED__Registers_8hpp.html" target="_top" xlink:title="Register definitions and bit field mappings for TLE92466ED.">
 <polygon fill="white" stroke="#666666" points="918.5,-82 730.5,-82 730.5,-59 918.5,-59 918.5,-82"/>
 <text text-anchor="middle" x="824.5" y="-66.8" font-family="Arial" font-size="14.00">TLE92466ED_Registers.hpp</text>
 </a>

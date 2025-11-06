@@ -1,11 +1,8 @@
 /**
  * @file TLE92466ED_Registers.hpp
- * @brief Register definitions and bit field mappings for TLE92466ED IC
- * @author AI Generated Driver
- * @date 2025-10-20
- * @version 2.0.0
+ * @brief Register definitions and bit field mappings for TLE92466ED
  *
- * @details
+ * @detail
  * This file contains comprehensive register definitions, bit field masks,
  * and helper structures for the TLE92466ED Six-Channel Low-Side Solenoid Driver IC.
  * All register addresses and bit positions have been meticulously cross-referenced

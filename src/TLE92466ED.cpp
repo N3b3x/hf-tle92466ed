@@ -1,10 +1,7 @@
 /**
  * @file TLE92466ED.cpp
  * @brief Implementation of TLE92466ED driver class
- * @author AI Generated Driver
- * @date 2025-10-20
- * @version 2.0.0
- *
+ 
  * @details
  * This file contains the complete implementation of all driver methods
  * for the TLE92466ED IC. All methods include comprehensive error checking,

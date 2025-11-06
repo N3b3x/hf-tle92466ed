@@ -11,3 +11,5 @@ warning: source 'inc/' is not a readable file or directory... skipping.
 warning: source 'inc/mcu/esp32/' is not a readable file or directory... skipping.
 warning: source 'inc/utils/' is not a readable file or directory... skipping.
 warning: Specified markdown mainpage 'docs/doxygen-mainpage.md' does not exist
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/include/TLE92466ED_Registers.hpp:5: warning: Found unknown command '@detail'
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/include/TLE92466ED_Registers.hpp:5: warning: Found unknown command '@detail'

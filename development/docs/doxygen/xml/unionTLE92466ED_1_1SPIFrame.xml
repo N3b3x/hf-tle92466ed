@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="69" column="14" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="69" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="66" column="14" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="66" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1ae9a9f795276e931a795c76107ada865a" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="73" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="73" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="70" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="70" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a21e21ff576c43b5b7bcbb449b1df5f14" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="74" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="74" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="71" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a6ae8aaf1624755a8abbdd1e25a16fd5a" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="75" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="75" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="72" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="72" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1ae777d3989ca5646cfc85e3f00c06ce69" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="76" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="76" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="73" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="73" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1aa9f850dd35c824d657936181470a0884" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">struct</ref> <ref refid="unionTLE92466ED_1_1SPIFrame" kindref="compound">TLE92466ED::SPIFrame</ref></type>
@@ -96,7 +96,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="77" column="15"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="74" column="15"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a4ce45894dccd8e2de8b5c1755d3bc4bb" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -112,7 +112,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="82" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="82" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="79" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="79" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a93c933f2745a3146844c77b2c48b94de" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -128,7 +128,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="83" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="83" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="80" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="80" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a0abf74cc126986f0d6ba9ca0f2e22d87" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -144,7 +144,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="84" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="84" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="81" column="18" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="81" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="unionTLE92466ED_1_1SPIFrame_1a42599562bb1735501e9b9282de4154b6" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">struct</ref> <ref refid="unionTLE92466ED_1_1SPIFrame" kindref="compound">TLE92466ED::SPIFrame</ref></type>
@@ -159,7 +159,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="86" column="15"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="83" column="15"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-static-func">
@@ -192,7 +192,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="93" column="32" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="93" bodyend="100"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="90" column="32" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="90" bodyend="97"/>
       </memberdef>
       <memberdef kind="function" id="unionTLE92466ED_1_1SPIFrame_1a453b7415049e14602eaf3fd19ff2ee39" prot="public" static="yes" constexpr="yes" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="unionTLE92466ED_1_1SPIFrame" kindref="compound">SPIFrame</ref></type>
@@ -235,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="108" column="32" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="108" bodyend="115"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="105" column="32" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="105" bodyend="112"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -252,7 +252,7 @@
 *  CRC (8-bit)| Reply Mode | Status (5) | R/W    | Data (16)
 * </verbatim> </para>
     </detaileddescription>
-    <location file="include/TLE92466ED_Registers.hpp" line="68" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="68" bodyend="116"/>
+    <location file="include/TLE92466ED_Registers.hpp" line="65" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="65" bodyend="113"/>
     <listofallmembers>
       <member refid="unionTLE92466ED_1_1SPIFrame_1a6ae8aaf1624755a8abbdd1e25a16fd5a" prot="public" virt="non-virtual"><scope>TLE92466ED::SPIFrame</scope><name>address</name></member>
       <member refid="unionTLE92466ED_1_1SPIFrame_1ae777d3989ca5646cfc85e3f00c06ce69" prot="public" virt="non-virtual"><scope>TLE92466ED::SPIFrame</scope><name>crc</name></member>

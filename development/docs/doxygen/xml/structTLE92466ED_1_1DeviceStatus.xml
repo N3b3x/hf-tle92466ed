@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="135" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="135" bodyend="135"/>
+        <location file="include/TLE92466ED.hpp" line="132" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="132" bodyend="132"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1ac132cdffd394a9acd70baf0548493cc7" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="136" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="136" bodyend="136"/>
+        <location file="include/TLE92466ED.hpp" line="133" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="133" bodyend="133"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a8c053a9d09b3f2f7ae16655bd05efd3c" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="137" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="137" bodyend="137"/>
+        <location file="include/TLE92466ED.hpp" line="134" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="134" bodyend="134"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a9987d4b8fc44681e75449e94216061da" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="140" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="140" bodyend="140"/>
+        <location file="include/TLE92466ED.hpp" line="137" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="137" bodyend="137"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a0d3f30354e35183b2e30a8dc447fa96e" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="141" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="141" bodyend="141"/>
+        <location file="include/TLE92466ED.hpp" line="138" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="138" bodyend="138"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1acdc2ba550db01db61dc025015dc6533b" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -98,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="142" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="142" bodyend="142"/>
+        <location file="include/TLE92466ED.hpp" line="139" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="139" bodyend="139"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a470b03020e23c9e2c44d6d7ce7b4145c" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="143" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="143" bodyend="143"/>
+        <location file="include/TLE92466ED.hpp" line="140" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="140" bodyend="140"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1ac1009c2438fcaf9fc7f52441253cbbc9" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="144" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="144" bodyend="144"/>
+        <location file="include/TLE92466ED.hpp" line="141" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="141" bodyend="141"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1aeab84e672c30716501ad0f3bb6479af3" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="145" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="145" bodyend="145"/>
+        <location file="include/TLE92466ED.hpp" line="142" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="142" bodyend="142"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1af983a2a18ac35e9997d41a7d919c1f44" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="148" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="148" bodyend="148"/>
+        <location file="include/TLE92466ED.hpp" line="145" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="145" bodyend="145"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a84ec632eadb5effea477ce8ed4d2967f" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="149" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="149" bodyend="149"/>
+        <location file="include/TLE92466ED.hpp" line="146" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="146" bodyend="146"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a35ebeacb7cb98745c1a7467e06d7871f" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="152" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="152" bodyend="152"/>
+        <location file="include/TLE92466ED.hpp" line="149" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="149" bodyend="149"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a5fbc1b427531daffea82b2209e4fdccd" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="153" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="153" bodyend="153"/>
+        <location file="include/TLE92466ED.hpp" line="150" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="150" bodyend="150"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1abf80bb1f372b95dbcfa416a9735f5020" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -226,7 +226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="154" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="154" bodyend="154"/>
+        <location file="include/TLE92466ED.hpp" line="151" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="151" bodyend="151"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a607b297962e4bb9c3806b331b6b8f165" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -242,7 +242,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="155" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="155" bodyend="155"/>
+        <location file="include/TLE92466ED.hpp" line="152" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="152" bodyend="152"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a1fdfb545c75499969c42c0bea10e015e" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -258,7 +258,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="158" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="158" bodyend="158"/>
+        <location file="include/TLE92466ED.hpp" line="155" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="155" bodyend="155"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a5c5a0bf5806fb05e6214cecfa1dac081" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -274,7 +274,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="159" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="159" bodyend="159"/>
+        <location file="include/TLE92466ED.hpp" line="156" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="156" bodyend="156"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a405a725286312a5755c4470d7e0920ac" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -290,7 +290,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="162" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="162" bodyend="162"/>
+        <location file="include/TLE92466ED.hpp" line="159" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="159" bodyend="159"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1DeviceStatus_1a4bf2242fe36a1769fc377c34f9dc16f3" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -306,7 +306,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="163" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="163" bodyend="163"/>
+        <location file="include/TLE92466ED.hpp" line="160" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="160" bodyend="160"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -314,7 +314,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/TLE92466ED.hpp" line="134" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="134" bodyend="164"/>
+    <location file="include/TLE92466ED.hpp" line="131" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="131" bodyend="161"/>
     <listofallmembers>
       <member refid="structTLE92466ED_1_1DeviceStatus_1a8c053a9d09b3f2f7ae16655bd05efd3c" prot="public" virt="non-virtual"><scope>TLE92466ED::DeviceStatus</scope><name>any_fault</name></member>
       <member refid="structTLE92466ED_1_1DeviceStatus_1a35ebeacb7cb98745c1a7467e06d7871f" prot="public" virt="non-virtual"><scope>TLE92466ED::DeviceStatus</scope><name>clock_fault</name></member>

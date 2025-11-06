@@ -1,5 +1,5 @@
 <map id="include/TLE92466ED_Registers.hpp" name="include/TLE92466ED_Registers.hpp">
-<area shape="rect" id="Node000001" title="Register definitions and bit field mappings for TLE92466ED IC." alt="" coords="416,5,608,56"/>
+<area shape="rect" id="Node000001" title="Register definitions and bit field mappings for TLE92466ED." alt="" coords="416,5,608,56"/>
 <area shape="rect" id="Node000002" href="$TLE92466ED_8hpp.html" title="Main driver class for TLE92466ED Six&#45;Channel Low&#45;Side Solenoid Driver IC." alt="" coords="399,104,625,135"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="515,70,515,104,509,104,509,70"/>
 <area shape="rect" id="Node000003" href="$basic__usage_8cpp.html" title="Basic usage example for TLE92466ED driver." alt="" coords="5,193,245,223"/>

@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="116" column="17" bodyfile="include/TLE92466ED.hpp" bodystart="116" bodyend="116"/>
+        <location file="include/TLE92466ED.hpp" line="113" column="17" bodyfile="include/TLE92466ED.hpp" bodystart="113" bodyend="113"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a49171c26b8813e1fba865fc743d2df78" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="117" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="117" bodyend="117"/>
+        <location file="include/TLE92466ED.hpp" line="114" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="114" bodyend="114"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a3661566054e3e5e24a5173ae1a41d180" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1aa7a63a8ffb21e78b6d650a9574115ccb" kindref="member">SlewRate</ref></type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="118" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="118" bodyend="118"/>
+        <location file="include/TLE92466ED.hpp" line="115" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="115" bodyend="115"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a5d5e9abc950957c4b3a7c3f77a33b006" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ad1c8947068645cc63af64e2a0e162b6d" kindref="member">DiagCurrent</ref></type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="119" column="17" bodyfile="include/TLE92466ED.hpp" bodystart="119" bodyend="119"/>
+        <location file="include/TLE92466ED.hpp" line="116" column="17" bodyfile="include/TLE92466ED.hpp" bodystart="116" bodyend="116"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1add6c87ba93a089db36087ae8c121626d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="120" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="120" bodyend="120"/>
+        <location file="include/TLE92466ED.hpp" line="117" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="117" bodyend="117"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1adf7d0d490de03758401b9e5c8e3a4cab" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -98,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="121" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="121" bodyend="121"/>
+        <location file="include/TLE92466ED.hpp" line="118" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="118" bodyend="118"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a89fb6bad6b4b922e6ea27f15f9f4fa7d" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="122" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="122" bodyend="122"/>
+        <location file="include/TLE92466ED.hpp" line="119" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="119" bodyend="119"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1ab5ad97c9e34cc5ebbf02db206d0a03f7" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="123" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="123" bodyend="123"/>
+        <location file="include/TLE92466ED.hpp" line="120" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="120" bodyend="120"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a3c840dedd34f2dda059f48e8b77c4b9b" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="124" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="124" bodyend="124"/>
+        <location file="include/TLE92466ED.hpp" line="121" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="121" bodyend="121"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a38ce5209824c6c02c9f038558bc0713f" prot="public" static="no" mutable="no">
         <type>bool</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="125" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="125" bodyend="125"/>
+        <location file="include/TLE92466ED.hpp" line="122" column="10" bodyfile="include/TLE92466ED.hpp" bodystart="122" bodyend="122"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a9fc7980271b7bbeb574a7abc1cdec11e" prot="public" static="no" mutable="no">
         <type>uint16_t</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="126" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="126" bodyend="126"/>
+        <location file="include/TLE92466ED.hpp" line="123" column="14" bodyfile="include/TLE92466ED.hpp" bodystart="123" bodyend="123"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1acaa55e3af55c8a754b42f975bbe5afff" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="127" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="127" bodyend="127"/>
+        <location file="include/TLE92466ED.hpp" line="124" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="124" bodyend="124"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1ChannelConfig_1a86bd77f473efec53d3537b80059646dd" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="128" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="128" bodyend="128"/>
+        <location file="include/TLE92466ED.hpp" line="125" column="13" bodyfile="include/TLE92466ED.hpp" bodystart="125" bodyend="125"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -219,7 +219,7 @@
     <detaileddescription>
 <para>Contains all configurable parameters for an output channel. </para>
     </detaileddescription>
-    <location file="include/TLE92466ED.hpp" line="115" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="115" bodyend="129"/>
+    <location file="include/TLE92466ED.hpp" line="112" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="112" bodyend="126"/>
     <listofallmembers>
       <member refid="structTLE92466ED_1_1ChannelConfig_1ab5ad97c9e34cc5ebbf02db206d0a03f7" prot="public" virt="non-virtual"><scope>TLE92466ED::ChannelConfig</scope><name>auto_limit_disabled</name></member>
       <member refid="structTLE92466ED_1_1ChannelConfig_1a49171c26b8813e1fba865fc743d2df78" prot="public" virt="non-virtual"><scope>TLE92466ED::ChannelConfig</scope><name>current_setpoint_ma</name></member>

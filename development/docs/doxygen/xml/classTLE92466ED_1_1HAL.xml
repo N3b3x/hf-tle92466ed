@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="129" column="13"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="126" column="13"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a9e9e1030ced3f189fabb99ab539117ca" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="144" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="141" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a956672b9644a0c6d0e909a42a5905507" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="155" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="152" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a3e86c206af4ae52090c56eaf2190f262" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; uint32_t &gt;</type>
@@ -153,7 +153,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="183" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="180" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a097041e11aeb3a03cde16520bfcb799c" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -220,7 +220,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="201" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="198" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1acf35d9f891cd8430a6ef3cee2772995d" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -252,7 +252,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="217" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="214" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1adc04e4611b63548e71dea1b54b50f6ff" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -282,7 +282,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="229" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="226" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a44752042b769aab71d215d9c6557349a" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -322,7 +322,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="245" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="242" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1ac7d9c64c836ab51a0f878698302a1413" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -373,7 +373,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="264" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="261" column="24"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1ad20769b9f4fbcb0ca6e23800feccccf3" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type>bool</type>
@@ -394,7 +394,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="275" column="19"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="272" column="19"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a15cae9dcbfd3f6161bc0b8ce776fc8ec" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ac1de4cdc9257b7d596222fcf888eb7c3" kindref="member">HALError</ref></type>
@@ -415,7 +415,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="286" column="23"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="283" column="23"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a3e16e6e34b24bc62c183f77a2c10926b" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="pure-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">HALResult</ref>&lt; void &gt;</type>
@@ -436,7 +436,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="297" column="24"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="294" column="24"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="protected-func">
@@ -454,7 +454,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="306" column="5"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="303" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a84a3718090608281e766d6f6a3a6216b" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -472,7 +472,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="311" column="5"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="308" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a39c1634fce8b96b25d35661a015c1845" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="classTLE92466ED_1_1HAL" kindref="compound">HAL</ref> &amp;</type>
@@ -489,7 +489,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="312" column="9"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="309" column="9"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a66f2dc7f30a013e24748a536063f4768" prot="protected" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type></type>
@@ -507,7 +507,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="317" column="5"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="314" column="5"/>
       </memberdef>
       <memberdef kind="function" id="classTLE92466ED_1_1HAL_1a87d0f77ad940df38e77149b37cc986cd" prot="protected" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="classTLE92466ED_1_1HAL" kindref="compound">HAL</ref> &amp;</type>
@@ -524,7 +524,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="318" column="9"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="315" column="9"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -591,7 +591,7 @@
         <link refid="classTLE92466ED_1_1HAL"/>
       </node>
     </inheritancegraph>
-    <location file="include/TLE92466ED_HAL.hpp" line="124" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="124" bodyend="319"/>
+    <location file="include/TLE92466ED_HAL.hpp" line="121" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="121" bodyend="316"/>
     <listofallmembers>
       <member refid="classTLE92466ED_1_1HAL_1adc04e4611b63548e71dea1b54b50f6ff" prot="public" virt="pure-virtual"><scope>TLE92466ED::HAL</scope><name>chip_deselect</name></member>
       <member refid="classTLE92466ED_1_1HAL_1acf35d9f891cd8430a6ef3cee2772995d" prot="public" virt="pure-virtual"><scope>TLE92466ED::HAL</scope><name>chip_select</name></member>

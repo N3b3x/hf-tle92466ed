@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="70" column="14" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="70" bodyend="70"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="67" column="14" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="67" bodyend="67"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1SPIConfig_1aa612833cf5e4cb76eff873af9e2ad939" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="71" column="13" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="71" bodyend="71"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="68" column="13" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="68" bodyend="68"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1SPIConfig_1a722000749df3114e8fba919c67b1556b" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="72" column="13" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="72" bodyend="72"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="69" column="13" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="69" bodyend="69"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1SPIConfig_1a741166f08372777babe18ed36b928635" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">bool</ref></type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="73" column="10" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="73" bodyend="73"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="70" column="10" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="70" bodyend="70"/>
       </memberdef>
       <memberdef kind="variable" id="structTLE92466ED_1_1SPIConfig_1a927d660e463f8e1fa4173afee9756a82" prot="public" static="no" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint32_t</ref></type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="74" column="14" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="74" bodyend="74"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="71" column="14" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="71" bodyend="71"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -91,7 +91,7 @@
     <detaileddescription>
 <para>Defines the configuration parameters for SPI communication. </para>
     </detaileddescription>
-    <location file="include/TLE92466ED_HAL.hpp" line="69" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="69" bodyend="75"/>
+    <location file="include/TLE92466ED_HAL.hpp" line="66" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="66" bodyend="72"/>
     <listofallmembers>
       <member refid="structTLE92466ED_1_1SPIConfig_1a722000749df3114e8fba919c67b1556b" prot="public" virt="non-virtual"><scope>TLE92466ED::SPIConfig</scope><name>bits_per_word</name></member>
       <member refid="structTLE92466ED_1_1SPIConfig_1a73f41244a2f8e6b1ac2d2b83aa83e543" prot="public" virt="non-virtual"><scope>TLE92466ED::SPIConfig</scope><name>frequency</name></member>

@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="416" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="416" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="413" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="413" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a54320efc239cf3f11f599325cceddf46" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="417" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="417" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="414" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="414" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1aa68751e684f9d4f236302bce41d3314f" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="418" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="418" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="415" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="415" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1ad513146ab8cc727153f58bb323a46000" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="419" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="419" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="416" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="416" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a40c2b1dfa61266a9162d5085fe5411d4" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="420" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="420" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="417" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="417" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a8496f37135dcc8726189832d2aa27ee9" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -97,7 +97,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="421" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="421" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="418" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="418" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a6909c06565826359a7e4a08f9469e4b5" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -113,7 +113,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="422" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="422" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="419" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="419" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a274eb91bbbaf2e5e4f0375203c13b2d4" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -129,7 +129,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="423" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="423" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="420" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="420" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1abd21779722498437158cf22cfa6d07f4" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -145,7 +145,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="424" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="424" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="421" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="421" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1afa0c12d2f70456a62da80b9fb5817ae2" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -161,7 +161,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="425" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="425" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="422" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="422" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a620f0f6e8ec0fa6f0c3cdac0754c8d65" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -177,7 +177,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="426" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="426" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="423" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="423" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a43713ed6260c05e57f3cd82720cc12e7" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -193,7 +193,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="427" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="427" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="424" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="424" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a6031eba071333fd6c7cc569d61ab280e" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -209,7 +209,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="429" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="429" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="426" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="426" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1GLOBAL__DIAG0_1a3c574e8a6b1b75a7aa4fed063e7ef473" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -225,7 +225,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="430" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="430" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="427" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="427" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -249,6 +249,6 @@
 </simplesect>
 Default: 0x0600 </para>
     </detaileddescription>
-    <location file="include/TLE92466ED_Registers.hpp" line="415" column="1"/>
+    <location file="include/TLE92466ED_Registers.hpp" line="412" column="1"/>
   </compounddef>
 </doxygen>

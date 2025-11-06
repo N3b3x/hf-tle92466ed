@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Register definitions and bit field mappings for TLE92466ED IC.">
+<g id="a_Node000001"><a xlink:title="Register definitions and bit field mappings for TLE92466ED.">
 <polygon fill="#999999" stroke="#666666" points="452,-171 308,-171 308,-133 452,-133 452,-171"/>
 <text text-anchor="start" x="316" y="-155.8" font-family="Arial" font-size="14.00">include/TLE92466ED</text>
 <text text-anchor="middle" x="380" y="-140.8" font-family="Arial" font-size="14.00">_Registers.hpp</text>

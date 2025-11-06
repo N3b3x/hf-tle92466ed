@@ -66,7 +66,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="TLE92466ED__Registers_8hpp.html" target="_top" xlink:title="Register definitions and bit field mappings for TLE92466ED IC.">
+<g id="a_Node000007"><a xlink:href="TLE92466ED__Registers_8hpp.html" target="_top" xlink:title="Register definitions and bit field mappings for TLE92466ED.">
 <polygon fill="white" stroke="#666666" points="188,-82 0,-82 0,-59 188,-59 188,-82"/>
 <text text-anchor="middle" x="94" y="-66.8" font-family="Arial" font-size="14.00">TLE92466ED_Registers.hpp</text>
 </a>

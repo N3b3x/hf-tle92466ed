@@ -160,7 +160,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="85" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="85" bodyend="101"/>
+        <location file="include/TLE92466ED.hpp" line="82" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="82" bodyend="98"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1ac1de4cdc9257b7d596222fcf888eb7c3" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -255,7 +255,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="41" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="41" bodyend="52"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="38" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="38" bodyend="49"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1a3ebca0271bdf6787df6bf72e834e46e3" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -304,7 +304,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="123" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="123" bodyend="128"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="120" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="120" bodyend="125"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1aa27c516cf61148a416ccab1c79f37b51" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -362,7 +362,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="133" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="133" bodyend="139"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="130" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="130" bodyend="136"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1a5c10754457d5dff2b773105e94705065" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -438,7 +438,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="740" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="740" bodyend="749"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="737" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="737" bodyend="746"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1a057b583027ebf8bcb8d65949cd12a7a5" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -505,7 +505,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="754" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="754" bodyend="761"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="751" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="751" bodyend="758"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1aa7a63a8ffb21e78b6d650a9574115ccb" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -555,7 +555,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="766" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="766" bodyend="771"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="763" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="763" bodyend="768"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1ad1c8947068645cc63af64e2a0e162b6d" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -604,7 +604,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="776" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="776" bodyend="781"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="773" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="773" bodyend="778"/>
       </memberdef>
       <memberdef kind="enum" id="namespaceTLE92466ED_1aa1fa8e45dfa0d762330e89dae1ad3de2" prot="public" static="no" strong="yes">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -653,7 +653,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="786" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="786" bodyend="791"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="783" column="1" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="783" bodyend="788"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="typedef">
@@ -675,7 +675,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED.hpp" line="107" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="107" bodyend="-1"/>
+        <location file="include/TLE92466ED.hpp" line="104" column="1" bodyfile="include/TLE92466ED.hpp" bodystart="104" bodyend="-1"/>
       </memberdef>
       <memberdef kind="typedef" id="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" prot="public" static="no">
         <templateparamlist>
@@ -705,7 +705,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_HAL.hpp" line="62" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="62" bodyend="-1"/>
+        <location file="include/TLE92466ED_HAL.hpp" line="59" column="1" bodyfile="include/TLE92466ED_HAL.hpp" bodystart="59" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="func">
@@ -738,7 +738,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="802" column="21" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="802" bodyend="804"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="799" column="21" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="799" bodyend="801"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1ada6620b9e0db0f74d7403d53143ee58d" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -781,7 +781,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="812" column="21" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="812" bodyend="814"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="809" column="21" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="809" bodyend="811"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1a34fc53608a9f21c10fd2cd5c0fbfa153" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -800,7 +800,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="819" column="20" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="819" bodyend="821"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="816" column="20" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="816" bodyend="818"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1a0c8921ab64a00dc6a5933c118be26494" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">bool</ref></type>
@@ -819,7 +819,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="826" column="17" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="826" bodyend="828"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="823" column="17" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="823" bodyend="825"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1a894bb2908c45147e7eec29ffc7cdb857" prot="public" static="no" constexpr="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -863,7 +863,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="846" column="20" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="846" bodyend="862"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="843" column="20" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="843" bodyend="859"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1aa7de05cebe6756180b9ac51564f9b984" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint8_t</ref></type>
@@ -894,7 +894,7 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="869" column="17" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="869" bodyend="873"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="866" column="17" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="866" bodyend="870"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1a05a50a8940997f5faace920e571f394d" prot="public" static="no" const="no" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">bool</ref></type>
@@ -925,13 +925,13 @@ This provides a modern, safe way to return either a success value or an error. <
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="880" column="14" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="880" bodyend="886"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="877" column="14" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="877" bodyend="883"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="include/TLE92466ED.hpp" line="80" column="1"/>
+    <location file="include/TLE92466ED.hpp" line="77" column="1"/>
   </compounddef>
 </doxygen>

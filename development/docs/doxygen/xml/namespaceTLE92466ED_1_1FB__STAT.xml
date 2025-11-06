@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="496" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="496" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="493" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="493" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1FB__STAT_1acc69e5636dd1d3eb2baeea4cfed74892" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="497" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="497" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="494" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="494" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1FB__STAT_1a27c79fcb8825357417650f885e66ffa3" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -49,7 +49,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="498" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="498" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="495" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="495" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1FB__STAT_1a29114db974921099a5b2257197c568e5" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -65,7 +65,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="499" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="499" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="496" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="496" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespaceTLE92466ED_1_1FB__STAT_1aa1fb8199c3dbd2bb55cd03d229834c07" prot="public" static="no" constexpr="yes" mutable="no">
         <type><ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">constexpr</ref> <ref refid="namespaceTLE92466ED_1ace8545b883d782cbafef27cd122968d1" kindref="member">uint16_t</ref></type>
@@ -81,7 +81,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="include/TLE92466ED_Registers.hpp" line="500" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="500" bodyend="-1"/>
+        <location file="include/TLE92466ED_Registers.hpp" line="497" column="24" bodyfile="include/TLE92466ED_Registers.hpp" bodystart="497" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -90,6 +90,6 @@
     <detaileddescription>
 <para>General feedback and status information. </para>
     </detaileddescription>
-    <location file="include/TLE92466ED_Registers.hpp" line="495" column="1"/>
+    <location file="include/TLE92466ED_Registers.hpp" line="492" column="1"/>
   </compounddef>
 </doxygen>

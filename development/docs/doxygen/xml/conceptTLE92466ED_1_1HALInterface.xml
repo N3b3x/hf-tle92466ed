@@ -32,6 +32,6 @@ concept <ref refid="conceptTLE92466ED_1_1HALInterface" kindref="compound">TLE924
 </parameterlist>
 This C++20 concept ensures at compile-time that a class properly implements the HAL interface. Provides better error messages than traditional template constraints. </para>
     </detaileddescription>
-    <location file="include/TLE92466ED_HAL.hpp" line="332" column="1"/>
+    <location file="include/TLE92466ED_HAL.hpp" line="329" column="1"/>
   </compounddef>
 </doxygen>

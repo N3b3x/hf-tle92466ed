@@ -1,10 +1,7 @@
 /**
  * @file TLE92466ED_HAL.hpp
  * @brief Hardware Abstraction Layer (HAL) base class for TLE92466ED driver
- * @author AI Generated Driver
- * @date 2025-10-20
- * @version 2.0.0
- *
+ 
  * @details
  * This file defines the hardware abstraction layer interface for the TLE92466ED
  * Six-Channel Low-Side Solenoid Driver IC. The HAL provides a polymorphic interface

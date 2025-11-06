@@ -1,10 +1,7 @@
 /**
  * @file TLE92466ED.hpp
  * @brief Main driver class for TLE92466ED Six-Channel Low-Side Solenoid Driver IC
- * @author AI Generated Driver
- * @date 2025-10-20
- * @version 2.0.0
- *
+ 
  * @details
  * Comprehensive C++23 driver for the Infineon TLE92466ED IC. This driver provides
  * a complete, feature-rich interface to all capabilities of the IC including:

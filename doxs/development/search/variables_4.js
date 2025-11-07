@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['g_5fdriver_0',['g_driver',['../BasicUsageExample_8cpp.html#ac1757f06a5de1272b64a63221d447a7c',1,'BasicUsageExample.cpp']]],
-  ['g_5fgpio14_5finitialized_1',['g_gpio14_initialized',['../TLE92466ED__TestFramework_8hpp.html#ae2244c7a6c3cf5cc171264032838bed1',1,'TLE92466ED_TestFramework.hpp']]],
-  ['g_5fgpio14_5fstate_2',['g_gpio14_state',['../TLE92466ED__TestFramework_8hpp.html#a0f5de63264bd9a08624fa9d89b4248a2',1,'TLE92466ED_TestFramework.hpp']]],
-  ['g_5fhal_3',['g_hal',['../BasicUsageExample_8cpp.html#a24db71501f93a69b4c6eea17c2b6bd36',1,'BasicUsageExample.cpp']]],
-  ['g_5ftest_5fresults_4',['g_test_results',['../TLE92466ED__TestFramework_8hpp.html#aaff89257c54366921eebb8ec1348b1fd',1,'TLE92466ED_TestFramework.hpp']]]
+  ['en_0',['EN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a9d17758f1c459951f04a5e932f6b9157',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['en_5fpin_1',['en_pin',['../structArduino__HAL_1_1SPIConfig.html#a7de47950621c64859459f02a0d1dd332',1,'Arduino_HAL::SPIConfig::en_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a648f48729a53eeb2fdfaabec0006884e',1,'Esp32TleCommInterface::SPIConfig::en_pin']]],
+  ['enable_5fauto_5frecovery_2',['ENABLE_AUTO_RECOVERY',['../structTLE92466ED__TestConfig_1_1AppConfig.html#a3ef17aa73f6bc44607cc2f83bf3c7745',1,'TLE92466ED_TestConfig::AppConfig']]],
+  ['enable_5fdebug_5flogging_3',['ENABLE_DEBUG_LOGGING',['../structTLE92466ED__TestConfig_1_1AppConfig.html#a6bdda711f77ba91e423e1502c5b2a397',1,'TLE92466ED_TestConfig::AppConfig']]],
+  ['enable_5fperformance_5fmonitoring_4',['ENABLE_PERFORMANCE_MONITORING',['../structTLE92466ED__TestConfig_1_1AppConfig.html#af8de3a818970b3ca408963b48605eb30',1,'TLE92466ED_TestConfig::AppConfig']]],
+  ['enable_5fspi_5flogging_5',['ENABLE_SPI_LOGGING',['../structTLE92466ED__TestConfig_1_1AppConfig.html#a979487f02eb09e526f8a9cac2e322fbc',1,'TLE92466ED_TestConfig::AppConfig']]]
 ];

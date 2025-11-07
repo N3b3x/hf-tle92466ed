@@ -1,16 +1,17 @@
 var searchData=
 [
-  ['pair_5f0_5fch_5fa_0',['PAIR_0_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a6d7c27f55a1db6a5e3ba91321a01104f',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f0_5fch_5fb_1',['PAIR_0_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a34084a19eb99c32ddc1a1c7754f05eac',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f1_5fch_5fa_2',['PAIR_1_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a650fc9f110acf829d92e7a2d5f309eff',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f1_5fch_5fb_3',['PAIR_1_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a05e64db387c9544f030fe0e698cda8be',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f2_5fch_5fa_4',['PAIR_2_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a329b179d18964622bd1050cfd18abf00',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f2_5fch_5fb_5',['PAIR_2_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#abf6d883cf20900de8bdae99d8cfcafb5',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['parallel_5fchannel_5fmax_6',['PARALLEL_CHANNEL_MAX',['../structTLE92466ED__Config_1_1CurrentLimits.html#a1e7e33a854c9c3cb2e7046eb4e29ae68',1,'TLE92466ED_Config::CurrentLimits']]],
-  ['passed_5ftests_7',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['performance_5fmonitoring_5fdemo_8',['performance_monitoring_demo',['../MultiChannelExample_8cpp.html#af31e7fc1e2ae1c4a07ef1187bf4e443f',1,'MultiChannelExample.cpp']]],
-  ['poll_5finterval_5fms_9',['POLL_INTERVAL_MS',['../structTLE92466ED__Config_1_1Diagnostics.html#a1b7f0796c570226570644a76e6e73215',1,'TLE92466ED_Config::Diagnostics']]],
-  ['power_5fon_5fdelay_5fms_10',['POWER_ON_DELAY_MS',['../structTLE92466ED__Config_1_1Timing.html#a29fdf0c53105932747e8d5864a3b06b5',1,'TLE92466ED_Config::Timing']]],
-  ['print_5fsummary_11',['print_summary',['../structTestResults.html#a630453426a26294b000f09ecc9063329',1,'TestResults']]],
-  ['print_5ftest_5fsection_5fstatus_12',['print_test_section_status',['../TLE92466ED__TestFramework_8hpp.html#aae72eb91e8194f94255a11e08192ac11',1,'TLE92466ED_TestFramework.hpp']]]
+  ['pair_0',['PAIR',['../structSolenoid2Config.html#a6acad435513fc810413b6ef7798f9ab4',1,'Solenoid2Config']]],
+  ['parallel_5fchannel_5fmax_1',['PARALLEL_CHANNEL_MAX',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a5f5b2f3b210b4d67252cb7642d9e7090',1,'TLE92466ED_TestConfig::CurrentLimits']]],
+  ['parallel_5fmode_2',['PARALLEL_MODE',['../structSolenoid1Config.html#a9c997115be102f6fa179821485844680',1,'Solenoid1Config::PARALLEL_MODE'],['../structSolenoid2Config.html#a4e4a6ac8ec60d7da4d74a3e0b54e94c5',1,'Solenoid2Config::PARALLEL_MODE']]],
+  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['pin_4',['PIN',['../structTLE92466ED__TestConfig_1_1ADCConfig.html#a47c51ee1182fcb7bebc014c0db817846',1,'TLE92466ED_TestConfig::ADCConfig']]],
+  ['poll_5finterval_5fms_5',['POLL_INTERVAL_MS',['../structTLE92466ED__TestConfig_1_1Diagnostics.html#ad09514c1c6265b7427e1b87380f9f294',1,'TLE92466ED_TestConfig::Diagnostics']]],
+  ['power_5fon_5fdelay_5fms_6',['POWER_ON_DELAY_MS',['../structTLE92466ED__TestConfig_1_1Timing.html#a1f88aa3a269db676482a797545b65476',1,'TLE92466ED_TestConfig::Timing']]],
+  ['primary_5fchannel_7',['PRIMARY_CHANNEL',['../structSolenoid2Config.html#a66d95aa4da24c15cf5b7c7b71d0ca51c',1,'Solenoid2Config']]],
+  ['print_5fchannel_5fdiagnostics_8',['print_channel_diagnostics',['../DriverIntegrationTest_8cpp.html#ab1392a0ca089a059fb3dfd7fddac69ba',1,'DriverIntegrationTest.cpp']]],
+  ['print_5fdevice_5fstatus_9',['print_device_status',['../DriverIntegrationTest_8cpp.html#a80233776e6e686d797ce641472542b03',1,'DriverIntegrationTest.cpp']]],
+  ['print_5fdevice_5ftelemetry_10',['print_device_telemetry',['../SolenoidControlTest_8cpp.html#adec0a6b3616c9e4cabb444bff299ac8e',1,'SolenoidControlTest.cpp']]],
+  ['print_5fsolenoid_5ftelemetry_11',['print_solenoid_telemetry',['../SolenoidControlTest_8cpp.html#a17ca04cd9442f88cbb4e8b981742280f',1,'SolenoidControlTest.cpp']]],
+  ['print_5fsummary_12',['print_summary',['../structTestResults.html#a630453426a26294b000f09ecc9063329',1,'TestResults']]],
+  ['print_5ftest_5fsection_5fstatus_13',['print_test_section_status',['../TLE92466ED__TestFramework_8hpp.html#aae72eb91e8194f94255a11e08192ac11',1,'TLE92466ED_TestFramework.hpp']]]
 ];

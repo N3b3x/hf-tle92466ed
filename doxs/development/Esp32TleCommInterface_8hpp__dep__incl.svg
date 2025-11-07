@@ -46,7 +46,7 @@
   </g>
 </defs>
 <script type="application/ecmascript">
-var viewWidth = 591;
+var viewWidth = 579;
 var viewHeight = 120;
 var sectionId = 'dynsection-1';
 </script>
@@ -58,19 +58,19 @@ var sectionId = 'dynsection-1';
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="ESP32 Communication Interface implementation for TLE92466ED driver.">
-<polygon fill="#999999" stroke="#666666" points="386,-112 189,-112 189,-74 386,-74 386,-112"/>
-<text text-anchor="start" x="197" y="-96.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
-<text text-anchor="middle" x="287.5" y="-81.8" font-family="Arial" font-size="14.00">/Esp32TleCommInterface.hpp</text>
+<polygon fill="#999999" stroke="#666666" points="385.5,-112 188.5,-112 188.5,-74 385.5,-74 385.5,-112"/>
+<text text-anchor="start" x="196.5" y="-96.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
+<text text-anchor="middle" x="287" y="-81.8" font-family="Arial" font-size="14.00">/Esp32TleCommInterface.hpp</text>
 </a>
 </g>
 </g>
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="BasicUsageExample_8cpp.html" target="_top" xlink:title="Basic usage example for TLE92466ED driver on ESP32&#45;C6.">
-<polygon fill="white" stroke="#666666" points="171,-38 0,-38 0,0 171,0 171,-38"/>
+<g id="a_Node000002"><a xlink:href="DriverIntegrationTest_8cpp.html" target="_top" xlink:title="Comprehensive Integration Test Suite for TLE92466ED Driver.">
+<polygon fill="white" stroke="#666666" points="170,-38 0,-38 0,0 170,0 170,-38"/>
 <text text-anchor="start" x="8" y="-22.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
-<text text-anchor="middle" x="85.5" y="-7.8" font-family="Arial" font-size="14.00">/BasicUsageExample.cpp</text>
+<text text-anchor="middle" x="85" y="-7.8" font-family="Arial" font-size="14.00">/DriverIntegrationTest.cpp</text>
 </a>
 </g>
 </g>
@@ -78,8 +78,8 @@ var sectionId = 'dynsection-1';
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M227.18,-70.5C198.2,-60.17 163.85,-47.93 136.23,-38.08"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="226.19,-73.86 236.79,-73.92 228.54,-67.27 226.19,-73.86"/>
+<path fill="none" stroke="#63b8ff" d="M226.68,-70.5C197.7,-60.17 163.35,-47.93 135.73,-38.08"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="225.69,-73.86 236.29,-73.92 228.04,-67.27 225.69,-73.86"/>
 </a>
 </g>
 </g>
@@ -87,9 +87,9 @@ var sectionId = 'dynsection-1';
 <g id="Node000003" class="node">
 <title>Node3</title>
 <g id="a_Node000003"><a xlink:href="Esp32TleCommInterface_8cpp.html" target="_top" xlink:title="ESP32 Communication Interface implementation for TLE92466ED driver.">
-<polygon fill="white" stroke="#666666" points="386,-38 189,-38 189,0 386,0 386,-38"/>
-<text text-anchor="start" x="197" y="-22.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
-<text text-anchor="middle" x="287.5" y="-7.8" font-family="Arial" font-size="14.00">/Esp32TleCommInterface.cpp</text>
+<polygon fill="white" stroke="#666666" points="385.5,-38 188.5,-38 188.5,0 385.5,0 385.5,-38"/>
+<text text-anchor="start" x="196.5" y="-22.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
+<text text-anchor="middle" x="287" y="-7.8" font-family="Arial" font-size="14.00">/Esp32TleCommInterface.cpp</text>
 </a>
 </g>
 </g>
@@ -97,18 +97,18 @@ var sectionId = 'dynsection-1';
 <g id="edge2_Node000001_Node000003" class="edge">
 <title>Node1&#45;&gt;Node3</title>
 <g id="a_edge2_Node000001_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M287.5,-63.57C287.5,-55.11 287.5,-46.06 287.5,-38.41"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="284,-63.83 287.5,-73.83 291,-63.83 284,-63.83"/>
+<path fill="none" stroke="#63b8ff" d="M287,-63.57C287,-55.11 287,-46.06 287,-38.41"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="283.5,-63.83 287,-73.83 290.5,-63.83 283.5,-63.83"/>
 </a>
 </g>
 </g>
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="MultiChannelExample_8cpp.html" target="_top" xlink:title="Multi&#45;channel control example for TLE92466ED driver on ESP32&#45;C6.">
-<polygon fill="white" stroke="#666666" points="583,-38 404,-38 404,0 583,0 583,-38"/>
-<text text-anchor="start" x="412" y="-22.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
-<text text-anchor="middle" x="493.5" y="-7.8" font-family="Arial" font-size="14.00">/MultiChannelExample.cpp</text>
+<g id="a_Node000004"><a xlink:href="SolenoidControlTest_8cpp.html" target="_top" xlink:title="Real Hardware Solenoid Control Test with ADC&#45;Based Current Control.">
+<polygon fill="white" stroke="#666666" points="570.5,-38 403.5,-38 403.5,0 570.5,0 570.5,-38"/>
+<text text-anchor="start" x="411.5" y="-22.8" font-family="Arial" font-size="14.00">examples/esp32/main</text>
+<text text-anchor="middle" x="487" y="-7.8" font-family="Arial" font-size="14.00">/SolenoidControlTest.cpp</text>
 </a>
 </g>
 </g>
@@ -116,8 +116,8 @@ var sectionId = 'dynsection-1';
 <g id="edge3_Node000001_Node000004" class="edge">
 <title>Node1&#45;&gt;Node4</title>
 <g id="a_edge3_Node000001_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M349.01,-70.5C378.57,-60.17 413.6,-47.93 441.76,-38.08"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="347.5,-67.32 339.22,-73.92 349.81,-73.93 347.5,-67.32"/>
+<path fill="none" stroke="#63b8ff" d="M346.72,-70.5C375.42,-60.17 409.42,-47.93 436.77,-38.08"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="345.43,-67.24 337.21,-73.92 347.8,-73.83 345.43,-67.24"/>
 </a>
 </g>
 </g>

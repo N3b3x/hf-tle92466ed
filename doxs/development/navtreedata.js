@@ -26,7 +26,11 @@ var NAVTREE =
 [
   [ "TLE92466ED Driver", "index.html", [
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Functions", "namespacemembers_func.html", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -53,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Arduino__HAL_8cpp.html",
-"structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e"
+"structTLE92466ED__TestConfig_1_1CurrentLimits.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

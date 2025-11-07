@@ -1,21 +1,25 @@
 var hierarchy =
 [
-    [ "TLE92466ED_Config::AppConfig", "structTLE92466ED__Config_1_1AppConfig.html", null ],
-    [ "TLE92466ED_Config::ChannelPairs", "structTLE92466ED__Config_1_1ChannelPairs.html", null ],
+    [ "ADCConfig", "structADCConfig.html", null ],
+    [ "TLE92466ED_TestConfig::ADCConfig", "structTLE92466ED__TestConfig_1_1ADCConfig.html", null ],
+    [ "TLE92466ED_TestConfig::AppConfig", "structTLE92466ED__TestConfig_1_1AppConfig.html", null ],
     [ "TLE92466ED::CommInterface", null, [
       [ "Arduino_HAL", "classArduino__HAL.html", null ],
       [ "Esp32TleCommInterface", "classEsp32TleCommInterface.html", null ]
     ] ],
-    [ "TLE92466ED_Config::CurrentLimits", "structTLE92466ED__Config_1_1CurrentLimits.html", null ],
-    [ "TLE92466ED_Config::Diagnostics", "structTLE92466ED__Config_1_1Diagnostics.html", null ],
+    [ "TLE92466ED_TestConfig::ControlPins", "structTLE92466ED__TestConfig_1_1ControlPins.html", null ],
+    [ "TLE92466ED_TestConfig::CurrentLimits", "structTLE92466ED__TestConfig_1_1CurrentLimits.html", null ],
+    [ "TLE92466ED_TestConfig::Diagnostics", "structTLE92466ED__TestConfig_1_1Diagnostics.html", null ],
+    [ "Solenoid1Config", "structSolenoid1Config.html", null ],
+    [ "Solenoid2Config", "structSolenoid2Config.html", null ],
     [ "Arduino_HAL::SPIConfig", "structArduino__HAL_1_1SPIConfig.html", null ],
     [ "Esp32TleCommInterface::SPIConfig", "structEsp32TleCommInterface_1_1SPIConfig.html", null ],
-    [ "TLE92466ED_Config::SPIParams", "structTLE92466ED__Config_1_1SPIParams.html", null ],
-    [ "TLE92466ED_Config::SPIPins", "structTLE92466ED__Config_1_1SPIPins.html", null ],
-    [ "TLE92466ED_Config::SupplyVoltage", "structTLE92466ED__Config_1_1SupplyVoltage.html", null ],
-    [ "TLE92466ED_Config::Temperature", "structTLE92466ED__Config_1_1Temperature.html", null ],
-    [ "TLE92466ED_Config::TestConfig", "structTLE92466ED__Config_1_1TestConfig.html", null ],
+    [ "TLE92466ED_TestConfig::SPIParams", "structTLE92466ED__TestConfig_1_1SPIParams.html", null ],
+    [ "TLE92466ED_TestConfig::SPIPins", "structTLE92466ED__TestConfig_1_1SPIPins.html", null ],
+    [ "TLE92466ED_TestConfig::SupplyVoltage", "structTLE92466ED__TestConfig_1_1SupplyVoltage.html", null ],
+    [ "TLE92466ED_TestConfig::Temperature", "structTLE92466ED__TestConfig_1_1Temperature.html", null ],
+    [ "TLE92466ED_TestConfig::TestConfig", "structTLE92466ED__TestConfig_1_1TestConfig.html", null ],
     [ "TestResults", "structTestResults.html", null ],
     [ "TestTaskContext", "structTestTaskContext.html", null ],
-    [ "TLE92466ED_Config::Timing", "structTLE92466ED__Config_1_1Timing.html", null ]
+    [ "TLE92466ED_TestConfig::Timing", "structTLE92466ED__TestConfig_1_1Timing.html", null ]
 ];

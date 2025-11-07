@@ -172,6 +172,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aaba77fee74ef43454bf28cb9aff0c704" id="r_aaba77fee74ef43454bf28cb9aff0c704"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaba77fee74ef43454bf28cb9aff0c704">GetGpioPin</a> (ControlPin pin) noexcept -&gt; CommResult&lt; ActiveLevel &gt; override</td></tr>
 <tr class="memdesc:aaba77fee74ef43454bf28cb9aff0c704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get GPIO control pin level.  <br /></td></tr>
 <tr class="separator:aaba77fee74ef43454bf28cb9aff0c704"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad42bff82ecd69a28fccb4d81ab6236e0" id="r_ad42bff82ecd69a28fccb4d81ab6236e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad42bff82ecd69a28fccb4d81ab6236e0">Log</a> (LogLevel level, const char *tag, const char *format,...) noexcept override</td></tr>
+<tr class="memdesc:ad42bff82ecd69a28fccb4d81ab6236e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message with specified severity level and tag (ESP_LOG implementation)  <br /></td></tr>
+<tr class="separator:ad42bff82ecd69a28fccb4d81ab6236e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a2a8f016a83d2e2d582bcdbcf289ce" id="r_a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50a2a8f016a83d2e2d582bcdbcf289ce">isInitialized</a> () const noexcept -&gt; bool</td></tr>
 <tr class="memdesc:a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if CommInterface is initialized.  <br /></td></tr>
 <tr class="separator:a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -681,6 +684,56 @@ Static Private Attributes</h2></td></tr>
 
 <p>Check if hardware is ready for communication. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if ready, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="ad42bff82ecd69a28fccb4d81ab6236e0" name="ad42bff82ecd69a28fccb4d81ab6236e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad42bff82ecd69a28fccb4d81ab6236e0">&#9670;&#160;</a></span>Log()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Esp32TleCommInterface::Log </td>
+          <td>(</td>
+          <td class="paramtype">LogLevel</td>          <td class="paramname"><span class="paramname"><em>level</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Log a message with specified severity level and tag (ESP_LOG implementation) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Log severity level </td></tr>
+    <tr><td class="paramname">tag</td><td>Tag/component name for the log message </td></tr>
+    <tr><td class="paramname">format</td><td>Format string (printf-style) </td></tr>
+    <tr><td class="paramname">...</td><td>Variable arguments for format string </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

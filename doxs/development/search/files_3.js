@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['multichannelexample_2ecpp_0',['MultiChannelExample.cpp',['../MultiChannelExample_8cpp.html',1,'']]]
+  ['solenoidcontroltest_2ecpp_0',['SolenoidControlTest.cpp',['../SolenoidControlTest_8cpp.html',1,'']]]
 ];

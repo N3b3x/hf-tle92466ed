@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['tag_0',['TAG',['../classEsp32TleCommInterface.html#a150d8ac326e8be8978d32be9d94c903c',1,'Esp32TleCommInterface']]],
-  ['tag_1',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
-  ['tag_2',['TAG',['../BasicUsageExample_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c',1,'TAG:&#160;BasicUsageExample.cpp'],['../MultiChannelExample_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c',1,'TAG:&#160;MultiChannelExample.cpp']]],
-  ['test_5fduration_5fms_3',['TEST_DURATION_MS',['../structTLE92466ED__Config_1_1TestConfig.html#aa245b71ababc219043a15e36c0d32bbf',1,'TLE92466ED_Config::TestConfig']]],
-  ['test_5ffunc_4',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
-  ['test_5fname_5',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
-  ['test_5fprogress_5fpin_6',['TEST_PROGRESS_PIN',['../TLE92466ED__TestFramework_8hpp.html#a0897f1535fcbb73063a032f07550b12e',1,'TLE92466ED_TestFramework.hpp']]],
-  ['total_5fexecution_5ftime_5fus_7',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5ftests_8',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]]
+  ['ramp_5fstep_5fdelay_5fms_0',['RAMP_STEP_DELAY_MS',['../structTLE92466ED__TestConfig_1_1TestConfig.html#aa61db0bd87a2c7ceeea0c5a27ee9c228',1,'TLE92466ED_TestConfig::TestConfig']]],
+  ['ramp_5fstep_5fma_1',['RAMP_STEP_MA',['../structTLE92466ED__TestConfig_1_1TestConfig.html#ad2a6e6656f915d99b58a64ab706b80cb',1,'TLE92466ED_TestConfig::TestConfig']]],
+  ['reset_5fdelay_5fms_2',['RESET_DELAY_MS',['../structTLE92466ED__TestConfig_1_1Timing.html#aba1378da52ce221954d8958323003953',1,'TLE92466ED_TestConfig::Timing']]],
+  ['resn_3',['RESN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a4ecb4cfcaf908b1a16bbb436093c268b',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['resn_5fpin_4',['resn_pin',['../structArduino__HAL_1_1SPIConfig.html#a7cfff9b0d70fe6020626cef0e58cedf7',1,'Arduino_HAL::SPIConfig::resn_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a9b3000b1076cec4f955d6d5e21445f8a',1,'Esp32TleCommInterface::SPIConfig::resn_pin']]],
+  ['resolution_5',['RESOLUTION',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a62d49ba58d58330a2007f5632c4d18c2',1,'TLE92466ED_TestConfig::CurrentLimits']]],
+  ['results_6',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]]
 ];

@@ -17,17 +17,59 @@ namespace TLE92466ED {
 //==============================================================================
 
 DriverResult<void> Driver::Init() noexcept {
-    // 1. Initialize CommInterface
+    // 1. Initialize CommInterface (GPIO and SPI bus only)
     if (auto result = comm_.Init(); !result) {
         return std::unexpected(DriverError::HardwareError);
     }
 
-    // 2. Wait for device power-up (minimum 1ms per datasheet)
-    if (auto result = comm_.Delay(2000); !result) {  // 2ms = 2000 microseconds
+    // 2. Perform device reset sequence
+    // RESN is active low: LOW = reset, HIGH = normal operation
+    // EN is active high: HIGH = enabled, LOW = disabled
+    // We keep EN disabled during initialization - user must explicitly enable
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Performing device reset sequence...\n");
+    
+    // Step 1: Ensure EN is LOW (disabled) during reset
+    if (auto result = SetEnable(false); !result) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", 
+                  "Failed to set EN pin LOW (error: %u) - continuing anyway\n",
+                  static_cast<unsigned>(result.error()));
+    }
+    
+    // Step 2: Hold device in reset (LOW)
+    if (auto result = SetReset(true); !result) {
+        comm_.Log(LogLevel::Error, "TLE92466ED", 
+                  "Failed to hold device in reset (error: %u)\n",
+                  static_cast<unsigned>(result.error()));
         return std::unexpected(DriverError::HardwareError);
     }
+    comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set LOW (device in reset)\n");
+    
+    // Step 3: Wait for reset pulse duration (minimum 10ms per datasheet)
+    if (auto result = comm_.Delay(10000); !result) {  // 10ms = 10000 microseconds
+        return std::unexpected(DriverError::HardwareError);
+    }
+    
+    // Step 4: Release reset (HIGH)
+    if (auto result = SetReset(false); !result) {
+        comm_.Log(LogLevel::Error, "TLE92466ED", 
+                  "Failed to release device from reset (error: %u)\n",
+                  static_cast<unsigned>(result.error()));
+        return std::unexpected(DriverError::HardwareError);
+    }
+    comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set HIGH (device released from reset)\n");
+    
+    // Step 5: Wait for device to stabilize after reset release (minimum 10ms per datasheet)
+    if (auto result = comm_.Delay(10000); !result) {  // 10ms = 10000 microseconds
+        return std::unexpected(DriverError::HardwareError);
+    }
+    
+    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Device reset sequence completed (EN remains disabled)\n");
 
-    // 3. Verify device communication by reading IC version
+    // 3. Read and diagnose CLK_DIV register to check clock configuration
+    // This helps diagnose clock-related critical faults early
+    diagnoseClockConfiguration();
+
+    // 4. Verify device communication by reading IC version
     auto verify_result = VerifyDevice();
     if (!verify_result) {
         return std::unexpected(verify_result.error());
@@ -36,22 +78,23 @@ DriverResult<void> Driver::Init() noexcept {
         return std::unexpected(DriverError::WrongDeviceID);
     }
 
-    // 4. Device starts in Config Mode after power-up
+    // 5. Device starts in Config Mode after power-up
     mission_mode_ = false;
 
-    // 5. Apply default configuration
+    // 6. Apply default configuration
     if (auto result = applyDefaultConfig(); !result) {
         return std::unexpected(result.error());
     }
 
-    // 6. Clear any power-on reset flags
-    if (auto result = ClearFaults(); !result) {
+    // 7. Clear any power-on reset flags (skip initialization check during Init)
+    if (auto result = clearFaultsInternal(); !result) {
         return std::unexpected(result.error());
     }
 
-    // 7. Initialize cached state
+    // 8. Initialize cached state
     channel_enable_cache_ = 0;
     channel_setpoints_.fill(0);
+    crc_enabled_ = false;  // CRC starts disabled until user explicitly enables it
 
     initialized_ = true;
     return {};
@@ -67,8 +110,12 @@ DriverResult<void> Driver::applyDefaultConfig() noexcept {
         return std::unexpected(result.error());
     }
 
+    // Update internal CRC enable state (CRC_EN is enabled in default config)
+    crc_enabled_ = true;
+
     // Set default VBAT thresholds (UV=7V, OV=40V)
-    if (auto result = SetVbatThresholds(7.0f, 40.0f); !result) {
+    // Use internal version that doesn't check initialization (called during Init)
+    if (auto result = setVbatThresholdsInternal(7.0f, 40.0f); !result) {
         return std::unexpected(result.error());
     }
 
@@ -112,6 +159,8 @@ DriverResult<void> Driver::EnterMissionMode() noexcept {
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Mission Mode\n");
+
     // Set OP_MODE bit in CH_CTRL register
     if (auto result = ModifyRegister(CentralReg::CH_CTRL, 
                                       CH_CTRL::OP_MODE, 
@@ -120,6 +169,7 @@ DriverResult<void> Driver::EnterMissionMode() noexcept {
     }
 
     mission_mode_ = true;
+    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Mission Mode entered\n");
     return {};
 }
 
@@ -127,6 +177,8 @@ DriverResult<void> Driver::EnterConfigMode() noexcept {
     if (auto result = checkInitialized(); !result) {
         return result;
     }
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Config Mode\n");
 
     // Clear OP_MODE bit in CH_CTRL register
     if (auto result = ModifyRegister(CentralReg::CH_CTRL, 
@@ -136,6 +188,7 @@ DriverResult<void> Driver::EnterConfigMode() noexcept {
     }
 
     mission_mode_ = false;
+    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Config Mode entered\n");
     return {};
 }
 
@@ -153,6 +206,15 @@ DriverResult<void> Driver::ConfigureGlobal(const GlobalConfig& config) noexcept 
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring global settings: CRC=%s, SPI_WD=%s, CLK_WD=%s, VIO_5V=%s, "
+              "UV=%.2fV, OV=%.2fV, WD_Reload=%u\n",
+              config.crc_enabled ? "enabled" : "disabled",
+              config.spi_watchdog_enabled ? "enabled" : "disabled",
+              config.clock_watchdog_enabled ? "enabled" : "disabled",
+              config.vio_5v ? "true" : "false",
+              config.vbat_uv_voltage, config.vbat_ov_voltage,
+              config.spi_watchdog_reload);
+
     // Build GLOBAL_CONFIG register value
     uint16_t global_cfg = 0;
     if (config.clock_watchdog_enabled) global_cfg |= GLOBAL_CONFIG::CLK_WD_EN;
@@ -163,6 +225,9 @@ DriverResult<void> Driver::ConfigureGlobal(const GlobalConfig& config) noexcept 
     if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg); !result) {
         return std::unexpected(result.error());
     }
+    
+    // Update internal CRC enable state
+    crc_enabled_ = config.crc_enabled;
 
     // Configure VBAT thresholds
     if (auto result = SetVbatThresholds(config.vbat_uv_voltage, 
@@ -186,9 +251,19 @@ DriverResult<void> Driver::SetCrcEnabled(bool enabled) noexcept {
         return result;
     }
 
-    return ModifyRegister(CentralReg::GLOBAL_CONFIG,
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting CRC enabled: %s\n", enabled ? "true" : "false");
+
+    auto result = ModifyRegister(CentralReg::GLOBAL_CONFIG,
                           GLOBAL_CONFIG::CRC_EN,
                           enabled ? GLOBAL_CONFIG::CRC_EN : 0);
+    
+    if (result) {
+        // Update internal CRC enable state only if register write succeeded
+        crc_enabled_ = enabled;
+        comm_.Log(LogLevel::Info, "TLE92466ED", "CRC enabled state updated: %s\n", enabled ? "true" : "false");
+}
+
+        return result;
 }
 
 DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage) noexcept {
@@ -196,6 +271,12 @@ DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage)
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting VBAT thresholds: UV=%.2fV, OV=%.2fV\n", uv_voltage, ov_voltage);
+
+    return setVbatThresholdsInternal(uv_voltage, ov_voltage);
+}
+
+DriverResult<void> Driver::setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept {
     // Validate voltage range
     if (uv_voltage < 0.0f || uv_voltage > 41.4f || 
         ov_voltage < 0.0f || ov_voltage > 41.4f) {
@@ -215,13 +296,18 @@ DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage)
     }
 
     uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
-    return WriteRegister(CentralReg::VBAT_TH, value);
+    return WriteRegister(CentralReg::VBAT_TH, value, false); // Don't verify CRC during init
 }
 
 DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold, uint8_t ov_threshold) noexcept {
     if (auto result = checkInitialized(); !result) {
         return result;
     }
+
+    float uv_voltage = VBAT_THRESHOLD::CalculateVoltage(uv_threshold);
+    float ov_voltage = VBAT_THRESHOLD::CalculateVoltage(ov_threshold);
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting VBAT thresholds (raw): UV_reg=%u (%.2fV), OV_reg=%u (%.2fV)\n",
+              uv_threshold, uv_voltage, ov_threshold, ov_voltage);
 
     uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
     return WriteRegister(CentralReg::VBAT_TH, value);
@@ -238,12 +324,16 @@ DriverResult<void> Driver::EnableChannel(Channel channel, bool enabled) noexcept
 
     // Channel enable can only be changed in Mission Mode
     if (auto result = checkMissionMode(); !result) {
+        comm_.Log(LogLevel::Error, "TLE92466ED", "Cannot enable/disable channel: Device must be in Mission Mode (currently in Config Mode). Call EnterMissionMode() first.\n");
         return result;
     }
 
     if (!isValidChannelInternal(channel)) {
         return std::unexpected(DriverError::InvalidChannel);
     }
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channel: Channel=%s, Enabled=%s\n",
+              ToString(channel), enabled ? "true" : "false");
 
     uint16_t mask = CH_CTRL::ChannelMask(ToIndex(channel));
 
@@ -269,14 +359,27 @@ DriverResult<void> Driver::EnableChannels(uint8_t channel_mask) noexcept {
     channel_mask &= CH_CTRL::ALL_CH_MASK;
     channel_enable_cache_ = channel_mask;
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channels: Mask=0x%02X (", channel_mask);
+    bool first = true;
+    for (uint8_t ch = 0; ch < 6; ++ch) {
+        if (channel_mask & (1 << ch)) {
+            if (!first) comm_.Log(LogLevel::Info, "TLE92466ED", ", ");
+            comm_.Log(LogLevel::Info, "TLE92466ED", "%s", ToString(static_cast<Channel>(ch)));
+            first = false;
+        }
+    }
+    comm_.Log(LogLevel::Info, "TLE92466ED", ")\n");
+
     return ModifyRegister(CentralReg::CH_CTRL, CH_CTRL::ALL_CH_MASK, channel_mask);
 }
 
 DriverResult<void> Driver::EnableAllChannels() noexcept {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling all channels\n");
     return EnableChannels(CH_CTRL::ALL_CH_MASK);
 }
 
 DriverResult<void> Driver::DisableAllChannels() noexcept {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Disabling all channels\n");
     return EnableChannels(0);
 }
 
@@ -295,6 +398,10 @@ DriverResult<void> Driver::SetChannelMode(Channel channel, ChannelMode mode) noe
     }
 
     uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::MODE);
+    
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting channel mode: Channel=%s, Mode=%s (0x%04X)\n",
+              ToString(channel), ToString(mode), static_cast<uint16_t>(mode));
+    
     return WriteRegister(ch_addr, static_cast<uint16_t>(mode));
 }
 
@@ -322,6 +429,9 @@ DriverResult<void> Driver::SetParallelOperation(ParallelPair pair, bool enabled)
         default:
             return std::unexpected(DriverError::InvalidParameter);
     }
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting parallel operation: Pair=%s, Enabled=%s\n",
+              ToString(pair), enabled ? "true" : "false");
 
     return ModifyRegister(CentralReg::CH_CTRL, mask, enabled ? mask : 0);
 }
@@ -359,6 +469,10 @@ DriverResult<void> Driver::SetCurrentSetpoint(
 
     // Write to SETPOINT register
     uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::SETPOINT);
+    
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting current setpoint: Channel=%s, Current=%u mA, Target=0x%04X, Parallel=%s\n",
+              ToString(channel), current_ma, target, parallel_mode ? "true" : "false");
+    
     return WriteRegister(ch_addr, target);
 }
 
@@ -416,6 +530,9 @@ DriverResult<void> Driver::ConfigurePwmPeriod(
     // Build PERIOD register value
     uint16_t value = PERIOD::BuildRegisterValue(config);
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring PWM period: Channel=%s, Period=%.3f us, Mantissa=%u, Exponent=%u, Register=0x%04X\n",
+              ToString(channel), period_us, config.mantissa, config.exponent, value);
+
     uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
     return WriteRegister(ch_addr, value);
 }
@@ -438,6 +555,11 @@ DriverResult<void> Driver::ConfigurePwmPeriodRaw(
     uint16_t value = period_mantissa | 
                     ((period_exponent & PERIOD::EXP_VALUE_MASK) << PERIOD::EXP_SHIFT) |
                     (low_freq_range ? PERIOD::LOW_FREQ_BIT : 0);
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring PWM period (raw): Channel=%s, Mantissa=%u, Exponent=%u, "
+              "LowFreq=%s, Register=0x%04X\n",
+              ToString(channel), period_mantissa, period_exponent,
+              low_freq_range ? "true" : "false", value);
 
     uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
     return WriteRegister(ch_addr, value);
@@ -474,6 +596,11 @@ DriverResult<void> Driver::ConfigureDither(
     auto config = DITHER::CalculateFromAmplitudeFrequency(
         amplitude_ma, frequency_hz, parallel_mode);
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring dither: Channel=%s, Amplitude=%.2f mA, Frequency=%.2f Hz, "
+              "StepSize=%u, NumSteps=%u, FlatSteps=%u, Parallel=%s\n",
+              ToString(channel), amplitude_ma, frequency_hz,
+              config.step_size, config.num_steps, config.flat_steps, parallel_mode ? "true" : "false");
+
     // Configure dither registers
     return ConfigureDitherRaw(channel, config.step_size, config.num_steps, config.flat_steps);
 }
@@ -493,6 +620,9 @@ DriverResult<void> Driver::ConfigureDitherRaw(
     }
 
     uint16_t ch_base = GetChannelBase(channel);
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring dither (raw): Channel=%s, StepSize=%u, NumSteps=%u, FlatSteps=%u\n",
+              ToString(channel), step_size, num_steps, flat_steps);
 
     // Configure DITHER_CTRL (step size)
     uint16_t ctrl_value = step_size & DITHER_CTRL::STEP_SIZE_MASK;
@@ -525,6 +655,11 @@ DriverResult<void> Driver::ConfigureChannel(
     if (!isValidChannelInternal(channel)) {
         return std::unexpected(DriverError::InvalidChannel);
     }
+
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring channel: %s, Mode=%s, Current=%u mA, "
+              "SlewRate=%s, DiagCurrent=%s, OL_Threshold=%u\n",
+              ToString(channel), ToString(config.mode), config.current_setpoint_ma,
+              ToString(config.slew_rate), ToString(config.diag_current), config.open_load_threshold);
 
     uint16_t ch_base = GetChannelBase(channel);
 
@@ -568,9 +703,9 @@ DriverResult<void> Driver::ConfigureChannel(
     // New code should use ConfigurePwmPeriod(period_us) directly
     if (config.pwm_period_mantissa > 0) {
         if (auto result = ConfigurePwmPeriodRaw(channel, 
-                                                 config.pwm_period_mantissa,
-                                                 config.pwm_period_exponent,
-                                                 false); !result) {
+                                              config.pwm_period_mantissa,
+                                              config.pwm_period_exponent,
+                                              false); !result) {
             return std::unexpected(result.error());
         }
     }
@@ -580,9 +715,9 @@ DriverResult<void> Driver::ConfigureChannel(
     // New code should use ConfigureDither(amplitude_ma, frequency_hz) directly
     if (config.dither_step_size > 0) {
         if (auto result = ConfigureDitherRaw(channel,
-                                             config.dither_step_size,
-                                             config.dither_steps,
-                                             config.dither_flat); !result) {
+                                          config.dither_step_size,
+                                          config.dither_steps,
+                                          config.dither_flat); !result) {
             return std::unexpected(result.error());
         }
         
@@ -795,6 +930,11 @@ DriverResult<void> Driver::ClearFaults() noexcept {
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Clearing all fault flags\n");
+    return clearFaultsInternal();
+}
+
+DriverResult<void> Driver::clearFaultsInternal() noexcept {
     // Write 1s to clear fault bits in GLOBAL_DIAG0 (rwh type - clear on write 1)
     if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0, GLOBAL_DIAG0::CLEAR_ALL); !result) {
         return std::unexpected(result.error());
@@ -823,6 +963,7 @@ DriverResult<bool> Driver::HasAnyFault() noexcept {
 }
 
 DriverResult<void> Driver::SoftwareReset() noexcept {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Performing software reset (entering config mode and disabling all channels)\n");
     // Software reset would require toggling RESN pin or power cycle
     // This IC doesn't have a software reset register
     // Return to config mode and disable all channels instead
@@ -834,6 +975,7 @@ DriverResult<void> Driver::SoftwareReset() noexcept {
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Software reset completed\n");
     return {};
 }
 
@@ -846,6 +988,7 @@ DriverResult<void> Driver::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
         return result;
     }
 
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Reloading SPI watchdog: ReloadValue=%u\n", reload_value);
     return WriteRegister(CentralReg::WD_RELOAD, reload_value);
 }
 
@@ -891,42 +1034,38 @@ DriverResult<std::array<uint16_t, 3>> Driver::GetChipId() noexcept {
 
 DriverResult<bool> Driver::VerifyDevice() noexcept {
     // Read ICVID register to verify device is responding and check device type
-    // Try multiple times in case device needs time to power up
-    constexpr int max_retries = 3;
-    DriverResult<uint16_t> id_result;
+    auto id_result = ReadRegister(CentralReg::ICVID, false); // Don't verify CRC during init
     
-    for (int attempt = 0; attempt < max_retries; ++attempt) {
-        id_result = ReadRegister(CentralReg::ICVID, false); // Don't verify CRC during init
-        
-        if (id_result) {
-            uint16_t icvid = *id_result;
-            
-            // Check if we got a valid response (not all zeros)
-            if (icvid != 0x0000 && icvid != 0xFFFF) {
-                // Validate device ID
-                bool valid = DeviceID::IsValidDevice(icvid);
-                
-                // Log device information for debugging (would require logger interface)
-                // uint8_t device_type = DeviceID::GetDeviceType(icvid);
-                // uint8_t revision = DeviceID::GetRevision(icvid);
-                
-                return valid;
-            }
-        }
-        
-        // If we got all zeros or an error, wait a bit and retry
-        if (attempt < max_retries - 1) {
-            comm_.Delay(1000); // 1ms delay between retries
-        }
-    }
-    
-    // All retries failed
     if (!id_result) {
+        comm_.Log(LogLevel::Error, "TLE92466ED", "Device verification failed: Failed to read ICVID register (error: %u)\n", 
+                  static_cast<unsigned>(id_result.error()));
         return std::unexpected(id_result.error());
     }
+
+    uint16_t icvid = *id_result;
     
-    // Got response but it was invalid (0x0000 or 0xFFFF)
-    return false;
+    // Check if we got a valid response (not all zeros or all ones)
+    if (icvid == 0x0000 || icvid == 0xFFFF) {
+        comm_.Log(LogLevel::Error, "TLE92466ED", "Device verification failed: Invalid ICVID response (0x%04X)\n", icvid);
+        return false;
+    }
+    
+    // Validate device ID
+    bool valid = DeviceID::IsValidDevice(icvid);
+    
+    // Extract and log device information
+    uint8_t device_type = DeviceID::GetDeviceType(icvid);
+    uint8_t revision = DeviceID::GetRevision(icvid);
+    
+    if (valid) {
+        comm_.Log(LogLevel::Info, "TLE92466ED", "Device verified: ICVID=0x%04X, Type=0x%02X, Revision=0x%02X\n", 
+                  icvid, device_type, revision);
+    } else {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "Device verification: ICVID=0x%04X (Type=0x%02X, Rev=0x%02X) - Unknown device type\n", 
+                  icvid, device_type, revision);
+    }
+    
+    return valid;
 }
 
 //==========================================================================
@@ -938,8 +1077,13 @@ DriverResult<uint32_t> Driver::ReadRegister(uint16_t address, bool verify_crc) n
         return std::unexpected(DriverError::HardwareError);
     }
 
+    // Use internal CRC enable state by default
+    // verify_crc=false allows override to disable CRC verification (e.g., during init)
+    // verify_crc=true allows override to force CRC verification
+    bool should_verify_crc = verify_crc ? true : crc_enabled_;
+
     // Use CommInterface Read function (handles frame construction, CRC, and transfer)
-    auto result = comm_.Read(address, verify_crc);
+    auto result = comm_.Read(address, should_verify_crc);
     if (!result) {
         // Map CommInterface error to driver error
         switch (result.error()) {
@@ -963,8 +1107,13 @@ DriverResult<void> Driver::WriteRegister(uint16_t address, uint16_t value, bool 
         return std::unexpected(DriverError::HardwareError);
     }
 
+    // Use internal CRC enable state by default
+    // verify_crc=false allows override to disable CRC verification (e.g., during init)
+    // verify_crc=true allows override to force CRC verification
+    bool should_verify_crc = verify_crc ? true : crc_enabled_;
+
     // Use CommInterface Write function (handles frame construction, CRC, and transfer)
-    auto result = comm_.Write(address, value, verify_crc);
+    auto result = comm_.Write(address, value, should_verify_crc);
     if (!result) {
         // Map CommInterface error to driver error
         switch (result.error()) {
@@ -1113,6 +1262,7 @@ DriverResult<bool> Driver::isChannelParallel(Channel channel) noexcept {
 //==========================================================================
 
 DriverResult<void> Driver::SetReset(bool reset) noexcept {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting reset pin: %s\n", reset ? "LOW (in reset)" : "HIGH (released)");
     // RESN is active low: reset=true means hold in reset (GPIO LOW), reset=false means release (GPIO HIGH)
     ActiveLevel level = reset ? ActiveLevel::INACTIVE : ActiveLevel::ACTIVE;
     
@@ -1125,6 +1275,7 @@ DriverResult<void> Driver::SetReset(bool reset) noexcept {
 }
 
 DriverResult<void> Driver::SetEnable(bool enable) noexcept {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting enable pin: %s\n", enable ? "HIGH (enabled)" : "LOW (disabled)");
     // EN is active high: enable=true means enable outputs (GPIO HIGH), enable=false means disable (GPIO LOW)
     ActiveLevel level = enable ? ActiveLevel::ACTIVE : ActiveLevel::INACTIVE;
     
@@ -1144,6 +1295,77 @@ DriverResult<bool> Driver::IsFault() noexcept {
     
     // FAULTN is active low: ACTIVE means fault detected, INACTIVE means no fault
     return *result == ActiveLevel::ACTIVE;
+}
+
+//==========================================================================
+// DIAGNOSTIC HELPERS
+//==========================================================================
+
+void Driver::diagnoseClockConfiguration() noexcept {
+    // Read CLK_DIV register to check clock configuration
+    // This helps diagnose clock-related critical faults early
+    auto clk_div_result = ReadRegister(CentralReg::CLK_DIV, false); // Don't verify CRC during init
+    
+    if (!clk_div_result) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", 
+                  "Failed to read CLK_DIV register (error: %u) - continuing anyway\n",
+                  static_cast<unsigned>(clk_div_result.error()));
+        return;
+    }
+    
+    uint16_t clk_div = static_cast<uint16_t>(*clk_div_result);
+    
+    // Parse CLK_DIV register fields
+    bool ext_clk = (clk_div & 0x8000) != 0;           // Bit 15: EXT_CLK
+    uint8_t pll_refdiv = (clk_div >> 9) & 0x3F;       // Bits 14:9: PLL_REFDIV (6 bits)
+    uint16_t pll_fbdiv = clk_div & 0x01FF;            // Bits 8:0: PLL_FBDIV (9 bits)
+    
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "═══════════════════════════════════════════════════════════\n");
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "CLK_DIV Register (0x0019): 0x%04X\n", clk_div);
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "  Bit 15 (EXT_CLK): %d (%s)\n", 
+              ext_clk ? 1 : 0,
+              ext_clk ? "External Clock (CLK-pin)" : "Internal Oscillator");
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "  Bits 14:9 (PLL_REFDIV): %d (0x%02X)\n", pll_refdiv, pll_refdiv);
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "  Bits 8:0 (PLL_FBDIV): %d (0x%03X)\n", pll_fbdiv, pll_fbdiv);
+    
+    // Calculate system clock frequency if external clock is used
+    if (ext_clk && pll_refdiv > 0 && pll_fbdiv > 0) {
+        // fSYS = fCLK * (PLL_FBDIV) / (2 * PLL_REFDIV)
+        // We don't know fCLK, but we can show the divider ratio
+        float divider_ratio = static_cast<float>(pll_fbdiv) / (2.0f * static_cast<float>(pll_refdiv));
+        comm_.Log(LogLevel::Info, "TLE92466ED", 
+                  "  PLL Divider Ratio: %.3f (fSYS = fCLK * %.3f)\n", 
+                  divider_ratio, divider_ratio);
+        comm_.Log(LogLevel::Info, "TLE92466ED", 
+                  "  Note: fCLK is the external clock frequency on CLK-pin\n");
+        
+        // Show expected fSYS for common fCLK values
+        comm_.Log(LogLevel::Info, "TLE92466ED", 
+                  "  Expected fSYS for common fCLK values:\n");
+        for (float fclk_mhz = 1.0f; fclk_mhz <= 8.0f; fclk_mhz += 0.5f) {
+            float fsys_mhz = fclk_mhz * divider_ratio;
+            comm_.Log(LogLevel::Info, "TLE92466ED", 
+                      "    fCLK=%.1f MHz -> fSYS=%.2f MHz\n", fclk_mhz, fsys_mhz);
+        }
+    } else if (!ext_clk) {
+        comm_.Log(LogLevel::Info, "TLE92466ED", 
+                  "  Using Internal Oscillator (PLL dividers ignored)\n");
+        comm_.Log(LogLevel::Info, "TLE92466ED", 
+                  "  System clock fSYS is generated from internal oscillator\n");
+    } else {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", 
+                  "  ⚠️  Invalid PLL divider values (PLL_REFDIV=%d, PLL_FBDIV=%d)\n", 
+                  pll_refdiv, pll_fbdiv);
+        comm_.Log(LogLevel::Warn, "TLE92466ED", 
+                  "  This may cause clock watchdog faults!\n");
+    }
+    comm_.Log(LogLevel::Info, "TLE92466ED", 
+              "═══════════════════════════════════════════════════════════\n");
 }
 
 } // namespace TLE92466ED

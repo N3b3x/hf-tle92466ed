@@ -808,25 +808,29 @@ public:
      * @brief Read 16-bit register
      * 
      * @param address Register address (10-bit)
-     * @param verify_crc If true, verify CRC in response
+     * @param verify_crc Override CRC verification (default: uses internal CRC enable state)
      * @return DriverResult<uint32_t> Register value (16-bit or 22-bit depending on reply mode) or error
+     * @note If verify_crc is not explicitly provided, uses internal CRC enable state
+     *       which tracks GLOBAL_CONFIG::CRC_EN. Set to false to override (e.g., during init).
      */
     [[nodiscard]] DriverResult<uint32_t> ReadRegister(
         uint16_t address,
-        bool verify_crc = true) noexcept;
+        bool verify_crc = false) noexcept;
 
     /**
      * @brief Write 16-bit register
      * 
      * @param address Register address (10-bit)
      * @param value Value to write (16-bit)
-     * @param verify_crc If true, verify CRC in response
+     * @param verify_crc Override CRC verification (default: uses internal CRC enable state)
      * @return DriverResult<void> Success or error
+     * @note If verify_crc is not explicitly provided, uses internal CRC enable state
+     *       which tracks GLOBAL_CONFIG::CRC_EN. Set to false to override (e.g., during init).
      */
     [[nodiscard]] DriverResult<void> WriteRegister(
         uint16_t address,
         uint16_t value,
-        bool verify_crc = true) noexcept;
+        bool verify_crc = false) noexcept;
 
     /**
      * @brief Modify register bits
@@ -894,6 +898,19 @@ private:
     [[nodiscard]] DriverResult<void> applyDefaultConfig() noexcept;
 
     /**
+     * @brief Clear faults without checking initialization status (used during Init)
+     */
+    [[nodiscard]] DriverResult<void> clearFaultsInternal() noexcept;
+
+    /**
+     * @brief Set VBAT thresholds without checking initialization status (used during Init)
+     * @param uv_voltage Under-voltage threshold in volts
+     * @param ov_voltage Over-voltage threshold in volts
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept;
+
+    /**
      * @brief Parse SPI status from reply frame
      */
     [[nodiscard]] DriverResult<void> checkSpiStatus(const SPIFrame& rx_frame) noexcept;
@@ -905,6 +922,15 @@ private:
      */
     [[nodiscard]] DriverResult<bool> isChannelParallel(Channel channel) noexcept;
 
+    /**
+     * @brief Diagnose clock configuration by reading CLK_DIV register
+     * 
+     * @details
+     * Reads and logs the CLK_DIV register to help diagnose clock-related
+     * critical faults. This is called during initialization.
+     */
+    void diagnoseClockConfiguration() noexcept;
+
     //==========================================================================
     // MEMBER VARIABLES
     //==========================================================================
@@ -912,6 +938,7 @@ private:
     CommInterface& comm_;                   ///< Communication interface
     bool initialized_;                      ///< Initialization status
     bool mission_mode_;                     ///< Mission mode flag (vs config mode)
+    bool crc_enabled_;                      ///< CRC enable state (tracks GLOBAL_CONFIG::CRC_EN)
     uint16_t channel_enable_cache_;         ///< Cached channel enable state
     std::array<uint16_t, 6> channel_setpoints_; ///< Cached current setpoints
 };

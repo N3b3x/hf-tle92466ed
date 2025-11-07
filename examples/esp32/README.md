@@ -75,29 +75,40 @@ idf.py monitor
 
 ### 🟢 Basic Examples
 
-#### `basic_usage`
-**Single channel control demonstration**
-- HAL initialization and driver setup
-- Basic current control (500mA)
-- Diagnostics reading
-- Error handling examples
+#### `driver_integration_test`
+**Comprehensive Driver Integration Test Suite**
+- Complete driver API validation (40+ tests)
+- 13 test sections covering all functionality
+- Initialization, configuration, control, diagnostics
+- Multi-channel and parallel operation testing
+- Error condition validation
+- Comprehensive telemetry testing
+- Professional test framework with automatic result tracking
+- **No actual solenoids required** (driver test only)
 
 ```bash
-./scripts/build_app.sh basic_usage Debug
-./scripts/flash_app.sh basic_usage Debug
-```text
+./scripts/build_app.sh driver_integration_test Debug
+./scripts/flash_app.sh driver_integration_test Debug
+```
 
-#### `multi_channel`
-**Independent control of all 6 channels**
-- Sequential channel activation
-- Synchronized control
-- Current ramping
-- Performance monitoring
+**Documentation**: [Driver Integration Test](docs/README_DRIVER_INTEGRATION_TEST.md)
+
+#### `solenoid_control_test`
+**Real Hardware Solenoid Control Test**
+- Two solenoids: one single channel, one parallel pair
+- ADC-based current control (0-3.3V maps to 0-100% current)
+- Independent min/max current limits per solenoid
+- Real-time current adjustment based on ADC reading
+- Comprehensive real-time telemetry (every 1 second)
+- Proper parallel channel operation validation
+- **Requires actual solenoids and power supplies**
 
 ```bash
-./scripts/build_app.sh multi_channel Release
-./scripts/flash_app.sh multi_channel Release
-```text
+./scripts/build_app.sh solenoid_control_test Debug
+./scripts/flash_app.sh solenoid_control_test Debug
+```
+
+**Documentation**: [Solenoid Control Test](docs/README_SOLENOID_CONTROL_TEST.md)
 
 ### 🟡 Advanced Examples
 
@@ -201,7 +212,7 @@ python3 scripts/get_app_info.py info basic_usage
 
 ### Hardware Configuration File
 
-All hardware configuration is defined in `main/TLE92466ED_Config.hpp`. This is the
+All hardware configuration is defined in `main/TLE92466ED_TestConfig.hpp`. This is the
 **actual** configuration used by the HAL and examples.
 
 **Important**: The `app_config.yml` file only contains application definitions and build
@@ -209,7 +220,7 @@ configuration, NOT hardware settings.
 
 ### SPI Configuration
 
-Edit `main/TLE92466ED_Config.hpp` to change SPI pins:
+Edit `main/TLE92466ED_TestConfig.hpp` to change SPI pins:
 
 ```cpp
 struct SPIPins {
@@ -227,7 +238,7 @@ struct SPIParams {
 
 ### Current Limits
 
-Defined in `main/TLE92466ED_Config.hpp`:
+Defined in `main/TLE92466ED_TestConfig.hpp`:
 
 ```cpp
 struct CurrentLimits {
@@ -238,7 +249,7 @@ struct CurrentLimits {
 
 ### Hardware Specifications
 
-Defined in `main/TLE92466ED_Config.hpp`:
+Defined in `main/TLE92466ED_TestConfig.hpp`:
 
 ```cpp
 struct SupplyVoltage {
@@ -298,7 +309,7 @@ CONFIG_TLE92466ED_DEBUG_ENABLED=y # Driver debug
 
 Each example has detailed documentation in `docs/`:
 
-- `docs/README_BASIC_USAGE.md`
+- `docs/README_DRIVER_INTEGRATION_TEST.md`
 - `docs/README_MULTI_CHANNEL.md`
 - `docs/README_PARALLEL_MODE.md`
 - `docs/README_DIAGNOSTICS.md`

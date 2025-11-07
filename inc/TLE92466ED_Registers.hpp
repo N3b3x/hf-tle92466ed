@@ -989,6 +989,89 @@ enum class ParallelPair : uint8_t {
     return static_cast<uint8_t>(ch);
 }
 
+//==============================================================================
+// ENUM TO_STRING HELPERS
+//==============================================================================
+
+/**
+ * @brief Convert ChannelMode enum to string
+ * @param mode Channel mode
+ * @return String representation
+ */
+[[nodiscard]] inline const char* ToString(ChannelMode mode) noexcept {
+    switch (mode) {
+        case ChannelMode::OFF: return "OFF";
+        case ChannelMode::ICC: return "ICC";
+        case ChannelMode::DIRECT_DRIVE_SPI: return "DIRECT_DRIVE_SPI";
+        case ChannelMode::DIRECT_DRIVE_DRV0: return "DIRECT_DRIVE_DRV0";
+        case ChannelMode::DIRECT_DRIVE_DRV1: return "DIRECT_DRIVE_DRV1";
+        case ChannelMode::FREE_RUN_MEAS: return "FREE_RUN_MEAS";
+        default: return "UNKNOWN";
+    }
+}
+
+/**
+ * @brief Convert SlewRate enum to string
+ * @param rate Slew rate
+ * @return String representation
+ */
+[[nodiscard]] inline const char* ToString(SlewRate rate) noexcept {
+    switch (rate) {
+        case SlewRate::SLOW_1V0_US: return "SLOW_1V0_US";
+        case SlewRate::MEDIUM_2V5_US: return "MEDIUM_2V5_US";
+        case SlewRate::FAST_5V0_US: return "FAST_5V0_US";
+        case SlewRate::FASTEST_10V0_US: return "FASTEST_10V0_US";
+        default: return "UNKNOWN";
+    }
+}
+
+/**
+ * @brief Convert DiagCurrent enum to string
+ * @param current Diagnostic current
+ * @return String representation
+ */
+[[nodiscard]] inline const char* ToString(DiagCurrent current) noexcept {
+    switch (current) {
+        case DiagCurrent::I_80UA: return "I_80UA";
+        case DiagCurrent::I_190UA: return "I_190UA";
+        case DiagCurrent::I_720UA: return "I_720UA";
+        case DiagCurrent::I_1250UA: return "I_1250UA";
+        default: return "UNKNOWN";
+    }
+}
+
+/**
+ * @brief Convert ParallelPair enum to string
+ * @param pair Parallel pair
+ * @return String representation
+ */
+[[nodiscard]] inline const char* ToString(ParallelPair pair) noexcept {
+    switch (pair) {
+        case ParallelPair::NONE: return "NONE";
+        case ParallelPair::CH0_CH3: return "CH0_CH3";
+        case ParallelPair::CH1_CH2: return "CH1_CH2";
+        case ParallelPair::CH4_CH5: return "CH4_CH5";
+        default: return "UNKNOWN";
+    }
+}
+
+/**
+ * @brief Convert Channel enum to string
+ * @param channel Channel
+ * @return String representation
+ */
+[[nodiscard]] inline const char* ToString(Channel channel) noexcept {
+    switch (channel) {
+        case Channel::CH0: return "CH0";
+        case Channel::CH1: return "CH1";
+        case Channel::CH2: return "CH2";
+        case Channel::CH3: return "CH3";
+        case Channel::CH4: return "CH4";
+        case Channel::CH5: return "CH5";
+        default: return "UNKNOWN";
+    }
+}
+
 /**
  * @brief Validate channel number
  */

@@ -13,7 +13,7 @@
 #pragma once
 
 #include "TLE92466ED_CommInterface.hpp"
-#include "TLE92466ED_Config.hpp"
+#include "TLE92466ED_TestConfig.hpp"
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include "esp_timer.h"
@@ -36,16 +36,20 @@ public:
      */
     struct SPIConfig {
         spi_host_device_t host = SPI2_HOST;     ///< SPI host (SPI2_HOST for ESP32-C6)
-        int miso_pin = 2;                       ///< MISO pin (GPIO2)
-        int mosi_pin = 7;                       ///< MOSI pin (GPIO7)  
-        int sclk_pin = 6;                       ///< SCLK pin (GPIO6)
-        int cs_pin = 10;                        ///< CS pin (GPIO10)
-        int resn_pin = -1;                      ///< RESN pin (active low, -1 = not configured)
-        int en_pin = -1;                        ///< EN pin (active high, -1 = not configured)
-        int faultn_pin = -1;                    ///< FAULTN pin (active low, -1 = not configured)
-        int frequency = 1000000;                ///< SPI frequency (1MHz)
-        int mode = 1;                           ///< SPI mode (1 = CPOL=0, CPHA=1)
-        int queue_size = 1;                     ///< Transaction queue size
+        int16_t miso_pin = 2;                   ///< MISO pin (GPIO2, -1 = not configured)
+        int16_t mosi_pin = 7;                   ///< MOSI pin (GPIO7, -1 = not configured)
+        int16_t sclk_pin = 6;                   ///< SCLK pin (GPIO6, -1 = not configured)
+        int16_t cs_pin = 10;                    ///< CS pin (GPIO10, -1 = not configured)
+        int16_t resn_pin = -1;                  ///< RESN pin (active low, -1 = not configured)
+        int16_t en_pin = -1;                    ///< EN pin (active high, -1 = not configured)
+        int16_t faultn_pin = -1;                ///< FAULTN pin (active low, -1 = not configured)
+        int16_t drv0_pin = -1;                  ///< DRV0 pin (external drive control, -1 = not configured)
+        int16_t drv1_pin = -1;                  ///< DRV1 pin (external drive control, -1 = not configured)
+        uint32_t frequency = 1000000;           ///< SPI frequency (1MHz)
+        uint8_t mode = 1;                       ///< SPI mode (1 = CPOL=0, CPHA=1)
+        uint8_t queue_size = 1;                 ///< Transaction queue size
+        uint8_t cs_ena_pretrans = 1;            ///< CS asserted N clock cycles before transaction
+        uint8_t cs_ena_posttrans = 1;           ///< CS held N clock cycles after transaction
     };
 
     /**
@@ -146,6 +150,15 @@ public:
     auto GetGpioPin(ControlPin pin) noexcept -> CommResult<ActiveLevel> override;
 
     /**
+     * @brief Log a message with specified severity level and tag (ESP_LOG implementation)
+     * @param level Log severity level
+     * @param tag Tag/component name for the log message
+     * @param format Format string (printf-style)
+     * @param ... Variable arguments for format string
+     */
+    void Log(LogLevel level, const char* tag, const char* format, ...) noexcept override;
+
+    /**
      * @brief Check if CommInterface is initialized
      * @return true if initialized, false otherwise
      */
@@ -182,22 +195,33 @@ private:
  * @brief Create a configured Esp32TleCommInterface instance for TLE92466ED
  * @return Unique pointer to configured CommInterface instance
  * 
- * This function uses the configuration from TLE92466ED_Config.hpp
+ * This function uses the configuration from TLE92466ED_TestConfig.hpp
  */
 inline auto CreateEsp32TleCommInterface() -> std::unique_ptr<Esp32TleCommInterface> {
-    using namespace TLE92466ED_Config;
+    using namespace TLE92466ED_TestConfig;
     
     Esp32TleCommInterface::SPIConfig config;
     
-    // Configuration from TLE92466ED_Config.hpp
+    // SPI pins from TLE92466ED_TestConfig.hpp
     config.host = SPI2_HOST;
     config.miso_pin = SPIPins::MISO;
     config.mosi_pin = SPIPins::MOSI;
     config.sclk_pin = SPIPins::SCLK;
     config.cs_pin = SPIPins::CS;
+    
+    // Control GPIO pins from TLE92466ED_TestConfig.hpp
+    config.resn_pin = ControlPins::RESN;
+    config.en_pin = ControlPins::EN;
+    config.faultn_pin = ControlPins::FAULTN;
+    config.drv0_pin = ControlPins::DRV0;
+    config.drv1_pin = ControlPins::DRV1;
+    
+    // SPI parameters from TLE92466ED_TestConfig.hpp
     config.frequency = SPIParams::FREQUENCY;
     config.mode = SPIParams::MODE;
     config.queue_size = SPIParams::QUEUE_SIZE;
+    config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
+    config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
     
     return std::make_unique<Esp32TleCommInterface>(config);
 }

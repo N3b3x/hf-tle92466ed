@@ -3,7 +3,7 @@
 
 # Get app type from parent
 if(NOT DEFINED APP_TYPE)
-    set(APP_TYPE "basic_usage")
+    set(APP_TYPE "driver_integration_test")
 endif()
 
 # Debug information
@@ -83,10 +83,25 @@ endif()
 
 message(STATUS "Using include base path: ${INC_BASE_PATH}")
 
+# Determine required components based on app type
+set(COMPONENT_REQUIRES_LIST 
+    driver 
+    esp_timer 
+    freertos 
+    spi_flash 
+    nvs_flash 
+    tle92466ed-espidf
+)
+
+# Add ADC component for solenoid control test
+if(APP_TYPE STREQUAL "solenoid_control_test")
+    list(APPEND COMPONENT_REQUIRES_LIST esp_adc)
+endif()
+
 idf_component_register(
     SRCS "${MAIN_SOURCE}" "Esp32TleCommInterface.cpp"
     INCLUDE_DIRS "." "${INC_BASE_PATH}"
-    REQUIRES driver esp_timer freertos spi_flash nvs_flash tle92466ed-espidf
+    REQUIRES ${COMPONENT_REQUIRES_LIST}
 )
 
 # Set C++ standard (TLE92466ED requires C++23)

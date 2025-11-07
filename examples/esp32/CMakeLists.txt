@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 if(DEFINED APP_TYPE)
     message(STATUS "APP_TYPE from command line: ${APP_TYPE}")
 else()
-    set(APP_TYPE "basic_usage")
+    set(APP_TYPE "driver_integration_test")
     message(STATUS "APP_TYPE defaulting to: ${APP_TYPE}")
 endif()
 

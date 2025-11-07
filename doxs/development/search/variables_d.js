@@ -1,21 +1,9 @@
 var searchData=
 [
-  ['pair_5f0_5fch_5fa_0',['PAIR_0_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a6d7c27f55a1db6a5e3ba91321a01104f',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f0_5fch_5fb_1',['PAIR_0_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a34084a19eb99c32ddc1a1c7754f05eac',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f1_5fch_5fa_2',['PAIR_1_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a650fc9f110acf829d92e7a2d5f309eff',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f1_5fch_5fb_3',['PAIR_1_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a05e64db387c9544f030fe0e698cda8be',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f2_5fch_5fa_4',['PAIR_2_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a329b179d18964622bd1050cfd18abf00',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['pair_5f2_5fch_5fb_5',['PAIR_2_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#abf6d883cf20900de8bdae99d8cfcafb5',1,'TLE92466ED_Config::ChannelPairs']]],
-  ['parallel_5fchannel_5fmax_6',['PARALLEL_CHANNEL_MAX',['../structTLE92466ED__Config_1_1CurrentLimits.html#a1e7e33a854c9c3cb2e7046eb4e29ae68',1,'TLE92466ED_Config::CurrentLimits']]],
-  ['passed_5ftests_7',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['period_8',['PERIOD',['../namespaceTLE92466ED_1_1ChannelReg.html#a29b856ad7d8b20b943290fe492354659',1,'TLE92466ED::ChannelReg']]],
-  ['pin_5fstat_9',['PIN_STAT',['../namespaceTLE92466ED_1_1CentralReg.html#a984518cd7dcaf02a2eb328863c2c4433',1,'TLE92466ED::CentralReg']]],
-  ['poll_5finterval_5fms_10',['POLL_INTERVAL_MS',['../structTLE92466ED__Config_1_1Diagnostics.html#a1b7f0796c570226570644a76e6e73215',1,'TLE92466ED_Config::Diagnostics']]],
-  ['por_5fevent_11',['por_event',['../structTLE92466ED_1_1DeviceStatus.html#abf80bb1f372b95dbcfa416a9735f5020',1,'TLE92466ED::DeviceStatus']]],
-  ['por_5fevent_12',['POR_EVENT',['../namespaceTLE92466ED_1_1GLOBAL__DIAG0.html#a620f0f6e8ec0fa6f0c3cdac0754c8d65',1,'TLE92466ED::GLOBAL_DIAG0']]],
-  ['power_5fon_5fdelay_5fms_13',['POWER_ON_DELAY_MS',['../structTLE92466ED__Config_1_1Timing.html#a29fdf0c53105932747e8d5864a3b06b5',1,'TLE92466ED_Config::Timing']]],
-  ['pwm_5fperiod_5fcalc_5fmode_14',['PWM_PERIOD_CALC_MODE',['../namespaceTLE92466ED_1_1CH__CTRL__REG.html#ab019a113594d3b8e6d4609a214173a5a',1,'TLE92466ED::CH_CTRL_REG']]],
-  ['pwm_5fperiod_5fexponent_15',['pwm_period_exponent',['../structTLE92466ED_1_1ChannelConfig.html#a89fb6bad6b4b922e6ea27f15f9f4fa7d',1,'TLE92466ED::ChannelConfig']]],
-  ['pwm_5fperiod_5fmantissa_16',['pwm_period_mantissa',['../structTLE92466ED_1_1ChannelConfig.html#adf7d0d490de03758401b9e5c8e3a4cab',1,'TLE92466ED::ChannelConfig']]],
-  ['pwm_5fregulation_5fwarning_17',['pwm_regulation_warning',['../structTLE92466ED_1_1ChannelDiagnostics.html#a79fab283b9c0198a78599856226254fc',1,'TLE92466ED::ChannelDiagnostics']]]
+  ['ramp_5fstep_5fdelay_5fms_0',['RAMP_STEP_DELAY_MS',['../structTLE92466ED__Config_1_1TestConfig.html#a2037d67e8f41b1d7f060cf3fd9b066a4',1,'TLE92466ED_Config::TestConfig']]],
+  ['ramp_5fstep_5fma_1',['RAMP_STEP_MA',['../structTLE92466ED__Config_1_1TestConfig.html#a5a32a8d45eff78951d8d2d32792b193f',1,'TLE92466ED_Config::TestConfig']]],
+  ['reset_5fdelay_5fms_2',['RESET_DELAY_MS',['../structTLE92466ED__Config_1_1Timing.html#a0dfa27fab7743a88209e1c356987c0b0',1,'TLE92466ED_Config::Timing']]],
+  ['resn_5fpin_3',['resn_pin',['../structArduino__HAL_1_1SPIConfig.html#a7cfff9b0d70fe6020626cef0e58cedf7',1,'Arduino_HAL::SPIConfig::resn_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a65adbbee77902f41f43465f20df8a604',1,'Esp32TleCommInterface::SPIConfig::resn_pin']]],
+  ['resolution_4',['RESOLUTION',['../structTLE92466ED__Config_1_1CurrentLimits.html#a2db219eb949589dda3dcdc1105eec4a9',1,'TLE92466ED_Config::CurrentLimits']]],
+  ['results_5',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]]
 ];

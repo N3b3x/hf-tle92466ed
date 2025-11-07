@@ -130,19 +130,19 @@ files:
 #
 #  The TLE92466ED Driver consists of several layers:
 #
-#  1. Hardware Abstraction Layer (include/TLE92466ED_HAL.hpp)
+#  1. Communication Interface (inc/TLE92466ED_CommInterface.hpp)
 #     - Pure virtual interface for platform independence
 #     - SPI communication interface
 #     - Timing functions
 #     - Easy platform porting
 #
-#  2. Register Definitions (include/TLE92466ED_Registers.hpp)
+#  2. Register Definitions (inc/TLE92466ED_Registers.hpp)
 #     - Complete register map (108 registers)
 #     - Bit field definitions
 #     - Hardware specifications
 #     - CRC calculation utilities
 #
-#  3. Driver Implementation (include/TLE92466ED.hpp, src/TLE92466ED.cpp)
+#  3. Driver Implementation (inc/TLE92466ED.hpp, src/TLE92466ED.cpp)
 #     - High-level driver interface
 #     - 6-channel current control (0-2A single, 0-4A parallel)
 #     - 15-bit resolution (0.061mA steps)

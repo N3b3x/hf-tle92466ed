@@ -39,7 +39,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include "../../include/TLE92466ED.hpp"
+#include "../../inc/TLE92466ED.hpp"
 #include "../Arduino_HAL.hpp"
 
 // Global instances

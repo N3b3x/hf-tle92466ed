@@ -106,10 +106,10 @@ $(function(){initNavTree('Arduino__HAL_8hpp_source.html',''); initResizable(); }
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &lt;SPI.h&gt;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="TLE92466ED__HAL_8hpp.html">TLE92466ED_HAL.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;TLE92466ED_CommInterface.hpp&quot;</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="foldopen" id="foldopen00045" data-start="{" data-end="};">
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classArduino__HAL.html">   45</a></span><span class="keyword">class </span><a class="code hl_class" href="classArduino__HAL.html">Arduino_HAL</a> : <span class="keyword">public</span> TLE92466ED_HAL {</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classArduino__HAL.html">   45</a></span><span class="keyword">class </span><a class="code hl_class" href="classArduino__HAL.html">Arduino_HAL</a> : <span class="keyword">public</span> TLE92466ED::CommInterface {</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structArduino__HAL_1_1SPIConfig.html">   51</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structArduino__HAL_1_1SPIConfig.html">SPIConfig</a> {</div>
@@ -284,7 +284,6 @@ $(function(){initNavTree('Arduino__HAL_8hpp_source.html',''); initResizable(); }
 </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
 <div class="ttc" id="aArduino__HAL_8hpp_html_a27e3a03a64f12516d2e79a0bf0b991be"><div class="ttname"><a href="Arduino__HAL_8hpp.html#a27e3a03a64f12516d2e79a0bf0b991be">createTLE92466ED_HAL</a></div><div class="ttdeci">auto createTLE92466ED_HAL() -&gt; Arduino_HAL *</div><div class="ttdoc">Create Arduino HAL instance with default configuration.</div><div class="ttdef"><b>Definition</b> Arduino_HAL.hpp:229</div></div>
-<div class="ttc" id="aTLE92466ED__HAL_8hpp_html"><div class="ttname"><a href="TLE92466ED__HAL_8hpp.html">TLE92466ED_HAL.hpp</a></div><div class="ttdoc">Hardware Abstraction Layer (HAL) base class for TLE92466ED driver.</div></div>
 <div class="ttc" id="aclassArduino__HAL_html"><div class="ttname"><a href="classArduino__HAL.html">Arduino_HAL</a></div><div class="ttdoc">Arduino implementation of TLE92466ED HAL interface.</div><div class="ttdef"><b>Definition</b> Arduino_HAL.hpp:45</div></div>
 <div class="ttc" id="aclassArduino__HAL_html_a003e7ec514421e325234ba32af378505"><div class="ttname"><a href="classArduino__HAL.html#a003e7ec514421e325234ba32af378505">Arduino_HAL::~Arduino_HAL</a></div><div class="ttdeci">~Arduino_HAL() override</div><div class="ttdoc">Destructor - cleanup resources.</div><div class="ttdef"><b>Definition</b> Arduino_HAL.hpp:74</div></div>
 <div class="ttc" id="aclassArduino__HAL_html_a0d6cb789947835469c5f5c785f7dd8e9"><div class="ttname"><a href="classArduino__HAL.html#a0d6cb789947835469c5f5c785f7dd8e9">Arduino_HAL::enableDevice</a></div><div class="ttdeci">auto enableDevice() noexcept -&gt; void</div><div class="ttdoc">Enable the TLE92466ED device (if EN pin is configured)</div><div class="ttdef"><b>Definition</b> Arduino_HAL.hpp:193</div></div>

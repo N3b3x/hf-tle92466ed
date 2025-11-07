@@ -1,0 +1,28 @@
+var classEsp32TleCommInterface =
+[
+    [ "SPIConfig", "structEsp32TleCommInterface_1_1SPIConfig.html", "structEsp32TleCommInterface_1_1SPIConfig" ],
+    [ "Esp32TleCommInterface", "classEsp32TleCommInterface.html#a73a62c3876f60db1a102b5faff29c0b4", null ],
+    [ "Esp32TleCommInterface", "classEsp32TleCommInterface.html#a163b3f4d8b5972d1a2dbea17c826172a", null ],
+    [ "~Esp32TleCommInterface", "classEsp32TleCommInterface.html#aa0bbb6a8fd460945f8c0c53c44b1ca90", null ],
+    [ "addSPIDevice", "classEsp32TleCommInterface.html#a96518d50ae1b94bd9f98687ee1241fc9", null ],
+    [ "ClearErrors", "classEsp32TleCommInterface.html#aa5c489ed049a4b36b3d34b902726467d", null ],
+    [ "Configure", "classEsp32TleCommInterface.html#a391c8d63ebb0df614712f981448ded10", null ],
+    [ "Deinit", "classEsp32TleCommInterface.html#a9c953720bd6c812712ebf22877298e54", null ],
+    [ "Delay", "classEsp32TleCommInterface.html#a56ff45b8a5f486e8b143262c70772274", null ],
+    [ "getConfig", "classEsp32TleCommInterface.html#a8216498d7d1b270b06a4a711bd2a21ef", null ],
+    [ "GetGpioPin", "classEsp32TleCommInterface.html#aaba77fee74ef43454bf28cb9aff0c704", null ],
+    [ "GetLastError", "classEsp32TleCommInterface.html#a768b503b10a2889ab49b53219a41a2be", null ],
+    [ "Init", "classEsp32TleCommInterface.html#a4fe06c7070fb6f0f88d2cc3a90bb2278", null ],
+    [ "initializeGPIO", "classEsp32TleCommInterface.html#a576a8c2e5361a2da0e16cf243964a93e", null ],
+    [ "initializeSPI", "classEsp32TleCommInterface.html#a63620e1f8b810d6af7ef51080db91979", null ],
+    [ "isInitialized", "classEsp32TleCommInterface.html#a50a2a8f016a83d2e2d582bcdbcf289ce", null ],
+    [ "IsReady", "classEsp32TleCommInterface.html#ad66112859fb1431df34345084dfc510b", null ],
+    [ "SetGpioPin", "classEsp32TleCommInterface.html#a7570d11c78eca435af4892447891f0fd", null ],
+    [ "Transfer32", "classEsp32TleCommInterface.html#a9c2eba0bffd44d9ea5cfdaed7cb47781", null ],
+    [ "TransferMulti", "classEsp32TleCommInterface.html#a94f432105947283210c39d4377808a5e", null ],
+    [ "config_", "classEsp32TleCommInterface.html#a2b404e46be41c058f04d34f5870717f0", null ],
+    [ "initialized_", "classEsp32TleCommInterface.html#a28e09f932ef575c1bec05f090bc73e2c", null ],
+    [ "last_error_", "classEsp32TleCommInterface.html#a6f15bfa4f81b66e087011f9d63e736a9", null ],
+    [ "spi_device_", "classEsp32TleCommInterface.html#a1b5cb637e8dcd9bab9824aabd20f1ba4", null ],
+    [ "TAG", "classEsp32TleCommInterface.html#a150d8ac326e8be8978d32be9d94c903c", null ]
+];

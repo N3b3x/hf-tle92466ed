@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['verify_5fdevice_0',['verify_device',['../classTLE92466ED_1_1Driver.html#a52fed085cd65033e051c0a2569299160',1,'TLE92466ED::Driver']]],
-  ['verify_5fframe_5fcrc_1',['verify_frame_crc',['../namespaceTLE92466ED.html#a05a50a8940997f5faace920e571f394d',1,'TLE92466ED']]]
+  ['_7earduino_5fhal_0',['~Arduino_HAL',['../classArduino__HAL.html#a003e7ec514421e325234ba32af378505',1,'Arduino_HAL']]],
+  ['_7eesp32tlecomminterface_1',['~Esp32TleCommInterface',['../classEsp32TleCommInterface.html#aa0bbb6a8fd460945f8c0c53c44b1ca90',1,'Esp32TleCommInterface']]]
 ];

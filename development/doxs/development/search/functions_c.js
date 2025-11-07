@@ -1,12 +1,14 @@
 var searchData=
 [
-  ['sequential_5fchannel_5fdemo_0',['sequential_channel_demo',['../MultiChannelExample_8cpp.html#a88c1d0be30cfc7a0b92839b95dcd1c03',1,'MultiChannelExample.cpp']]],
-  ['set_5fchannel_5fmode_1',['set_channel_mode',['../classTLE92466ED_1_1Driver.html#ad94ecb8c18e6cc22a03133b31205b3f6',1,'TLE92466ED::Driver']]],
-  ['set_5fcrc_5fenabled_2',['set_crc_enabled',['../classTLE92466ED_1_1Driver.html#a8b34ef52de739876265dff6a44e7b252',1,'TLE92466ED::Driver']]],
-  ['set_5fcurrent_5fsetpoint_3',['set_current_setpoint',['../classTLE92466ED_1_1Driver.html#ae05d604320745e3f31f0a188344f0e71',1,'TLE92466ED::Driver']]],
-  ['set_5fparallel_5foperation_4',['set_parallel_operation',['../classTLE92466ED_1_1Driver.html#ab940f704cd91be2bb185a6882a05afad',1,'TLE92466ED::Driver']]],
-  ['set_5fvbat_5fthresholds_5',['set_vbat_thresholds',['../classTLE92466ED_1_1Driver.html#ae617833fafb03be9302d789cc501eef2',1,'TLE92466ED::Driver']]],
-  ['software_5freset_6',['software_reset',['../classTLE92466ED_1_1Driver.html#aecf3111ef20905c3c579a3c967bb4225',1,'TLE92466ED::Driver']]],
-  ['spitransfer_7',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL']]],
-  ['synchronized_5fchannel_5fdemo_8',['synchronized_channel_demo',['../MultiChannelExample_8cpp.html#a391b392503f86c4ec5181f013f00dad9',1,'MultiChannelExample.cpp']]]
+  ['test_5fchannel_5fenable_5fdisable_0',['test_channel_enable_disable',['../BasicUsageExample_8cpp.html#af7e57f784a35656ffd18c046da67dcc2',1,'BasicUsageExample.cpp']]],
+  ['test_5fchip_5fid_1',['test_chip_id',['../BasicUsageExample_8cpp.html#a52b1703a7f4c0c38ded4d24e8fa4a2c5',1,'BasicUsageExample.cpp']]],
+  ['test_5fcurrent_5framping_2',['test_current_ramping',['../BasicUsageExample_8cpp.html#a38639a803276bf11e31f3592d25e3d80',1,'BasicUsageExample.cpp']]],
+  ['test_5fcurrent_5fsetting_3',['test_current_setting',['../BasicUsageExample_8cpp.html#af5cb4083b4d84e2423e0ee4a5a08766d',1,'BasicUsageExample.cpp']]],
+  ['test_5fdiagnostics_4',['test_diagnostics',['../BasicUsageExample_8cpp.html#ac7a22007aa641ea5a476dcaf3e28da11',1,'BasicUsageExample.cpp']]],
+  ['test_5fdriver_5finitialization_5',['test_driver_initialization',['../BasicUsageExample_8cpp.html#ae11eb6cb1d8f2e300e874298a5d3ecb3',1,'BasicUsageExample.cpp']]],
+  ['test_5fgpio_5fcontrol_6',['test_gpio_control',['../BasicUsageExample_8cpp.html#a3458b48356a1c36952a03734228f0a5d',1,'BasicUsageExample.cpp']]],
+  ['test_5fhal_5finitialization_7',['test_hal_initialization',['../BasicUsageExample_8cpp.html#abb4b230389c72bfdce3ec626624637d7',1,'BasicUsageExample.cpp']]],
+  ['test_5ftask_5ftrampoline_8',['test_task_trampoline',['../TLE92466ED__TestFramework_8hpp.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TLE92466ED_TestFramework.hpp']]],
+  ['transfer32_9',['Transfer32',['../classEsp32TleCommInterface.html#a9c2eba0bffd44d9ea5cfdaed7cb47781',1,'Esp32TleCommInterface']]],
+  ['transfermulti_10',['TransferMulti',['../classEsp32TleCommInterface.html#a94f432105947283210c39d4377808a5e',1,'Esp32TleCommInterface']]]
 ];

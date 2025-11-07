@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structTLE92466ED__Config_1_1AppConfig.html" target="_top" xlink:title="Application&#45;specific Configuration.">
+<g id="a_Node000000"><a xlink:href="structTLE92466ED__Config_1_1Temperature.html" target="_top" xlink:title="Temperature Specifications (celsius)">
 <polygon fill="white" stroke="#666666" points="152,-38 0,-38 0,0 152,0 152,-38"/>
 <text text-anchor="start" x="8" y="-22.8" font-family="Arial" font-size="14.00">TLE92466ED_Config::</text>
-<text text-anchor="middle" x="76" y="-7.8" font-family="Arial" font-size="14.00">AppConfig</text>
+<text text-anchor="middle" x="76" y="-7.8" font-family="Arial" font-size="14.00">Temperature</text>
 </a>
 </g>
 </g>

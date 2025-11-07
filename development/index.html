@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     <span class="build-info">
       <span class="build-icon">🔨</span>
-      <span class="build-date">2025-11-06</span>
+      <span class="build-date">2025-11-07</span>
     </span>
   </div>
 </div>
@@ -850,9 +850,9 @@ target_link_libraries(your_target PRIVATE TLE92466ED)
 
 <p>Include the following files in your project:</p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">include/TLE92466ED.hpp</code></li>
-  <li><code class="language-plaintext highlighter-rouge">include/TLE92466ED_Registers.hpp</code></li>
-  <li><code class="language-plaintext highlighter-rouge">include/TLE92466ED_HAL.hpp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED.hpp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED_Registers.hpp</code></li>
+  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED_CommInterface.hpp</code></li>
   <li><code class="language-plaintext highlighter-rouge">src/TLE92466ED.cpp</code></li>
 </ul>
 <h2 id="platform-integration">
@@ -867,7 +867,7 @@ target_link_libraries(your_target PRIVATE TLE92466ED)
 <p>Implement the HAL interface for your platform:</p>
 
 <p>```cpp
-class YourPlatformHAL : public TLE92466ED_HAL {
+class YourPlatformHAL : public TLE92466ED::HAL {
 public:
     auto spiTransfer(std::span<const uint8_t=""> txData, 
                      std::span<uint8_t> rxData) noexcept 

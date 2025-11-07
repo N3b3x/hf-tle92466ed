@@ -109,8 +109,8 @@ $(function(){initNavTree('BasicUsageExample_8cpp.html',''); initResizable(); });
 <code>#include &quot;freertos/task.h&quot;</code><br />
 <code>#include &quot;esp_log.h&quot;</code><br />
 <code>#include &quot;esp_system.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="TLE92466ED_8hpp_source.html">TLE92466ED.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="ESP32C6__HAL_8hpp_source.html">ESP32C6_HAL.hpp</a>&quot;</code><br />
+<code>#include &quot;TLE92466ED.hpp&quot;</code><br />
+<code>#include &quot;<a class="el" href="Esp32TleCommInterface_8hpp_source.html">Esp32TleCommInterface.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="TLE92466ED__TestFramework_8hpp_source.html">TLE92466ED_TestFramework.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for BasicUsageExample.cpp:</div>
@@ -138,6 +138,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a52b1703a7f4c0c38ded4d24e8fa4a2c5" id="r_a52b1703a7f4c0c38ded4d24e8fa4a2c5"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52b1703a7f4c0c38ded4d24e8fa4a2c5">test_chip_id</a> () noexcept</td></tr>
 <tr class="memdesc:a52b1703a7f4c0c38ded4d24e8fa4a2c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test chip ID reading.  <br /></td></tr>
 <tr class="separator:a52b1703a7f4c0c38ded4d24e8fa4a2c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3458b48356a1c36952a03734228f0a5d" id="r_a3458b48356a1c36952a03734228f0a5d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3458b48356a1c36952a03734228f0a5d">test_gpio_control</a> () noexcept</td></tr>
+<tr class="memdesc:a3458b48356a1c36952a03734228f0a5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test GPIO control (Reset, Enable, Fault)  <br /></td></tr>
+<tr class="separator:a3458b48356a1c36952a03734228f0a5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7e57f784a35656ffd18c046da67dcc2" id="r_af7e57f784a35656ffd18c046da67dcc2"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7e57f784a35656ffd18c046da67dcc2">test_channel_enable_disable</a> () noexcept</td></tr>
 <tr class="memdesc:af7e57f784a35656ffd18c046da67dcc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test channel enable/disable.  <br /></td></tr>
 <tr class="separator:af7e57f784a35656ffd18c046da67dcc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,9 +160,9 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a5a85b9c772bbeb480b209a3e6ea92b4c" id="r_a5a85b9c772bbeb480b209a3e6ea92b4c"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a85b9c772bbeb480b209a3e6ea92b4c">TAG</a> = &quot;TLE92466ED_Basic&quot;</td></tr>
 <tr class="separator:a5a85b9c772bbeb480b209a3e6ea92b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f4a80000dadaa6227be7f2e885b342d" id="r_a7f4a80000dadaa6227be7f2e885b342d"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="classESP32C6__HAL.html">ESP32C6_HAL</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f4a80000dadaa6227be7f2e885b342d">g_hal</a></td></tr>
-<tr class="separator:a7f4a80000dadaa6227be7f2e885b342d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1757f06a5de1272b64a63221d447a7c" id="r_ac1757f06a5de1272b64a63221d447a7c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classTLE92466ED_1_1Driver.html">TLE92466ED::Driver</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1757f06a5de1272b64a63221d447a7c">g_driver</a> = nullptr</td></tr>
+<tr class="memitem:a24db71501f93a69b4c6eea17c2b6bd36" id="r_a24db71501f93a69b4c6eea17c2b6bd36"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24db71501f93a69b4c6eea17c2b6bd36">g_hal</a></td></tr>
+<tr class="separator:a24db71501f93a69b4c6eea17c2b6bd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1757f06a5de1272b64a63221d447a7c" id="r_ac1757f06a5de1272b64a63221d447a7c"><td class="memItemLeft" align="right" valign="top">static TLE92466ED::Driver *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1757f06a5de1272b64a63221d447a7c">g_driver</a> = nullptr</td></tr>
 <tr class="separator:ac1757f06a5de1272b64a63221d447a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -399,6 +402,33 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a3458b48356a1c36952a03734228f0a5d" name="a3458b48356a1c36952a03734228f0a5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3458b48356a1c36952a03734228f0a5d">&#9670;&#160;</a></span>test_gpio_control()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool test_gpio_control </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Test GPIO control (Reset, Enable, Fault) </p>
+
+</div>
+</div>
 <a id="abb4b230389c72bfdce3ec626624637d7" name="abb4b230389c72bfdce3ec626624637d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abb4b230389c72bfdce3ec626624637d7">&#9670;&#160;</a></span>test_hal_initialization()</h2>
 
@@ -437,7 +467,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classTLE92466ED_1_1Driver.html">TLE92466ED::Driver</a>* g_driver = nullptr</td>
+          <td class="memname">TLE92466ED::Driver* g_driver = nullptr</td>
         </tr>
       </table>
   </td>
@@ -449,8 +479,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7f4a80000dadaa6227be7f2e885b342d" name="a7f4a80000dadaa6227be7f2e885b342d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7f4a80000dadaa6227be7f2e885b342d">&#9670;&#160;</a></span>g_hal</h2>
+<a id="a24db71501f93a69b4c6eea17c2b6bd36" name="a24db71501f93a69b4c6eea17c2b6bd36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24db71501f93a69b4c6eea17c2b6bd36">&#9670;&#160;</a></span>g_hal</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,7 +489,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unique_ptr&lt;<a class="el" href="classESP32C6__HAL.html">ESP32C6_HAL</a>&gt; g_hal</td>
+          <td class="memname">std::unique_ptr&lt;<a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a>&gt; g_hal</td>
         </tr>
       </table>
   </td>

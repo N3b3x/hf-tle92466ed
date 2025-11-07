@@ -32,7 +32,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
-#include "TLE92466ED_HAL.hpp"
+#include "TLE92466ED_CommInterface.hpp"
 
 /**
  * @class Arduino_HAL
@@ -42,7 +42,7 @@
  * platforms. It uses the standard Arduino SPI library and is compatible
  * with most Arduino boards.
  */
-class Arduino_HAL : public TLE92466ED_HAL {
+class Arduino_HAL : public TLE92466ED::CommInterface {
 public:
     /**
      * @struct SPIConfig

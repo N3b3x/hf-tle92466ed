@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="classArduino__HAL" kind="class" language="C++" prot="public">
     <compoundname>Arduino_HAL</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">TLE92466ED_HAL</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">TLE92466ED::CommInterface</basecompoundref>
     <includes refid="Arduino__HAL_8hpp" local="no">Arduino_HAL.hpp</includes>
     <innerclass refid="structArduino__HAL_1_1SPIConfig" prot="public">Arduino_HAL::SPIConfig</innerclass>
     <sectiondef kind="private-attrib">
@@ -257,7 +257,7 @@
         </childnode>
       </node>
       <node id="2">
-        <label>TLE92466ED_HAL</label>
+        <label>TLE92466ED::CommInterface</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
@@ -275,7 +275,7 @@
         <link refid="structArduino__HAL_1_1SPIConfig"/>
       </node>
       <node id="2">
-        <label>TLE92466ED_HAL</label>
+        <label>TLE92466ED::CommInterface</label>
       </node>
     </collaborationgraph>
     <location file="examples/arduino/Arduino_HAL.hpp" line="45" column="1" bodyfile="examples/arduino/Arduino_HAL.hpp" bodystart="45" bodyend="223"/>

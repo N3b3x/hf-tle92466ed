@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['read_5fregister_0',['read_register',['../classTLE92466ED_1_1Driver.html#af88748dc8bfb5ce8e0c4f8101e21025c',1,'TLE92466ED::Driver']]],
-  ['reload_5fspi_5fwatchdog_1',['reload_spi_watchdog',['../classTLE92466ED_1_1Driver.html#a54dff731678d5e7d646f1b71aec0e4b4',1,'TLE92466ED::Driver']]],
-  ['resetdevice_2',['resetDevice',['../classArduino__HAL.html#a71d3e0beaae96edb13ca2bb88d47b4e3',1,'Arduino_HAL']]]
+  ['sequential_5fchannel_5fdemo_0',['sequential_channel_demo',['../MultiChannelExample_8cpp.html#afa2c124401b6072d5508d85f258e9e15',1,'MultiChannelExample.cpp']]],
+  ['setgpiopin_1',['SetGpioPin',['../classEsp32TleCommInterface.html#a7570d11c78eca435af4892447891f0fd',1,'Esp32TleCommInterface']]],
+  ['spitransfer_2',['spiTransfer',['../classArduino__HAL.html#a8dc961af6345a9355ac7f288ba97194a',1,'Arduino_HAL']]],
+  ['synchronized_5fchannel_5fdemo_3',['synchronized_channel_demo',['../MultiChannelExample_8cpp.html#a2a4153ecc9ed8de5613bbf3703863e02',1,'MultiChannelExample.cpp']]]
 ];

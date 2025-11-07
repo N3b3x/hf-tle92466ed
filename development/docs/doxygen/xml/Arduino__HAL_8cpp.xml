@@ -20,35 +20,14 @@
         <childnode refid="5" relation="include">
         </childnode>
       </node>
-      <node id="5">
-        <label>TLE92466ED_HAL.hpp</label>
-        <link refid="TLE92466ED__HAL_8hpp"/>
-        <childnode refid="6" relation="include">
-        </childnode>
-        <childnode refid="7" relation="include">
-        </childnode>
-        <childnode refid="8" relation="include">
-        </childnode>
-        <childnode refid="9" relation="include">
-        </childnode>
-      </node>
       <node id="3">
         <label>Arduino.h</label>
       </node>
       <node id="4">
         <label>SPI.h</label>
       </node>
-      <node id="7">
-        <label>concepts</label>
-      </node>
-      <node id="6">
-        <label>cstdint</label>
-      </node>
-      <node id="9">
-        <label>expected</label>
-      </node>
-      <node id="8">
-        <label>span</label>
+      <node id="5">
+        <label>TLE92466ED_CommInterface.hpp</label>
       </node>
     </incdepgraph>
     <briefdescription>

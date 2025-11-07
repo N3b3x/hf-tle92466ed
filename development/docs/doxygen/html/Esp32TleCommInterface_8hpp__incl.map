@@ -1,0 +1,19 @@
+<map id="examples/esp32/main/Esp32TleCommInterface.hpp" name="examples/esp32/main/Esp32TleCommInterface.hpp">
+<area shape="rect" id="Node000001" title="ESP32 Communication Interface implementation for TLE92466ED driver." alt="" coords="709,5,972,56"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,104,305,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="709,51,281,105,280,100,709,46"/>
+<area shape="rect" id="Node000003" href="$TLE92466ED__Config_8hpp.html" title="Hardware configuration for TLE92466ED driver on ESP32&#45;C6." alt="" coords="330,104,557,135"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="730,59,522,104,521,98,729,53"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="581,104,756,135"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="793,59,710,100,708,96,791,54"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="780,104,901,135"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="843,56,843,90,838,90,838,56"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="925,104,1041,135"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="882,54,949,94,947,99,879,58"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="1065,104,1165,135"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="918,54,1058,97,1056,102,917,59"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="1189,104,1279,135"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="959,53,1176,101,1175,106,958,59"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="406,183,481,213"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="446,135,446,169,441,169,441,135"/>
+</map>

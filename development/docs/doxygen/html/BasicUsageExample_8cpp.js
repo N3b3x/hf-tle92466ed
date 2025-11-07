@@ -10,8 +10,9 @@ var BasicUsageExample_8cpp =
     [ "test_current_setting", "BasicUsageExample_8cpp.html#af5cb4083b4d84e2423e0ee4a5a08766d", null ],
     [ "test_diagnostics", "BasicUsageExample_8cpp.html#ac7a22007aa641ea5a476dcaf3e28da11", null ],
     [ "test_driver_initialization", "BasicUsageExample_8cpp.html#ae11eb6cb1d8f2e300e874298a5d3ecb3", null ],
+    [ "test_gpio_control", "BasicUsageExample_8cpp.html#a3458b48356a1c36952a03734228f0a5d", null ],
     [ "test_hal_initialization", "BasicUsageExample_8cpp.html#abb4b230389c72bfdce3ec626624637d7", null ],
     [ "g_driver", "BasicUsageExample_8cpp.html#ac1757f06a5de1272b64a63221d447a7c", null ],
-    [ "g_hal", "BasicUsageExample_8cpp.html#a7f4a80000dadaa6227be7f2e885b342d", null ],
+    [ "g_hal", "BasicUsageExample_8cpp.html#a24db71501f93a69b4c6eea17c2b6bd36", null ],
     [ "TAG", "BasicUsageExample_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c", null ]
 ];

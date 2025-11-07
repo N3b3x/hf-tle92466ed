@@ -1,23 +1,13 @@
 var searchData=
 [
-  ['m_5fconfig_0',['m_config',['../classArduino__HAL.html#a428e17cab20dd81c769399a23bc4a1ad',1,'Arduino_HAL']]],
-  ['m_5finitialized_1',['m_initialized',['../classArduino__HAL.html#aadf746353286d023834466470087e5ae',1,'Arduino_HAL']]],
-  ['max_5fcurrent_2',['max_current',['../structTLE92466ED_1_1ChannelDiagnostics.html#ac4a3efbcae09e479884dd4fef3f2e355',1,'TLE92466ED::ChannelDiagnostics']]],
-  ['max_5ferror_5fcount_3',['MAX_ERROR_COUNT',['../structTLE92466ED__Config_1_1AppConfig.html#a22a3c0135ec2d12ba704cee7a68448ce',1,'TLE92466ED_Config::AppConfig']]],
-  ['max_5fretry_5fcount_4',['MAX_RETRY_COUNT',['../structTLE92466ED__Config_1_1Diagnostics.html#acae6815e75e97e0ff050ece2e0d42677',1,'TLE92466ED_Config::Diagnostics']]],
-  ['max_5ftarget_5',['MAX_TARGET',['../namespaceTLE92466ED_1_1SETPOINT.html#a220bfa71c8f7895a8410bbd9b282bb3b',1,'TLE92466ED::SETPOINT']]],
-  ['min_5fcurrent_6',['min_current',['../structTLE92466ED_1_1ChannelDiagnostics.html#a07dab0fd98b78d83b55348debe816b7a',1,'TLE92466ED::ChannelDiagnostics']]],
-  ['min_5fint_5fthresh_5fmask_7',['MIN_INT_THRESH_MASK',['../namespaceTLE92466ED_1_1CH__CTRL__REG.html#a677cceb68f3bc226c33bd22fa242532d',1,'TLE92466ED::CH_CTRL_REG']]],
-  ['min_5frevision_8',['MIN_REVISION',['../namespaceTLE92466ED_1_1DeviceID.html#a1cde63ef1109e38621b9d6fd244db6a5',1,'TLE92466ED::DeviceID']]],
-  ['miso_9',['MISO',['../structTLE92466ED__Config_1_1SPIPins.html#a01678cdbe4fd98c870e7b5dbd1f9b722',1,'TLE92466ED_Config::SPIPins']]],
-  ['miso_5fpin_10',['miso_pin',['../structESP32C6__HAL_1_1SPIConfig.html#a0c31cedefc066672258ba6332a516a85',1,'ESP32C6_HAL::SPIConfig']]],
-  ['mission_5fmode_11',['MISSION_MODE',['../namespaceTLE92466ED_1_1CH__CTRL.html#a2ac22ee24c07def312b5874b2433e8bd',1,'TLE92466ED::CH_CTRL']]],
-  ['mission_5fmode_5f_12',['mission_mode_',['../classTLE92466ED_1_1Driver.html#acb123fbe9e3735f53709f9ff455549fb',1,'TLE92466ED::Driver']]],
-  ['mode_13',['MODE',['../structTLE92466ED__Config_1_1SPIParams.html#a01db141e580865ce7c4b08831b00110d',1,'TLE92466ED_Config::SPIParams']]],
-  ['mode_14',['mode',['../structTLE92466ED_1_1ChannelConfig.html#a42e220c25c9eafe396a82a6c3d314f63',1,'TLE92466ED::ChannelConfig::mode'],['../structTLE92466ED_1_1SPIConfig.html#aa612833cf5e4cb76eff873af9e2ad939',1,'TLE92466ED::SPIConfig::mode'],['../structESP32C6__HAL_1_1SPIConfig.html#a30b54e9fd84673e9f825f680376c52e8',1,'ESP32C6_HAL::SPIConfig::mode']]],
-  ['mode_15',['MODE',['../namespaceTLE92466ED_1_1ChannelReg.html#a92248911b8a7380ede451d48747ad2c5',1,'TLE92466ED::ChannelReg']]],
-  ['mode_5fmask_16',['MODE_MASK',['../namespaceTLE92466ED_1_1CH__MODE.html#ad11ec681f37ebd98bc4820a9b2f46269',1,'TLE92466ED::CH_MODE']]],
-  ['mosi_17',['MOSI',['../structTLE92466ED__Config_1_1SPIPins.html#a53537093fb0333fbdebb49bff12f3e98',1,'TLE92466ED_Config::SPIPins']]],
-  ['mosi_5fpin_18',['mosi_pin',['../structESP32C6__HAL_1_1SPIConfig.html#a331b2a097b48cef4befce17733f40d9d',1,'ESP32C6_HAL::SPIConfig']]],
-  ['msb_5ffirst_19',['msb_first',['../structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635',1,'TLE92466ED::SPIConfig']]]
+  ['pair_5f0_5fch_5fa_0',['PAIR_0_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a6d7c27f55a1db6a5e3ba91321a01104f',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['pair_5f0_5fch_5fb_1',['PAIR_0_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a34084a19eb99c32ddc1a1c7754f05eac',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['pair_5f1_5fch_5fa_2',['PAIR_1_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a650fc9f110acf829d92e7a2d5f309eff',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['pair_5f1_5fch_5fb_3',['PAIR_1_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#a05e64db387c9544f030fe0e698cda8be',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['pair_5f2_5fch_5fa_4',['PAIR_2_CH_A',['../structTLE92466ED__Config_1_1ChannelPairs.html#a329b179d18964622bd1050cfd18abf00',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['pair_5f2_5fch_5fb_5',['PAIR_2_CH_B',['../structTLE92466ED__Config_1_1ChannelPairs.html#abf6d883cf20900de8bdae99d8cfcafb5',1,'TLE92466ED_Config::ChannelPairs']]],
+  ['parallel_5fchannel_5fmax_6',['PARALLEL_CHANNEL_MAX',['../structTLE92466ED__Config_1_1CurrentLimits.html#a1e7e33a854c9c3cb2e7046eb4e29ae68',1,'TLE92466ED_Config::CurrentLimits']]],
+  ['passed_5ftests_7',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['poll_5finterval_5fms_8',['POLL_INTERVAL_MS',['../structTLE92466ED__Config_1_1Diagnostics.html#a1b7f0796c570226570644a76e6e73215',1,'TLE92466ED_Config::Diagnostics']]],
+  ['power_5fon_5fdelay_5fms_9',['POWER_ON_DELAY_MS',['../structTLE92466ED__Config_1_1Timing.html#a29fdf0c53105932747e8d5864a3b06b5',1,'TLE92466ED_Config::Timing']]]
 ];

@@ -24,7 +24,7 @@
 #include "esp_system.h"
 
 #include "TLE92466ED.hpp"
-#include "ESP32C6_HAL.hpp"
+#include "Esp32TleCommInterface.hpp"
 #include "TLE92466ED_TestFramework.hpp"
 
 using namespace TLE92466ED;
@@ -43,7 +43,7 @@ static const char* TAG = "TLE92466ED_Basic";
 // SHARED TEST RESOURCES
 //=============================================================================
 
-static std::unique_ptr<ESP32C6_HAL> g_hal;
+static std::unique_ptr<Esp32TleCommInterface> g_hal;
 static TLE92466ED::Driver* g_driver = nullptr;
 
 //=============================================================================
@@ -55,7 +55,7 @@ static TLE92466ED::Driver* g_driver = nullptr;
  */
 static bool test_hal_initialization() noexcept {
     ESP_LOGI(TAG, "Creating HAL instance...");
-    g_hal = createTLE92466ED_HAL();
+    g_hal = CreateEsp32TleCommInterface();
     
     if (!g_hal) {
         ESP_LOGE(TAG, "Failed to create HAL instance");
@@ -63,7 +63,7 @@ static bool test_hal_initialization() noexcept {
     }
     
     ESP_LOGI(TAG, "Initializing HAL...");
-    if (auto result = g_hal->init(); !result) {
+    if (auto result = g_hal->Init(); !result) {
         ESP_LOGE(TAG, "Failed to initialize HAL");
         return false;
     }
@@ -90,10 +90,17 @@ static bool test_driver_initialization() noexcept {
     }
     
     ESP_LOGI(TAG, "Initializing TLE92466ED driver...");
-    if (auto result = g_driver->init(); !result) {
+    if (auto result = g_driver->Init(); !result) {
         ESP_LOGE(TAG, "Failed to initialize driver");
         return false;
     }
+    
+    ESP_LOGI(TAG, "Releasing device from reset (RESN)...");
+    if (auto result = g_driver->ReleaseReset(); !result) {
+        ESP_LOGE(TAG, "Failed to release reset");
+        return false;
+    }
+    ESP_LOGI(TAG, "✅ Device released from reset");
     
     ESP_LOGI(TAG, "✅ TLE92466ED driver initialized successfully");
     return true;
@@ -109,7 +116,7 @@ static bool test_chip_id() noexcept {
     }
     
     ESP_LOGI(TAG, "Reading chip identification...");
-    if (auto chip_id = g_driver->get_chip_id(); chip_id) {
+    if (auto chip_id = g_driver->GetChipId(); chip_id) {
         ESP_LOGI(TAG, "✅ Chip ID: [0x%04X, 0x%04X, 0x%04X]", 
                  (*chip_id)[0], (*chip_id)[1], (*chip_id)[2]);
         return true;
@@ -117,6 +124,45 @@ static bool test_chip_id() noexcept {
         ESP_LOGE(TAG, "❌ Failed to read chip ID");
         return false;
     }
+}
+
+/**
+ * @brief Test GPIO control (Reset, Enable, Fault)
+ */
+static bool test_gpio_control() noexcept {
+    if (!g_driver) {
+        ESP_LOGE(TAG, "Driver not initialized");
+        return false;
+    }
+    
+    ESP_LOGI(TAG, "Checking fault status...");
+    if (auto fault = g_driver->IsFault(); fault) {
+        if (*fault) {
+            ESP_LOGW(TAG, "⚠️  Fault detected on FAULTN pin");
+        } else {
+            ESP_LOGI(TAG, "✅ No fault detected");
+        }
+    } else {
+        ESP_LOGW(TAG, "⚠️  Could not read fault status (FAULTN pin may not be configured)");
+    }
+    
+    ESP_LOGI(TAG, "Enabling outputs (EN pin)...");
+    if (auto result = g_driver->Enable(); !result) {
+        ESP_LOGE(TAG, "❌ Failed to enable outputs");
+        return false;
+    }
+    ESP_LOGI(TAG, "✅ Outputs enabled");
+    
+    vTaskDelay(pdMS_TO_TICKS(100));
+    
+    ESP_LOGI(TAG, "Disabling outputs (EN pin)...");
+    if (auto result = g_driver->Disable(); !result) {
+        ESP_LOGE(TAG, "❌ Failed to disable outputs");
+        return false;
+    }
+    ESP_LOGI(TAG, "✅ Outputs disabled");
+    
+    return true;
 }
 
 /**
@@ -128,10 +174,17 @@ static bool test_channel_enable_disable() noexcept {
         return false;
     }
     
+    // Ensure outputs are enabled before enabling channels
+    ESP_LOGI(TAG, "Enabling outputs (EN pin)...");
+    if (auto result = g_driver->Enable(); !result) {
+        ESP_LOGE(TAG, "❌ Failed to enable outputs");
+        return false;
+    }
+    
     const Channel channel = Channel::CH0;
     
     ESP_LOGI(TAG, "Enabling channel %d...", static_cast<int>(channel));
-    if (auto result = g_driver->enable_channel(channel, true); !result) {
+    if (auto result = g_driver->EnableChannel(channel, true); !result) {
         ESP_LOGE(TAG, "❌ Failed to enable channel %d", static_cast<int>(channel));
         return false;
     }
@@ -140,7 +193,7 @@ static bool test_channel_enable_disable() noexcept {
     vTaskDelay(pdMS_TO_TICKS(1000));
     
     ESP_LOGI(TAG, "Disabling channel %d...", static_cast<int>(channel));
-    if (auto result = g_driver->enable_channel(channel, false); !result) {
+    if (auto result = g_driver->EnableChannel(channel, false); !result) {
         ESP_LOGE(TAG, "❌ Failed to disable channel %d", static_cast<int>(channel));
         return false;
     }
@@ -163,7 +216,7 @@ static bool test_current_setting() noexcept {
     
     for (uint16_t current : test_currents) {
         ESP_LOGI(TAG, "Setting channel %d current to %dmA...", static_cast<int>(channel), current);
-        if (auto result = g_driver->set_current_setpoint(channel, current); !result) {
+        if (auto result = g_driver->SetCurrentSetpoint(channel, current); !result) {
             ESP_LOGE(TAG, "❌ Failed to set current to %dmA", current);
             return false;
         }
@@ -186,7 +239,7 @@ static bool test_diagnostics() noexcept {
     const Channel channel = Channel::CH0;
     
     ESP_LOGI(TAG, "Reading diagnostics...");
-    if (auto diag = g_driver->get_channel_diagnostics(channel); diag) {
+    if (auto diag = g_driver->GetChannelDiagnostics(channel); diag) {
         ESP_LOGI(TAG, "✅ Diagnostics read successfully");
         
         // Check for faults - diagnostics structure fields need to be checked
@@ -214,11 +267,18 @@ static bool test_current_ramping() noexcept {
         return false;
     }
     
+    // Ensure outputs are enabled before enabling channels
+    ESP_LOGI(TAG, "Enabling outputs (EN pin)...");
+    if (auto result = g_driver->Enable(); !result) {
+        ESP_LOGE(TAG, "❌ Failed to enable outputs");
+        return false;
+    }
+    
     const Channel channel = Channel::CH0;
     
     // Enable channel first
     ESP_LOGI(TAG, "Enabling channel %d for ramping test...", static_cast<int>(channel));
-    if (auto result = g_driver->enable_channel(channel, true); !result) {
+    if (auto result = g_driver->EnableChannel(channel, true); !result) {
         ESP_LOGE(TAG, "❌ Failed to enable channel");
         return false;
     }
@@ -226,7 +286,7 @@ static bool test_current_ramping() noexcept {
     // Ramp up
     ESP_LOGI(TAG, "Ramping up from 0 to 1000mA...");
     for (uint16_t current = 0; current <= 1000; current += 100) {
-        if (auto result = g_driver->set_current_setpoint(channel, current); !result) {
+        if (auto result = g_driver->SetCurrentSetpoint(channel, current); !result) {
             ESP_LOGE(TAG, "❌ Failed to set current to %dmA", current);
             return false;
         }
@@ -236,7 +296,7 @@ static bool test_current_ramping() noexcept {
     // Ramp down
     ESP_LOGI(TAG, "Ramping down from 1000 to 0mA...");
     for (int current = 1000; current >= 0; current -= 100) {
-        if (auto result = g_driver->set_current_setpoint(channel, static_cast<uint16_t>(current)); !result) {
+        if (auto result = g_driver->SetCurrentSetpoint(channel, static_cast<uint16_t>(current)); !result) {
             ESP_LOGE(TAG, "❌ Failed to set current to %dmA", current);
             return false;
         }
@@ -244,7 +304,7 @@ static bool test_current_ramping() noexcept {
     }
     
     // Disable channel
-    if (auto result = g_driver->enable_channel(channel, false); !result) {
+    if (auto result = g_driver->EnableChannel(channel, false); !result) {
         ESP_LOGE(TAG, "❌ Failed to disable channel");
         return false;
     }
@@ -281,6 +341,7 @@ extern "C" void app_main() {
         RUN_TEST_IN_TASK("hal_initialization", test_hal_initialization, 8192, 5);
         RUN_TEST_IN_TASK("driver_initialization", test_driver_initialization, 8192, 5);
         RUN_TEST_IN_TASK("chip_id", test_chip_id, 8192, 5);
+        RUN_TEST_IN_TASK("gpio_control", test_gpio_control, 8192, 5);
     );
     
     RUN_TEST_SECTION_IF_ENABLED(

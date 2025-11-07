@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['no_5ferror_0',['NO_ERROR',['../namespaceTLE92466ED.html#aa27c516cf61148a416ccab1c79f37b51ad306b6fdee05fe87455110ddf6501e6c',1,'TLE92466ED']]],
-  ['none_1',['None',['../namespaceTLE92466ED.html#a575be450839f70a2517e896131f37ad6a6adf97f83acf6453d4a6a4b1070f3754',1,'TLE92466ED::None'],['../namespaceTLE92466ED.html#ac1de4cdc9257b7d596222fcf888eb7c3a6adf97f83acf6453d4a6a4b1070f3754',1,'TLE92466ED::None']]],
-  ['none_2',['NONE',['../namespaceTLE92466ED.html#aa1fa8e45dfa0d762330e89dae1ad3de2ab50339a10e1de285ac99d4c3990b8693',1,'TLE92466ED']]],
-  ['notinitialized_3',['NotInitialized',['../namespaceTLE92466ED.html#a575be450839f70a2517e896131f37ad6a9646ad3a1c3e708b4fa8b4b4270fbab6',1,'TLE92466ED']]]
+  ['operating_5fmax_0',['OPERATING_MAX',['../structTLE92466ED__Config_1_1Temperature.html#ab30719c0236ab1ca6e4eac73cd71c662',1,'TLE92466ED_Config::Temperature']]],
+  ['operating_5fmin_1',['OPERATING_MIN',['../structTLE92466ED__Config_1_1Temperature.html#ad5e5558ffce6636e04b5c05ede11fae6',1,'TLE92466ED_Config::Temperature']]],
+  ['output_5fsection_5findicator_2',['output_section_indicator',['../TLE92466ED__TestFramework_8hpp.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TLE92466ED_TestFramework.hpp']]],
+  ['overcurrent_5fthreshold_5fma_3',['OVERCURRENT_THRESHOLD_MA',['../structTLE92466ED__Config_1_1Diagnostics.html#a84c944a741e553632cfb19d86e07f395',1,'TLE92466ED_Config::Diagnostics']]]
 ];

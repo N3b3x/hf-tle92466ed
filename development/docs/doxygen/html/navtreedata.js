@@ -26,22 +26,14 @@ var NAVTREE =
 [
   [ "TLE92466ED Driver", "index.html", [
     [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
-      [ "Namespace Members", "namespacemembers.html", [
-        [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
-      ] ]
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
-    [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
+        [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -61,10 +53,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Arduino__HAL_8cpp.html",
-"TLE92466ED__Registers_8hpp.html#ab7d9ef2a8366caaa6d65f2389ae81635",
-"classTLE92466ED_1_1ExampleHAL.html#af303b6513437914a99dfcfa4d265d1fb",
-"namespaceTLE92466ED_1_1CentralReg.html#adf14637c8f4578e8065090cd761eaa77",
-"structTLE92466ED_1_1SPIConfig.html#a741166f08372777babe18ed36b928635"
+"structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

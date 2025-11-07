@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['unknownerror_0',['UnknownError',['../namespaceTLE92466ED.html#ac1de4cdc9257b7d596222fcf888eb7c3abfaef30f1c8011c5cefa38ae470fb7aa',1,'TLE92466ED']]],
-  ['uv_5fov_5fswap_1',['UV_OV_SWAP',['../namespaceTLE92466ED_1_1GLOBAL__CONFIG.html#a9bb2852bba06e5da36b0b529681619e9',1,'TLE92466ED::GLOBAL_CONFIG']]]
+  ['warning_5fthreshold_0',['WARNING_THRESHOLD',['../structTLE92466ED__Config_1_1Temperature.html#afc91a3882e1f14f9a5d23bdcda11b30c',1,'TLE92466ED_Config::Temperature']]],
+  ['wave_5fpattern_5fdemo_1',['wave_pattern_demo',['../MultiChannelExample_8cpp.html#a4f02b9ef15cfcfbe53b982a31a2c62b2',1,'MultiChannelExample.cpp']]]
 ];

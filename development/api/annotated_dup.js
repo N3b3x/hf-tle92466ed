@@ -1,16 +1,5 @@
 var annotated_dup =
 [
-    [ "TLE92466ED", "namespaceTLE92466ED.html", [
-      [ "ChannelConfig", "structTLE92466ED_1_1ChannelConfig.html", "structTLE92466ED_1_1ChannelConfig" ],
-      [ "ChannelDiagnostics", "structTLE92466ED_1_1ChannelDiagnostics.html", "structTLE92466ED_1_1ChannelDiagnostics" ],
-      [ "DeviceStatus", "structTLE92466ED_1_1DeviceStatus.html", "structTLE92466ED_1_1DeviceStatus" ],
-      [ "Driver", "classTLE92466ED_1_1Driver.html", "classTLE92466ED_1_1Driver" ],
-      [ "ExampleHAL", "classTLE92466ED_1_1ExampleHAL.html", "classTLE92466ED_1_1ExampleHAL" ],
-      [ "GlobalConfig", "structTLE92466ED_1_1GlobalConfig.html", "structTLE92466ED_1_1GlobalConfig" ],
-      [ "HAL", "classTLE92466ED_1_1HAL.html", "classTLE92466ED_1_1HAL" ],
-      [ "SPIConfig", "structTLE92466ED_1_1SPIConfig.html", "structTLE92466ED_1_1SPIConfig" ],
-      [ "SPIFrame", "unionTLE92466ED_1_1SPIFrame.html", "unionTLE92466ED_1_1SPIFrame" ]
-    ] ],
     [ "TLE92466ED_Config", "namespaceTLE92466ED__Config.html", [
       [ "AppConfig", "structTLE92466ED__Config_1_1AppConfig.html", "structTLE92466ED__Config_1_1AppConfig" ],
       [ "ChannelPairs", "structTLE92466ED__Config_1_1ChannelPairs.html", "structTLE92466ED__Config_1_1ChannelPairs" ],
@@ -24,7 +13,7 @@ var annotated_dup =
       [ "Timing", "structTLE92466ED__Config_1_1Timing.html", "structTLE92466ED__Config_1_1Timing" ]
     ] ],
     [ "Arduino_HAL", "classArduino__HAL.html", "classArduino__HAL" ],
-    [ "ESP32C6_HAL", "classESP32C6__HAL.html", "classESP32C6__HAL" ],
+    [ "Esp32TleCommInterface", "classEsp32TleCommInterface.html", "classEsp32TleCommInterface" ],
     [ "TestResults", "structTestResults.html", "structTestResults" ],
     [ "TestTaskContext", "structTestTaskContext.html", "structTestTaskContext" ]
 ];

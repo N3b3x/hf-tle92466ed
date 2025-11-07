@@ -31,9 +31,9 @@ The component automatically locates the TLE92466ED driver source files:
 
 ### Headers Included
 
-- `include/TLE92466ED.hpp` - Driver class
-- `include/TLE92466ED_Registers.hpp` - Register definitions
-- `include/TLE92466ED_HAL.hpp` - Hardware abstraction layer interface
+- `inc/TLE92466ED.hpp` - Driver class
+- `inc/TLE92466ED_Registers.hpp` - Register definitions
+- `inc/TLE92466ED_CommInterface.hpp` - Communication interface
 
 ## Usage in Projects
 

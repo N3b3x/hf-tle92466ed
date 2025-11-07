@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['en_5fpin_0',['en_pin',['../structArduino__HAL_1_1SPIConfig.html#a7de47950621c64859459f02a0d1dd332',1,'Arduino_HAL::SPIConfig::en_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a0158f8e96f398835770b77bded5188b3',1,'Esp32TleCommInterface::SPIConfig::en_pin']]],
-  ['enable_5fauto_5frecovery_1',['ENABLE_AUTO_RECOVERY',['../structTLE92466ED__Config_1_1AppConfig.html#a16e1410566f5007111bfd414bbeaf979',1,'TLE92466ED_Config::AppConfig']]],
-  ['enable_5fdebug_5flogging_2',['ENABLE_DEBUG_LOGGING',['../structTLE92466ED__Config_1_1AppConfig.html#a032941dbfee66755ae741015eaac26d5',1,'TLE92466ED_Config::AppConfig']]],
-  ['enable_5fperformance_5fmonitoring_3',['ENABLE_PERFORMANCE_MONITORING',['../structTLE92466ED__Config_1_1AppConfig.html#abc39c5d9adfbf1bae555c0a923681b09',1,'TLE92466ED_Config::AppConfig']]],
-  ['enable_5fspi_5flogging_4',['ENABLE_SPI_LOGGING',['../structTLE92466ED__Config_1_1AppConfig.html#af44f2d552dd7901eb646bf7dcd5dc1f1',1,'TLE92466ED_Config::AppConfig']]]
+  ['channel_0',['CHANNEL',['../structADCConfig.html#a50cbf9858ed09cf95bc20587757328f4',1,'ADCConfig::CHANNEL'],['../structSolenoid1Config.html#a7a5e0d6d3f9f53ad0d8ca2ebfe88e205',1,'Solenoid1Config::CHANNEL']]],
+  ['completion_5fsemaphore_1',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
+  ['config_5f_2',['config_',['../classEsp32TleCommInterface.html#a2b404e46be41c058f04d34f5870717f0',1,'Esp32TleCommInterface']]],
+  ['cs_3',['CS',['../structTLE92466ED__TestConfig_1_1SPIPins.html#a144454730100985c5bc1ad819cfa0ddf',1,'TLE92466ED_TestConfig::SPIPins']]],
+  ['cs_5fena_5fposttrans_4',['CS_ENA_POSTTRANS',['../structTLE92466ED__TestConfig_1_1SPIParams.html#abbc31a95b8b58b08104aecc97a94f3f3',1,'TLE92466ED_TestConfig::SPIParams']]],
+  ['cs_5fena_5fposttrans_5',['cs_ena_posttrans',['../structEsp32TleCommInterface_1_1SPIConfig.html#abee4742344264d6dea7a731d73b8c848',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['cs_5fena_5fpretrans_6',['CS_ENA_PRETRANS',['../structTLE92466ED__TestConfig_1_1SPIParams.html#ab2f4932fc67cbfd35cf4e7c235b64eb4',1,'TLE92466ED_TestConfig::SPIParams']]],
+  ['cs_5fena_5fpretrans_7',['cs_ena_pretrans',['../structEsp32TleCommInterface_1_1SPIConfig.html#ac6271dc4c163c0be67cc73375a57e760',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['cs_5fhold_5fus_8',['CS_HOLD_US',['../structTLE92466ED__TestConfig_1_1Timing.html#adc6d7d41ea03acc3ef9d63d3a9d43999',1,'TLE92466ED_TestConfig::Timing']]],
+  ['cs_5fpin_9',['cs_pin',['../structArduino__HAL_1_1SPIConfig.html#a78740088a33e446394e9cee68ddba7fa',1,'Arduino_HAL::SPIConfig::cs_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a06729ed688460df3b652f104bbcc6f93',1,'Esp32TleCommInterface::SPIConfig::cs_pin']]],
+  ['cs_5fsetup_5fus_10',['CS_SETUP_US',['../structTLE92466ED__TestConfig_1_1Timing.html#ae15c69fddca4a34f67cedea6ad9a6ea1',1,'TLE92466ED_TestConfig::Timing']]]
 ];

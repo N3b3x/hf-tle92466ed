@@ -11,59 +11,71 @@ version: "1.0"
 
 metadata:
   project: "ESP32 TLE92466ED Driver Examples"
-  default_app: "basic_usage"
+  default_app: "driver_integration_test"
   target: "esp32c6"
   idf_versions: ["release/v5.5", "release/v5.4"]
   build_types: [["Debug", "Release"], ["Debug"]]
 
 apps:
   # --------------------------------------------------------------------------
-  # Basic Usage Example
+  # Driver Integration Test Suite
   # --------------------------------------------------------------------------
-  basic_usage:
-    description: "Basic TLE92466ED usage with FreeRTOS test framework"
-    source_file: "BasicUsageExample.cpp"
-    category: "demo"
+  driver_integration_test:
+    description: "Comprehensive driver integration test suite (no hardware required)"
+    source_file: "DriverIntegrationTest.cpp"
+    category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-    documentation: "docs/README_BASIC_USAGE.md"
+    documentation: "docs/README_DRIVER_INTEGRATION_TEST.md"
     test_sections:
       - "INITIALIZATION_TESTS"
-      - "BASIC_OPERATION_TESTS"
+      - "MODE_CONTROL_TESTS"
+      - "GLOBAL_CONFIGURATION_TESTS"
+      - "CHANNEL_CONTROL_TESTS"
       - "CURRENT_CONTROL_TESTS"
+      - "PWM_CONFIGURATION_TESTS"
+      - "DITHER_CONFIGURATION_TESTS"
+      - "DIAGNOSTICS_TESTS"
+      - "FAULT_MANAGEMENT_TESTS"
+      - "WATCHDOG_TESTS"
+      - "GPIO_CONTROL_TESTS"
+      - "MULTI_CHANNEL_TESTS"
+      - "PARALLEL_OPERATION_TESTS"
+      - "ERROR_CONDITION_TESTS"
     features:
-      - "HAL initialization and verification"
-      - "Driver initialization and chip ID reading"
-      - "Single channel current control (0-2000mA)"
-      - "Channel enable/disable operations"
-      - "Current ramping demonstration"
-      - "Real-time diagnostics reading"
+      - "Complete driver API validation (40+ tests)"
+      - "13 test sections covering all functionality"
+      - "Initialization, configuration, control, diagnostics"
+      - "Multi-channel and parallel operation testing"
+      - "Error condition validation"
       - "FreeRTOS task-based test execution"
       - "GPIO14 progress indicator"
       - "Automatic pass/fail tracking"
+      - "No actual solenoids required (driver test only)"
 
   # --------------------------------------------------------------------------
-  # Multi-Channel Example
+  # Solenoid Control Test (Real Hardware)
   # --------------------------------------------------------------------------
-  multi_channel:
-    description: "Multi-channel control with independent current settings"
-    source_file: "MultiChannelExample.cpp"
-    category: "demo"
+  solenoid_control_test:
+    description: "Real hardware solenoid control test with ADC-based current control"
+    source_file: "SolenoidControlTest.cpp"
+    category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
-    ci_enabled: true
+    ci_enabled: false
     featured: true
-    documentation: "docs/README_MULTI_CHANNEL.md"
+    documentation: "docs/README_SOLENOID_CONTROL_TEST.md"
+    hardware_required: true
     features:
-      - "All 6 channels independent control"
-      - "Sequential channel activation"
-      - "Synchronized channel operations"
-      - "Wave patterns across channels"
-      - "Current ramping and smooth transitions"
-      - "Performance monitoring"
-      - "Channel group management"
+      - "Two solenoids: one single channel, one parallel pair"
+      - "ADC-based current control (0-3.3V maps to 0-100% current)"
+      - "Independent min/max current limits per solenoid"
+      - "Real-time current adjustment based on ADC reading"
+      - "Proper parallel channel operation validation"
+      - "Real hardware testing with actual solenoids"
+      - "Continuous monitoring and diagnostics"
 
 # ============================================================================
 # BUILD CONFIGURATION (ESP-IDF Standard Build Types)

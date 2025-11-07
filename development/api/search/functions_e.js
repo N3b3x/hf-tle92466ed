@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['_7earduino_5fhal_0',['~Arduino_HAL',['../classArduino__HAL.html#a003e7ec514421e325234ba32af378505',1,'Arduino_HAL']]],
-  ['_7eesp32tlecomminterface_1',['~Esp32TleCommInterface',['../classEsp32TleCommInterface.html#aa0bbb6a8fd460945f8c0c53c44b1ca90',1,'Esp32TleCommInterface']]]
+  ['update_5fsolenoid_5fcurrents_0',['update_solenoid_currents',['../SolenoidControlTest_8cpp.html#ae75b9efaa99cfa8c2b9295288cf8304d',1,'SolenoidControlTest.cpp']]]
 ];

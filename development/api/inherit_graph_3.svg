@@ -11,9 +11,9 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structTestTaskContext.html" target="_top" xlink:title="Context for test task.">
+<g id="a_Node000000"><a xlink:href="structSolenoid1Config.html" target="_top" xlink:title="Solenoid 1 Configuration (Single Channel)">
 <polygon fill="white" stroke="#666666" points="116,-23 0,-23 0,0 116,0 116,-23"/>
-<text text-anchor="middle" x="58" y="-7.8" font-family="Arial" font-size="14.00">TestTaskContext</text>
+<text text-anchor="middle" x="58" y="-7.8" font-family="Arial" font-size="14.00">Solenoid1Config</text>
 </a>
 </g>
 </g>

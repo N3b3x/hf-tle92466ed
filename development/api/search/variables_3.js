@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
-  ['faultn_5fpin_1',['faultn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#aa52430c1ba02a47319cb1ec481c075d7',1,'Esp32TleCommInterface::SPIConfig']]],
-  ['frequency_2',['FREQUENCY',['../structTLE92466ED__Config_1_1SPIParams.html#af8a288c4db9829ef93d75caa71a32636',1,'TLE92466ED_Config::SPIParams']]],
-  ['frequency_3',['frequency',['../structEsp32TleCommInterface_1_1SPIConfig.html#a9f220798ba05bb191f68a34a2f4c5340',1,'Esp32TleCommInterface::SPIConfig']]]
+  ['default_5ftest_5fcurrent_0',['DEFAULT_TEST_CURRENT',['../structTLE92466ED__TestConfig_1_1TestConfig.html#a7fb0173a5edf16d673974b9cc0d0956e',1,'TLE92466ED_TestConfig::TestConfig']]],
+  ['drv0_1',['DRV0',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a2d22c523fac2c084d1821d7dcdf3d78a',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['drv0_5fpin_2',['drv0_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a9a0511a2c33c0330142fee477e5c053c',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['drv1_3',['DRV1',['../structTLE92466ED__TestConfig_1_1ControlPins.html#aea4b6762eaab6ac731f1f22b207d2f9a',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['drv1_5fpin_4',['drv1_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#ab154e3052ebd993b581dac41ea1ea53d',1,'Esp32TleCommInterface::SPIConfig']]]
 ];

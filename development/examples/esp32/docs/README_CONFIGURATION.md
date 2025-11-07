@@ -11,9 +11,10 @@ examples, including hardware configuration, build settings, and test options.
 examples/esp32/
 ├── app_config.yml                    # Build metadata and app definitions
 ├── main/
-│   ├── TLE92466ED_Config.hpp        # Hardware configuration (SPI, pins, limits)
-│   ├── BasicUsageExample.cpp        # Test section flags
-│   └── MultiChannelExample.cpp      # Test section flags
+│   ├── TLE92466ED_TestConfig.hpp     # Hardware configuration (SPI, pins, limits)
+│   ├── DriverIntegrationTest.cpp     # Driver integration test suite
+│   ├── SolenoidControlTest.cpp       # Real hardware solenoid control test
+│   └── Esp32TleCommInterface.cpp    # ESP32 communication interface
 ├── sdkconfig                         # ESP-IDF SDK configuration
 └── components/
     └── tle92466ed-espidf/
@@ -23,14 +24,14 @@ examples/esp32/
 
 ---
 
-## 1. Hardware Configuration (`main/TLE92466ED_Config.hpp`)
+## 1. Hardware Configuration (`main/TLE92466ED_TestConfig.hpp`)
 
 ### Purpose
 **Centralized hardware-specific settings** for ESP32-C6 and TLE92466ED interface.
 
 ### Location
 ```text
-examples/esp32/main/TLE92466ED_Config.hpp
+examples/esp32/main/TLE92466ED_TestConfig.hpp
 ```
 
 ### Complete Configuration
@@ -40,7 +41,7 @@ examples/esp32/main/TLE92466ED_Config.hpp
 
 #include <cstdint>
 
-namespace TLE92466ED_Config {
+namespace TLE92466ED_TestConfig {
 
 //=============================================================================
 // SPI PIN CONFIGURATION
@@ -94,7 +95,7 @@ struct TestConfig {
     static constexpr uint32_t DIAGNOSTICS_POLL_INTERVAL_MS = 100;
 };
 
-} // namespace TLE92466ED_Config
+} // namespace TLE92466ED_TestConfig
 ```text
 
 ### Configuration Sections
@@ -118,20 +119,20 @@ struct TestConfig {
 
 | Setting | Default | Range | Notes |
 |---------|---------|-------|-------|
-| `FREQUENCY` | 1000000 | 100000-8000000 | SPI clock (Hz) |
-| `MODE` | 0 | 0-3 | SPI mode (TLE92466ED requires Mode 0) |
+| `FREQUENCY` | 1000000 | 100000-10000000 | SPI clock (Hz, datasheet: 0.1-10MHz) |
+| `MODE` | 1 | 0-3 | SPI mode (TLE92466ED requires Mode 1: CPOL=0, CPHA=1) |
 | `QUEUE_SIZE` | 7 | 1-10 | Transaction queue depth |
 
-**SPI Mode 0**:
+**SPI Mode 1** (per datasheet):
 - CPOL = 0 (clock idle LOW)
-- CPHA = 0 (sample on rising edge)
+- CPHA = 1 (sample on falling edge)
 - **Required by TLE92466ED** - do not change!
 
 **Frequency Guidelines**:
 - **100kHz**: Debug/troubleshooting
 - **1MHz**: Default, reliable (recommended)
 - **2-4MHz**: Higher performance
-- **8MHz**: Maximum (may require shorter cables)
+- **8-10MHz**: Maximum (may require shorter cables, datasheet max: 10MHz)
 
 #### Current Limits (`CurrentLimits`)
 
@@ -150,13 +151,14 @@ struct TestConfig {
 
 | Setting | Default | Range | Notes |
 |---------|---------|-------|-------|
-| `SUPPLY_VOLTAGE_MIN` | 8.0 | 8.0-28.0 | Minimum VBAT (V) |
-| `SUPPLY_VOLTAGE_MAX` | 28.0 | 8.0-28.0 | Maximum VBAT (V) |
+| `SUPPLY_VOLTAGE_MIN` | 5.5 | 5.5-41.0 | Minimum VBAT (V) |
+| `SUPPLY_VOLTAGE_MAX` | 41.0 | 5.5-41.0 | Maximum VBAT (V) |
 | `TEMPERATURE_MAX` | 150 | -40 to 150 | Max junction temp (°C) |
 
 **Operating Range** (per datasheet):
-- VBAT: 8V to 28V (typical: 12V or 24V automotive)
-- VDD: 3.0V to 5.5V (ESP32-C6: 3.3V)
+- VBAT: 5.5V to 41V recommended operating (typical: 12V or 24V automotive)
+- VDD: 5V input to TLE92466ED (powers central logic) - Required for IC operation
+- VIO: 3.0V to 5.5V input (sets I/O voltage levels for SPI communication, typical: 3.3V or 5.0V)
 - Temperature: -40°C to 150°C junction
 
 #### Test Configuration (`TestConfig`)
@@ -219,26 +221,16 @@ examples/esp32/app_config.yml
 
 ```yaml
 apps:
-  basic_usage:
-    description: "Basic usage example for TLE92466ED"
-    source_file: "BasicUsageExample.cpp"
-    category: "demo"
+  driver_integration_test:
+    description: "Comprehensive driver integration test suite (no hardware required)"
+    source_file: "DriverIntegrationTest.cpp"
+    category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-    documentation: "docs/README_BASIC_USAGE.md"
-    
-  multi_channel:
-    description: "Multi-channel control example for TLE92466ED"
-    source_file: "MultiChannelExample.cpp"
-    category: "demo"
-    idf_versions: ["release/v5.5"]
-    build_types: ["Debug", "Release"]
-    ci_enabled: true
-    featured: true
-    documentation: "docs/README_MULTI_CHANNEL.md"
-```text
+    documentation: "docs/README_DRIVER_INTEGRATION_TEST.md"
+```
 
 ### App Definition Fields
 
@@ -319,7 +311,7 @@ examples/esp32/docs/README_MY_CUSTOM_APP.md
 **Compile-time enable/disable** of test sections.
 
 ### Location
-In each example source file (e.g., `BasicUsageExample.cpp`):
+In each example source file (e.g., `DriverIntegrationTest.cpp`):
 
 ```cpp
 //=============================================================================
@@ -540,7 +532,7 @@ targets:
    ```
 3. **Configure hardware** (if needed)
    ```bash
-   nano main/TLE92466ED_Config.hpp
+   nano main/TLE92466ED_TestConfig.hpp
    # Modify SPI pins, frequency, etc.
    ```
 4. **Set ESP-IDF target**
@@ -585,7 +577,7 @@ targets:
 
 **Error**: `GPIO already in use`
 
-**Solution**: Change pins in `TLE92466ED_Config.hpp`:
+**Solution**: Change pins in `TLE92466ED_TestConfig.hpp`:
 ```cpp
 struct SPIPins {
     static constexpr int MISO = 4;   // Try different GPIO
@@ -635,9 +627,9 @@ idf.py -DCMAKE_BUILD_TYPE=Debug build
 
 | File | Purpose | When to Modify |
 |------|---------|----------------|
-| `TLE92466ED_Config.hpp` | Hardware settings | Different GPIO/hardware |
+| `TLE92466ED_TestConfig.hpp` | Hardware settings | Different GPIO/hardware |
 | `app_config.yml` | Build metadata | Add new app/example |
-| `BasicUsageExample.cpp` (flags) | Test sections | Enable/disable tests |
+| `DriverIntegrationTest.cpp` (flags) | Test sections | Enable/disable tests |
 | `sdkconfig` | ESP-IDF settings | Compiler/framework config |
 | `components/.../CMakeLists.txt` | Component build | Never (auto-configured) |
 | `components/.../idf_component.yml` | Component metadata | Version/dependency changes |
@@ -646,7 +638,7 @@ idf.py -DCMAKE_BUILD_TYPE=Debug build
 
 ```text
 Hardware Layer
-└── TLE92466ED_Config.hpp          (SPI pins, frequencies, limits)
+└── TLE92466ED_TestConfig.hpp          (SPI pins, frequencies, limits)
 
 Application Layer
 ├── app_config.yml                  (Build metadata, app list)

@@ -17,6 +17,7 @@ var classEsp32TleCommInterface =
     [ "initializeSPI", "classEsp32TleCommInterface.html#a63620e1f8b810d6af7ef51080db91979", null ],
     [ "isInitialized", "classEsp32TleCommInterface.html#a50a2a8f016a83d2e2d582bcdbcf289ce", null ],
     [ "IsReady", "classEsp32TleCommInterface.html#ad66112859fb1431df34345084dfc510b", null ],
+    [ "Log", "classEsp32TleCommInterface.html#ad42bff82ecd69a28fccb4d81ab6236e0", null ],
     [ "SetGpioPin", "classEsp32TleCommInterface.html#a7570d11c78eca435af4892447891f0fd", null ],
     [ "Transfer32", "classEsp32TleCommInterface.html#a9c2eba0bffd44d9ea5cfdaed7cb47781", null ],
     [ "TransferMulti", "classEsp32TleCommInterface.html#a94f432105947283210c39d4377808a5e", null ],

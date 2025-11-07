@@ -10,7 +10,8 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 | Document | Purpose | When to Read |
 |----------|---------|--------------|
-| **[Basic Usage Test Suite](README_BASIC_USAGE.md)** | Your first example | Start here! |
+| **[Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)** | Driver API validation | Start here for driver testing |
+| **[Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)** | Real hardware solenoid testing | For actual solenoid operation |
 | **[Configuration Guide](README_CONFIGURATION.md)** | All configuration options | Before customizing |
 | **[Test Framework Reference](README_TEST_FRAMEWORK.md)** | Framework API details | Writing custom tests |
 
@@ -18,31 +19,53 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ## 📖 Documentation Structure
 
-### 1. [Basic Usage Test Suite](README_BASIC_USAGE.md)
+### 1. [Driver Integration Test Suite](README_DRIVER_INTEGRATION_TEST.md)
 
-**Comprehensive guide to the basic usage example**
+**Guide to the driver integration test suite**
 
 #### Contents
 - ✅ **Test Framework Architecture** - How the test infrastructure works
-- ✅ **Test Suite Structure** - All test sections and functions
+- ✅ **Test Suite Structure** - All 13 test sections with 40+ tests
 - ✅ **Hardware Setup** - Complete wiring diagrams and pin configurations
 - ✅ **Configuration** - Hardware and test settings
 - ✅ **Building and Running** - Build commands and workflows
 - ✅ **Expected Output** - Full example outputs with explanations
+- ✅ **Test Coverage** - Complete API coverage breakdown
 - ✅ **Individual Test Details** - Deep dive into each test
+- ✅ **Telemetry Testing** - Telemetry validation
 - ✅ **Troubleshooting** - Common issues and solutions
 - ✅ **Performance Characteristics** - Timing and memory usage
 
-**Start here if you're new to the examples!**
+**Start here for driver API validation (no hardware required)!**
 
 ---
 
-### 2. [Configuration Guide](README_CONFIGURATION.md)
+### 2. [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
+
+**Complete guide to real hardware solenoid testing**
+
+#### Contents
+- ✅ **Hardware Requirements** - Complete component list and specifications
+- ✅ **System Architecture** - Block diagrams and control flow
+- ✅ **Hardware Setup** - Detailed wiring diagrams and connections
+- ✅ **ADC Configuration** - Analog input setup and calibration
+- ✅ **Solenoid Configuration** - Single channel and parallel pair setup
+- ✅ **Control Algorithm** - Current calculation and regulation
+- ✅ **Real-Time Telemetry** - Monitoring and display
+- ✅ **Operation** - Startup sequence and control loop
+- ✅ **Troubleshooting** - Hardware-specific issues and solutions
+- ✅ **Safety Considerations** - Electrical and operational safety
+
+**Use this for real hardware testing with actual solenoids!**
+
+---
+
+### 3. [Configuration Guide](README_CONFIGURATION.md)
 
 **Complete reference for all configuration files and options**
 
 #### Contents
-- ✅ **Hardware Configuration** (`TLE92466ED_Config.hpp`) - SPI pins, frequencies, current limits
+- ✅ **Hardware Configuration** (`TLE92466ED_TestConfig.hpp`) - SPI pins, frequencies, current limits
 - ✅ **Application Configuration** (`app_config.yml`) - Build metadata and app definitions
 - ✅ **Test Section Configuration** - Compile-time test enable/disable
 - ✅ **ESP-IDF SDK Configuration** (`sdkconfig`) - Framework settings
@@ -54,7 +77,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ---
 
-### 3. [Test Framework Reference](README_TEST_FRAMEWORK.md)
+### 4. [Test Framework Reference](README_TEST_FRAMEWORK.md)
 
 **Detailed API reference for the TLE92466ED Test Framework**
 
@@ -64,7 +87,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 - ✅ **Test Execution Macros** - `RUN_TEST`, `RUN_TEST_IN_TASK`, sections
 - ✅ **Usage Guide** - How to write test functions
 - ✅ **Advanced Usage** - Custom contexts, stack sizes, timeouts
-- ✅ **Best Practices** - Professional test organization
+- ✅ **Best Practices** - Test organization
 - ✅ **Performance Impact** - Memory and timing overhead
 - ✅ **CI/CD Integration** - Automated testing
 
@@ -104,15 +127,15 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
    idf.py set-target esp32c6
    ```
 
-3. **Build basic example**:
+3. **Build driver integration test**:
    ```bash
-   ./scripts/build_app.sh basic_usage Debug
+   ./scripts/build_app.sh driver_integration_test Debug
    ```
 
 4. **Flash and monitor**:
    ```bash
-   ./scripts/flash_app.sh basic_usage Debug
-   ./scripts/monitor_app.sh basic_usage
+   ./scripts/flash_app.sh driver_integration_test Debug
+   ./scripts/monitor_app.sh driver_integration_test
    ```
 
 5. **See results**:
@@ -124,43 +147,57 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ## 📊 Example Overview
 
-### BasicUsageExample
+### Driver Integration Test
 
-**Purpose**: Validate TLE92466ED driver functionality with comprehensive test suite
+**Purpose**: Driver API validation without hardware requirements
 
-**Test Sections**:
+**Test Sections** (13 total):
 1. **INITIALIZATION_TESTS** - HAL setup, driver init, chip ID verification
-2. **BASIC_OPERATION_TESTS** - Channel control, current setting, diagnostics
-3. **CURRENT_CONTROL_TESTS** - Current ramping and smooth transitions
+2. **MODE_CONTROL_TESTS** - Mode transitions and state management
+3. **GLOBAL_CONFIGURATION_TESTS** - Global device configuration
+4. **CHANNEL_CONTROL_TESTS** - Channel enable/disable and mode configuration
+5. **CURRENT_CONTROL_TESTS** - Current setpoint control and ramping
+6. **PWM_CONFIGURATION_TESTS** - PWM period configuration
+7. **DITHER_CONFIGURATION_TESTS** - Dither configuration
+8. **DIAGNOSTICS_TESTS** - Telemetry and diagnostics
+9. **FAULT_MANAGEMENT_TESTS** - Fault handling
+10. **WATCHDOG_TESTS** - Watchdog functionality
+11. **GPIO_CONTROL_TESTS** - GPIO pin control
+12. **MULTI_CHANNEL_TESTS** - All channels individually tested
+13. **PARALLEL_OPERATION_TESTS** - Parallel pair configuration
+14. **ERROR_CONDITION_TESTS** - Error handling validation
 
 **Features**:
+- ✅ 40+ individual tests
+- ✅ Complete API coverage
 - ✅ FreeRTOS task-based test execution
 - ✅ GPIO14 progress indicator
 - ✅ Automatic result tracking
-- ✅ Professional formatted output
-- ✅ 30-second timeout per test
-- ✅ Compile-time test section control
+- ✅ Telemetry testing
+- ✅ Formatted output
+- ✅ No actual solenoids required
 
-**Complexity**: ⭐⭐⭐☆☆
 
-**Read**: [Basic Usage Test Suite](README_BASIC_USAGE.md)
+**Read**: [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)
 
 ---
 
-### MultiChannelExample
+### Solenoid Control Test
 
-**Purpose**: Demonstrate independent control of all 6 TLE92466ED channels
+**Purpose**: Real hardware solenoid testing with ADC-based current control
 
-**Features** (planned):
-- Sequential channel activation
-- Synchronized channel control
-- Wave patterns across channels
-- Performance monitoring
-- Advanced diagnostics
+**Features**:
+- ✅ Two solenoids: single channel and parallel pair
+- ✅ ADC-based control (0-3.3V → 0-100% current)
+- ✅ Independent current ranges per solenoid
+- ✅ Real-time telemetry (every 1 second)
+- ✅ Continuous operation
+- ✅ Fault monitoring
 
-**Complexity**: ⭐⭐⭐⭐☆
 
-**Status**: 🚧 In Development
+**Hardware Required**: TLE92466ED IC + Two Solenoids + Power Supplies
+
+**Read**: [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
 
 ---
 
@@ -168,7 +205,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ### Hardware Configuration
 
-**File**: `main/TLE92466ED_Config.hpp`
+**File**: `main/TLE92466ED_TestConfig.hpp`
 
 **What's configured**:
 - SPI GPIO pins (MISO, MOSI, SCLK, CS)
@@ -236,9 +273,7 @@ apps:
 
 ## 🧪 Test Framework Features
 
-### Professional Test Infrastructure
-
-The examples use a **production-grade test framework** with:
+The examples use a test framework with:
 
 #### ✅ FreeRTOS Task-Based Execution
 - Each test runs in isolated task
@@ -256,7 +291,7 @@ The examples use a **production-grade test framework** with:
 - Pass/fail counting
 - Microsecond-precision execution timing
 - Success rate calculation
-- Professional formatted summaries
+- Formatted summaries
 
 #### ✅ Test Section Management
 - Compile-time section enable/disable
@@ -314,9 +349,10 @@ I (5000) TLE92466ED_Basic: ✅ ALL TESTS PASSED!
 
 | Issue | Quick Fix | Full Guide |
 |-------|-----------|------------|
-| **All tests fail** | Check VBAT power (12-24V) and wiring | [Basic Usage - Troubleshooting](README_BASIC_USAGE.md#-troubleshooting) |
-| **HAL init fails** | Verify GPIO pins in `TLE92466ED_Config.hpp` | [Configuration - GPIO Conflict](README_CONFIGURATION.md#gpio-conflict) |
-| **Chip ID read fails** | Check SPI wiring, CS pin | [Basic Usage - Chip ID Fails](README_BASIC_USAGE.md#4-chip-id-read-fails-) |
+| **All tests fail** | Check VIO power (3.0-5.5V, typical 3.3V) and wiring | [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting) |
+| **HAL init fails** | Verify GPIO pins in `TLE92466ED_TestConfig.hpp` | [Configuration - GPIO Conflict](README_CONFIGURATION.md#gpio-conflict) |
+| **Chip ID read fails** | Check SPI wiring, CS pin, RESN pin | [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting) |
+| **Solenoids not working** | Check VBAT, EN pin, channel enable | [Solenoid Control Test - Troubleshooting](README_SOLENOID_CONTROL_TEST.md#troubleshooting) |
 | **Stack overflow** | Increase stack size in `RUN_TEST_IN_TASK` | [Configuration - Stack Overflow](README_CONFIGURATION.md#stack-overflow) |
 | **Build errors** | Clean and rebuild: `idf.py fullclean && idf.py build` | [Configuration - Build Type Issues](README_CONFIGURATION.md#build-type-issues) |
 
@@ -332,11 +368,11 @@ examples/esp32/
 │
 ├── main/                           # Application source
 │   ├── CMakeLists.txt             # Main component build
-│   ├── TLE92466ED_Config.hpp      # Hardware configuration
+│   ├── TLE92466ED_TestConfig.hpp   # Hardware configuration
 │   ├── TLE92466ED_TestFramework.hpp  # Test infrastructure
 │   ├── ESP32C6_HAL.hpp/.cpp       # ESP32-C6 HAL implementation
-│   ├── BasicUsageExample.cpp      # Basic test suite
-│   └── MultiChannelExample.cpp    # Multi-channel tests
+│   ├── DriverIntegrationTest.cpp  # Driver integration test suite
+│   └── SolenoidControlTest.cpp    # Real hardware solenoid test
 │
 ├── components/                     # ESP-IDF components
 │   └── tle92466ed-espidf/         # TLE92466ED driver component
@@ -345,10 +381,11 @@ examples/esp32/
 │       └── README.md
 │
 ├── docs/                           # Documentation
-│   ├── README.md                  # This file
-│   ├── README_BASIC_USAGE.md      # Basic usage guide
-│   ├── README_CONFIGURATION.md    # Configuration reference
-│   └── README_TEST_FRAMEWORK.md   # Test framework API
+│   ├── README.md                          # This file
+│   ├── README_DRIVER_INTEGRATION_TEST.md  # Driver integration test guide
+│   ├── README_SOLENOID_CONTROL_TEST.md    # Solenoid control test guide
+│   ├── README_CONFIGURATION.md            # Configuration reference
+│   └── README_TEST_FRAMEWORK.md           # Test framework API
 │
 └── scripts/                        # Build/flash scripts (submodule)
     ├── build_app.sh
@@ -382,19 +419,19 @@ examples/esp32/
 
 ### Beginner Path
 
-1. **Read**: [Basic Usage Test Suite](README_BASIC_USAGE.md)
-2. **Build**: Basic usage example (Debug mode)
+1. **Read**: [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)
+2. **Build**: Driver integration test (Debug mode)
 3. **Run**: Flash to ESP32-C6 and observe output
-4. **Modify**: Change current values in tests
-5. **Experiment**: Try with different loads
+4. **Verify**: All tests should pass (100% success rate)
+5. **Explore**: Review telemetry tests and diagnostics
 
 ### Intermediate Path
 
-1. **Read**: [Configuration Guide](README_CONFIGURATION.md)
-2. **Customize**: Modify `TLE92466ED_Config.hpp` for your hardware
-3. **Configure**: Adjust test sections and parameters
-4. **Optimize**: Try Release build, measure performance
-5. **Debug**: Use oscilloscope to observe SPI and GPIO14
+1. **Read**: [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
+2. **Setup**: Connect solenoids and power supplies
+3. **Configure**: Adjust solenoid current ranges if needed
+4. **Test**: Run solenoid control test with real hardware
+5. **Monitor**: Observe real-time telemetry and current regulation
 
 ### Advanced Path
 
@@ -418,7 +455,7 @@ examples/esp32/
 
 ### Configuration Tips
 
-1. **Keep hardware config centralized** in `TLE92466ED_Config.hpp`
+1. **Keep hardware config centralized** in `TLE92466ED_TestConfig.hpp`
 2. **Use compile-time flags** for test sections (faster than runtime)
 3. **Document custom settings** in code comments
 4. **Version control sdkconfig.defaults** for team consistency
@@ -455,11 +492,12 @@ If you have build or configuration problems:
 ### Hardware/Test Issues
 
 If tests fail or hardware doesn't work:
-1. Check [Basic Usage - Troubleshooting](README_BASIC_USAGE.md#-troubleshooting)
-2. Verify wiring against pin configuration
-3. Measure power supplies (VBAT, VDD)
-4. Test SPI communication with logic analyzer
-5. Try lower SPI frequency (100kHz) for debugging
+1. **Driver Integration Test**: Check [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting)
+2. **Solenoid Control Test**: Check [Solenoid Control Test - Troubleshooting](README_SOLENOID_CONTROL_TEST.md#troubleshooting)
+3. Verify wiring against pin configuration
+4. Measure power supplies (VDD: 5V for central logic; VIO: 3.0-5.5V for SPI I/O levels; VBAT: 5.5-41V for solenoids)
+5. Test SPI communication with logic analyzer
+6. Try lower SPI frequency (100kHz) for debugging
 
 ### Support Channels
 
@@ -471,24 +509,46 @@ If tests fail or hardware doesn't work:
 
 ## 📊 Example Statistics
 
-### BasicUsageExample
+### Driver Integration Test
 
 | Metric | Value |
 |--------|-------|
-| **Total Tests** | 7 |
-| **Test Sections** | 3 |
-| **Typical Execution Time** | 200-250ms |
-| **Flash Size** | ~55KB |
-| **RAM Usage** | ~12KB |
+| **Total Tests** | 40+ |
+| **Test Sections** | 13 |
+| **Typical Execution Time** | 10-15 seconds |
+| **Flash Size** | ~350KB |
+| **RAM Usage** | ~15KB |
 | **Stack per Task** | 8KB |
 
 ### Test Breakdown
 
 | Section | Tests | Time |
 |---------|-------|------|
-| **Initialization** | 3 | ~40ms |
-| **Basic Operations** | 3 | ~100ms |
-| **Current Control** | 1 | ~70ms |
+| **Initialization** | 5 | ~50-100ms |
+| **Mode Control** | 3 | ~30-50ms |
+| **Global Configuration** | 3 | ~200-300ms |
+| **Channel Control** | 4 | ~500-800ms |
+| **Current Control** | 2 | ~2000-3000ms |
+| **PWM Configuration** | 2 | ~300-500ms |
+| **Dither Configuration** | 2 | ~300-500ms |
+| **Diagnostics** | 7 | ~1000-1500ms |
+| **Fault Management** | 2 | ~100-200ms |
+| **Watchdog** | 1 | ~200-300ms |
+| **GPIO Control** | 1 | ~200-300ms |
+| **Multi-Channel** | 1 | ~2000-3000ms |
+| **Parallel Operation** | 1 | ~300-500ms |
+| **Error Conditions** | 1 | ~100-200ms |
+
+### Solenoid Control Test
+
+| Metric | Value |
+|--------|-------|
+| **Control Update Rate** | 10 Hz (100ms) |
+| **Telemetry Update Rate** | 1 Hz (1 second) |
+| **ADC Sampling Rate** | 1 kHz |
+| **Flash Size** | ~380KB |
+| **RAM Usage** | ~18KB |
+| **Stack** | 8KB |
 
 ---
 
@@ -524,4 +584,4 @@ Example success output:
 **Last Updated**: 2025-10-21  
 **Status**: ✅ Complete
 
-**Next**: Start with [Basic Usage Test Suite](README_BASIC_USAGE.md) →
+**Next**: Start with [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md) →

@@ -14,46 +14,49 @@ warning: Specified markdown mainpage 'docs/doxygen-mainpage.md' does not exist
 /home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:19: warning: no matching class member found for 
   DriverResult< void > TLE92466ED::Driver::Init()
 Possible candidates:
-  'auto Esp32TleCommInterface::Init() noexcept -> CommResult< void > override' at line 71 of file /home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/examples/esp32/main/Esp32TleCommInterface.hpp
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:60: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::applyDefaultConfig' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:110: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnterMissionMode' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:126: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnterConfigMode' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:146: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureGlobal' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:184: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetCrcEnabled' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:194: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetVbatThresholds' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:221: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetVbatThresholdsRaw' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:234: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableChannel' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:259: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableChannels' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:275: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableAllChannels' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:279: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::DisableAllChannels' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:283: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetChannelMode' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:301: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetParallelOperation' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:333: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetCurrentSetpoint' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:365: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetCurrentSetpoint' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:391: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigurePwmPeriod' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:423: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigurePwmPeriodRaw' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:446: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureDither' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:481: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureDitherRaw' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:512: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureChannel' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:606: warning: documented symbol 'DriverResult< DeviceStatus > TLE92466ED::Driver::GetDeviceStatus' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:664: warning: documented symbol 'DriverResult< ChannelDiagnostics > TLE92466ED::Driver::GetChannelDiagnostics' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:727: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetAverageCurrent' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:748: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetDutyCycle' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:761: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetVbatVoltage' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:776: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetVioVoltage' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:793: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ClearFaults' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:816: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::HasAnyFault' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:825: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SoftwareReset' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:844: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ReloadSpiWatchdog' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:856: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetIcVersion' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:864: warning: documented symbol 'DriverResult< std::array< uint16_t, 3 > > TLE92466ED::Driver::GetChipId' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:892: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::VerifyDevice' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:936: warning: documented symbol 'DriverResult< uint32_t > TLE92466ED::Driver::ReadRegister' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:961: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::WriteRegister' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:986: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ModifyRegister' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1008: warning: documented symbol 'DriverResult< SPIFrame > TLE92466ED::Driver::transferFrame' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1044: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::checkSpiStatus' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1077: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::isChannelParallel' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1115: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetReset' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1127: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetEnable' was not declared or defined.
-/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1139: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::IsFault' was not declared or defined.
+  'auto Esp32TleCommInterface::Init() noexcept -> CommResult< void > override' at line 75 of file /home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/examples/esp32/main/Esp32TleCommInterface.hpp
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:103: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::applyDefaultConfig' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:157: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnterMissionMode' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:176: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnterConfigMode' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:199: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureGlobal' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:249: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetCrcEnabled' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:269: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetVbatThresholds' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:279: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::setVbatThresholdsInternal' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:302: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetVbatThresholdsRaw' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:320: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableChannel' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:349: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableChannels' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:376: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::EnableAllChannels' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:381: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::DisableAllChannels' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:386: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetChannelMode' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:408: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetParallelOperation' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:443: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetCurrentSetpoint' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:479: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetCurrentSetpoint' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:505: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigurePwmPeriod' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:540: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigurePwmPeriodRaw' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:568: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureDither' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:608: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureDitherRaw' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:642: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ConfigureChannel' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:741: warning: documented symbol 'DriverResult< DeviceStatus > TLE92466ED::Driver::GetDeviceStatus' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:799: warning: documented symbol 'DriverResult< ChannelDiagnostics > TLE92466ED::Driver::GetChannelDiagnostics' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:862: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetAverageCurrent' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:883: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetDutyCycle' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:896: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetVbatVoltage' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:911: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetVioVoltage' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:928: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ClearFaults' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:937: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::clearFaultsInternal' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:956: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::HasAnyFault' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:965: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SoftwareReset' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:986: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ReloadSpiWatchdog' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:999: warning: documented symbol 'DriverResult< uint16_t > TLE92466ED::Driver::GetIcVersion' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1007: warning: documented symbol 'DriverResult< std::array< uint16_t, 3 > > TLE92466ED::Driver::GetChipId' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1035: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::VerifyDevice' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1075: warning: documented symbol 'DriverResult< uint32_t > TLE92466ED::Driver::ReadRegister' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1105: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::WriteRegister' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1135: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::ModifyRegister' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1157: warning: documented symbol 'DriverResult< SPIFrame > TLE92466ED::Driver::transferFrame' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1193: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::checkSpiStatus' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1226: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::isChannelParallel' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1264: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetReset' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1277: warning: documented symbol 'DriverResult< void > TLE92466ED::Driver::SetEnable' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1290: warning: documented symbol 'DriverResult< bool > TLE92466ED::Driver::IsFault' was not declared or defined.
+/home/runner/work/hf-tle92466ed-driver/hf-tle92466ed-driver/src/TLE92466ED.cpp:1304: warning: documented symbol 'void TLE92466ED::Driver::diagnoseClockConfiguration' was not declared or defined.

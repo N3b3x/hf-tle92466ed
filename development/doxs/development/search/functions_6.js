@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['init_0',['Init',['../classEsp32TleCommInterface.html#a4fe06c7070fb6f0f88d2cc3a90bb2278',1,'Esp32TleCommInterface']]],
-  ['init_5ftest_5fprogress_5findicator_1',['init_test_progress_indicator',['../TLE92466ED__TestFramework_8hpp.html#a3967179ac699a5b02ef9787b549409fe',1,'TLE92466ED_TestFramework.hpp']]],
-  ['initialize_2',['initialize',['../classArduino__HAL.html#afc441d28da42aef29a55907a319086a5',1,'Arduino_HAL']]],
-  ['initialize_5fnvs_3',['initialize_nvs',['../MultiChannelExample_8cpp.html#a75facd6e73faa5a37ccd5a26bd87e4da',1,'MultiChannelExample.cpp']]],
-  ['initializegpio_4',['initializeGPIO',['../classEsp32TleCommInterface.html#a576a8c2e5361a2da0e16cf243964a93e',1,'Esp32TleCommInterface']]],
-  ['initializespi_5',['initializeSPI',['../classEsp32TleCommInterface.html#a63620e1f8b810d6af7ef51080db91979',1,'Esp32TleCommInterface']]],
-  ['isinitialized_6',['isInitialized',['../classArduino__HAL.html#aa867c51a61820644bd4ea914e95db08d',1,'Arduino_HAL::isInitialized()'],['../classEsp32TleCommInterface.html#a50a2a8f016a83d2e2d582bcdbcf289ce',1,'Esp32TleCommInterface::isInitialized() const noexcept -&gt; bool']]],
-  ['isready_7',['IsReady',['../classEsp32TleCommInterface.html#ad66112859fb1431df34345084dfc510b',1,'Esp32TleCommInterface']]]
+  ['get_5fsuccess_5fpercentage_0',['get_success_percentage',['../structTestResults.html#abd312f39dea9e43056ca161f315c7569',1,'TestResults']]],
+  ['get_5ftotal_5ftime_5fms_1',['get_total_time_ms',['../structTestResults.html#a7466f28f6ee19443a8c8510588c7844e',1,'TestResults']]],
+  ['getconfig_2',['getConfig',['../classArduino__HAL.html#af4fdc46e21a752b20f742bbfc08b1e81',1,'Arduino_HAL::getConfig()'],['../classEsp32TleCommInterface.html#a8216498d7d1b270b06a4a711bd2a21ef',1,'Esp32TleCommInterface::getConfig() const noexcept -&gt; const SPIConfig &amp;']]],
+  ['getgpiopin_3',['GetGpioPin',['../classEsp32TleCommInterface.html#aaba77fee74ef43454bf28cb9aff0c704',1,'Esp32TleCommInterface']]],
+  ['getlasterror_4',['GetLastError',['../classEsp32TleCommInterface.html#a768b503b10a2889ab49b53219a41a2be',1,'Esp32TleCommInterface']]]
 ];

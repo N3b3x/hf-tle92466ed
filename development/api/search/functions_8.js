@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['output_5fsection_5findicator_0',['output_section_indicator',['../TLE92466ED__TestFramework_8hpp.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TLE92466ED_TestFramework.hpp']]]
+  ['log_0',['Log',['../classEsp32TleCommInterface.html#ad42bff82ecd69a28fccb4d81ab6236e0',1,'Esp32TleCommInterface']]]
 ];

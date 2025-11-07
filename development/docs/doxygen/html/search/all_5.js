@@ -1,8 +1,9 @@
 var searchData=
 [
   ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
-  ['faultn_5fpin_1',['faultn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#aa52430c1ba02a47319cb1ec481c075d7',1,'Esp32TleCommInterface::SPIConfig']]],
-  ['flip_5ftest_5fprogress_5findicator_2',['flip_test_progress_indicator',['../TLE92466ED__TestFramework_8hpp.html#a7bb80345e5681c19686df292fa897daf',1,'TLE92466ED_TestFramework.hpp']]],
-  ['frequency_3',['FREQUENCY',['../structTLE92466ED__Config_1_1SPIParams.html#af8a288c4db9829ef93d75caa71a32636',1,'TLE92466ED_Config::SPIParams']]],
-  ['frequency_4',['frequency',['../structEsp32TleCommInterface_1_1SPIConfig.html#a9f220798ba05bb191f68a34a2f4c5340',1,'Esp32TleCommInterface::SPIConfig']]]
+  ['faultn_1',['FAULTN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#abd525deb25fcb647fa6c4690c63f74c4',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['faultn_5fpin_2',['faultn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a07ce16cb9d074e5f98955c150e4a98ac',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['flip_5ftest_5fprogress_5findicator_3',['flip_test_progress_indicator',['../TLE92466ED__TestFramework_8hpp.html#a7bb80345e5681c19686df292fa897daf',1,'TLE92466ED_TestFramework.hpp']]],
+  ['frequency_4',['frequency',['../structEsp32TleCommInterface_1_1SPIConfig.html#a74056b2cb52a216ad251bc8d603fc0b8',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['frequency_5',['FREQUENCY',['../structTLE92466ED__TestConfig_1_1SPIParams.html#a7c1be1681df077d91b1fd20fed51652b',1,'TLE92466ED_TestConfig::SPIParams']]]
 ];

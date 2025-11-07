@@ -1,12 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
 <doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.10.0" xml:lang="en-US">
-  <compound refid="structTLE92466ED__Config_1_1AppConfig" kind="struct"><name>TLE92466ED_Config::AppConfig</name>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1a032941dbfee66755ae741015eaac26d5" kind="variable"><name>ENABLE_DEBUG_LOGGING</name></member>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1af44f2d552dd7901eb646bf7dcd5dc1f1" kind="variable"><name>ENABLE_SPI_LOGGING</name></member>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1abc39c5d9adfbf1bae555c0a923681b09" kind="variable"><name>ENABLE_PERFORMANCE_MONITORING</name></member>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1a8697970bd45a9c9a65b7a028d32c9c11" kind="variable"><name>STATS_REPORT_INTERVAL_MS</name></member>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1a16e1410566f5007111bfd414bbeaf979" kind="variable"><name>ENABLE_AUTO_RECOVERY</name></member>
-    <member refid="structTLE92466ED__Config_1_1AppConfig_1a22a3c0135ec2d12ba704cee7a68448ce" kind="variable"><name>MAX_ERROR_COUNT</name></member>
+  <compound refid="structADCConfig" kind="struct"><name>ADCConfig</name>
+    <member refid="structADCConfig_1a1fbd7e6cfa8e6321a752fb8d95e9ecad" kind="variable"><name>UNIT</name></member>
+    <member refid="structADCConfig_1a50cbf9858ed09cf95bc20587757328f4" kind="variable"><name>CHANNEL</name></member>
+    <member refid="structADCConfig_1a35c66d72ba1ee264175de3523a709032" kind="variable"><name>ATTEN</name></member>
+    <member refid="structADCConfig_1a2c750253b441627940641261ca5b955b" kind="variable"><name>BITWIDTH</name></member>
+    <member refid="structADCConfig_1a415709e661142f4d02963380147572bd" kind="variable"><name>SAMPLE_RATE_HZ</name></member>
+    <member refid="structADCConfig_1aad0972dc88daba8224b38370ea860adb" kind="variable"><name>VREF_MV</name></member>
+    <member refid="structADCConfig_1a50bc4d09543221f73674c5f950fbe3b7" kind="variable"><name>ADC_MAX</name></member>
+    <member refid="structADCConfig_1af79e226540f25bb3bf16c03aa16a7b0f" kind="variable"><name>GPIO_PIN</name></member>
+  </compound>
+  <compound refid="structTLE92466ED__TestConfig_1_1ADCConfig" kind="struct"><name>TLE92466ED_TestConfig::ADCConfig</name>
+    <member refid="structTLE92466ED__TestConfig_1_1ADCConfig_1a47c51ee1182fcb7bebc014c0db817846" kind="variable"><name>PIN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ADCConfig_1a7ac6b7505fdbf0bce8c0dcb793651779" kind="variable"><name>VREF_MV</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ADCConfig_1af89c3e12e2d1a8f4d676ea5d1da3a38d" kind="variable"><name>MIN_VOLTAGE</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ADCConfig_1a352a535854228395d51108ce1b43fc48" kind="variable"><name>MAX_VOLTAGE</name></member>
+  </compound>
+  <compound refid="structTLE92466ED__TestConfig_1_1AppConfig" kind="struct"><name>TLE92466ED_TestConfig::AppConfig</name>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a6bdda711f77ba91e423e1502c5b2a397" kind="variable"><name>ENABLE_DEBUG_LOGGING</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a979487f02eb09e526f8a9cac2e322fbc" kind="variable"><name>ENABLE_SPI_LOGGING</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1af8de3a818970b3ca408963b48605eb30" kind="variable"><name>ENABLE_PERFORMANCE_MONITORING</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a73d040921dd27c8d9446c7aa0848c66f" kind="variable"><name>STATS_REPORT_INTERVAL_MS</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a3ef17aa73f6bc44607cc2f83bf3c7745" kind="variable"><name>ENABLE_AUTO_RECOVERY</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a8e6b4f9371f9d222d1c605f03c7b5408" kind="variable"><name>MAX_ERROR_COUNT</name></member>
   </compound>
   <compound refid="classArduino__HAL" kind="class"><name>Arduino_HAL</name>
     <member refid="classArduino__HAL_1a428e17cab20dd81c769399a23bc4a1ad" kind="variable"><name>m_config</name></member>
@@ -22,24 +38,23 @@
     <member refid="classArduino__HAL_1abf13cadba52f978f5b615f9cd60c3ea0" kind="function"><name>disableDevice</name></member>
     <member refid="classArduino__HAL_1a71d3e0beaae96edb13ca2bb88d47b4e3" kind="function"><name>resetDevice</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1ChannelPairs" kind="struct"><name>TLE92466ED_Config::ChannelPairs</name>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1a6d7c27f55a1db6a5e3ba91321a01104f" kind="variable"><name>PAIR_0_CH_A</name></member>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1a34084a19eb99c32ddc1a1c7754f05eac" kind="variable"><name>PAIR_0_CH_B</name></member>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1a650fc9f110acf829d92e7a2d5f309eff" kind="variable"><name>PAIR_1_CH_A</name></member>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1a05e64db387c9544f030fe0e698cda8be" kind="variable"><name>PAIR_1_CH_B</name></member>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1a329b179d18964622bd1050cfd18abf00" kind="variable"><name>PAIR_2_CH_A</name></member>
-    <member refid="structTLE92466ED__Config_1_1ChannelPairs_1abf6d883cf20900de8bdae99d8cfcafb5" kind="variable"><name>PAIR_2_CH_B</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1ControlPins" kind="struct"><name>TLE92466ED_TestConfig::ControlPins</name>
+    <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1a4ecb4cfcaf908b1a16bbb436093c268b" kind="variable"><name>RESN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1a9d17758f1c459951f04a5e932f6b9157" kind="variable"><name>EN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1abd525deb25fcb647fa6c4690c63f74c4" kind="variable"><name>FAULTN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1a2d22c523fac2c084d1821d7dcdf3d78a" kind="variable"><name>DRV0</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1aea4b6762eaab6ac731f1f22b207d2f9a" kind="variable"><name>DRV1</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1CurrentLimits" kind="struct"><name>TLE92466ED_Config::CurrentLimits</name>
-    <member refid="structTLE92466ED__Config_1_1CurrentLimits_1a4fad63b9e139cbea798f5bf132753344" kind="variable"><name>SINGLE_CHANNEL_MIN</name></member>
-    <member refid="structTLE92466ED__Config_1_1CurrentLimits_1ab2e268a3ffa66d95305d2992b78cb93c" kind="variable"><name>SINGLE_CHANNEL_MAX</name></member>
-    <member refid="structTLE92466ED__Config_1_1CurrentLimits_1a1e7e33a854c9c3cb2e7046eb4e29ae68" kind="variable"><name>PARALLEL_CHANNEL_MAX</name></member>
-    <member refid="structTLE92466ED__Config_1_1CurrentLimits_1a2db219eb949589dda3dcdc1105eec4a9" kind="variable"><name>RESOLUTION</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1CurrentLimits" kind="struct"><name>TLE92466ED_TestConfig::CurrentLimits</name>
+    <member refid="structTLE92466ED__TestConfig_1_1CurrentLimits_1a8809a699bc2464e910742e10609e546a" kind="variable"><name>SINGLE_CHANNEL_MIN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1CurrentLimits_1aa6e214ca2a7e8aae7fbf3ac68be1ee1d" kind="variable"><name>SINGLE_CHANNEL_MAX</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1CurrentLimits_1a5f5b2f3b210b4d67252cb7642d9e7090" kind="variable"><name>PARALLEL_CHANNEL_MAX</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1CurrentLimits_1a62d49ba58d58330a2007f5632c4d18c2" kind="variable"><name>RESOLUTION</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1Diagnostics" kind="struct"><name>TLE92466ED_Config::Diagnostics</name>
-    <member refid="structTLE92466ED__Config_1_1Diagnostics_1a84c944a741e553632cfb19d86e07f395" kind="variable"><name>OVERCURRENT_THRESHOLD_MA</name></member>
-    <member refid="structTLE92466ED__Config_1_1Diagnostics_1a1b7f0796c570226570644a76e6e73215" kind="variable"><name>POLL_INTERVAL_MS</name></member>
-    <member refid="structTLE92466ED__Config_1_1Diagnostics_1acae6815e75e97e0ff050ece2e0d42677" kind="variable"><name>MAX_RETRY_COUNT</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1Diagnostics" kind="struct"><name>TLE92466ED_TestConfig::Diagnostics</name>
+    <member refid="structTLE92466ED__TestConfig_1_1Diagnostics_1a49d34cf3a8b44272e2311ad052dfc618" kind="variable"><name>OVERCURRENT_THRESHOLD_MA</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Diagnostics_1ad09514c1c6265b7427e1b87380f9f294" kind="variable"><name>POLL_INTERVAL_MS</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Diagnostics_1abf82767c10606d39ed9b9bed9fe90463" kind="variable"><name>MAX_RETRY_COUNT</name></member>
   </compound>
   <compound refid="classEsp32TleCommInterface" kind="class"><name>Esp32TleCommInterface</name>
     <member refid="classEsp32TleCommInterface_1a2b404e46be41c058f04d34f5870717f0" kind="variable"><name>config_</name></member>
@@ -62,10 +77,24 @@
     <member refid="classEsp32TleCommInterface_1a8216498d7d1b270b06a4a711bd2a21ef" kind="function"><name>getConfig</name></member>
     <member refid="classEsp32TleCommInterface_1a7570d11c78eca435af4892447891f0fd" kind="function"><name>SetGpioPin</name></member>
     <member refid="classEsp32TleCommInterface_1aaba77fee74ef43454bf28cb9aff0c704" kind="function"><name>GetGpioPin</name></member>
+    <member refid="classEsp32TleCommInterface_1ad42bff82ecd69a28fccb4d81ab6236e0" kind="function"><name>Log</name></member>
     <member refid="classEsp32TleCommInterface_1a50a2a8f016a83d2e2d582bcdbcf289ce" kind="function"><name>isInitialized</name></member>
     <member refid="classEsp32TleCommInterface_1a576a8c2e5361a2da0e16cf243964a93e" kind="function"><name>initializeGPIO</name></member>
     <member refid="classEsp32TleCommInterface_1a63620e1f8b810d6af7ef51080db91979" kind="function"><name>initializeSPI</name></member>
     <member refid="classEsp32TleCommInterface_1a96518d50ae1b94bd9f98687ee1241fc9" kind="function"><name>addSPIDevice</name></member>
+  </compound>
+  <compound refid="structSolenoid1Config" kind="struct"><name>Solenoid1Config</name>
+    <member refid="structSolenoid1Config_1a7a5e0d6d3f9f53ad0d8ca2ebfe88e205" kind="variable"><name>CHANNEL</name></member>
+    <member refid="structSolenoid1Config_1a9c17ae1815213f221eb86543606f1cc5" kind="variable"><name>MIN_CURRENT_MA</name></member>
+    <member refid="structSolenoid1Config_1a06d69ab3525f9550ec1b8809d8fc5732" kind="variable"><name>MAX_CURRENT_MA</name></member>
+    <member refid="structSolenoid1Config_1a9c997115be102f6fa179821485844680" kind="variable"><name>PARALLEL_MODE</name></member>
+  </compound>
+  <compound refid="structSolenoid2Config" kind="struct"><name>Solenoid2Config</name>
+    <member refid="structSolenoid2Config_1a6acad435513fc810413b6ef7798f9ab4" kind="variable"><name>PAIR</name></member>
+    <member refid="structSolenoid2Config_1a66d95aa4da24c15cf5b7c7b71d0ca51c" kind="variable"><name>PRIMARY_CHANNEL</name></member>
+    <member refid="structSolenoid2Config_1af40e677922499514c02c5e0ebd14b604" kind="variable"><name>MIN_CURRENT_MA</name></member>
+    <member refid="structSolenoid2Config_1a769dee9f1a7b1ab87d8fb850020ca52c" kind="variable"><name>MAX_CURRENT_MA</name></member>
+    <member refid="structSolenoid2Config_1a4e4a6ac8ec60d7da4d74a3e0b54e94c5" kind="variable"><name>PARALLEL_MODE</name></member>
   </compound>
   <compound refid="structArduino__HAL_1_1SPIConfig" kind="struct"><name>Arduino_HAL::SPIConfig</name>
     <member refid="structArduino__HAL_1_1SPIConfig_1a78740088a33e446394e9cee68ddba7fa" kind="variable"><name>cs_pin</name></member>
@@ -77,45 +106,51 @@
   </compound>
   <compound refid="structEsp32TleCommInterface_1_1SPIConfig" kind="struct"><name>Esp32TleCommInterface::SPIConfig</name>
     <member refid="structEsp32TleCommInterface_1_1SPIConfig_1ab6647e96f0166aac831640274d72a996" kind="variable"><name>host</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a37f6308a9c9b30ab3f3154522d2ab27f" kind="variable"><name>miso_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a31fc4f7ff61d7585c092f155165015c8" kind="variable"><name>mosi_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a36c794b2b4a0a0688102ea90940e4502" kind="variable"><name>sclk_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a335d0cb4881b3a7c2d6f1b7857098605" kind="variable"><name>cs_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a65adbbee77902f41f43465f20df8a604" kind="variable"><name>resn_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a0158f8e96f398835770b77bded5188b3" kind="variable"><name>en_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1aa52430c1ba02a47319cb1ec481c075d7" kind="variable"><name>faultn_pin</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a9f220798ba05bb191f68a34a2f4c5340" kind="variable"><name>frequency</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a106e4496167021b4e41b1b9e419b4cbe" kind="variable"><name>mode</name></member>
-    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a74269f0cb2e4205821d7a98071902d11" kind="variable"><name>queue_size</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1aba81c44b3babb1e7032cf25a23565b64" kind="variable"><name>miso_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a45400b0a4d06692a383295269d67f1a1" kind="variable"><name>mosi_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a1daa1da38006a8151a6616a2ea5e6794" kind="variable"><name>sclk_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a06729ed688460df3b652f104bbcc6f93" kind="variable"><name>cs_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a9b3000b1076cec4f955d6d5e21445f8a" kind="variable"><name>resn_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a648f48729a53eeb2fdfaabec0006884e" kind="variable"><name>en_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a07ce16cb9d074e5f98955c150e4a98ac" kind="variable"><name>faultn_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a9a0511a2c33c0330142fee477e5c053c" kind="variable"><name>drv0_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1ab154e3052ebd993b581dac41ea1ea53d" kind="variable"><name>drv1_pin</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a74056b2cb52a216ad251bc8d603fc0b8" kind="variable"><name>frequency</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1a038154dcae9fb4f3ab07bc10017f7570" kind="variable"><name>mode</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1aa2a36d6fe244594bcb7daf6ae5c4c8ed" kind="variable"><name>queue_size</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1ac6271dc4c163c0be67cc73375a57e760" kind="variable"><name>cs_ena_pretrans</name></member>
+    <member refid="structEsp32TleCommInterface_1_1SPIConfig_1abee4742344264d6dea7a731d73b8c848" kind="variable"><name>cs_ena_posttrans</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1SPIParams" kind="struct"><name>TLE92466ED_Config::SPIParams</name>
-    <member refid="structTLE92466ED__Config_1_1SPIParams_1af8a288c4db9829ef93d75caa71a32636" kind="variable"><name>FREQUENCY</name></member>
-    <member refid="structTLE92466ED__Config_1_1SPIParams_1a01db141e580865ce7c4b08831b00110d" kind="variable"><name>MODE</name></member>
-    <member refid="structTLE92466ED__Config_1_1SPIParams_1ae0cb7e3cd883b377a2e1df2931fc957d" kind="variable"><name>QUEUE_SIZE</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1SPIParams" kind="struct"><name>TLE92466ED_TestConfig::SPIParams</name>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIParams_1a7c1be1681df077d91b1fd20fed51652b" kind="variable"><name>FREQUENCY</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIParams_1a719af124eb343a53918944b959526fb3" kind="variable"><name>MODE</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIParams_1abf680fed7c43ef4c0e7397db7c5b1e26" kind="variable"><name>QUEUE_SIZE</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIParams_1ab2f4932fc67cbfd35cf4e7c235b64eb4" kind="variable"><name>CS_ENA_PRETRANS</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIParams_1abbc31a95b8b58b08104aecc97a94f3f3" kind="variable"><name>CS_ENA_POSTTRANS</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1SPIPins" kind="struct"><name>TLE92466ED_Config::SPIPins</name>
-    <member refid="structTLE92466ED__Config_1_1SPIPins_1a01678cdbe4fd98c870e7b5dbd1f9b722" kind="variable"><name>MISO</name></member>
-    <member refid="structTLE92466ED__Config_1_1SPIPins_1a53537093fb0333fbdebb49bff12f3e98" kind="variable"><name>MOSI</name></member>
-    <member refid="structTLE92466ED__Config_1_1SPIPins_1a1a13ba3e11a4d8619171169d35929649" kind="variable"><name>SCLK</name></member>
-    <member refid="structTLE92466ED__Config_1_1SPIPins_1a8b6229d16553e448402aca7be548cbea" kind="variable"><name>CS</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1SPIPins" kind="struct"><name>TLE92466ED_TestConfig::SPIPins</name>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIPins_1aaa01c05c5f0c174720cda8b260674790" kind="variable"><name>MISO</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIPins_1a3ec17eeead4339e61eb8d9855d71c7e4" kind="variable"><name>MOSI</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIPins_1a41782c91af07fc43521527f1ada311ef" kind="variable"><name>SCLK</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SPIPins_1a144454730100985c5bc1ad819cfa0ddf" kind="variable"><name>CS</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1SupplyVoltage" kind="struct"><name>TLE92466ED_Config::SupplyVoltage</name>
-    <member refid="structTLE92466ED__Config_1_1SupplyVoltage_1a3e06f01bbf367edc804d9af9c815af6e" kind="variable"><name>VBAT_MIN</name></member>
-    <member refid="structTLE92466ED__Config_1_1SupplyVoltage_1ab881ffad00fb9ea0603182adf61bb0ce" kind="variable"><name>VBAT_NOM</name></member>
-    <member refid="structTLE92466ED__Config_1_1SupplyVoltage_1a132997bdedaa8c88c8191dac6d2e9a7f" kind="variable"><name>VBAT_MAX</name></member>
-    <member refid="structTLE92466ED__Config_1_1SupplyVoltage_1a7346eab0e8978adb222258b2e47f6678" kind="variable"><name>VDD_NOM</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1SupplyVoltage" kind="struct"><name>TLE92466ED_TestConfig::SupplyVoltage</name>
+    <member refid="structTLE92466ED__TestConfig_1_1SupplyVoltage_1a394e7be9e053e324ccbaef9b337448d7" kind="variable"><name>VBAT_MIN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SupplyVoltage_1aed8c289d6b0161bd6209df05f6ac76ac" kind="variable"><name>VBAT_NOM</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SupplyVoltage_1a282fd518667fd1a9ea43a71e571fe7b0" kind="variable"><name>VBAT_MAX</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1SupplyVoltage_1a8138a20d65edeb17a743fb0ae469cfa4" kind="variable"><name>VDD_NOM</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1Temperature" kind="struct"><name>TLE92466ED_Config::Temperature</name>
-    <member refid="structTLE92466ED__Config_1_1Temperature_1ad5e5558ffce6636e04b5c05ede11fae6" kind="variable"><name>OPERATING_MIN</name></member>
-    <member refid="structTLE92466ED__Config_1_1Temperature_1ab30719c0236ab1ca6e4eac73cd71c662" kind="variable"><name>OPERATING_MAX</name></member>
-    <member refid="structTLE92466ED__Config_1_1Temperature_1a7642f1f36a57e324f8f1dfba0e6c893b" kind="variable"><name>JUNCTION_MAX</name></member>
-    <member refid="structTLE92466ED__Config_1_1Temperature_1afc91a3882e1f14f9a5d23bdcda11b30c" kind="variable"><name>WARNING_THRESHOLD</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1Temperature" kind="struct"><name>TLE92466ED_TestConfig::Temperature</name>
+    <member refid="structTLE92466ED__TestConfig_1_1Temperature_1a9401801f59fc0d49016785d352b55e0d" kind="variable"><name>OPERATING_MIN</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Temperature_1a675c3168bd5d45619d2855e5a221e89b" kind="variable"><name>OPERATING_MAX</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Temperature_1a916d4ee3dd1b99e45a2e7982801f82e5" kind="variable"><name>JUNCTION_MAX</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Temperature_1a7b7b095894cc1673d97c4b8343600378" kind="variable"><name>WARNING_THRESHOLD</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1TestConfig" kind="struct"><name>TLE92466ED_Config::TestConfig</name>
-    <member refid="structTLE92466ED__Config_1_1TestConfig_1acb92d47b7570fa407604e316f68dcdaa" kind="variable"><name>DEFAULT_TEST_CURRENT</name></member>
-    <member refid="structTLE92466ED__Config_1_1TestConfig_1aa245b71ababc219043a15e36c0d32bbf" kind="variable"><name>TEST_DURATION_MS</name></member>
-    <member refid="structTLE92466ED__Config_1_1TestConfig_1a5a32a8d45eff78951d8d2d32792b193f" kind="variable"><name>RAMP_STEP_MA</name></member>
-    <member refid="structTLE92466ED__Config_1_1TestConfig_1a2037d67e8f41b1d7f060cf3fd9b066a4" kind="variable"><name>RAMP_STEP_DELAY_MS</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1TestConfig" kind="struct"><name>TLE92466ED_TestConfig::TestConfig</name>
+    <member refid="structTLE92466ED__TestConfig_1_1TestConfig_1a7fb0173a5edf16d673974b9cc0d0956e" kind="variable"><name>DEFAULT_TEST_CURRENT</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1TestConfig_1a0bfc6f1c08f4ab5603e90d8c3fed98a5" kind="variable"><name>TEST_DURATION_MS</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1TestConfig_1ad2a6e6656f915d99b58a64ab706b80cb" kind="variable"><name>RAMP_STEP_MA</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1TestConfig_1aa61db0bd87a2c7ceeea0c5a27ee9c228" kind="variable"><name>RAMP_STEP_DELAY_MS</name></member>
   </compound>
   <compound refid="structTestResults" kind="struct"><name>TestResults</name>
     <member refid="structTestResults_1afe20b168a13950ffca7296c0c56d4359" kind="variable"><name>total_tests</name></member>
@@ -134,16 +169,19 @@
     <member refid="structTestTaskContext_1ae51f49c33ea802bc7f8bdde560a27304" kind="variable"><name>tag</name></member>
     <member refid="structTestTaskContext_1ab82bee11b198be2f2b4d6c908573ddb6" kind="variable"><name>completion_semaphore</name></member>
   </compound>
-  <compound refid="structTLE92466ED__Config_1_1Timing" kind="struct"><name>TLE92466ED_Config::Timing</name>
-    <member refid="structTLE92466ED__Config_1_1Timing_1a91715bc50490bd065883ef8300f2d1ca" kind="variable"><name>CS_SETUP_US</name></member>
-    <member refid="structTLE92466ED__Config_1_1Timing_1adcae151cd3c0a4dd95ca54754cd93612" kind="variable"><name>CS_HOLD_US</name></member>
-    <member refid="structTLE92466ED__Config_1_1Timing_1a71fd26eb2b0d746b4dae150bf160110c" kind="variable"><name>INTER_FRAME_US</name></member>
-    <member refid="structTLE92466ED__Config_1_1Timing_1a29fdf0c53105932747e8d5864a3b06b5" kind="variable"><name>POWER_ON_DELAY_MS</name></member>
-    <member refid="structTLE92466ED__Config_1_1Timing_1a0dfa27fab7743a88209e1c356987c0b0" kind="variable"><name>RESET_DELAY_MS</name></member>
+  <compound refid="structTLE92466ED__TestConfig_1_1Timing" kind="struct"><name>TLE92466ED_TestConfig::Timing</name>
+    <member refid="structTLE92466ED__TestConfig_1_1Timing_1ae15c69fddca4a34f67cedea6ad9a6ea1" kind="variable"><name>CS_SETUP_US</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Timing_1adc6d7d41ea03acc3ef9d63d3a9d43999" kind="variable"><name>CS_HOLD_US</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Timing_1aaf023abf41e248e4753d731bed20d781" kind="variable"><name>INTER_FRAME_US</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Timing_1a1f88aa3a269db676482a797545b65476" kind="variable"><name>POWER_ON_DELAY_MS</name></member>
+    <member refid="structTLE92466ED__TestConfig_1_1Timing_1aba1378da52ce221954d8958323003953" kind="variable"><name>RESET_DELAY_MS</name></member>
+  </compound>
+  <compound refid="namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03" kind="namespace"><name>anonymous_namespace{Esp32TleCommInterface.cpp}</name>
+    <member refid="namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03_1a51780481383278f8fba3f1a482ba4e59" kind="function"><name>byte_swap_32</name></member>
   </compound>
   <compound refid="namespaceTLE92466ED" kind="namespace"><name>TLE92466ED</name>
   </compound>
-  <compound refid="namespaceTLE92466ED__Config" kind="namespace"><name>TLE92466ED_Config</name>
+  <compound refid="namespaceTLE92466ED__TestConfig" kind="namespace"><name>TLE92466ED_TestConfig</name>
   </compound>
   <compound refid="Arduino__HAL_8cpp" kind="file"><name>Arduino_HAL.cpp</name>
   </compound>
@@ -151,41 +189,91 @@
     <member refid="Arduino__HAL_8hpp_1a27e3a03a64f12516d2e79a0bf0b991be" kind="function"><name>createTLE92466ED_HAL</name></member>
     <member refid="Arduino__HAL_8hpp_1a15dc38e2361fd67e4945a771cca0bf96" kind="function"><name>createTLE92466ED_HAL</name></member>
   </compound>
-  <compound refid="BasicUsageExample_8cpp" kind="file"><name>BasicUsageExample.cpp</name>
-    <member refid="BasicUsageExample_8cpp_1afacebc97896e90c317ac62cf118945cd" kind="define"><name>ENABLE_INITIALIZATION_TESTS</name></member>
-    <member refid="BasicUsageExample_8cpp_1a70d37417b9ab1c2860a411531a93cc19" kind="define"><name>ENABLE_BASIC_OPERATION_TESTS</name></member>
-    <member refid="BasicUsageExample_8cpp_1a9cc129a2aef2a2615a4c4a621e436473" kind="define"><name>ENABLE_CURRENT_CONTROL_TESTS</name></member>
-    <member refid="BasicUsageExample_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
-    <member refid="BasicUsageExample_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
-    <member refid="BasicUsageExample_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
-    <member refid="BasicUsageExample_8cpp_1abb4b230389c72bfdce3ec626624637d7" kind="function"><name>test_hal_initialization</name></member>
-    <member refid="BasicUsageExample_8cpp_1ae11eb6cb1d8f2e300e874298a5d3ecb3" kind="function"><name>test_driver_initialization</name></member>
-    <member refid="BasicUsageExample_8cpp_1a52b1703a7f4c0c38ded4d24e8fa4a2c5" kind="function"><name>test_chip_id</name></member>
-    <member refid="BasicUsageExample_8cpp_1a3458b48356a1c36952a03734228f0a5d" kind="function"><name>test_gpio_control</name></member>
-    <member refid="BasicUsageExample_8cpp_1af7e57f784a35656ffd18c046da67dcc2" kind="function"><name>test_channel_enable_disable</name></member>
-    <member refid="BasicUsageExample_8cpp_1af5cb4083b4d84e2423e0ee4a5a08766d" kind="function"><name>test_current_setting</name></member>
-    <member refid="BasicUsageExample_8cpp_1ac7a22007aa641ea5a476dcaf3e28da11" kind="function"><name>test_diagnostics</name></member>
-    <member refid="BasicUsageExample_8cpp_1a38639a803276bf11e31f3592d25e3d80" kind="function"><name>test_current_ramping</name></member>
-    <member refid="BasicUsageExample_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
+  <compound refid="DriverIntegrationTest_8cpp" kind="file"><name>DriverIntegrationTest.cpp</name>
+    <member refid="DriverIntegrationTest_8cpp_1afacebc97896e90c317ac62cf118945cd" kind="define"><name>ENABLE_INITIALIZATION_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a24bfa2f29d093d3fb649a0de6526af33" kind="define"><name>ENABLE_MODE_CONTROL_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a02d474f07e97d727b8183f5a935d76af" kind="define"><name>ENABLE_GLOBAL_CONFIG_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a27221e1d38d938b661ccbfcc44262b50" kind="define"><name>ENABLE_CHANNEL_CONTROL_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a9cc129a2aef2a2615a4c4a621e436473" kind="define"><name>ENABLE_CURRENT_CONTROL_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a9c20ba02d9933c7c01671a402bda9f58" kind="define"><name>ENABLE_PWM_CONFIG_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ad6730e658e760cc0feb77d6365e4576d" kind="define"><name>ENABLE_DITHER_CONFIG_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a8eca7d6e77454f75424cbbd938eb9783" kind="define"><name>ENABLE_DIAGNOSTICS_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a5e19c1214bf3df6d4d64a87dc31b72dc" kind="define"><name>ENABLE_FAULT_MANAGEMENT_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a99ffa3a4b3f2ac3cdfa9c4ababcdb6a1" kind="define"><name>ENABLE_WATCHDOG_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a755b3a4c89ac79be41476354523fde8d" kind="define"><name>ENABLE_GPIO_CONTROL_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a1df80a95e94f04329061bae38bf3dd39" kind="define"><name>ENABLE_MULTI_CHANNEL_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a13fa69e119ecc502376e99ad59d488d3" kind="define"><name>ENABLE_PARALLEL_OPERATION_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a529316bff799bb47de7b992c298cff8c" kind="define"><name>ENABLE_ERROR_CONDITION_TESTS</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ae884f3c8e83e03b4cc6c9c4ccd686f4a" kind="function"><name>ensure_config_mode</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a6a1a43d07287e49047f360bf0faedac8" kind="function"><name>ensure_mission_mode</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a80233776e6e686d797ce641472542b03" kind="function"><name>print_device_status</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ab1392a0ca089a059fb3dfd7fddac69ba" kind="function"><name>print_channel_diagnostics</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1abb4b230389c72bfdce3ec626624637d7" kind="function"><name>test_hal_initialization</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ae11eb6cb1d8f2e300e874298a5d3ecb3" kind="function"><name>test_driver_initialization</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a52b1703a7f4c0c38ded4d24e8fa4a2c5" kind="function"><name>test_chip_id</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1af5b24a2565ae2b821c5677c1b6a2a719" kind="function"><name>test_ic_version</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ad06bb98bb87d74d331dd24114a8a87c8" kind="function"><name>test_device_verification</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a74680e40ac52a407195575e5aa2ecc21" kind="function"><name>test_enter_mission_mode</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a1c56ee8ec8d43ef73498dec33b4bd1ca" kind="function"><name>test_enter_config_mode</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a41e2bb2cb7036d69df7762cb83173170" kind="function"><name>test_mode_transitions</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a8654648f460ed67329e74fe5809c895c" kind="function"><name>test_crc_control</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a522cb8d7da6197e14bb1b3823cd72dbe" kind="function"><name>test_vbat_thresholds</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ab9d2b3bbc2e5b5459393f89058b352d4" kind="function"><name>test_global_configuration</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a7d47a21357614fad17a25d7fed341f58" kind="function"><name>test_single_channel_control</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a43f6a43e16d988b07ec68139cb912f3d" kind="function"><name>test_all_channels_control</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ac045b9f4aee0ed911929f4d4b4fd67c1" kind="function"><name>test_channel_mask_control</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a05594a9aa96a8b108a031eac5e9999e7" kind="function"><name>test_channel_mode_configuration</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1aebc4d517d7ae47d3b8c4545654111451" kind="function"><name>test_current_setpoint</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a38639a803276bf11e31f3592d25e3d80" kind="function"><name>test_current_ramping</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a80839a8da4fe45f95bd941cb72dd270c" kind="function"><name>test_pwm_period_configuration</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a9a3eb04cea7e9ec70fb6fd17f69e1f8d" kind="function"><name>test_pwm_period_raw</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a2cf5a04279b206b06d5aa65b1b808ba7" kind="function"><name>test_dither_configuration</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a896572f3873ec6a46a2a5ed589254cc8" kind="function"><name>test_dither_raw</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a3716ddac428ceff53f5400b10f07d662" kind="function"><name>test_device_status</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ad6988ef73c4562412ea5a09abc318fd6" kind="function"><name>test_channel_diagnostics</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a33ced9d335d2f2d33969d7180f88fa43" kind="function"><name>test_voltage_reading</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ae7156a1d431a70f48b0231201861e814" kind="function"><name>test_current_reading</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1aa17032374a5d25152459317a981bc3af" kind="function"><name>test_all_channels_telemetry</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a8173e95efadc1c63eb12378dfd32fed7" kind="function"><name>test_device_telemetry</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a01f3dc5889509fa100606c90ef1930d6" kind="function"><name>test_telemetry_with_active_channel</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a20f5328b9390b58369ee850075875f1a" kind="function"><name>test_fault_clearing</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a5ce0bd503b0c435e033a23779704fe85" kind="function"><name>test_software_reset</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1ac771b66525d7d0b3c4bef1fd4a96c2b0" kind="function"><name>test_spi_watchdog</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a3458b48356a1c36952a03734228f0a5d" kind="function"><name>test_gpio_control</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a39c19d8105c05b714afc7beaa406941e" kind="function"><name>test_all_channels_individually</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a1b73ecdfe00b38795be06f2f17d285d3" kind="function"><name>test_parallel_operation</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1a42bbaae2d6c0f07c32cafb6cca9cbf13" kind="function"><name>test_error_conditions</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
   </compound>
   <compound refid="Esp32TleCommInterface_8cpp" kind="file"><name>Esp32TleCommInterface.cpp</name>
   </compound>
   <compound refid="Esp32TleCommInterface_8hpp" kind="file"><name>Esp32TleCommInterface.hpp</name>
     <member refid="Esp32TleCommInterface_8hpp_1a7d0b7c8ff8bfdaf5acce19bed1af30e8" kind="function"><name>CreateEsp32TleCommInterface</name></member>
   </compound>
-  <compound refid="MultiChannelExample_8cpp" kind="file"><name>MultiChannelExample.cpp</name>
-    <member refid="MultiChannelExample_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
-    <member refid="MultiChannelExample_8cpp_1a75facd6e73faa5a37ccd5a26bd87e4da" kind="function"><name>initialize_nvs</name></member>
-    <member refid="MultiChannelExample_8cpp_1afa2c124401b6072d5508d85f258e9e15" kind="function"><name>sequential_channel_demo</name></member>
-    <member refid="MultiChannelExample_8cpp_1a2a4153ecc9ed8de5613bbf3703863e02" kind="function"><name>synchronized_channel_demo</name></member>
-    <member refid="MultiChannelExample_8cpp_1a4f02b9ef15cfcfbe53b982a31a2c62b2" kind="function"><name>wave_pattern_demo</name></member>
-    <member refid="MultiChannelExample_8cpp_1af31e7fc1e2ae1c4a07ef1187bf4e443f" kind="function"><name>performance_monitoring_demo</name></member>
-    <member refid="MultiChannelExample_8cpp_1a99ec6b62bbfd417296419691e5d9442a" kind="function"><name>multi_channel_demo</name></member>
-    <member refid="MultiChannelExample_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
+  <compound refid="SolenoidControlTest_8cpp" kind="file"><name>SolenoidControlTest.cpp</name>
+    <member refid="SolenoidControlTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
+    <member refid="SolenoidControlTest_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
+    <member refid="SolenoidControlTest_8cpp_1acefbb4b5237cd7692227db14429b5dff" kind="variable"><name>g_adc_handle</name></member>
+    <member refid="SolenoidControlTest_8cpp_1ae17bd7fdeae9b708d352e36672e0b72e" kind="variable"><name>g_adc_cali_handle</name></member>
+    <member refid="SolenoidControlTest_8cpp_1ada173abbf00fbde83e3b902c93b35bd4" kind="function"><name>initialize_adc</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a01ef3d19e2ecfe3d7c58492573b6d499" kind="function"><name>read_adc_voltage_mv</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a03489edd5b8ddc3229d593ac4df978e3" kind="function"><name>read_adc_percentage</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kind="function"><name>calculate_current_from_percentage</name></member>
+    <member refid="SolenoidControlTest_8cpp_1ac614c84d2ade8f11186e731cf694917e" kind="function"><name>initialize_solenoids</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a17ca04cd9442f88cbb4e8b981742280f" kind="function"><name>print_solenoid_telemetry</name></member>
+    <member refid="SolenoidControlTest_8cpp_1adec0a6b3616c9e4cabb444bff299ac8e" kind="function"><name>print_device_telemetry</name></member>
+    <member refid="SolenoidControlTest_8cpp_1ae75b9efaa99cfa8c2b9295288cf8304d" kind="function"><name>update_solenoid_currents</name></member>
+    <member refid="SolenoidControlTest_8cpp_1a8beedbcdc4953c460d1e38286a1883ae" kind="function"><name>set_solenoids_enabled</name></member>
+    <member refid="SolenoidControlTest_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
   </compound>
-  <compound refid="TLE92466ED__Config_8hpp" kind="file"><name>TLE92466ED_Config.hpp</name>
-    <member refid="TLE92466ED__Config_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
-    <member refid="TLE92466ED__Config_8hpp_1a144227c8f24118002432fbaf425eca87" kind="define"><name>TLE92466ED_VALIDATE_GPIO</name></member>
+  <compound refid="TLE92466ED__TestConfig_8hpp" kind="file"><name>TLE92466ED_TestConfig.hpp</name>
+    <member refid="TLE92466ED__TestConfig_8hpp_1a8fb5b9bce3cb52f60c3eadce0f87afcc" kind="define"><name>ESP32_TLE_COMM_ENABLE_DETAILED_SPI_LOGGING</name></member>
+    <member refid="TLE92466ED__TestConfig_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
+    <member refid="TLE92466ED__TestConfig_8hpp_1a144227c8f24118002432fbaf425eca87" kind="define"><name>TLE92466ED_VALIDATE_GPIO</name></member>
   </compound>
   <compound refid="TLE92466ED__TestFramework_8hpp" kind="file"><name>TLE92466ED_TestFramework.hpp</name>
     <member refid="TLE92466ED__TestFramework_8hpp_1a36936b10eceab520bb9d3d95534a00db" kind="define"><name>RUN_TEST</name></member>

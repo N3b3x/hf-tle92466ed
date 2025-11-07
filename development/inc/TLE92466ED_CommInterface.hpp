@@ -73,6 +73,20 @@ enum class ActiveLevel : uint8_t {
 };
 
 /**
+ * @brief Log severity levels for driver logging
+ * 
+ * Defines the severity levels for logging messages from the driver.
+ * Implementations should map these to their platform-specific logging systems.
+ */
+enum class LogLevel : uint8_t {
+    Error = 0,    ///< Error messages (highest severity)
+    Warn,         ///< Warning messages
+    Info,         ///< Informational messages
+    Debug,        ///< Debug messages (lowest severity)
+    Verbose       ///< Verbose messages (lowest severity, most detailed)
+};
+
+/**
  * @brief Result type for communication interface operations using std::expected (C++23)
  * 
  * @tparam T The success type
@@ -98,7 +112,6 @@ using CommResult = std::expected<T, CommError>;
 struct SPIConfig {
     uint32_t frequency{1'000'000};  ///< SPI clock frequency in Hz (max 10 MHz for TLE92466ED)
     uint8_t mode{1};                ///< SPI mode (CPOL=0, CPHA=1 for TLE92466ED)
-    uint8_t bits_per_word{8};       ///< Bits per word (8-bit, transfer 4 bytes for 32-bit frame)
     bool msb_first{true};           ///< MSB first transmission
     uint32_t timeout_ms{100};       ///< Transaction timeout in milliseconds
 };
@@ -125,12 +138,11 @@ struct SPIConfig {
  * @verbatim
  *  Bits 31-24 | Bits 23-17 | Bit 16 | Bits 15-0
  * ------------+------------+--------+-----------
- *  CRC (8-bit)| Don't Care |  R/W   | Address (7-bit)
+ *  CRC (8-bit)| Don't Care |  R/W   | Address (16-bit)
  *             |            |  0=R   |
  * @endverbatim
  * 
- * Note: Only 7 bits of address are used (same as write frames).
- * The address is placed in bits [15:9] or [6:0] depending on encoding.
+ * Note: Full 16-bit address is placed in bits [15:0] for read operations.
  *
  * MISO (Reply) Frame - 16-bit Reply (Reply Mode = 00B):
  * @verbatim
@@ -233,7 +245,7 @@ union SPIFrame {
         SPIFrame frame{};
         frame.tx_fields.rw = 0;           // Read (bit 16)
         frame.tx_fields.address = 0;      // Bits 23:17 are don't care for reads
-        frame.tx_fields.data = (addr >> 3) & 0x7F;  // Upper 7 bits of address in bits 15:0 (7-bit address)
+        frame.tx_fields.data = (addr & 0xFFFF);  // 16-bit address in bits 15:0 (full 16-bit address)
         frame.tx_fields.crc = 0;          // CRC calculated separately
         return frame;
     }
@@ -259,7 +271,7 @@ union SPIFrame {
     [[nodiscard]] static constexpr SPIFrame MakeWrite(uint16_t addr, uint16_t data) noexcept {
         SPIFrame frame{};
         frame.tx_fields.rw = 1;           // Write (bit 16)
-        frame.tx_fields.address = (addr >> 3) & 0x7F;  // Upper 7 bits [23:17]
+        frame.tx_fields.address = (addr) & 0x7F;  // Lower 7 bits [23:17]
         frame.tx_fields.data = data;      // Data in bits [15:0]
         frame.tx_fields.crc = 0;          // CRC calculated separately
         return frame;
@@ -571,6 +583,23 @@ public:
      * @note Only FAULTN can be read. RESN and EN are output-only.
      */
     [[nodiscard]] virtual CommResult<ActiveLevel> GetGpioPin(ControlPin pin) noexcept = 0;
+
+    /**
+     * @brief Log a message with specified severity level and tag
+     * 
+     * @details
+     * Platform-specific logging implementation. The driver uses this to log
+     * diagnostic information, errors, warnings, and debug messages.
+     * 
+     * @param level Log severity level
+     * @param tag Tag/component name for the log message (e.g., "TLE92466ED")
+     * @param format Format string (printf-style)
+     * @param ... Variable arguments for format string
+     * 
+     * @note Implementations should use platform-specific logging (e.g., ESP_LOG for ESP32)
+     * @note The format string and arguments follow printf-style formatting
+     */
+    virtual void Log(LogLevel level, const char* tag, const char* format, ...) noexcept = 0;
 
 protected:
     /**

@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['ramp_5fstep_5fdelay_5fms_0',['RAMP_STEP_DELAY_MS',['../structTLE92466ED__Config_1_1TestConfig.html#a2037d67e8f41b1d7f060cf3fd9b066a4',1,'TLE92466ED_Config::TestConfig']]],
-  ['ramp_5fstep_5fma_1',['RAMP_STEP_MA',['../structTLE92466ED__Config_1_1TestConfig.html#a5a32a8d45eff78951d8d2d32792b193f',1,'TLE92466ED_Config::TestConfig']]],
-  ['reset_5fdelay_5fms_2',['RESET_DELAY_MS',['../structTLE92466ED__Config_1_1Timing.html#a0dfa27fab7743a88209e1c356987c0b0',1,'TLE92466ED_Config::Timing']]],
-  ['resn_5fpin_3',['resn_pin',['../structArduino__HAL_1_1SPIConfig.html#a7cfff9b0d70fe6020626cef0e58cedf7',1,'Arduino_HAL::SPIConfig::resn_pin'],['../structEsp32TleCommInterface_1_1SPIConfig.html#a65adbbee77902f41f43465f20df8a604',1,'Esp32TleCommInterface::SPIConfig::resn_pin']]],
-  ['resolution_4',['RESOLUTION',['../structTLE92466ED__Config_1_1CurrentLimits.html#a2db219eb949589dda3dcdc1105eec4a9',1,'TLE92466ED_Config::CurrentLimits']]],
-  ['results_5',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]]
+  ['pair_0',['PAIR',['../structSolenoid2Config.html#a6acad435513fc810413b6ef7798f9ab4',1,'Solenoid2Config']]],
+  ['parallel_5fchannel_5fmax_1',['PARALLEL_CHANNEL_MAX',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a5f5b2f3b210b4d67252cb7642d9e7090',1,'TLE92466ED_TestConfig::CurrentLimits']]],
+  ['parallel_5fmode_2',['PARALLEL_MODE',['../structSolenoid1Config.html#a9c997115be102f6fa179821485844680',1,'Solenoid1Config::PARALLEL_MODE'],['../structSolenoid2Config.html#a4e4a6ac8ec60d7da4d74a3e0b54e94c5',1,'Solenoid2Config::PARALLEL_MODE']]],
+  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['pin_4',['PIN',['../structTLE92466ED__TestConfig_1_1ADCConfig.html#a47c51ee1182fcb7bebc014c0db817846',1,'TLE92466ED_TestConfig::ADCConfig']]],
+  ['poll_5finterval_5fms_5',['POLL_INTERVAL_MS',['../structTLE92466ED__TestConfig_1_1Diagnostics.html#ad09514c1c6265b7427e1b87380f9f294',1,'TLE92466ED_TestConfig::Diagnostics']]],
+  ['power_5fon_5fdelay_5fms_6',['POWER_ON_DELAY_MS',['../structTLE92466ED__TestConfig_1_1Timing.html#a1f88aa3a269db676482a797545b65476',1,'TLE92466ED_TestConfig::Timing']]],
+  ['primary_5fchannel_7',['PRIMARY_CHANNEL',['../structSolenoid2Config.html#a66d95aa4da24c15cf5b7c7b71d0ca51c',1,'Solenoid2Config']]]
 ];

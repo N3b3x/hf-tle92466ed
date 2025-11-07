@@ -19,7 +19,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="155" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="155" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="168" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="168" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEsp32TleCommInterface_1a1b5cb637e8dcd9bab9824aabd20f1ba4" prot="private" static="no" mutable="no">
         <type>spi_device_handle_t</type>
@@ -35,7 +35,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="156" column="25" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="156" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="169" column="25" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="169" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEsp32TleCommInterface_1a28e09f932ef575c1bec05f090bc73e2c" prot="private" static="no" mutable="no">
         <type>bool</type>
@@ -51,7 +51,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="157" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="157" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="170" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="170" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classEsp32TleCommInterface_1a6f15bfa4f81b66e087011f9d63e736a9" prot="private" static="no" mutable="no">
         <type>CommError</type>
@@ -67,7 +67,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="158" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="158" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="171" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="171" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-static-attrib">
@@ -85,7 +85,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="160" column="33" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="160" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="173" column="33" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="173" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="public-func">
@@ -102,7 +102,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="54" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="54" bodyend="54"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="58" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="58" bodyend="58"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a163b3f4d8b5972d1a2dbea17c826172a" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
         <type></type>
@@ -131,7 +131,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="60" column="14" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="16" bodyend="25"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="64" column="14" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="32" bodyend="67"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1aa0bbb6a8fd460945f8c0c53c44b1ca90" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="65" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="27" bodyend="39"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="69" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="69" bodyend="81"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a4fe06c7070fb6f0f88d2cc3a90bb2278" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -164,7 +164,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="71" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="41" bodyend="71"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="75" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="83" bodyend="115"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a9c953720bd6c812712ebf22877298e54" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -182,7 +182,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="77" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="73" bodyend="91"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="81" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="117" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a9c2eba0bffd44d9ea5cfdaed7cb47781" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -213,7 +213,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="84" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="209" bodyend="328"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="88" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="350" bodyend="534"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a94f432105947283210c39d4377808a5e" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -256,7 +256,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="92" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="330" bodyend="351"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="96" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="536" bodyend="557"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a56ff45b8a5f486e8b143262c70772274" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -287,7 +287,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="100" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="353" bodyend="379"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="104" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="559" bodyend="585"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a391c8d63ebb0df614712f981448ded10" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -318,7 +318,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="107" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="381" bodyend="387"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="111" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="587" bodyend="593"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1ad66112859fb1431df34345084dfc510b" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>bool</type>
@@ -336,7 +336,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="113" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="389" bodyend="391"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="117" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="595" bodyend="597"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a768b503b10a2889ab49b53219a41a2be" prot="public" static="no" const="yes" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>CommError</type>
@@ -354,7 +354,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="119" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="393" bodyend="395"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="123" column="15" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="599" bodyend="601"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1aa5c489ed049a4b36b3d34b902726467d" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -372,7 +372,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="125" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="397" bodyend="400"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="129" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="603" bodyend="606"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a8216498d7d1b270b06a4a711bd2a21ef" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -390,7 +390,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="131" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="131" bodyend="131"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="135" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="135" bodyend="135"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a7570d11c78eca435af4892447891f0fd" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -433,7 +433,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="139" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="402" bodyend="459"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="143" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="608" bodyend="665"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1aaba77fee74ef43454bf28cb9aff0c704" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -464,7 +464,71 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="146" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="461" bodyend="499"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="150" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="667" bodyend="705"/>
+      </memberdef>
+      <memberdef kind="function" id="classEsp32TleCommInterface_1ad42bff82ecd69a28fccb4d81ab6236e0" prot="public" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Esp32TleCommInterface::Log</definition>
+        <argsstring>(LogLevel level, const char *tag, const char *format,...) noexcept override</argsstring>
+        <name>Log</name>
+        <qualifiedname>Esp32TleCommInterface::Log</qualifiedname>
+        <param>
+          <type>LogLevel</type>
+          <declname>level</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>tag</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>format</declname>
+        </param>
+        <param>
+          <type>...</type>
+        </param>
+        <briefdescription>
+<para>Log a message with specified severity level and tag (ESP_LOG implementation) </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>level</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Log severity level </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tag</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Tag/component name for the log message </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Format string (printf-style) </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>...</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Variable arguments for format string </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="159" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="707" bodyend="738"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a50a2a8f016a83d2e2d582bcdbcf289ce" prot="public" static="no" const="yes" explicit="no" inline="yes" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -482,7 +546,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="152" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="152" bodyend="152"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="165" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="165" bodyend="165"/>
       </memberdef>
     </sectiondef>
     <sectiondef kind="private-func">
@@ -502,7 +566,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="166" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="93" bodyend="153"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="179" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="137" bodyend="237"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a63620e1f8b810d6af7ef51080db91979" prot="private" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -520,7 +584,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="172" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="155" bodyend="178"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="185" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="239" bodyend="262"/>
       </memberdef>
       <memberdef kind="function" id="classEsp32TleCommInterface_1a96518d50ae1b94bd9f98687ee1241fc9" prot="private" static="no" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>auto</type>
@@ -539,7 +603,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="178" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="180" bodyend="207"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="191" column="10" bodyfile="examples/esp32/main/Esp32TleCommInterface.cpp" bodystart="264" bodyend="348"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -577,7 +641,7 @@
         <label>TLE92466ED::CommInterface</label>
       </node>
     </collaborationgraph>
-    <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="32" column="1" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="32" bodyend="179"/>
+    <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="32" column="1" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="32" bodyend="192"/>
     <listofallmembers>
       <member refid="classEsp32TleCommInterface_1a96518d50ae1b94bd9f98687ee1241fc9" prot="private" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>addSPIDevice</name></member>
       <member refid="classEsp32TleCommInterface_1aa5c489ed049a4b36b3d34b902726467d" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>ClearErrors</name></member>
@@ -597,6 +661,7 @@
       <member refid="classEsp32TleCommInterface_1a50a2a8f016a83d2e2d582bcdbcf289ce" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>isInitialized</name></member>
       <member refid="classEsp32TleCommInterface_1ad66112859fb1431df34345084dfc510b" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>IsReady</name></member>
       <member refid="classEsp32TleCommInterface_1a6f15bfa4f81b66e087011f9d63e736a9" prot="private" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>last_error_</name></member>
+      <member refid="classEsp32TleCommInterface_1ad42bff82ecd69a28fccb4d81ab6236e0" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>Log</name></member>
       <member refid="classEsp32TleCommInterface_1a7570d11c78eca435af4892447891f0fd" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>SetGpioPin</name></member>
       <member refid="classEsp32TleCommInterface_1a1b5cb637e8dcd9bab9824aabd20f1ba4" prot="private" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>spi_device_</name></member>
       <member refid="classEsp32TleCommInterface_1a150d8ac326e8be8978d32be9d94c903c" prot="private" virt="non-virtual"><scope>Esp32TleCommInterface</scope><name>TAG</name></member>

@@ -84,7 +84,7 @@ driver.enableChannel(0);
 │   └── Register Access                  # Direct register manipulation
 │
 ├── 🔌 Hardware Abstraction Layer        # Platform-independent interface
-│   ├── TLE92466ED_HAL                   # Base HAL interface
+│   ├── TLE92466ED_CommInterface         # Communication interface
 │   ├── SPI Transfer                     # 32-bit frame communication
 │   └── Delay Functions                  # Timing control
 │
@@ -154,9 +154,9 @@ cd hf-tle92466ed-driver
 
 ### **2. Implement HAL Interface**
 ```cpp
-#include "include/TLE92466ED_HAL.hpp"
+#include "inc/TLE92466ED_CommInterface.hpp"
 
-class YourPlatformHAL : public TLE92466ED_HAL {
+class YourPlatformHAL : public TLE92466ED::HAL {
 public:
     auto spiTransfer(std::span<const uint8_t> txData, 
                      std::span<uint8_t> rxData) noexcept 

@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <memory>
 #include <array>
+#include <cmath>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -25,7 +26,9 @@
 #include "nvs_flash.h"
 
 #include "TLE92466ED.hpp"
-#include "ESP32C6_HAL.hpp"
+#include "Esp32TleCommInterface.hpp"
+
+using namespace TLE92466ED;
 
 static const char* TAG = "TLE92466ED_Multi";
 
@@ -44,28 +47,33 @@ static void initialize_nvs() {
 /**
  * @brief Demonstrate sequential channel activation
  */
-static void sequential_channel_demo(TLE92466ED& driver) {
+static void sequential_channel_demo(Driver& driver) {
     ESP_LOGI(TAG, "=== Sequential Channel Activation Demo ===");
     
     constexpr std::array<uint16_t, 6> currents = {200, 400, 600, 800, 1000, 1200};
+    constexpr std::array<Channel, 6> channels = {
+        Channel::CH0, Channel::CH1, Channel::CH2, 
+        Channel::CH3, Channel::CH4, Channel::CH5
+    };
     
     // Enable channels one by one
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        ESP_LOGI(TAG, "Activating channel %d with %dmA...", channel, currents[channel]);
+    for (size_t i = 0; i < 6; i++) {
+        Channel channel = channels[i];
+        ESP_LOGI(TAG, "Activating channel %d with %dmA...", static_cast<int>(channel), currents[i]);
         
         // Set current
-        if (auto result = driver.setChannelCurrent(channel, currents[channel]); !result) {
-            ESP_LOGE(TAG, "Failed to set current for channel %d", channel);
+        if (auto result = driver.SetCurrentSetpoint(channel, currents[i]); !result) {
+            ESP_LOGE(TAG, "Failed to set current for channel %d", static_cast<int>(channel));
             continue;
         }
         
         // Enable channel
-        if (auto result = driver.enableChannel(channel); !result) {
-            ESP_LOGE(TAG, "Failed to enable channel %d", channel);
+        if (auto result = driver.EnableChannel(channel, true); !result) {
+            ESP_LOGE(TAG, "Failed to enable channel %d", static_cast<int>(channel));
             continue;
         }
         
-        ESP_LOGI(TAG, "Channel %d active at %dmA", channel, currents[channel]);
+        ESP_LOGI(TAG, "Channel %d active at %dmA", static_cast<int>(channel), currents[i]);
         vTaskDelay(pdMS_TO_TICKS(1000)); // Wait 1 second between activations
     }
     
@@ -74,19 +82,16 @@ static void sequential_channel_demo(TLE92466ED& driver) {
     for (int i = 0; i < 5; i++) {
         ESP_LOGI(TAG, "Status check %d/5:", i + 1);
         
-        for (uint8_t channel = 0; channel < 6; channel++) {
-            if (auto current = driver.readChannelCurrent(channel); current) {
-                ESP_LOGI(TAG, "  CH%d: %dmA", channel, *current);
+        for (size_t j = 0; j < 6; j++) {
+            Channel channel = channels[j];
+            if (auto current = driver.GetAverageCurrent(channel); current) {
+                ESP_LOGI(TAG, "  CH%d: %dmA", static_cast<int>(channel), *current);
             }
         }
         
-        // Check diagnostics
-        if (auto diag = driver.readDiagnostics(); diag) {
-            if (diag->hasAnyFault()) {
-                ESP_LOGW(TAG, "  ⚠️  Faults detected!");
-            } else {
-                ESP_LOGI(TAG, "  ✅  All channels normal");
-            }
+        // Check diagnostics for first channel as example
+        if (auto diag = driver.GetChannelDiagnostics(Channel::CH0); diag) {
+            ESP_LOGI(TAG, "  ✅  Diagnostics read successfully");
         }
         
         vTaskDelay(pdMS_TO_TICKS(1000));
@@ -94,9 +99,10 @@ static void sequential_channel_demo(TLE92466ED& driver) {
     
     // Disable all channels
     ESP_LOGI(TAG, "Disabling all channels...");
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        if (auto result = driver.disableChannel(channel); !result) {
-            ESP_LOGE(TAG, "Failed to disable channel %d", channel);
+    for (size_t i = 0; i < 6; i++) {
+        Channel channel = channels[i];
+        if (auto result = driver.EnableChannel(channel, false); !result) {
+            ESP_LOGE(TAG, "Failed to disable channel %d", static_cast<int>(channel));
         }
     }
 }
@@ -104,24 +110,28 @@ static void sequential_channel_demo(TLE92466ED& driver) {
 /**
  * @brief Demonstrate synchronized channel control
  */
-static void synchronized_channel_demo(TLE92466ED& driver) {
+static void synchronized_channel_demo(Driver& driver) {
     ESP_LOGI(TAG, "=== Synchronized Channel Control Demo ===");
     
     // Set all channels to the same current
     constexpr uint16_t sync_current = 500; // 500mA
+    constexpr std::array<Channel, 6> channels = {
+        Channel::CH0, Channel::CH1, Channel::CH2, 
+        Channel::CH3, Channel::CH4, Channel::CH5
+    };
     
     ESP_LOGI(TAG, "Setting all channels to %dmA...", sync_current);
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        if (auto result = driver.setChannelCurrent(channel, sync_current); !result) {
-            ESP_LOGE(TAG, "Failed to set current for channel %d", channel);
+    for (Channel channel : channels) {
+        if (auto result = driver.SetCurrentSetpoint(channel, sync_current); !result) {
+            ESP_LOGE(TAG, "Failed to set current for channel %d", static_cast<int>(channel));
         }
     }
     
     // Enable all channels simultaneously
     ESP_LOGI(TAG, "Enabling all channels simultaneously...");
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        if (auto result = driver.enableChannel(channel); !result) {
-            ESP_LOGE(TAG, "Failed to enable channel %d", channel);
+    for (Channel channel : channels) {
+        if (auto result = driver.EnableChannel(channel, true); !result) {
+            ESP_LOGE(TAG, "Failed to enable channel %d", static_cast<int>(channel));
         }
     }
     
@@ -131,9 +141,9 @@ static void synchronized_channel_demo(TLE92466ED& driver) {
     // Ramp up
     for (uint16_t current = 500; current <= 1500; current += 100) {
         ESP_LOGI(TAG, "All channels: %dmA", current);
-        for (uint8_t channel = 0; channel < 6; channel++) {
-            if (auto result = driver.setChannelCurrent(channel, current); !result) {
-                ESP_LOGE(TAG, "Failed to set current for channel %d", channel);
+        for (Channel channel : channels) {
+            if (auto result = driver.SetCurrentSetpoint(channel, current); !result) {
+                ESP_LOGE(TAG, "Failed to set current for channel %d", static_cast<int>(channel));
             }
         }
         vTaskDelay(pdMS_TO_TICKS(300)); // 300ms between steps
@@ -142,9 +152,9 @@ static void synchronized_channel_demo(TLE92466ED& driver) {
     // Ramp down
     for (uint16_t current = 1500; current >= 500; current -= 100) {
         ESP_LOGI(TAG, "All channels: %dmA", current);
-        for (uint8_t channel = 0; channel < 6; channel++) {
-            if (auto result = driver.setChannelCurrent(channel, current); !result) {
-                ESP_LOGE(TAG, "Failed to set current for channel %d", channel);
+        for (Channel channel : channels) {
+            if (auto result = driver.SetCurrentSetpoint(channel, current); !result) {
+                ESP_LOGE(TAG, "Failed to set current for channel %d", static_cast<int>(channel));
             }
         }
         vTaskDelay(pdMS_TO_TICKS(300)); // 300ms between steps
@@ -152,9 +162,9 @@ static void synchronized_channel_demo(TLE92466ED& driver) {
     
     // Disable all channels
     ESP_LOGI(TAG, "Disabling all channels...");
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        if (auto result = driver.disableChannel(channel); !result) {
-            ESP_LOGE(TAG, "Failed to disable channel %d", channel);
+    for (Channel channel : channels) {
+        if (auto result = driver.EnableChannel(channel, false); !result) {
+            ESP_LOGE(TAG, "Failed to disable channel %d", static_cast<int>(channel));
         }
     }
 }
@@ -162,22 +172,27 @@ static void synchronized_channel_demo(TLE92466ED& driver) {
 /**
  * @brief Demonstrate wave pattern generation
  */
-static void wave_pattern_demo(TLE92466ED& driver) {
+static void wave_pattern_demo(Driver& driver) {
     ESP_LOGI(TAG, "=== Wave Pattern Generation Demo ===");
     
     // Create a sine wave pattern across channels
     constexpr int steps = 60; // 60 steps for smooth wave
     constexpr uint16_t base_current = 800; // Base current in mA
     constexpr uint16_t amplitude = 400; // Amplitude in mA
+    constexpr std::array<Channel, 6> channels = {
+        Channel::CH0, Channel::CH1, Channel::CH2, 
+        Channel::CH3, Channel::CH4, Channel::CH5
+    };
     
     ESP_LOGI(TAG, "Generating sine wave pattern across channels...");
     
     for (int step = 0; step < steps; step++) {
         float angle = (2.0f * M_PI * step) / steps;
         
-        for (uint8_t channel = 0; channel < 6; channel++) {
+        for (size_t i = 0; i < 6; i++) {
+            Channel channel = channels[i];
             // Phase shift each channel by 60 degrees
-            float channel_angle = angle + (channel * M_PI / 3.0f);
+            float channel_angle = angle + (i * M_PI / 3.0f);
             float sine_value = sin(channel_angle);
             
             // Calculate current (always positive)
@@ -187,16 +202,16 @@ static void wave_pattern_demo(TLE92466ED& driver) {
             if (current > 2000) current = 2000;
             if (current < 100) current = 100;
             
-            if (auto result = driver.setChannelCurrent(channel, current); !result) {
-                ESP_LOGE(TAG, "Failed to set current for channel %d", channel);
+            if (auto result = driver.SetCurrentSetpoint(channel, current); !result) {
+                ESP_LOGE(TAG, "Failed to set current for channel %d", static_cast<int>(channel));
             }
         }
         
         // Enable all channels on first step
         if (step == 0) {
-            for (uint8_t channel = 0; channel < 6; channel++) {
-                if (auto result = driver.enableChannel(channel); !result) {
-                    ESP_LOGE(TAG, "Failed to enable channel %d", channel);
+            for (Channel channel : channels) {
+                if (auto result = driver.EnableChannel(channel, true); !result) {
+                    ESP_LOGE(TAG, "Failed to enable channel %d", static_cast<int>(channel));
                 }
             }
         }
@@ -204,9 +219,9 @@ static void wave_pattern_demo(TLE92466ED& driver) {
         // Log current values every 10 steps
         if (step % 10 == 0) {
             ESP_LOGI(TAG, "Wave step %d/%d:", step, steps);
-            for (uint8_t channel = 0; channel < 6; channel++) {
-                if (auto current = driver.readChannelCurrent(channel); current) {
-                    ESP_LOGI(TAG, "  CH%d: %dmA", channel, *current);
+            for (Channel channel : channels) {
+                if (auto current = driver.GetAverageCurrent(channel); current) {
+                    ESP_LOGI(TAG, "  CH%d: %dmA", static_cast<int>(channel), *current);
                 }
             }
         }
@@ -216,9 +231,9 @@ static void wave_pattern_demo(TLE92466ED& driver) {
     
     // Disable all channels
     ESP_LOGI(TAG, "Disabling all channels...");
-    for (uint8_t channel = 0; channel < 6; channel++) {
-        if (auto result = driver.disableChannel(channel); !result) {
-            ESP_LOGE(TAG, "Failed to disable channel %d", channel);
+    for (Channel channel : channels) {
+        if (auto result = driver.EnableChannel(channel, false); !result) {
+            ESP_LOGE(TAG, "Failed to disable channel %d", static_cast<int>(channel));
         }
     }
 }
@@ -226,11 +241,11 @@ static void wave_pattern_demo(TLE92466ED& driver) {
 /**
  * @brief Performance monitoring demonstration
  */
-static void performance_monitoring_demo(TLE92466ED& driver) {
+static void performance_monitoring_demo(Driver& driver) {
     ESP_LOGI(TAG, "=== Performance Monitoring Demo ===");
     
     constexpr int iterations = 100;
-    constexpr uint8_t test_channel = 0;
+    constexpr Channel test_channel = Channel::CH0;
     constexpr uint16_t test_current = 1000;
     
     // Measure communication performance
@@ -241,14 +256,14 @@ static void performance_monitoring_demo(TLE92466ED& driver) {
     
     for (int i = 0; i < iterations; i++) {
         // Set current
-        if (auto result = driver.setChannelCurrent(test_channel, test_current); result) {
+        if (auto result = driver.SetCurrentSetpoint(test_channel, test_current); result) {
             successful_operations++;
         }
         
         // Read current back
-        if (auto current = driver.readChannelCurrent(test_channel); current) {
+        if (auto current = driver.GetAverageCurrent(test_channel); current) {
             // Verify the value is close to what we set
-            if (abs(*current - test_current) <= 10) { // Allow 10mA tolerance
+            if (abs(static_cast<int>(*current) - static_cast<int>(test_current)) <= 10) { // Allow 10mA tolerance
                 // Success
             } else {
                 ESP_LOGW(TAG, "Current mismatch: set %dmA, read %dmA", test_current, *current);
@@ -276,19 +291,19 @@ static void multi_channel_demo() {
     ESP_LOGI(TAG, "=== TLE92466ED Multi-Channel Demo ===");
     
     // Create and initialize HAL
-    auto hal = createTLE92466ED_HAL();
-    if (auto result = hal->initialize(); !result) {
+    auto hal = CreateEsp32TleCommInterface();
+    if (auto result = hal->Init(); !result) {
         ESP_LOGE(TAG, "Failed to initialize HAL");
         return;
     }
     ESP_LOGI(TAG, "HAL initialized successfully");
 
     // Create TLE92466ED driver instance
-    TLE92466ED driver(*hal);
+    Driver driver(*hal);
     
     // Initialize the driver
     ESP_LOGI(TAG, "Initializing TLE92466ED driver...");
-    if (auto result = driver.initialize(); !result) {
+    if (auto result = driver.Init(); !result) {
         ESP_LOGE(TAG, "Failed to initialize TLE92466ED driver");
         return;
     }

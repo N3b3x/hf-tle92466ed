@@ -12,7 +12,7 @@
  * - Current range: 0-2A register scale (1.5A typical continuous) single channel
  *                  0-4A register scale (2.7A typical continuous) parallel mode
  * - 32-bit SPI with CRC-8 (SAE J1850)
- * - Hardware-agnostic design via polymorphic HAL
+ * - Hardware-agnostic design via polymorphic CommInterface
  *
  * **Current Control Features:**
  * - Precision current regulation (15-bit resolution = 0.061mA steps)
@@ -43,8 +43,8 @@
  *
  * **Usage Example:**
  * @code{.cpp}
- * MyPlatformHAL hal;
- * TLE92466ED::Driver driver(hal);
+ * MyPlatformCommInterface comm;
+ * TLE92466ED::Driver driver(comm);
  * 
  * // Initialize
  * driver.init();
@@ -60,19 +60,16 @@
  * // Monitor
  * auto current = driver.get_average_current(Channel::CH0);
  * auto status = driver.get_channel_diagnostics(Channel::CH0);
- * @endcode
- *
- * @copyright
- * This is free and unencumbered software released into the public domain.
  */
 
 #ifndef TLE92466ED_HPP
 #define TLE92466ED_HPP
 
-#include "TLE92466ED_HAL.hpp"
-#include "TLE92466ED_Registers.hpp"
 #include <expected>
 #include <array>
+
+#include "TLE92466ED_CommInterface.hpp"
+#include "TLE92466ED_Registers.hpp"
 
 namespace TLE92466ED {
 
@@ -82,7 +79,7 @@ namespace TLE92466ED {
 enum class DriverError : uint8_t {
     None = 0,             ///< No error
     NotInitialized,       ///< Driver not initialized
-    HardwareError,        ///< HAL communication error
+    HardwareError,        ///< Communication interface error
     InvalidChannel,       ///< Invalid channel number
     InvalidParameter,     ///< Invalid parameter value
     DeviceNotResponding,  ///< Device not responding to SPI
@@ -193,8 +190,8 @@ struct GlobalConfig {
     bool spi_watchdog_enabled{true};   ///< Enable SPI watchdog
     bool clock_watchdog_enabled{true}; ///< Enable clock watchdog
     bool vio_5v{false};                ///< VIO voltage (false=3.3V, true=5.0V)
-    uint8_t vbat_uv_threshold{25};     ///< VBAT UV threshold (0.16208V per LSB)
-    uint8_t vbat_ov_threshold{255};    ///< VBAT OV threshold (0.16208V per LSB)
+    float vbat_uv_voltage{4.0f};       ///< VBAT UV threshold voltage in volts (default: ~4V)
+    float vbat_ov_voltage{41.0f};      ///< VBAT OV threshold voltage in volts (default: ~41V)
     uint16_t spi_watchdog_reload{1000};///< SPI watchdog reload value
 };
 
@@ -217,7 +214,7 @@ struct GlobalConfig {
  * Uses std::expected for robust error handling without exceptions.
  *
  * @par Initialization Sequence:
- * 1. Construct driver with HAL reference
+ * 1. Construct driver with CommInterface reference
  * 2. Call init() to initialize hardware and verify device
  * 3. Call enter_mission_mode() to enable channel control
  * 4. Configure channels with set_channel_mode() and configure_channel()
@@ -228,14 +225,14 @@ struct GlobalConfig {
 class Driver {
 public:
     /**
-     * @brief Construct driver with HAL interface
+     * @brief Construct driver with communication interface
      * 
-     * @param hal Reference to hardware abstraction layer
+     * @param comm Reference to communication interface
      * 
-     * @pre HAL must remain valid for the lifetime of the Driver
+     * @pre CommInterface must remain valid for the lifetime of the Driver
      * @post Driver is constructed but not initialized
      */
-    explicit Driver(HAL& hal) noexcept : hal_(hal), initialized_(false), mission_mode_(false) {}
+    explicit Driver(CommInterface& comm) noexcept : comm_(comm), initialized_(false), mission_mode_(false) {}
 
     /**
      * @brief Destructor - ensures clean shutdown
@@ -243,7 +240,7 @@ public:
     ~Driver() noexcept {
         if (initialized_) {
             // Best effort shutdown - ignore errors
-            (void)disable_all_channels();
+            (void)DisableAllChannels();
         }
     }
 
@@ -264,7 +261,7 @@ public:
      * 
      * @details
      * Performs complete initialization sequence:
-     * 1. Initialize HAL (SPI peripheral)
+     * 1. Initialize CommInterface (SPI peripheral)
      * 2. Verify device communication
      * 3. Read and verify device ID
      * 4. Apply default configuration (in Config Mode)
@@ -273,11 +270,11 @@ public:
      * After init(), device is in Config Mode. Call enter_mission_mode() to enable outputs.
      *
      * @return DriverResult<void> Success or error code
-     * @retval DriverError::HardwareError HAL initialization failed
+     * @retval DriverError::HardwareError CommInterface initialization failed
      * @retval DriverError::DeviceNotResponding No SPI response
      * @retval DriverError::WrongDeviceID Device ID mismatch
      */
-    [[nodiscard]] DriverResult<void> init() noexcept;
+    [[nodiscard]] DriverResult<void> Init() noexcept;
 
     /**
      * @brief Enter Mission Mode (enables channel control)
@@ -290,7 +287,7 @@ public:
      * @return DriverResult<void> Success or error
      * @retval DriverError::NotInitialized Driver not initialized
      */
-    [[nodiscard]] DriverResult<void> enter_mission_mode() noexcept;
+    [[nodiscard]] DriverResult<void> EnterMissionMode() noexcept;
 
     /**
      * @brief Enter Config Mode (allows configuration changes)
@@ -301,14 +298,22 @@ public:
      *
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> enter_config_mode() noexcept;
+    [[nodiscard]] DriverResult<void> EnterConfigMode() noexcept;
 
     /**
      * @brief Check if in mission mode
      * @return true if in mission mode, false if in config mode
      */
-    [[nodiscard]] bool is_mission_mode() const noexcept {
+    [[nodiscard]] bool IsMissionMode() const noexcept {
         return mission_mode_;
+    }
+
+    /**
+     * @brief Check if in config mode
+     * @return true if in config mode, false if in mission mode
+     */
+    [[nodiscard]] bool IsConfigMode() const noexcept {
+        return !mission_mode_;
     }
 
     //==========================================================================
@@ -323,7 +328,7 @@ public:
      * @retval DriverError::NotInitialized Driver not initialized
      * @retval DriverError::WrongMode Must be in Config Mode
      */
-    [[nodiscard]] DriverResult<void> configure_global(const GlobalConfig& config) noexcept;
+    [[nodiscard]] DriverResult<void> ConfigureGlobal(const GlobalConfig& config) noexcept;
 
     /**
      * @brief Enable/disable CRC checking
@@ -331,16 +336,39 @@ public:
      * @param enabled true to enable CRC
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> set_crc_enabled(bool enabled) noexcept;
+    [[nodiscard]] DriverResult<void> SetCrcEnabled(bool enabled) noexcept;
 
     /**
-     * @brief Configure VBAT under/overvoltage thresholds
+     * @brief Set VBAT under/overvoltage thresholds from voltage values (High-Level API)
      * 
-     * @param uv_threshold UV threshold (V_BAT_UV = value * 0.16208V)
-     * @param ov_threshold OV threshold (V_BAT_OV = value * 0.16208V)
+     * @param uv_voltage UV threshold voltage in volts (0V to ~41.4V)
+     * @param ov_voltage OV threshold voltage in volts (0V to ~41.4V)
      * @return DriverResult<void> Success or error
+     * 
+     * @details
+     * Automatically calculates register values from voltage.
+     * Formula: register_value = voltage / 0.16208V
+     * 
+     * @note This is the recommended API for most users. Use SetVbatThresholdsRaw()
+     *       only if you need direct control over register values.
      */
-    [[nodiscard]] DriverResult<void> set_vbat_thresholds(uint8_t uv_threshold, uint8_t ov_threshold) noexcept;
+    [[nodiscard]] DriverResult<void> SetVbatThresholds(
+        float uv_voltage,
+        float ov_voltage) noexcept;
+
+    /**
+     * @brief Set VBAT under/overvoltage thresholds (Low-Level API)
+     * 
+     * @param uv_threshold UV threshold register value (0-255, V_BAT_UV = value * 0.16208V)
+     * @param ov_threshold OV threshold register value (0-255, V_BAT_OV = value * 0.16208V)
+     * @return DriverResult<void> Success or error
+     * 
+     * @note For most users, prefer SetVbatThresholds(uv_voltage, ov_voltage) which
+     *       automatically calculates these values from voltage.
+     */
+    [[nodiscard]] DriverResult<void> SetVbatThresholdsRaw(
+        uint8_t uv_threshold,
+        uint8_t ov_threshold) noexcept;
 
     //==========================================================================
     // CHANNEL CONTROL
@@ -354,7 +382,7 @@ public:
      * @return DriverResult<void> Success or error
      * @retval DriverError::WrongMode Must be in Mission Mode
      */
-    [[nodiscard]] DriverResult<void> enable_channel(Channel channel, bool enabled) noexcept;
+    [[nodiscard]] DriverResult<void> EnableChannel(Channel channel, bool enabled) noexcept;
 
     /**
      * @brief Enable or disable multiple channels
@@ -362,17 +390,17 @@ public:
      * @param channel_mask Bitmask where bit N enables channel N
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> enable_channels(uint8_t channel_mask) noexcept;
+    [[nodiscard]] DriverResult<void> EnableChannels(uint8_t channel_mask) noexcept;
 
     /**
      * @brief Enable all channels
      */
-    [[nodiscard]] DriverResult<void> enable_all_channels() noexcept;
+    [[nodiscard]] DriverResult<void> EnableAllChannels() noexcept;
 
     /**
      * @brief Disable all channels
      */
-    [[nodiscard]] DriverResult<void> disable_all_channels() noexcept;
+    [[nodiscard]] DriverResult<void> DisableAllChannels() noexcept;
 
     /**
      * @brief Set channel operation mode
@@ -382,7 +410,7 @@ public:
      * @return DriverResult<void> Success or error
      * @retval DriverError::WrongMode Must be in Config Mode
      */
-    [[nodiscard]] DriverResult<void> set_channel_mode(Channel channel, ChannelMode mode) noexcept;
+    [[nodiscard]] DriverResult<void> SetChannelMode(Channel channel, ChannelMode mode) noexcept;
 
     /**
      * @brief Configure channel for parallel operation
@@ -392,7 +420,7 @@ public:
      * @return DriverResult<void> Success or error
      * @retval DriverError::WrongMode Must be in Config Mode
      */
-    [[nodiscard]] DriverResult<void> set_parallel_operation(ParallelPair pair, bool enabled) noexcept;
+    [[nodiscard]] DriverResult<void> SetParallelOperation(ParallelPair pair, bool enabled) noexcept;
 
     //==========================================================================
     // CURRENT CONTROL (ICC MODE)
@@ -417,7 +445,7 @@ public:
      *          thermal limiting, reduced accuracy, or current regulation at the
      *          device's natural limit rather than the requested setpoint.
      */
-    [[nodiscard]] DriverResult<void> set_current_setpoint(
+    [[nodiscard]] DriverResult<void> SetCurrentSetpoint(
         Channel channel, 
         uint16_t current_ma,
         bool parallel_mode = false) noexcept;
@@ -429,38 +457,97 @@ public:
      * @param parallel_mode true if channel is in parallel mode
      * @return DriverResult<uint16_t> Current in mA or error
      */
-    [[nodiscard]] DriverResult<uint16_t> get_current_setpoint(
+    [[nodiscard]] DriverResult<uint16_t> GetCurrentSetpoint(
         Channel channel,
         bool parallel_mode = false) noexcept;
 
     /**
-     * @brief Configure PWM parameters for ICC
+     * @brief Configure PWM period from desired period in microseconds (High-Level API)
      * 
      * @param channel Channel to configure
-     * @param period_mantissa PWM period mantissa
+     * @param period_us Desired PWM period in microseconds
+     * @return DriverResult<void> Success or error
+     * 
+     * @details
+     * Automatically calculates mantissa, exponent, and low_freq_range to achieve
+     * the desired period. Valid range: ~0.125 µs to ~32.64 ms.
+     * 
+     * **Formula**: T_pwm = PERIOD_MANT × 2^PERIOD_EXP × (1/f_sys)
+     *              Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)
+     *              Where f_sys ≈ 8 MHz
+     * 
+     * @note This is the recommended API for most users. Use ConfigurePwmPeriodRaw()
+     *       only if you need direct control over register values.
+     */
+    [[nodiscard]] DriverResult<void> ConfigurePwmPeriod(
+        Channel channel,
+        float period_us) noexcept;
+
+    /**
+     * @brief Configure PWM parameters for ICC (Low-Level API)
+     * 
+     * @param channel Channel to configure
+     * @param period_mantissa PWM period mantissa (0-255)
      * @param period_exponent PWM period exponent (0-7)
      * @param low_freq_range Enable low frequency range (8x multiplier)
      * @return DriverResult<void> Success or error
      * 
      * @details PWM period: t_PWM = mantissa * 2^exponent * (1/f_sys)
      *          If low_freq_range: t_PWM = mantissa * 8 * 2^exponent * (1/f_sys)
+     * 
+     * @note For most users, prefer ConfigurePwmPeriod(period_us) which automatically
+     *       calculates these values from a desired period.
      */
-    [[nodiscard]] DriverResult<void> configure_pwm_period(
+    [[nodiscard]] DriverResult<void> ConfigurePwmPeriodRaw(
         Channel channel,
         uint8_t period_mantissa,
         uint8_t period_exponent,
         bool low_freq_range = false) noexcept;
 
     /**
-     * @brief Configure dither parameters
+     * @brief Configure dither from amplitude and frequency (High-Level API)
      * 
      * @param channel Channel to configure
-     * @param step_size Dither amplitude (I_dither = steps * step_size * 2A / 32767)
-     * @param num_steps Number of steps in quarter period
-     * @param flat_steps Number of flat clock cycles at top/bottom
+     * @param amplitude_ma Desired dither amplitude in milliamperes
+     * @param frequency_hz Desired dither frequency in Hz
+     * @param parallel_mode true if channel is in parallel mode (affects max current)
      * @return DriverResult<void> Success or error
+     * 
+     * @details
+     * Automatically calculates step_size, num_steps, and flat_steps to achieve
+     * the desired amplitude and frequency.
+     * 
+     * **Formulas**:
+     * - I_dither = STEPS × STEP_SIZE × 2A / 32767
+     * - T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
+     * 
+     * @note This is the recommended API for most users. Use ConfigureDitherRaw()
+     *       only if you need direct control over register values.
      */
-    [[nodiscard]] DriverResult<void> configure_dither(
+    [[nodiscard]] DriverResult<void> ConfigureDither(
+        Channel channel,
+        float amplitude_ma,
+        float frequency_hz,
+        bool parallel_mode = false) noexcept;
+
+    /**
+     * @brief Configure dither parameters (Low-Level API)
+     * 
+     * @param channel Channel to configure
+     * @param step_size Dither step size (0-4095)
+     * @param num_steps Number of steps in quarter period (0-255)
+     * @param flat_steps Number of flat clock cycles at top/bottom (0-255)
+     * @return DriverResult<void> Success or error
+     * 
+     * @details
+     * **Formulas**:
+     * - I_dither = STEPS × STEP_SIZE × 2A / 32767
+     * - T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
+     * 
+     * @note For most users, prefer ConfigureDither(amplitude_ma, frequency_hz) which
+     *       automatically calculates these values from user-friendly parameters.
+     */
+    [[nodiscard]] DriverResult<void> ConfigureDitherRaw(
         Channel channel,
         uint16_t step_size,
         uint8_t num_steps,
@@ -473,7 +560,7 @@ public:
      * @param config Channel configuration
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> configure_channel(
+    [[nodiscard]] DriverResult<void> ConfigureChannel(
         Channel channel,
         const ChannelConfig& config) noexcept;
 
@@ -486,7 +573,7 @@ public:
      * 
      * @return DriverResult<DeviceStatus> Device status or error
      */
-    [[nodiscard]] DriverResult<DeviceStatus> get_device_status() noexcept;
+    [[nodiscard]] DriverResult<DeviceStatus> GetDeviceStatus() noexcept;
 
     /**
      * @brief Get channel diagnostic information
@@ -494,7 +581,7 @@ public:
      * @param channel Channel to query
      * @return DriverResult<ChannelDiagnostics> Diagnostics or error
      */
-    [[nodiscard]] DriverResult<ChannelDiagnostics> get_channel_diagnostics(Channel channel) noexcept;
+    [[nodiscard]] DriverResult<ChannelDiagnostics> GetChannelDiagnostics(Channel channel) noexcept;
 
     /**
      * @brief Get average current for a channel
@@ -503,7 +590,7 @@ public:
      * @param parallel_mode true if in parallel mode
      * @return DriverResult<uint16_t> Average current in mA or error
      */
-    [[nodiscard]] DriverResult<uint16_t> get_average_current(
+    [[nodiscard]] DriverResult<uint16_t> GetAverageCurrent(
         Channel channel,
         bool parallel_mode = false) noexcept;
 
@@ -513,21 +600,21 @@ public:
      * @param channel Channel to query
      * @return DriverResult<uint16_t> Duty cycle (raw 16-bit value)
      */
-    [[nodiscard]] DriverResult<uint16_t> get_duty_cycle(Channel channel) noexcept;
+    [[nodiscard]] DriverResult<uint16_t> GetDutyCycle(Channel channel) noexcept;
 
     /**
      * @brief Get VBAT voltage
      * 
      * @return DriverResult<uint16_t> VBAT in millivolts or error
      */
-    [[nodiscard]] DriverResult<uint16_t> get_vbat_voltage() noexcept;
+    [[nodiscard]] DriverResult<uint16_t> GetVbatVoltage() noexcept;
 
     /**
      * @brief Get VIO voltage  
      * 
      * @return DriverResult<uint16_t> VIO in millivolts or error
      */
-    [[nodiscard]] DriverResult<uint16_t> get_vio_voltage() noexcept;
+    [[nodiscard]] DriverResult<uint16_t> GetVioVoltage() noexcept;
 
     //==========================================================================
     // FAULT MANAGEMENT
@@ -541,14 +628,14 @@ public:
      *
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> clear_faults() noexcept;
+    [[nodiscard]] DriverResult<void> ClearFaults() noexcept;
 
     /**
      * @brief Check if any fault exists
      * 
      * @return DriverResult<bool> true if any fault exists
      */
-    [[nodiscard]] DriverResult<bool> has_any_fault() noexcept;
+    [[nodiscard]] DriverResult<bool> HasAnyFault() noexcept;
 
     /**
      * @brief Software reset of the device
@@ -558,7 +645,7 @@ public:
      *
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> software_reset() noexcept;
+    [[nodiscard]] DriverResult<void> SoftwareReset() noexcept;
 
     //==========================================================================
     // WATCHDOG MANAGEMENT
@@ -574,7 +661,7 @@ public:
      * @param reload_value Reload value (watchdog period)
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> reload_spi_watchdog(uint16_t reload_value) noexcept;
+    [[nodiscard]] DriverResult<void> ReloadSpiWatchdog(uint16_t reload_value) noexcept;
 
     //==========================================================================
     // DEVICE INFORMATION
@@ -585,30 +672,133 @@ public:
      * 
      * @return DriverResult<uint16_t> ICVID register value
      */
-    [[nodiscard]] DriverResult<uint16_t> get_ic_version() noexcept;
+    [[nodiscard]] DriverResult<uint16_t> GetIcVersion() noexcept;
 
     /**
      * @brief Read unique chip ID
      * 
      * @return DriverResult<std::array<uint16_t, 3>> Three 16-bit ID registers
      */
-    [[nodiscard]] DriverResult<std::array<uint16_t, 3>> get_chip_id() noexcept;
+    [[nodiscard]] DriverResult<std::array<uint16_t, 3>> GetChipId() noexcept;
 
     /**
      * @brief Verify device ID matches expected value
      * 
      * @return DriverResult<bool> true if ID matches
      */
-    [[nodiscard]] DriverResult<bool> verify_device() noexcept;
+    [[nodiscard]] DriverResult<bool> VerifyDevice() noexcept;
 
     /**
      * @brief Check if driver is initialized
      * 
      * @return true if initialized and ready
      */
-    [[nodiscard]] bool is_initialized() const noexcept {
+    [[nodiscard]] bool IsInitialized() const noexcept {
         return initialized_;
     }
+
+    //==========================================================================
+    // GPIO CONTROL (Reset, Enable, Fault Status)
+    //==========================================================================
+
+    /**
+     * @brief Hold device in reset or release reset
+     * 
+     * @details
+     * Controls the RESN (reset) pin. When in reset, the device is held in
+     * a reset state and all registers are reset to default values.
+     * 
+     * @param reset If true, hold device in reset (RESN LOW). If false, release reset (RESN HIGH).
+     * @return DriverResult<void> Success or error
+     * @retval DriverError::HardwareError GPIO control failed
+     * 
+     * @note RESN must be released (reset=false) for SPI communication to work.
+     * @note Holding device in reset will disable all channels and reset registers.
+     */
+    [[nodiscard]] DriverResult<void> SetReset(bool reset) noexcept;
+
+    /**
+     * @brief Hold device in reset
+     * 
+     * @details
+     * Convenience function to hold device in reset state.
+     * Equivalent to SetReset(true).
+     * 
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> HoldReset() noexcept {
+        return SetReset(true);
+    }
+
+    /**
+     * @brief Release device from reset
+     * 
+     * @details
+     * Convenience function to release device from reset state.
+     * Equivalent to SetReset(false).
+     * 
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> ReleaseReset() noexcept {
+        return SetReset(false);
+    }
+
+    /**
+     * @brief Enable or disable output channels
+     * 
+     * @details
+     * Controls the EN (enable) pin. When disabled, all output channels
+     * are disabled regardless of channel enable register settings.
+     * 
+     * @param enable If true, enable outputs (EN HIGH). If false, disable outputs (EN LOW).
+     * @return DriverResult<void> Success or error
+     * @retval DriverError::HardwareError GPIO control failed
+     * 
+     * @note This affects all channels. Individual channel control is via EnableChannel().
+     * @note EN only affects output channels, not SPI communication.
+     */
+    [[nodiscard]] DriverResult<void> SetEnable(bool enable) noexcept;
+
+    /**
+     * @brief Enable output channels
+     * 
+     * @details
+     * Convenience function to enable outputs.
+     * Equivalent to SetEnable(true).
+     * 
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> Enable() noexcept {
+        return SetEnable(true);
+    }
+
+    /**
+     * @brief Disable output channels
+     * 
+     * @details
+     * Convenience function to disable outputs.
+     * Equivalent to SetEnable(false).
+     * 
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> Disable() noexcept {
+        return SetEnable(false);
+    }
+
+    /**
+     * @brief Check if device fault is detected
+     * 
+     * @details
+     * Reads the FAULTN pin to check if a fault condition is present.
+     * FAULTN is an active-low signal, so LOW = fault detected.
+     * 
+     * @return DriverResult<bool> true if fault detected, false if no fault, or error
+     * @retval DriverError::HardwareError GPIO read failed
+     * 
+     * @note This reads the hardware FAULTN pin. For detailed fault information,
+     *       use GetDeviceStatus() or GetChannelDiagnostics().
+     */
+    [[nodiscard]] DriverResult<bool> IsFault() noexcept;
 
     //==========================================================================
     // REGISTER ACCESS (Advanced)
@@ -619,9 +809,9 @@ public:
      * 
      * @param address Register address (10-bit)
      * @param verify_crc If true, verify CRC in response
-     * @return DriverResult<uint16_t> Register value or error
+     * @return DriverResult<uint32_t> Register value (16-bit or 22-bit depending on reply mode) or error
      */
-    [[nodiscard]] DriverResult<uint16_t> read_register(
+    [[nodiscard]] DriverResult<uint32_t> ReadRegister(
         uint16_t address,
         bool verify_crc = true) noexcept;
 
@@ -633,7 +823,7 @@ public:
      * @param verify_crc If true, verify CRC in response
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> write_register(
+    [[nodiscard]] DriverResult<void> WriteRegister(
         uint16_t address,
         uint16_t value,
         bool verify_crc = true) noexcept;
@@ -646,7 +836,7 @@ public:
      * @param value New bit values
      * @return DriverResult<void> Success or error
      */
-    [[nodiscard]] DriverResult<void> modify_register(
+    [[nodiscard]] DriverResult<void> ModifyRegister(
         uint16_t address,
         uint16_t mask,
         uint16_t value) noexcept;
@@ -659,19 +849,19 @@ private:
     /**
      * @brief Transfer SPI frame with CRC calculation and verification
      */
-    [[nodiscard]] DriverResult<SPIFrame> transfer_frame(const SPIFrame& tx_frame, bool verify_crc = true) noexcept;
+    [[nodiscard]] DriverResult<SPIFrame> transferFrame(const SPIFrame& tx_frame, bool verify_crc = true) noexcept;
 
     /**
      * @brief Validate channel number
      */
-    [[nodiscard]] constexpr bool is_valid_channel_internal(Channel channel) const noexcept {
-        return is_valid_channel(channel);
+    [[nodiscard]] constexpr bool isValidChannelInternal(Channel channel) const noexcept {
+        return IsValidChannel(channel);
     }
 
     /**
      * @brief Check if driver is initialized
      */
-    [[nodiscard]] DriverResult<void> check_initialized() const noexcept {
+    [[nodiscard]] DriverResult<void> checkInitialized() const noexcept {
         if (!initialized_) {
             return std::unexpected(DriverError::NotInitialized);
         }
@@ -681,7 +871,7 @@ private:
     /**
      * @brief Check if in mission mode
      */
-    [[nodiscard]] DriverResult<void> check_mission_mode() const noexcept {
+    [[nodiscard]] DriverResult<void> checkMissionMode() const noexcept {
         if (!mission_mode_) {
             return std::unexpected(DriverError::WrongMode);
         }
@@ -691,7 +881,7 @@ private:
     /**
      * @brief Check if in config mode
      */
-    [[nodiscard]] DriverResult<void> check_config_mode() const noexcept {
+    [[nodiscard]] DriverResult<void> checkConfigMode() const noexcept {
         if (mission_mode_) {
             return std::unexpected(DriverError::WrongMode);
         }
@@ -701,25 +891,25 @@ private:
     /**
      * @brief Apply default configuration after initialization
      */
-    [[nodiscard]] DriverResult<void> apply_default_config() noexcept;
+    [[nodiscard]] DriverResult<void> applyDefaultConfig() noexcept;
 
     /**
      * @brief Parse SPI status from reply frame
      */
-    [[nodiscard]] DriverResult<void> check_spi_status(const SPIFrame& rx_frame) noexcept;
+    [[nodiscard]] DriverResult<void> checkSpiStatus(const SPIFrame& rx_frame) noexcept;
 
     /**
      * @brief Check if channel is currently in parallel mode
      * @param channel Channel to check
      * @return DriverResult<bool> true if channel is paralleled, false otherwise
      */
-    [[nodiscard]] DriverResult<bool> is_channel_parallel(Channel channel) noexcept;
+    [[nodiscard]] DriverResult<bool> isChannelParallel(Channel channel) noexcept;
 
     //==========================================================================
     // MEMBER VARIABLES
     //==========================================================================
 
-    HAL& hal_;                              ///< Hardware abstraction layer
+    CommInterface& comm_;                   ///< Communication interface
     bool initialized_;                      ///< Initialization status
     bool mission_mode_;                     ///< Mission mode flag (vs config mode)
     uint16_t channel_enable_cache_;         ///< Cached channel enable state

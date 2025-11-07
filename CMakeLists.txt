@@ -33,7 +33,7 @@ target_include_directories(tle92466ed PUBLIC
 set_target_properties(tle92466ed PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
-    PUBLIC_HEADER "include/TLE92466ED.hpp;include/TLE92466ED_HAL.hpp;include/TLE92466ED_Registers.hpp"
+    PUBLIC_HEADER "inc/TLE92466ED.hpp;inc/TLE92466ED_CommInterface.hpp;inc/TLE92466ED_Registers.hpp"
 )
 
 # Optional: Build examples

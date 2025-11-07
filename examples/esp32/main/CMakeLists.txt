@@ -67,26 +67,26 @@ endif()
 message(STATUS "Using source file: ${SOURCE_FILE_PATH}")
 
 # Determine include paths based on environment
-# In CI, include is copied to ../include, in development it's at ../../include or ../../../include
-if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../include")
-    # CI environment - include is at project level
-    set(INC_BASE_PATH "../include")
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../include")
-    # Development environment - include is at examples level
-    set(INC_BASE_PATH "../../include")
-elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../../include")
-    # Development environment - include is at driver root
-    set(INC_BASE_PATH "../../../include")
+# In CI, inc is copied to ../inc, in development it's at ../../inc or ../../../inc
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../inc")
+    # CI environment - inc is at project level
+    set(INC_BASE_PATH "../inc")
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../inc")
+    # Development environment - inc is at examples level
+    set(INC_BASE_PATH "../../inc")
+elseif(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/../../../inc")
+    # Development environment - inc is at driver root
+    set(INC_BASE_PATH "../../../inc")
 else()
-    message(FATAL_ERROR "Cannot find include directory. Checked ../include, ../../include, and ../../../include")
+    message(FATAL_ERROR "Cannot find inc directory. Checked ../inc, ../../inc, and ../../../inc")
 endif()
 
 message(STATUS "Using include base path: ${INC_BASE_PATH}")
 
 idf_component_register(
-    SRCS "${MAIN_SOURCE}" "ESP32C6_HAL.cpp"
+    SRCS "${MAIN_SOURCE}" "Esp32TleCommInterface.cpp"
     INCLUDE_DIRS "." "${INC_BASE_PATH}"
-    REQUIRES driver esp_timer freertos spi_flash tle92466ed-espidf
+    REQUIRES driver esp_timer freertos spi_flash nvs_flash tle92466ed-espidf
 )
 
 # Set C++ standard (TLE92466ED requires C++23)

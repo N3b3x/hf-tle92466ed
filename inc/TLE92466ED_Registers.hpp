@@ -25,115 +25,16 @@
  * - 32-bit frames (8-bit CRC + 7-bit Address + 1-bit R/W + 16-bit Data)
  * - CRC: SAE J1850 8-bit polynomial
  * - Max frequency: 10 MHz
- * - Mode 0 (CPOL=0, CPHA=0)
- *
- * @copyright
- * This is free and unencumbered software released into the public domain.
+ * - Mode 1 (CPOL=0, CPHA=1)
  */
 
 #ifndef TLE92466ED_REGISTERS_HPP
 #define TLE92466ED_REGISTERS_HPP
 
 #include <cstdint>
+#include <cstddef>
 
 namespace TLE92466ED {
-
-//==============================================================================
-// SPI FRAME STRUCTURES (32-BIT)
-//==============================================================================
-
-/**
- * @brief 32-bit SPI frame structure for TLE92466ED communication
- * 
- * @details
- * The TLE92466ED uses 32-bit SPI frames with the following format:
- *
- * MOSI (Write) Frame:
- * @verbatim
- *  Bits 31-24 | Bits 23-17 | Bit 16 | Bits 15-0
- * ------------+------------+--------+-----------
- *  CRC (8-bit)| Address(7) |  R/W   | Data (16)
- * @endverbatim
- *
- * MISO (Reply) Frame:
- * @verbatim
- *  Bits 31-24 | Bits 23-22 | Bits 21-17 | Bit 16 | Bits 15-0
- * ------------+------------+------------+--------+-----------
- *  CRC (8-bit)| Reply Mode | Status (5) | R/W    | Data (16)
- * @endverbatim
- */
-union SPIFrame {
-    uint32_t word;          ///< Complete 32-bit frame
-    
-    /// MOSI (Transmit) frame structure
-    struct {
-        uint32_t data : 16;      ///< Data field [15:0]
-        uint32_t rw : 1;         ///< Read/Write bit [16] (1=Write, 0=Read)
-        uint32_t address : 7;    ///< Register address [23:17]
-        uint32_t crc : 8;        ///< CRC-8 SAE J1850 [31:24]
-    } tx_fields;
-    
-    /// MISO (Receive) frame structure
-    struct {
-        uint32_t data : 16;       ///< Data field [15:0]
-        uint32_t rw_echo : 1;     ///< R/W bit echoed [16]
-        uint32_t status : 5;      ///< Status bits [21:17]
-        uint32_t reply_mode : 2;  ///< Reply mode [23:22]
-        uint32_t crc : 8;         ///< CRC-8 SAE J1850 [31:24]
-    } rx_fields;
-    
-    /**
-     * @brief Construct read frame (without CRC - must be calculated separately)
-     * @param addr Register address (10-bit actual address)
-     * @return SPIFrame configured for read operation (CRC = 0)
-     */
-    [[nodiscard]] static constexpr SPIFrame make_read(uint16_t addr) noexcept {
-        SPIFrame frame{};
-        frame.tx_fields.rw = 0;           // Read
-        frame.tx_fields.address = (addr >> 3) & 0x7F;  // Upper 7 bits
-        frame.tx_fields.data = addr & 0x07;            // Lower 3 bits in data
-        frame.tx_fields.crc = 0;          // CRC calculated separately
-        return frame;
-    }
-    
-    /**
-     * @brief Construct write frame (without CRC - must be calculated separately)
-     * @param addr Register address (10-bit actual address)
-     * @param data Data word to write (16-bit)
-     * @return SPIFrame configured for write operation (CRC = 0)
-     */
-    [[nodiscard]] static constexpr SPIFrame make_write(uint16_t addr, uint16_t data) noexcept {
-        SPIFrame frame{};
-        frame.tx_fields.rw = 1;           // Write
-        frame.tx_fields.address = (addr >> 3) & 0x7F;  // Upper 7 bits
-        frame.tx_fields.data = data;
-        frame.tx_fields.crc = 0;          // CRC calculated separately
-        return frame;
-    }
-};
-
-static_assert(sizeof(SPIFrame) == 4, "SPIFrame must be exactly 4 bytes");
-
-/**
- * @brief SPI Reply Mode enumeration
- */
-enum class ReplyMode : uint8_t {
-    REPLY_16BIT = 0b00,      ///< 16-bit reply frame
-    REPLY_22BIT = 0b01,      ///< 22-bit reply frame (extended data)
-    CRITICAL_FAULT = 0b10,   ///< Critical fault frame
-    RESERVED = 0b11          ///< Reserved
-};
-
-/**
- * @brief SPI Status codes
- */
-enum class SPIStatus : uint8_t {
-    NO_ERROR = 0b00000,          ///< No error
-    SPI_FRAME_ERROR = 0b00001,   ///< SPI frame error
-    CRC_ERROR = 0b00010,         ///< Parity/CRC error
-    WRITE_RO_REG = 0b00011,      ///< Write to read-only register
-    INTERNAL_BUS_FAULT = 0b00100 ///< Internal bus fault
-};
 
 //==============================================================================
 // REGISTER ADDRESSES - CENTRAL/GLOBAL REGISTERS
@@ -219,7 +120,7 @@ namespace DeviceID {
      * @param icvid Value read from ICVID register
      * @return true if device type matches expected value
      */
-    [[nodiscard]] constexpr bool is_valid_device(uint16_t icvid) noexcept {
+    [[nodiscard]] constexpr bool IsValidDevice(uint16_t icvid) noexcept {
         [[maybe_unused]] uint8_t device_type = (icvid >> 8) & 0xFF;
         // Accept device if communication is working (non-zero response)
         // Strict type checking can be enabled if exact ID is known
@@ -229,14 +130,14 @@ namespace DeviceID {
     /**
      * @brief Extract device type from ICVID
      */
-    [[nodiscard]] constexpr uint8_t get_device_type(uint16_t icvid) noexcept {
+    [[nodiscard]] constexpr uint8_t GetDeviceType(uint16_t icvid) noexcept {
         return (icvid >> 8) & 0xFF;
     }
     
     /**
      * @brief Extract silicon revision from ICVID
      */
-    [[nodiscard]] constexpr uint8_t get_revision(uint16_t icvid) noexcept {
+    [[nodiscard]] constexpr uint8_t GetRevision(uint16_t icvid) noexcept {
         return icvid & 0xFF;
     }
 }
@@ -339,7 +240,7 @@ namespace CH_CTRL {
     /**
      * @brief Get channel enable bit mask
      */
-    [[nodiscard]] constexpr uint16_t channel_mask(uint8_t channel) noexcept {
+    [[nodiscard]] constexpr uint16_t ChannelMask(uint8_t channel) noexcept {
         return (channel < 6) ? static_cast<uint16_t>(1 << channel) : 0;
     }
 }
@@ -425,6 +326,7 @@ namespace GLOBAL_DIAG0 {
     
     constexpr uint16_t DEFAULT     = 0x0600;     ///< Default value
     constexpr uint16_t FAULT_MASK  = 0x47FF;     ///< All fault bits
+    constexpr uint16_t CLEAR_ALL   = 0xFFFF;    ///< Clear all bits (write-to-clear)
 }
 
 //==============================================================================
@@ -462,6 +364,7 @@ namespace GLOBAL_DIAG1 {
     constexpr uint16_t HVADC_ERR   = (1 << 15);  ///< HV ADC error
     
     constexpr uint16_t DEFAULT     = 0x0000;     ///< Default value
+    constexpr uint16_t CLEAR_ALL   = 0xFFFF;    ///< Clear all bits (write-to-clear)
 }
 
 //==============================================================================
@@ -477,6 +380,7 @@ namespace GLOBAL_DIAG2 {
     constexpr uint16_t OTP_VIRGIN  = (1 << 4);   ///< OTP virgin/unconfigured
     
     constexpr uint16_t DEFAULT     = 0x0000;     ///< Default value
+    constexpr uint16_t CLEAR_ALL   = 0xFFFF;    ///< Clear all bits (write-to-clear)
 }
 
 //==============================================================================
@@ -545,7 +449,7 @@ namespace SETPOINT {
      * @param parallel_mode true if channel is in parallel mode
      * @return Setpoint register value
      */
-    [[nodiscard]] constexpr uint16_t calculate_target(uint16_t current_ma, bool parallel_mode = false) noexcept {
+    [[nodiscard]] constexpr uint16_t CalculateTarget(uint16_t current_ma, bool parallel_mode = false) noexcept {
         uint32_t max_current = parallel_mode ? 4000 : 2000;
         uint32_t target = (static_cast<uint32_t>(current_ma) * 32767UL) / max_current;
         // Saturate at MAX_TARGET
@@ -559,10 +463,123 @@ namespace SETPOINT {
      * @param parallel_mode true if channel is in parallel mode
      * @return Current in milliamperes
      */
-    [[nodiscard]] constexpr uint16_t calculate_current(uint16_t target, bool parallel_mode = false) noexcept {
+    [[nodiscard]] constexpr uint16_t CalculateCurrent(uint16_t target, bool parallel_mode = false) noexcept {
         uint32_t max_current = parallel_mode ? 4000 : 2000;
         uint32_t current = (static_cast<uint32_t>(target & TARGET_MASK) * max_current) / 32767UL;
         return static_cast<uint16_t>(current);
+    }
+}
+
+//==============================================================================
+// PERIOD REGISTER - PWM Period Configuration
+//==============================================================================
+
+/**
+ * @brief PERIOD register bit definitions and helper functions
+ * 
+ * @details
+ * PWM period configuration for ICC mode.
+ * 
+ * @par Bit Map:
+ * @verbatim
+ * Bit 11   : LOW_FREQ - Low frequency range (8x multiplier)
+ * Bits 10-8: PERIOD_EXP - Period exponent (0-7)
+ * Bits 7-0 : PERIOD_MANT - Period mantissa (0-255)
+ * @endverbatim
+ * 
+ * **Formulas**:
+ * - Standard: T_pwm = PERIOD_MANT × 2^PERIOD_EXP × (1/f_sys)
+ * - Low Freq: T_pwm = PERIOD_MANT × 8 × 2^PERIOD_EXP × (1/f_sys)
+ * - Where f_sys ≈ 8 MHz, so 1/f_sys = 0.125 µs
+ */
+namespace PERIOD {
+    constexpr uint16_t MANT_MASK      = 0x00FF;  ///< Mantissa mask (bits 7:0)
+    constexpr uint16_t EXP_MASK       = 0x0700;  ///< Exponent mask (bits 10:8)
+    constexpr uint16_t EXP_SHIFT      = 8;       ///< Exponent shift
+    constexpr uint8_t  EXP_VALUE_MASK = 0x07;    ///< Exponent value mask (3 bits: 0-7)
+    constexpr uint16_t LOW_FREQ_BIT   = (1 << 11); ///< Low frequency range bit
+    
+    constexpr uint32_t F_SYS_HZ       = 8'000'000UL;  ///< System clock frequency (8 MHz)
+    constexpr float F_SYS_PERIOD_US  = 0.125f;        ///< System clock period (0.125 µs)
+    
+    /**
+     * @brief Calculate PWM period register values from desired period in microseconds
+     * 
+     * @param period_us Desired PWM period in microseconds
+     * @return Structure containing mantissa, exponent, and low_freq_range
+     * 
+     * @details
+     * Automatically selects the best combination of mantissa, exponent, and low_freq_range
+     * to achieve the desired period. Tries standard range first, then low frequency range
+     * if needed for longer periods.
+     * 
+     * Valid range: ~0.125 µs to ~32.64 ms
+     */
+    struct PeriodConfig {
+        uint8_t mantissa;        ///< Period mantissa (0-255)
+        uint8_t exponent;        ///< Period exponent (0-7)
+        bool low_freq_range;     ///< Low frequency range enabled
+        
+        /**
+         * @brief Calculate actual period from register values
+         * @return Actual period in microseconds
+         */
+        [[nodiscard]] constexpr float CalculatePeriodUs() const noexcept {
+            float base_period = static_cast<float>(mantissa) * static_cast<float>(1ULL << exponent) * F_SYS_PERIOD_US;
+            return low_freq_range ? (base_period * 8.0f) : base_period;
+        }
+    };
+    
+    /**
+     * @brief Calculate period configuration from desired period in microseconds
+     * @param period_us Desired PWM period in microseconds
+     * @return PeriodConfig structure, or invalid if period is out of range
+     */
+    [[nodiscard]] inline PeriodConfig CalculateFromPeriodUs(float period_us) noexcept {
+        PeriodConfig config{};
+        
+        // Try standard range first
+        for (uint8_t exp = 0; exp <= 7; ++exp) {
+            float divisor = static_cast<float>(1ULL << exp) * F_SYS_PERIOD_US;
+            float mantissa_f = period_us / divisor;
+            
+            if (mantissa_f <= 255.0f && mantissa_f >= 1.0f) {
+                config.mantissa = static_cast<uint8_t>(mantissa_f + 0.5f); // Round
+                config.exponent = exp;
+                config.low_freq_range = false;
+                return config;
+            }
+        }
+        
+        // Try low frequency range (8x multiplier)
+        for (uint8_t exp = 0; exp <= 7; ++exp) {
+            float divisor = static_cast<float>(1ULL << exp) * F_SYS_PERIOD_US * 8.0f;
+            float mantissa_f = period_us / divisor;
+            
+            if (mantissa_f <= 255.0f && mantissa_f >= 1.0f) {
+                config.mantissa = static_cast<uint8_t>(mantissa_f + 0.5f); // Round
+                config.exponent = exp;
+                config.low_freq_range = true;
+                return config;
+            }
+        }
+        
+        // Out of range - return invalid (mantissa = 0)
+        config.mantissa = 0;
+        config.exponent = 0;
+        config.low_freq_range = false;
+        return config;
+    }
+    
+    /**
+     * @brief Build PERIOD register value from configuration
+     * @param config Period configuration
+     * @return Register value
+     */
+    [[nodiscard]] constexpr uint16_t BuildRegisterValue(const PeriodConfig& config) noexcept {
+        return config.mantissa |
+               ((config.exponent & 0x07) << EXP_SHIFT) |
+               (config.low_freq_range ? LOW_FREQ_BIT : 0);
     }
 }
 
@@ -638,6 +655,8 @@ namespace CH_CONFIG {
     constexpr uint16_t OL_TH_6_8      = (6 << 4); ///< 6/8 of setpoint
     constexpr uint16_t OL_TH_7_8      = (7 << 4); ///< 7/8 of setpoint
     constexpr uint16_t OL_TH_MASK     = 0x0070;   ///< OL threshold mask
+    constexpr uint8_t  OL_TH_VALUE_MASK = 0x07;   ///< OL threshold value mask (3 bits: 0-7)
+    constexpr uint8_t  OL_TH_SHIFT    = 4;        ///< OL threshold shift in register
     
     // Fixed open load threshold [12:7]
     constexpr uint16_t OL_TH_FIXED_SHIFT = 7;
@@ -728,6 +747,159 @@ namespace DITHER_STEP {
 }
 
 //==============================================================================
+// DITHER HELPER FUNCTIONS
+//==============================================================================
+
+/**
+ * @brief Dither configuration helper functions
+ * 
+ * @details
+ * Provides high-level functions to calculate dither parameters from user-friendly values.
+ * 
+ * **Formulas**:
+ * - I_dither = STEPS × STEP_SIZE × 2A / 32767
+ * - T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
+ * 
+ * Where t_ref_clk depends on DITHER_CLK_DIV register (typically f_sys / divider).
+ * For default DITHER_CLK_DIV = 0, t_ref_clk = 1/f_sys = 0.125 µs
+ */
+namespace DITHER {
+    constexpr float F_SYS_HZ = 8'000'000.0f;  ///< System clock frequency (8 MHz)
+    constexpr float DEFAULT_T_REF_CLK_US = 0.125f;  ///< Default reference clock period (µs)
+    
+    /**
+     * @brief Dither configuration structure
+     */
+    struct DitherConfig {
+        uint16_t step_size;   ///< Dither step size (0-4095)
+        uint8_t num_steps;    ///< Number of steps in quarter period (0-255)
+        uint8_t flat_steps;   ///< Flat period steps at top/bottom (0-255)
+        
+        /**
+         * @brief Calculate dither amplitude in mA
+         * @param parallel_mode true if channel is in parallel mode
+         * @return Dither amplitude in milliamperes
+         */
+        [[nodiscard]] constexpr float CalculateAmplitudeMa(bool parallel_mode = false) const noexcept {
+            uint32_t max_current = parallel_mode ? 4000 : 2000;
+            float amplitude = (static_cast<float>(num_steps) * static_cast<float>(step_size) * 
+                              static_cast<float>(max_current)) / 32767.0f;
+            return amplitude;
+        }
+        
+        /**
+         * @brief Calculate dither period in microseconds
+         * @param t_ref_clk_us Reference clock period in microseconds (default: 0.125 µs)
+         * @return Dither period in microseconds
+         */
+        [[nodiscard]] constexpr float CalculatePeriodUs(float t_ref_clk_us = DEFAULT_T_REF_CLK_US) const noexcept {
+            return (4.0f * static_cast<float>(num_steps) + 2.0f * static_cast<float>(flat_steps)) * t_ref_clk_us;
+        }
+    };
+    
+    /**
+     * @brief Calculate dither configuration from amplitude and frequency
+     * 
+     * @param amplitude_ma Desired dither amplitude in milliamperes
+     * @param frequency_hz Desired dither frequency in Hz
+     * @param parallel_mode true if channel is in parallel mode
+     * @param t_ref_clk_us Reference clock period in microseconds (default: 0.125 µs)
+     * @return DitherConfig structure
+     * 
+     * @details
+     * Automatically calculates step_size, num_steps, and flat_steps to achieve
+     * the desired amplitude and frequency. Uses reasonable defaults for steps
+     * and flat period if not specified.
+     */
+    [[nodiscard]] inline DitherConfig CalculateFromAmplitudeFrequency(
+        float amplitude_ma,
+        float frequency_hz,
+        bool parallel_mode = false,
+        float t_ref_clk_us = DEFAULT_T_REF_CLK_US) noexcept {
+        
+        DitherConfig config{};
+        
+        // Calculate desired period from frequency
+        float period_us = 1'000'000.0f / frequency_hz;
+        
+        // Calculate dither period from formula: T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
+        // Use reasonable defaults: num_steps = 16, flat_steps = 2
+        constexpr uint8_t default_steps = 16;
+        constexpr uint8_t default_flat = 2;
+        
+        float calculated_period = (4.0f * default_steps + 2.0f * default_flat) * t_ref_clk_us;
+        
+        // If calculated period doesn't match desired, adjust steps
+        if (calculated_period < period_us * 0.9f || calculated_period > period_us * 1.1f) {
+            // Adjust num_steps to get closer to desired period
+            float target_steps = (period_us / t_ref_clk_us - 2.0f * default_flat) / 4.0f;
+            config.num_steps = static_cast<uint8_t>(target_steps + 0.5f);
+            if (config.num_steps < 1) config.num_steps = 1;
+            if (config.num_steps > 255) config.num_steps = 255;
+        } else {
+            config.num_steps = default_steps;
+        }
+        
+        config.flat_steps = default_flat;
+        
+        // Calculate step_size from amplitude formula: I_dither = STEPS × STEP_SIZE × 2A / 32767
+        uint32_t max_current = parallel_mode ? 4000 : 2000;
+        float step_size_f = (amplitude_ma * 32767.0f) / (static_cast<float>(config.num_steps) * static_cast<float>(max_current));
+        
+        config.step_size = static_cast<uint16_t>(step_size_f + 0.5f);
+        if (config.step_size > DITHER_CTRL::STEP_SIZE_MASK) {
+            config.step_size = DITHER_CTRL::STEP_SIZE_MASK;
+        }
+        
+        return config;
+    }
+}
+
+//==============================================================================
+// VBAT THRESHOLD HELPER FUNCTIONS
+//==============================================================================
+
+/**
+ * @brief VBAT threshold helper functions
+ * 
+ * @details
+ * Provides functions to convert between voltage values and register values.
+ * 
+ * **Formula**: V_BAT = register_value × 0.16208V
+ *              register_value = V_BAT / 0.16208V
+ * 
+ * Valid range: 0V to ~41.4V (255 × 0.16208V)
+ */
+namespace VBAT_THRESHOLD {
+    constexpr float LSB_VOLTAGE = 0.16208f;  ///< Voltage per LSB (0.16208V)
+    constexpr float MIN_VOLTAGE = 0.0f;      ///< Minimum voltage (0V)
+    constexpr float MAX_VOLTAGE = 41.4f;     ///< Maximum voltage (255 × 0.16208V)
+    
+    /**
+     * @brief Calculate register value from voltage
+     * @param voltage_volts Voltage in volts
+     * @return Register value (0-255), or 0 if out of range
+     */
+    [[nodiscard]] constexpr uint8_t CalculateFromVoltage(float voltage_volts) noexcept {
+        if (voltage_volts < MIN_VOLTAGE || voltage_volts > MAX_VOLTAGE) {
+            return 0;
+        }
+        float register_value_f = voltage_volts / LSB_VOLTAGE;
+        uint8_t register_value = static_cast<uint8_t>(register_value_f + 0.5f); // Round
+        return (register_value > 255) ? 255 : register_value;
+    }
+    
+    /**
+     * @brief Calculate voltage from register value
+     * @param register_value Register value (0-255)
+     * @return Voltage in volts
+     */
+    [[nodiscard]] constexpr float CalculateVoltage(uint8_t register_value) noexcept {
+        return static_cast<float>(register_value) * LSB_VOLTAGE;
+    }
+}
+
+//==============================================================================
 // HELPER ENUMERATIONS
 //==============================================================================
 
@@ -796,7 +968,7 @@ enum class ParallelPair : uint8_t {
  * @param channel Channel number (0-5)
  * @return Base address for channel registers
  */
-[[nodiscard]] constexpr uint16_t get_channel_base(Channel channel) noexcept {
+[[nodiscard]] constexpr uint16_t GetChannelBase(Channel channel) noexcept {
     return ChannelBase::CH0 + (static_cast<uint16_t>(channel) * ChannelBase::SPACING);
 }
 
@@ -806,22 +978,22 @@ enum class ParallelPair : uint8_t {
  * @param offset Register offset from channel base
  * @return Complete register address
  */
-[[nodiscard]] constexpr uint16_t get_channel_register(Channel channel, uint16_t offset) noexcept {
-    return get_channel_base(channel) + offset;
+[[nodiscard]] constexpr uint16_t GetChannelRegister(Channel channel, uint16_t offset) noexcept {
+    return GetChannelBase(channel) + offset;
 }
 
 /**
  * @brief Convert channel to index
  */
-[[nodiscard]] constexpr uint8_t to_index(Channel ch) noexcept {
+[[nodiscard]] constexpr uint8_t ToIndex(Channel ch) noexcept {
     return static_cast<uint8_t>(ch);
 }
 
 /**
  * @brief Validate channel number
  */
-[[nodiscard]] constexpr bool is_valid_channel(Channel ch) noexcept {
-    return to_index(ch) < static_cast<uint8_t>(Channel::COUNT);
+[[nodiscard]] constexpr bool IsValidChannel(Channel ch) noexcept {
+    return ToIndex(ch) < static_cast<uint8_t>(Channel::COUNT);
 }
 
 //==============================================================================
@@ -840,11 +1012,11 @@ enum class ParallelPair : uint8_t {
  * @param length Number of bytes
  * @return CRC-8 value
  */
-[[nodiscard]] constexpr uint8_t calculate_crc8_j1850(const uint8_t* data, size_t length) noexcept {
+[[nodiscard]] constexpr uint8_t CalculateCrc8J1850(const uint8_t* data, std::size_t length) noexcept {
     constexpr uint8_t POLY = 0x1D;
     uint8_t crc = 0xFF;
     
-    for (size_t i = 0; i < length; ++i) {
+    for (std::size_t i = 0; i < length; ++i) {
         crc ^= data[i];
         for (uint8_t bit = 0; bit < 8; ++bit) {
             if (crc & 0x80) {
@@ -863,10 +1035,10 @@ enum class ParallelPair : uint8_t {
  * @param frame SPI frame (CRC field should be 0)
  * @return Calculated CRC value
  */
-[[nodiscard]] inline uint8_t calculate_frame_crc(const SPIFrame& frame) noexcept {
+[[nodiscard]] inline uint8_t CalculateFrameCrc(const SPIFrame& frame) noexcept {
     const uint8_t* bytes = reinterpret_cast<const uint8_t*>(&frame);
     // Calculate CRC on bytes 0-2 (excluding CRC byte itself at position 3)
-    return calculate_crc8_j1850(bytes, 3);
+    return CalculateCrc8J1850(bytes, 3);
 }
 
 /**
@@ -874,11 +1046,11 @@ enum class ParallelPair : uint8_t {
  * @param frame Received SPI frame
  * @return true if CRC is valid
  */
-[[nodiscard]] inline bool verify_frame_crc(const SPIFrame& frame) noexcept {
+[[nodiscard]] inline bool VerifyFrameCrc(const SPIFrame& frame) noexcept {
     SPIFrame temp = frame;
     uint8_t received_crc = temp.tx_fields.crc;
     temp.tx_fields.crc = 0;
-    uint8_t calculated_crc = calculate_frame_crc(temp);
+    uint8_t calculated_crc = CalculateFrameCrc(temp);
     return (received_crc == calculated_crc);
 }
 

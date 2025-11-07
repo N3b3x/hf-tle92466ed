@@ -18,7 +18,7 @@ This document provides guidelines and information for contributors.
 
 - **C++23 Standard Compliance** - All code must be compatible with C++23
 - **Consistent Naming** - Follow the established naming conventions:
-  - Classes: `PascalCase` (e.g., `TLE92466ED`, `TLE92466ED_HAL`)
+  - Classes: `PascalCase` (e.g., `TLE92466ED`, `HAL`)
   - Functions: `PascalCase` (e.g., `SetCurrent`, `GetDiagnostics`)
   - Variables: `snake_case` with trailing underscore for members (e.g., `channel_enable_`, `current_setting_`)
   - Constants: `UPPER_SNAKE_CASE` (e.g., `TLE92466ED_MAX_CURRENT`)

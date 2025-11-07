@@ -66,7 +66,7 @@ For immediate implementation:
 ### Reference Information
 
 - **Datasheet**: Infineon TLE92466ED Rev. 1.2 (2022-02-01)
-- **Driver Source**: `include/TLE92466ED.hpp`, `src/TLE92466ED.cpp`
+- **Driver Source**: `inc/TLE92466ED.hpp`, `src/TLE92466ED.cpp`
 - **Examples**: `examples/basic_usage.cpp`
 - **Build System**: CMake 3.15+
 

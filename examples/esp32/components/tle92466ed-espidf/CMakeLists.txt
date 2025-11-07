@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 get_filename_component(PROJECT_ROOT "${CMAKE_SOURCE_DIR}" ABSOLUTE)
 
 # Check if we're in the CI environment (files copied to build directory)
-if(EXISTS "${PROJECT_ROOT}/src" AND EXISTS "${PROJECT_ROOT}/include")
+if(EXISTS "${PROJECT_ROOT}/src" AND EXISTS "${PROJECT_ROOT}/inc")
     # We're in CI or local build with copied files
     set(SRC_ROOT "${PROJECT_ROOT}")
 else()
@@ -38,7 +38,7 @@ idf_component_register(
         ${EXISTING_SRCS}
         
     INCLUDE_DIRS 
-        "${SRC_ROOT}/include"
+        "${SRC_ROOT}/inc"
         
     REQUIRES 
         # ESP-IDF core components

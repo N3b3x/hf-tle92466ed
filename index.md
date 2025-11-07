@@ -126,9 +126,9 @@ target_link_libraries(your_target PRIVATE TLE92466ED)
 ### Manual
 
 Include the following files in your project:
-- `include/TLE92466ED.hpp`
-- `include/TLE92466ED_Registers.hpp`
-- `include/TLE92466ED_HAL.hpp`
+- `inc/TLE92466ED.hpp`
+- `inc/TLE92466ED_Registers.hpp`
+- `inc/TLE92466ED_CommInterface.hpp`
 - `src/TLE92466ED.cpp`
 
 ## Platform Integration
@@ -136,7 +136,7 @@ Include the following files in your project:
 Implement the HAL interface for your platform:
 
 ```cpp
-class YourPlatformHAL : public TLE92466ED_HAL {
+class YourPlatformHAL : public TLE92466ED::HAL {
 public:
     auto spiTransfer(std::span<const uint8_t> txData, 
                      std::span<uint8_t> rxData) noexcept 

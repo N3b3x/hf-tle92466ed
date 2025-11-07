@@ -204,13 +204,13 @@ build_flags =
    - **Option A** (Recommended): Create symlinks in sketch folder:
      ```bash
      cd BasicUsageExample
-     ln -s ../../../include include
+     ln -s ../../../inc inc
      ln -s ../Arduino_HAL.hpp Arduino_HAL.hpp
      ```
 
    - **Option B**: Copy files to sketch folder:
      ```bash
-     cp -r ../../include BasicUsageExample/
+     cp -r ../../inc BasicUsageExample/
      cp ../Arduino_HAL.hpp BasicUsageExample/
      ```
 

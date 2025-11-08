@@ -375,10 +375,11 @@ static void print_device_telemetry() noexcept {
         vio_mv = *result;
     }
     
-    // Get fault status
+    // Get fault status with automatic fault reporting enabled
     bool fault_pin = false;
-    if (auto result = g_driver->IsFault(); result) {
+    if (auto result = g_driver->IsFault(true); result) {
         fault_pin = *result;
+        // Note: IsFault(true) automatically calls PrintAllFaults() when fault is detected
     }
     
     ESP_LOGI(TAG, "  Device Status:");

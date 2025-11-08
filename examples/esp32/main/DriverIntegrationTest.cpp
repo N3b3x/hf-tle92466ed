@@ -114,18 +114,12 @@ static void print_device_status(const DeviceStatus& status) noexcept {
     ESP_LOGI(TAG, "    Init Done: %s", status.init_done ? "Yes" : "No");
     ESP_LOGI(TAG, "    Any Fault: %s", status.any_fault ? "Yes" : "No");
     
-    if (status.any_fault) {
-        ESP_LOGW(TAG, "    Faults:");
-        if (status.vbat_uv) ESP_LOGW(TAG, "      - VBAT Undervoltage");
-        if (status.vbat_ov) ESP_LOGW(TAG, "      - VBAT Overvoltage");
-        if (status.vio_uv) ESP_LOGW(TAG, "      - VIO Undervoltage");
-        if (status.vio_ov) ESP_LOGW(TAG, "      - VIO Overvoltage");
-        if (status.vdd_uv) ESP_LOGW(TAG, "      - VDD Undervoltage");
-        if (status.vdd_ov) ESP_LOGW(TAG, "      - VDD Overvoltage");
-        if (status.ot_warning) ESP_LOGW(TAG, "      - Over-temperature Warning");
-        if (status.ot_error) ESP_LOGW(TAG, "      - Over-temperature Error");
-        if (status.clock_fault) ESP_LOGW(TAG, "      - Clock Fault");
-        if (status.spi_wd_error) ESP_LOGW(TAG, "      - SPI Watchdog Error");
+    // If faults are detected, use the comprehensive fault reporting system
+    if (status.any_fault && g_driver) {
+        ESP_LOGI(TAG, "");
+        if (auto result = g_driver->PrintAllFaults(); !result) {
+            ESP_LOGW(TAG, "⚠️  Failed to print detailed fault report");
+        }
     }
 }
 
@@ -447,9 +441,21 @@ static bool test_vbat_thresholds() noexcept {
     }
     ESP_LOGI(TAG, "✅ VBAT thresholds (raw) set");
     
-    // Restore defaults
+    // Restore defaults to wide range to prevent faults
+    ESP_LOGI(TAG, "Restoring VBAT thresholds to wide range (7.0V, 40.0V)...");
     if (auto result = g_driver->SetVbatThresholds(7.0f, 40.0f); !result) {
         ESP_LOGW(TAG, "⚠️  Failed to restore default VBAT thresholds");
+    } else {
+        ESP_LOGI(TAG, "✅ VBAT thresholds restored to wide range");
+    }
+    
+    // Clear any faults that were triggered by narrow thresholds
+    vTaskDelay(pdMS_TO_TICKS(100));
+    ESP_LOGI(TAG, "Clearing faults triggered by threshold testing...");
+    if (auto result = g_driver->ClearFaults(); !result) {
+        ESP_LOGW(TAG, "⚠️  Failed to clear faults");
+    } else {
+        ESP_LOGI(TAG, "✅ Faults cleared");
     }
     
     return true;
@@ -472,12 +478,12 @@ static bool test_global_configuration() noexcept {
     
     GlobalConfig config{};
     config.crc_enabled = true;
-    config.spi_watchdog_enabled = true;
+    config.spi_watchdog_enabled = false;  // Disabled - requires periodic reloading
     config.clock_watchdog_enabled = true;
     config.vio_5v = false;  // 3.3V
     config.vbat_uv_voltage = 6.0f;
     config.vbat_ov_voltage = 38.0f;
-    config.spi_watchdog_reload = 2000;
+    config.spi_watchdog_reload = 2000;  // Value set but not used since disabled
     
     if (auto result = g_driver->ConfigureGlobal(config); !result) {
         ESP_LOGE(TAG, "❌ Failed to configure global settings");
@@ -486,14 +492,14 @@ static bool test_global_configuration() noexcept {
     
     ESP_LOGI(TAG, "✅ Global configuration applied");
     
-    // Restore defaults
+    // Restore defaults (SPI watchdog remains disabled)
     config.crc_enabled = true;
-    config.spi_watchdog_enabled = true;
+    config.spi_watchdog_enabled = false;  // Keep disabled - default behavior
     config.clock_watchdog_enabled = true;
     config.vio_5v = false;
     config.vbat_uv_voltage = 7.0f;
     config.vbat_ov_voltage = 40.0f;
-    config.spi_watchdog_reload = 1000;
+    config.spi_watchdog_reload = 1000;  // Value set but not used since disabled
     
     if (auto result = g_driver->ConfigureGlobal(config); !result) {
         ESP_LOGW(TAG, "⚠️  Failed to restore default global configuration");
@@ -722,7 +728,7 @@ static bool test_current_setpoint() noexcept {
     }
     
     // Disable channel
-    g_driver->EnableChannel(channel, false);
+    (void)g_driver->EnableChannel(channel, false);
     
     ESP_LOGI(TAG, "✅ Current setpoint test passed");
     return true;
@@ -776,7 +782,7 @@ static bool test_current_ramping() noexcept {
     }
     
     // Disable channel
-    g_driver->EnableChannel(channel, false);
+    (void)g_driver->EnableChannel(channel, false);
     
     ESP_LOGI(TAG, "✅ Current ramping test completed");
     return true;
@@ -1168,9 +1174,10 @@ static bool test_device_telemetry() noexcept {
         ESP_LOGW(TAG, "⚠️  Failed to read VIO voltage");
     }
     
-    // Test IsFault
-    if (auto fault = g_driver->IsFault(); fault) {
+    // Test IsFault with automatic fault reporting enabled
+    if (auto fault = g_driver->IsFault(true); fault) {
         ESP_LOGI(TAG, "✅ Fault Pin: %s", *fault ? "FAULT" : "OK");
+        // Note: IsFault(true) automatically calls PrintAllFaults() when fault is detected
     } else {
         ESP_LOGW(TAG, "⚠️  Failed to read fault pin");
     }
@@ -1255,7 +1262,7 @@ static bool test_telemetry_with_active_channel() noexcept {
     }
     
     // Disable channel
-    g_driver->EnableChannel(channel, false);
+    (void)g_driver->EnableChannel(channel, false);
     
     ESP_LOGI(TAG, "✅ Telemetry with active channel test completed");
     return true;
@@ -1266,6 +1273,37 @@ static bool test_telemetry_with_active_channel() noexcept {
 //=============================================================================
 
 /**
+ * @brief Test comprehensive fault reporting
+ */
+static bool test_fault_reporting() noexcept {
+    if (!g_driver) {
+        ESP_LOGE(TAG, "Driver not initialized");
+        return false;
+    }
+    
+    ESP_LOGI(TAG, "Testing comprehensive fault reporting...");
+    
+    // Get all faults
+    if (auto faults = g_driver->GetAllFaults(); faults) {
+        ESP_LOGI(TAG, "✅ Fault report retrieved successfully");
+        ESP_LOGI(TAG, "  Any fault: %s", faults->any_fault ? "Yes" : "No");
+        
+        // Print all faults
+        ESP_LOGI(TAG, "");
+        ESP_LOGI(TAG, "Printing comprehensive fault report:");
+        if (auto result = g_driver->PrintAllFaults(); !result) {
+            ESP_LOGE(TAG, "❌ Failed to print fault report");
+            return false;
+        }
+        
+        return true;
+    } else {
+        ESP_LOGE(TAG, "❌ Failed to get fault report");
+        return false;
+    }
+}
+
+/**
  * @brief Test fault clearing
  */
 static bool test_fault_clearing() noexcept {
@@ -1274,8 +1312,21 @@ static bool test_fault_clearing() noexcept {
         return false;
     }
     
+    if (!ensure_config_mode()) {
+        return false;
+    }
+    
     ESP_LOGI(TAG, "Testing fault clearing...");
     
+    // Ensure thresholds are set to wide range to prevent new faults
+    ESP_LOGI(TAG, "Setting VBAT thresholds to wide range (7.0V, 40.0V)...");
+    if (auto result = g_driver->SetVbatThresholds(7.0f, 40.0f); !result) {
+        ESP_LOGW(TAG, "⚠️  Failed to set wide range thresholds");
+    }
+    
+    vTaskDelay(pdMS_TO_TICKS(100));
+    
+    // Clear faults
     if (auto result = g_driver->ClearFaults(); !result) {
         ESP_LOGE(TAG, "❌ Failed to clear faults");
         return false;
@@ -1283,10 +1334,16 @@ static bool test_fault_clearing() noexcept {
     
     ESP_LOGI(TAG, "✅ Faults cleared");
     
-    // Check if any faults exist
+    vTaskDelay(pdMS_TO_TICKS(100));
+    
+    // Check if any faults exist and print detailed report if present
     if (auto has_fault = g_driver->HasAnyFault(); has_fault) {
         if (*has_fault) {
-            ESP_LOGW(TAG, "⚠️  Faults still present after clearing");
+            ESP_LOGW(TAG, "⚠️  Faults still present after clearing:");
+            ESP_LOGI(TAG, "");
+            if (auto result = g_driver->PrintAllFaults(); !result) {
+                ESP_LOGW(TAG, "⚠️  Failed to print detailed fault report");
+            }
         } else {
             ESP_LOGI(TAG, "✅ No faults detected");
         }
@@ -1313,10 +1370,16 @@ static bool test_software_reset() noexcept {
     
     ESP_LOGI(TAG, "✅ Software reset completed");
     
-    // Verify we're back in Config Mode
-    if (!g_driver->IsConfigMode()) {
+    // Verify we're in Config Mode
+    // Note: SoftwareReset() enters Config Mode and clears channel enable cache
+    // It does NOT actually disable channels (requires Mission Mode)
+    // Channels will be disabled when entering Mission Mode next time
+    if (auto status = g_driver->GetDeviceStatus(); status) {
+        if (!status->config_mode) {
         ESP_LOGE(TAG, "❌ Not in Config Mode after software reset");
         return false;
+        }
+        ESP_LOGI(TAG, "✅ Verified: Device is in Config Mode");
     }
     
     return true;
@@ -1335,8 +1398,10 @@ static bool test_spi_watchdog() noexcept {
         return false;
     }
     
-    ESP_LOGI(TAG, "Testing SPI watchdog reload...");
+    ESP_LOGI(TAG, "Testing SPI watchdog reload (watchdog is disabled, just testing reload function)...");
     
+    // Note: SPI watchdog is disabled by default, so reloading won't actually prevent timeout
+    // This test just verifies the reload function works correctly
     const uint16_t test_reload_values[] = {500, 1000, 2000, 5000};
     
     for (uint16_t reload_value : test_reload_values) {
@@ -1369,9 +1434,11 @@ static bool test_gpio_control() noexcept {
     
     // Test fault status
     ESP_LOGI(TAG, "Checking fault status...");
-    if (auto fault = g_driver->IsFault(); fault) {
+    // Check fault pin with automatic fault reporting enabled
+    if (auto fault = g_driver->IsFault(true); fault) {
         if (*fault) {
-            ESP_LOGW(TAG, "⚠️  Fault detected on FAULTN pin");
+            // Note: IsFault(true) automatically calls PrintAllFaults() when fault is detected
+            ESP_LOGW(TAG, "⚠️  Fault detected on FAULTN pin (detailed report printed above)");
         } else {
             ESP_LOGI(TAG, "✅ No fault detected");
         }
@@ -1703,6 +1770,7 @@ extern "C" void app_main() {
     RUN_TEST_SECTION_IF_ENABLED(
         ENABLE_FAULT_MANAGEMENT_TESTS, "FAULT MANAGEMENT TESTS",
         ESP_LOGI(TAG, "Running fault management tests...");
+        RUN_TEST_IN_TASK("fault_reporting", test_fault_reporting, 8192, 5);
         RUN_TEST_IN_TASK("fault_clearing", test_fault_clearing, 8192, 5);
         RUN_TEST_IN_TASK("software_reset", test_software_reset, 8192, 5);
     );

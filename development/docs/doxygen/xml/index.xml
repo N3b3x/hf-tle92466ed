@@ -180,6 +180,8 @@
     <member refid="namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03_1a51780481383278f8fba3f1a482ba4e59" kind="function"><name>byte_swap_32</name></member>
   </compound>
   <compound refid="namespaceTLE92466ED" kind="namespace"><name>TLE92466ED</name>
+    <member refid="namespaceTLE92466ED_1af84a6a448ad7cf483c55af8604b73128" kind="function"><name>getVioThresholds</name></member>
+    <member refid="namespaceTLE92466ED_1a2e59e77ac04459da595df2e873070090" kind="function"><name>getVddThresholds</name></member>
   </compound>
   <compound refid="namespaceTLE92466ED__TestConfig" kind="namespace"><name>TLE92466ED_TestConfig</name>
   </compound>
@@ -239,6 +241,7 @@
     <member refid="DriverIntegrationTest_8cpp_1aa17032374a5d25152459317a981bc3af" kind="function"><name>test_all_channels_telemetry</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a8173e95efadc1c63eb12378dfd32fed7" kind="function"><name>test_device_telemetry</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a01f3dc5889509fa100606c90ef1930d6" kind="function"><name>test_telemetry_with_active_channel</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1accc4cbd28ece229c1cc42fadfc6301ce" kind="function"><name>test_fault_reporting</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a20f5328b9390b58369ee850075875f1a" kind="function"><name>test_fault_clearing</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a5ce0bd503b0c435e033a23779704fe85" kind="function"><name>test_software_reset</name></member>
     <member refid="DriverIntegrationTest_8cpp_1ac771b66525d7d0b3c4bef1fd4a96c2b0" kind="function"><name>test_spi_watchdog</name></member>

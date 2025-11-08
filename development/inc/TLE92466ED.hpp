@@ -183,6 +183,70 @@ struct ChannelDiagnostics {
 };
 
 /**
+ * @brief Comprehensive fault report structure
+ * 
+ * @details
+ * Contains all fault information from GLOBAL_DIAG0, GLOBAL_DIAG1, GLOBAL_DIAG2,
+ * and per-channel fault diagnostics.
+ */
+struct FaultReport {
+    bool any_fault{false};             ///< Any fault condition present
+    
+    // External Supply Faults (GLOBAL_DIAG0)
+    bool vbat_uv{false};               ///< VBAT undervoltage
+    bool vbat_ov{false};               ///< VBAT overvoltage
+    bool vio_uv{false};                ///< VIO undervoltage
+    bool vio_ov{false};                ///< VIO overvoltage
+    bool vdd_uv{false};                ///< VDD undervoltage
+    bool vdd_ov{false};                ///< VDD overvoltage
+    
+    // Internal Supply Faults (GLOBAL_DIAG1)
+    bool vr_iref_uv{false};            ///< Internal bias current undervoltage
+    bool vr_iref_ov{false};            ///< Internal bias current overvoltage
+    bool vdd2v5_uv{false};             ///< Internal 2.5V supply undervoltage
+    bool vdd2v5_ov{false};             ///< Internal 2.5V supply overvoltage
+    bool ref_uv{false};                ///< Internal reference undervoltage
+    bool ref_ov{false};                ///< Internal reference overvoltage
+    bool vpre_ov{false};               ///< Internal pre-regulator overvoltage
+    bool hvadc_err{false};             ///< Internal monitoring ADC error
+    
+    // System Faults (GLOBAL_DIAG0)
+    bool clock_fault{false};           ///< Clock fault
+    bool spi_wd_error{false};          ///< SPI watchdog error
+    
+    // Temperature Faults (GLOBAL_DIAG0)
+    bool ot_error{false};              ///< Central over-temperature error
+    bool ot_warning{false};             ///< Central over-temperature warning
+    
+    // Reset Events (GLOBAL_DIAG0)
+    bool por_event{false};             ///< Power-on reset event
+    bool reset_event{false};            ///< External reset event
+    
+    // Memory/ECC Faults (GLOBAL_DIAG2)
+    bool reg_ecc_err{false};           ///< Register ECC error
+    bool otp_ecc_err{false};           ///< OTP ECC error
+    bool otp_virgin{false};            ///< OTP virgin/unconfigured
+    
+    // Channel-specific faults (per channel)
+    struct ChannelFaults {
+        bool has_fault{false};         ///< Any fault on this channel
+        bool overcurrent{false};        ///< Over-current
+        bool short_to_ground{false};    ///< Short to ground
+        bool open_load{false};          ///< Open load
+        bool over_temperature{false};   ///< Over-temperature
+        bool open_load_short_ground{false}; ///< Open load or short to ground
+        bool ot_warning{false};        ///< Over-temperature warning
+        bool current_regulation_warning{false}; ///< Current regulation warning
+        bool pwm_regulation_warning{false}; ///< PWM regulation warning
+        bool olsg_warning{false};       ///< OLSG warning
+    } channels[6];                     ///< Faults for each channel (CH0-CH5)
+    
+    // Summary flags from FB_STAT
+    bool supply_nok_internal{false};    ///< Internal supply fault summary
+    bool supply_nok_external{false};    ///< External supply fault summary
+};
+
+/**
  * @brief Global configuration structure
  */
 struct GlobalConfig {
@@ -616,6 +680,22 @@ public:
      */
     [[nodiscard]] DriverResult<uint16_t> GetVioVoltage() noexcept;
 
+    /**
+     * @brief Get VDD voltage
+     * 
+     * @return DriverResult<uint16_t> VDD in millivolts or error
+     */
+    [[nodiscard]] DriverResult<uint16_t> GetVddVoltage() noexcept;
+
+    /**
+     * @brief Get VBAT thresholds
+     * 
+     * @param uv_threshold Output parameter for UV threshold in millivolts
+     * @param ov_threshold Output parameter for OV threshold in millivolts
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> GetVbatThresholds(uint16_t& uv_threshold, uint16_t& ov_threshold) noexcept;
+
     //==========================================================================
     // FAULT MANAGEMENT
     //==========================================================================
@@ -636,6 +716,28 @@ public:
      * @return DriverResult<bool> true if any fault exists
      */
     [[nodiscard]] DriverResult<bool> HasAnyFault() noexcept;
+
+    /**
+     * @brief Get comprehensive fault report
+     * 
+     * @details
+     * Reads all fault registers (GLOBAL_DIAG0, GLOBAL_DIAG1, GLOBAL_DIAG2)
+     * and all channel fault registers to provide a complete fault report.
+     * 
+     * @return DriverResult<FaultReport> Complete fault report or error
+     */
+    [[nodiscard]] DriverResult<FaultReport> GetAllFaults() noexcept;
+
+    /**
+     * @brief Print all detected faults to log
+     * 
+     * @details
+     * Reads all faults and prints them in a formatted, easy-to-read format.
+     * Only prints faults that are actually detected.
+     * 
+     * @return DriverResult<void> Success or error
+     */
+    [[nodiscard]] DriverResult<void> PrintAllFaults() noexcept;
 
     /**
      * @brief Software reset of the device
@@ -792,13 +894,17 @@ public:
      * Reads the FAULTN pin to check if a fault condition is present.
      * FAULTN is an active-low signal, so LOW = fault detected.
      * 
+     * @param print_faults If true and fault is detected, automatically calls PrintAllFaults()
+     *                     to display detailed fault information. Default: false (no automatic printing)
+     * 
      * @return DriverResult<bool> true if fault detected, false if no fault, or error
      * @retval DriverError::HardwareError GPIO read failed
      * 
-     * @note This reads the hardware FAULTN pin. For detailed fault information,
-     *       use GetDeviceStatus() or GetChannelDiagnostics().
+     * @note This reads the hardware FAULTN pin. When a fault is detected, print_faults is true,
+     *       and the driver is initialized, detailed fault information is automatically printed
+     *       via PrintAllFaults().
      */
-    [[nodiscard]] DriverResult<bool> IsFault() noexcept;
+    [[nodiscard]] DriverResult<bool> IsFault(bool print_faults = false) noexcept;
 
     //==========================================================================
     // REGISTER ACCESS (Advanced)
@@ -823,14 +929,19 @@ public:
      * @param address Register address (10-bit)
      * @param value Value to write (16-bit)
      * @param verify_crc Override CRC verification (default: uses internal CRC enable state)
+     * @param verify_write If true, read back register to verify write succeeded (default: true)
      * @return DriverResult<void> Success or error
      * @note If verify_crc is not explicitly provided, uses internal CRC enable state
      *       which tracks GLOBAL_CONFIG::CRC_EN. Set to false to override (e.g., during init).
+     * @note If verify_write is true, reads back the register after write and logs a warning
+     *       if the read value doesn't match. Some registers may be write-only (e.g., GLOBAL_CONFIG),
+     *       in which case verification will fail gracefully.
      */
     [[nodiscard]] DriverResult<void> WriteRegister(
         uint16_t address,
         uint16_t value,
-        bool verify_crc = false) noexcept;
+        bool verify_crc = false,
+        bool verify_write = true) noexcept;
 
     /**
      * @brief Modify register bits
@@ -939,6 +1050,8 @@ private:
     bool initialized_;                      ///< Initialization status
     bool mission_mode_;                     ///< Mission mode flag (vs config mode)
     bool crc_enabled_;                      ///< CRC enable state (tracks GLOBAL_CONFIG::CRC_EN)
+    bool vio_5v_mode_;                      ///< VIO mode state (tracks GLOBAL_CONFIG::VIO_SEL, false=3.3V, true=5V)
+    uint16_t ch_ctrl_cache_;                ///< Cached CH_CTRL register value (reads return 0x0000)
     uint16_t channel_enable_cache_;         ///< Cached channel enable state
     std::array<uint16_t, 6> channel_setpoints_; ///< Cached current setpoints
 };

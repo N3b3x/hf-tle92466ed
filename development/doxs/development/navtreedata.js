@@ -57,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Arduino__HAL_8cpp.html",
-"structTLE92466ED__TestConfig_1_1CurrentLimits.html"
+"structTLE92466ED__TestConfig_1_1ControlPins.html#a9d17758f1c459951f04a5e932f6b9157"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

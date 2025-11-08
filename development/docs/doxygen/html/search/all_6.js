@@ -12,5 +12,7 @@ var searchData=
   ['getconfig_9',['getConfig',['../classArduino__HAL.html#af4fdc46e21a752b20f742bbfc08b1e81',1,'Arduino_HAL::getConfig()'],['../classEsp32TleCommInterface.html#a8216498d7d1b270b06a4a711bd2a21ef',1,'Esp32TleCommInterface::getConfig() const noexcept -&gt; const SPIConfig &amp;']]],
   ['getgpiopin_10',['GetGpioPin',['../classEsp32TleCommInterface.html#aaba77fee74ef43454bf28cb9aff0c704',1,'Esp32TleCommInterface']]],
   ['getlasterror_11',['GetLastError',['../classEsp32TleCommInterface.html#a768b503b10a2889ab49b53219a41a2be',1,'Esp32TleCommInterface']]],
-  ['gpio_5fpin_12',['GPIO_PIN',['../structADCConfig.html#af79e226540f25bb3bf16c03aa16a7b0f',1,'ADCConfig']]]
+  ['getvddthresholds_12',['getVddThresholds',['../namespaceTLE92466ED.html#a2e59e77ac04459da595df2e873070090',1,'TLE92466ED']]],
+  ['getviothresholds_13',['getVioThresholds',['../namespaceTLE92466ED.html#af84a6a448ad7cf483c55af8604b73128',1,'TLE92466ED']]],
+  ['gpio_5fpin_14',['GPIO_PIN',['../structADCConfig.html#af79e226540f25bb3bf16c03aa16a7b0f',1,'ADCConfig']]]
 ];

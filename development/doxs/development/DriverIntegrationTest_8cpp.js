@@ -40,6 +40,7 @@ var DriverIntegrationTest_8cpp =
     [ "test_enter_mission_mode", "DriverIntegrationTest_8cpp.html#a74680e40ac52a407195575e5aa2ecc21", null ],
     [ "test_error_conditions", "DriverIntegrationTest_8cpp.html#a42bbaae2d6c0f07c32cafb6cca9cbf13", null ],
     [ "test_fault_clearing", "DriverIntegrationTest_8cpp.html#a20f5328b9390b58369ee850075875f1a", null ],
+    [ "test_fault_reporting", "DriverIntegrationTest_8cpp.html#accc4cbd28ece229c1cc42fadfc6301ce", null ],
     [ "test_global_configuration", "DriverIntegrationTest_8cpp.html#ab9d2b3bbc2e5b5459393f89058b352d4", null ],
     [ "test_gpio_control", "DriverIntegrationTest_8cpp.html#a3458b48356a1c36952a03734228f0a5d", null ],
     [ "test_hal_initialization", "DriverIntegrationTest_8cpp.html#abb4b230389c72bfdce3ec626624637d7", null ],

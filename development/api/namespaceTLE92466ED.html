@@ -93,9 +93,114 @@ $(function(){initNavTree('namespaceTLE92466ED.html',''); initResizable(); });
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">TLE92466ED Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:af84a6a448ad7cf483c55af8604b73128" id="r_af84a6a448ad7cf483c55af8604b73128"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af84a6a448ad7cf483c55af8604b73128">getVioThresholds</a> (uint16_t &amp;uv_threshold, uint16_t &amp;ov_threshold, bool vio_5v) noexcept</td></tr>
+<tr class="memdesc:af84a6a448ad7cf483c55af8604b73128"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get VIO thresholds (fixed hardware values, not programmable)  <br /></td></tr>
+<tr class="separator:af84a6a448ad7cf483c55af8604b73128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e59e77ac04459da595df2e873070090" id="r_a2e59e77ac04459da595df2e873070090"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e59e77ac04459da595df2e873070090">getVddThresholds</a> (uint16_t &amp;uv_threshold, uint16_t &amp;ov_threshold) noexcept</td></tr>
+<tr class="memdesc:a2e59e77ac04459da595df2e873070090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get VDD thresholds (fixed hardware values, not programmable)  <br /></td></tr>
+<tr class="separator:a2e59e77ac04459da595df2e873070090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a2e59e77ac04459da595df2e873070090" name="a2e59e77ac04459da595df2e873070090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e59e77ac04459da595df2e873070090">&#9670;&#160;</a></span>getVddThresholds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void TLE92466ED::getVddThresholds </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>uv_threshold</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>ov_threshold</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get VDD thresholds (fixed hardware values, not programmable) </p>
+<p>VDD thresholds are fixed hardware values that are NOT stored in registers and cannot be read or programmed. Values are from datasheet Table 9 (Electrical characteristics power supply).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uv_threshold</td><td>Output: UV threshold in millivolts </td></tr>
+    <tr><td class="paramname">ov_threshold</td><td>Output: OV threshold in millivolts</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>VDD_UV,TH = 3.7-4.5V (using 4.1V mid-range) VDD_OV,TH = 5.5-6.4V (using 5.95V mid-range)</dd></dl>
+<p>The datasheet provides min-max ranges, not typical values. We use mid-range estimates. </p>
+
+</div>
+</div>
+<a id="af84a6a448ad7cf483c55af8604b73128" name="af84a6a448ad7cf483c55af8604b73128"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af84a6a448ad7cf483c55af8604b73128">&#9670;&#160;</a></span>getVioThresholds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void TLE92466ED::getVioThresholds </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>uv_threshold</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>ov_threshold</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>vio_5v</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get VIO thresholds (fixed hardware values, not programmable) </p>
+<p>VIO thresholds are fixed hardware values that depend on VIO_SEL bit setting. These thresholds are NOT stored in registers and cannot be read or programmed. Values are from datasheet Table 9 (Electrical characteristics power supply).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uv_threshold</td><td>Output: UV threshold in millivolts </td></tr>
+    <tr><td class="paramname">ov_threshold</td><td>Output: OV threshold in millivolts </td></tr>
+    <tr><td class="paramname">vio_5v</td><td>VIO_SEL setting (false=3.3V mode, true=5V mode)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd><ul>
+<li>3.3V mode (VIO_SEL=0): UV = 2.6-3.0V (using 2.8V), OV = 3.6-4.1V (using 3.85V)</li>
+<li>5V mode (VIO_SEL=1): UV = 3.7-4.5V (using 4.1V), OV = 5.5-6.4V (using 5.95V)</li>
+</ul>
+</dd></dl>
+<p>The datasheet provides min-max ranges, not typical values. We use mid-range estimates. </p>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

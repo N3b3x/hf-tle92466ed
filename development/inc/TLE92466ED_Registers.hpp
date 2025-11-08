@@ -151,17 +151,23 @@ namespace DeviceID {
  * 
  * @details
  * Each channel has its own set of registers at a specific base address.
- * Base address = 0x0100 + (Channel_Number * 0x0020)
+ * Per datasheet Table 25 (Register Address Space - Channel):
+ * - CH0: 0x0040
+ * - CH1: 0x0050
+ * - CH2: 0x0060
+ * - CH3: 0x0070
+ * - CH4: 0x0020
+ * - CH5: 0x0030
+ * 
+ * Note: Channels are NOT in sequential order. CH4 and CH5 have lower addresses.
  */
 namespace ChannelBase {
-    constexpr uint16_t CH0 = 0x0100;  ///< Channel 0 base address
-    constexpr uint16_t CH1 = 0x0120;  ///< Channel 1 base address
-    constexpr uint16_t CH2 = 0x0140;  ///< Channel 2 base address
-    constexpr uint16_t CH3 = 0x0160;  ///< Channel 3 base address
-    constexpr uint16_t CH4 = 0x0180;  ///< Channel 4 base address
-    constexpr uint16_t CH5 = 0x01A0;  ///< Channel 5 base address
-    
-    constexpr uint16_t SPACING = 0x0020;  ///< Address spacing between channels
+    constexpr uint16_t CH0 = 0x0040;  ///< Channel 0 base address
+    constexpr uint16_t CH1 = 0x0050;  ///< Channel 1 base address
+    constexpr uint16_t CH2 = 0x0060;  ///< Channel 2 base address
+    constexpr uint16_t CH3 = 0x0070;  ///< Channel 3 base address
+    constexpr uint16_t CH4 = 0x0020;  ///< Channel 4 base address
+    constexpr uint16_t CH5 = 0x0030;  ///< Channel 5 base address
 }
 
 /**
@@ -183,7 +189,9 @@ namespace ChannelReg {
     constexpr uint16_t FB_VBAT          = 0x0201;  ///< Feedback Average VBAT
     constexpr uint16_t FB_I_AVG         = 0x0202;  ///< Feedback Average Current
     constexpr uint16_t FB_IMIN_IMAX     = 0x0203;  ///< Feedback Min/Max Current
-    constexpr uint16_t FB_INT_THRESH    = 0x0205;  ///< Feedback Integrator Threshold
+    constexpr uint16_t FB_I_AVG_s16     = 0x0204;  ///< Feedback signed Current (16-bit)
+    constexpr uint16_t FB_INT_THRESH    = 0x0205;  ///< Feedback ICC Integrator Threshold
+    constexpr uint16_t FB_PERIOD_MIN_MAX = 0x0206; ///< Feedback Min/Max PWM Period
 }
 
 //==============================================================================
@@ -330,6 +338,47 @@ namespace GLOBAL_DIAG0 {
 }
 
 //==============================================================================
+// WD_RELOAD REGISTER (0x0009) - SPI Watchdog Reload Register
+//==============================================================================
+
+/**
+ * @brief WD_RELOAD register bit definitions
+ * 
+ * @details
+ * SPI Watchdog Counter Reload Register.
+ * The watchdog counter is decremented with fSPI,WD. If it reaches 0, SPI_WD_ERR is set
+ * and the device enters Config Mode. The register must be reloaded periodically.
+ *
+ * @par Bit Map:
+ * @verbatim
+ * Bits 15-11: Reserved
+ * Bits 10-0 : WD_TIME - Reload value (11-bit)
+ * @endverbatim
+ * 
+ * @par Formula:
+ * <WD_TIME> = rounddown( t_SPI_WD * f_SYS / 2^14 )
+ * 
+ * @par Timeout:
+ * t_SPI_WD = <WD_TIME> / f_SPI_WD
+ * 
+ * Default: 0x0001
+ */
+namespace WD_RELOAD {
+    constexpr uint16_t WD_TIME_MASK = 0x07FF;    ///< 11-bit mask for WD_TIME field (bits 10:0)
+    constexpr uint16_t WD_TIME_MAX  = 0x07FF;    ///< Maximum WD_TIME value (2047)
+    constexpr uint16_t DEFAULT      = 0x0001;    ///< Default value
+    
+    /**
+     * @brief Mask WD_TIME value to valid 11-bit range
+     * @param value Raw value to mask
+     * @return Masked value (bits 10:0)
+     */
+    [[nodiscard]] constexpr uint16_t MaskValue(uint16_t value) noexcept {
+        return value & WD_TIME_MASK;
+    }
+}
+
+//==============================================================================
 // GLOBAL_DIAG1 REGISTER (0x0004) - Global Diagnosis Register 1
 //==============================================================================
 
@@ -448,10 +497,14 @@ namespace SETPOINT {
      * @param current_ma Desired current in milliamperes (0-2000 single, 0-4000 parallel)
      * @param parallel_mode true if channel is in parallel mode
      * @return Setpoint register value
+     * 
+     * @note Uses rounding to minimize quantization error (adds half of max_current before division)
      */
     [[nodiscard]] constexpr uint16_t CalculateTarget(uint16_t current_ma, bool parallel_mode = false) noexcept {
         uint32_t max_current = parallel_mode ? 4000 : 2000;
-        uint32_t target = (static_cast<uint32_t>(current_ma) * 32767UL) / max_current;
+        // Integer math: adding (max_current/2) before division is equivalent to (val / max_current + 0.5) for rounding up
+        // (uint32_t(current_ma) * 32767UL + max_current / 2) / max_current  <=>  (current_ma * 32767 / max_current + 0.5)
+        uint32_t target = (static_cast<uint32_t>(current_ma) * 32767UL + (max_current / 2)) / max_current;
         // Saturate at MAX_TARGET
         if (target > MAX_TARGET) target = MAX_TARGET;
         return static_cast<uint16_t>(target);
@@ -462,10 +515,13 @@ namespace SETPOINT {
      * @param target Setpoint register value
      * @param parallel_mode true if channel is in parallel mode
      * @return Current in milliamperes
+     * 
+     * @note Uses rounding to minimize quantization error (adds half of 32767 before division)
      */
     [[nodiscard]] constexpr uint16_t CalculateCurrent(uint16_t target, bool parallel_mode = false) noexcept {
         uint32_t max_current = parallel_mode ? 4000 : 2000;
-        uint32_t current = (static_cast<uint32_t>(target & TARGET_MASK) * max_current) / 32767UL;
+        // Use rounding: add half of 32767 before division to minimize quantization error
+        uint32_t current = (static_cast<uint32_t>(target & TARGET_MASK) * max_current + 16383) / 32767UL;
         return static_cast<uint16_t>(current);
     }
 }
@@ -833,9 +889,10 @@ namespace DITHER {
         if (calculated_period < period_us * 0.9f || calculated_period > period_us * 1.1f) {
             // Adjust num_steps to get closer to desired period
             float target_steps = (period_us / t_ref_clk_us - 2.0f * default_flat) / 4.0f;
+            // Clamp to valid range before casting to uint8_t
+            if (target_steps < 1.0f) target_steps = 1.0f;
+            if (target_steps > 255.0f) target_steps = 255.0f;
             config.num_steps = static_cast<uint8_t>(target_steps + 0.5f);
-            if (config.num_steps < 1) config.num_steps = 1;
-            if (config.num_steps > 255) config.num_steps = 255;
         } else {
             config.num_steps = default_steps;
         }
@@ -885,8 +942,10 @@ namespace VBAT_THRESHOLD {
             return 0;
         }
         float register_value_f = voltage_volts / LSB_VOLTAGE;
-        uint8_t register_value = static_cast<uint8_t>(register_value_f + 0.5f); // Round
-        return (register_value > 255) ? 255 : register_value;
+        // Clamp to valid range before casting to uint8_t
+        if (register_value_f < 0.0f) register_value_f = 0.0f;
+        if (register_value_f > 255.0f) register_value_f = 255.0f;
+        return static_cast<uint8_t>(register_value_f + 0.5f); // Round
     }
     
     /**
@@ -896,6 +955,79 @@ namespace VBAT_THRESHOLD {
      */
     [[nodiscard]] constexpr float CalculateVoltage(uint8_t register_value) noexcept {
         return static_cast<float>(register_value) * LSB_VOLTAGE;
+    }
+}
+
+//==============================================================================
+// VOLTAGE FEEDBACK HELPER FUNCTIONS
+//==============================================================================
+
+/**
+ * @brief Voltage feedback helper functions for FB_VOLTAGE1 and FB_VOLTAGE2
+ * 
+ * @details
+ * FB_VOLTAGE1 (0x0203) contains VIO and VDD measurements (22-bit reply frame):
+ * - VIO: bits [10:0] (11 bits) - Formula: V_IO = 0.0034534 V × <VIO>
+ * - VDD: bits [21:11] (11 bits) - Formula: V_DD = 0.0034534 V × <VDD>
+ * 
+ * FB_VOLTAGE2 (0x0204) contains VBAT and temperature (22-bit reply frame):
+ * - VBAT: bits [21:11] (11 bits) - Formula: V_BAT = 41.47 V × <VBAT>/(2^11-1) = 41.47 V × <VBAT>/2047
+ * - TEMP_VALUE: bits [10:0] (11 bits) - Temperature feedback
+ * 
+ * @note These registers return 22-bit reply frames, so the full 22-bit value must be extracted.
+ */
+namespace VOLTAGE_FEEDBACK {
+    // VIO/VDD conversion constants (from FB_VOLTAGE1)
+    constexpr float VIO_VDD_LSB_VOLTAGE = 0.0034534f;  ///< Voltage per LSB for VIO/VDD (0.0034534V)
+    constexpr uint32_t VIO_VDD_MASK = 0x7FF;            ///< 11-bit mask (bits 10:0)
+    constexpr uint32_t VDD_SHIFT = 11;                  ///< VDD is in bits [21:11]
+    
+    // VBAT conversion constants (from FB_VOLTAGE2)
+    constexpr float VBAT_MAX_VOLTAGE = 41.47f;          ///< Maximum VBAT voltage (41.47V)
+    constexpr uint32_t VBAT_MAX_COUNT = 2047;           ///< Maximum count (2^11 - 1)
+    constexpr uint32_t VBAT_MASK = 0x7FF;               ///< 11-bit mask (bits 10:0)
+    constexpr uint32_t VBAT_SHIFT = 11;                 ///< VBAT is in bits [21:11]
+    
+    /**
+     * @brief Extract VIO voltage from FB_VOLTAGE1 register (22-bit value)
+     * @param register_value 22-bit register value from FB_VOLTAGE1
+     * @return VIO voltage in millivolts
+     */
+    [[nodiscard]] constexpr uint16_t ExtractVioMillivolts(uint32_t register_value) noexcept {
+        uint32_t vio_raw = (register_value >> 0) & VIO_VDD_MASK;  // Bits [10:0]
+        float vio_volts = static_cast<float>(vio_raw) * VIO_VDD_LSB_VOLTAGE;
+        return static_cast<uint16_t>(vio_volts * 1000.0f + 0.5f);  // Convert to mV and round
+    }
+    
+    /**
+     * @brief Extract VDD voltage from FB_VOLTAGE1 register (22-bit value)
+     * @param register_value 22-bit register value from FB_VOLTAGE1
+     * @return VDD voltage in millivolts
+     */
+    [[nodiscard]] constexpr uint16_t ExtractVddMillivolts(uint32_t register_value) noexcept {
+        uint32_t vdd_raw = (register_value >> VDD_SHIFT) & VIO_VDD_MASK;  // Bits [21:11]
+        float vdd_volts = static_cast<float>(vdd_raw) * VIO_VDD_LSB_VOLTAGE;
+        return static_cast<uint16_t>(vdd_volts * 1000.0f + 0.5f);  // Convert to mV and round
+    }
+    
+    /**
+     * @brief Extract VBAT voltage from FB_VOLTAGE2 register (22-bit value)
+     * @param register_value 22-bit register value from FB_VOLTAGE2
+     * @return VBAT voltage in millivolts
+     */
+    [[nodiscard]] constexpr uint16_t ExtractVbatMillivolts(uint32_t register_value) noexcept {
+        uint32_t vbat_raw = (register_value >> VBAT_SHIFT) & VBAT_MASK;  // Bits [21:11]
+        float vbat_volts = (static_cast<float>(vbat_raw) / static_cast<float>(VBAT_MAX_COUNT)) * VBAT_MAX_VOLTAGE;
+        return static_cast<uint16_t>(vbat_volts * 1000.0f + 0.5f);  // Convert to mV and round
+    }
+    
+    /**
+     * @brief Extract temperature value from FB_VOLTAGE2 register (22-bit value)
+     * @param register_value 22-bit register value from FB_VOLTAGE2
+     * @return Temperature raw value (bits [10:0])
+     */
+    [[nodiscard]] constexpr uint16_t ExtractTemperatureRaw(uint32_t register_value) noexcept {
+        return static_cast<uint16_t>((register_value >> 0) & VBAT_MASK);  // Bits [10:0]
     }
 }
 
@@ -967,9 +1099,28 @@ enum class ParallelPair : uint8_t {
  * @brief Get channel base address
  * @param channel Channel number (0-5)
  * @return Base address for channel registers
+ * 
+ * @details
+ * Per datasheet Table 25, channel base addresses are:
+ * - CH0: 0x0040
+ * - CH1: 0x0050
+ * - CH2: 0x0060
+ * - CH3: 0x0070
+ * - CH4: 0x0020
+ * - CH5: 0x0030
+ * 
+ * Note: Channels are NOT in sequential order, so we use a lookup table.
  */
 [[nodiscard]] constexpr uint16_t GetChannelBase(Channel channel) noexcept {
-    return ChannelBase::CH0 + (static_cast<uint16_t>(channel) * ChannelBase::SPACING);
+    switch (channel) {
+        case Channel::CH0: return ChannelBase::CH0;
+        case Channel::CH1: return ChannelBase::CH1;
+        case Channel::CH2: return ChannelBase::CH2;
+        case Channel::CH3: return ChannelBase::CH3;
+        case Channel::CH4: return ChannelBase::CH4;
+        case Channel::CH5: return ChannelBase::CH5;
+        default: return 0x0000;  // Invalid channel
+    }
 }
 
 /**

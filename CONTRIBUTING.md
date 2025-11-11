@@ -14,15 +14,32 @@ This document provides guidelines and information for contributors.
 
 ## 📋 **Code Standards**
 
-### 🎯 **Coding Style and Best Practices for HardFOC Development**
+### 🎯 **Coding Style and Best Practices**
+
+**All contributors must follow the official HardFOC Coding Standards:**
+
+📚 **[HardFOC Embedded Systems Coding Standards](https://github.com/hardfoc/org-discussions)**
+
+The coding standards document provides comprehensive guidelines for:
+- **Naming Conventions**: Functions, variables, constants, classes, and more
+- **Code Organization**: File structure, include order, class organization
+- **Error Handling**: Patterns for embedded systems
+- **Memory Management**: Best practices for resource-constrained systems
+- **Thread Safety**: Guidelines for multi-threaded code
+- **Documentation Standards**: Doxygen and inline comments
+- **Embedded Systems Best Practices**: Fixed-width types, volatile usage, and more
+
+### 🎯 **Quick Reference for TLE92466ED Driver**
 
 - **C++23 Standard Compliance** - All code must be compatible with C++23
 - **Consistent Naming** - Follow the established naming conventions:
   - Classes: `PascalCase` (e.g., `TLE92466ED`, `HAL`)
-  - Functions: `PascalCase` (e.g., `SetCurrent`, `GetDiagnostics`)
-  - Variables: `snake_case` with trailing underscore for members (e.g., `channel_enable_`, `current_setting_`)
+  - Public Functions: `PascalCase` (e.g., `SetCurrent`, `GetDiagnostics`)
+  - Private Functions: `camelCase` (e.g., `checkInitialized`, `transferFrame`)
+  - Member Variables: `snake_case` with trailing underscore (e.g., `channel_enable_`, `current_setting_`)
   - Constants: `UPPER_SNAKE_CASE` (e.g., `TLE92466ED_MAX_CURRENT`)
-  - Types: Hardware-agnostic types where applicable
+  - Local Variables: `snake_case` (e.g., `current_value`, `channel_status`)
+  - Parameters: `snake_case` (e.g., `channel`, `current_ma`)
 
 ### 🏗️ **Architecture Guidelines**
 
@@ -84,14 +101,22 @@ When proposing new features:
 4. **Document Your Changes with HardFOC Examples**
 5. **Submit a Pull Request**
 
-## 📋 **Code Quality Standards for HardFOC**
+## 📋 **Code Quality Standards**
 
 - **C++23 Compliance** - Code compiles without warnings
 - **HardFOC Compatibility** - Tested on HardFOC boards
 - **Error Handling** - All error conditions handled appropriately using std::expected
-- **Documentation** - All public APIs documented
+- **Documentation** - All public APIs documented with Doxygen
 - **Tests** - Adequate test coverage provided
 - **Performance** - Real-time requirements met
+- **Coding Standards** - Follows [HardFOC Coding Standards](https://github.com/hardfoc/org-discussions)
+
+## 🔗 **Resources**
+
+- **[HardFOC Coding Standards](https://github.com/hardfoc/org-discussions)** - Complete coding standards document
+- **[TLE92466ED Datasheet](../datasheet/)** - Hardware datasheet
+- **[Documentation](../docs/)** - Driver documentation
+- **[Examples](../examples/)** - Example code and usage patterns
 
 ---
 

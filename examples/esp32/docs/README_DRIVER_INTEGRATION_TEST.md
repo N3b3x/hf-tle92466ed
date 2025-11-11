@@ -874,7 +874,7 @@ idf.py -p /dev/ttyUSB0 flash
 ### Build System
 - [App Configuration](../app_config.yml) - Build metadata
 - [CMake Setup](../CMakeLists.txt) - Build system configuration
-- [Component Structure](../components/tle92466ed-espidf/) - ESP-IDF component
+- [Component Structure](../components/hf_tle92466ed/) - ESP-IDF component
 
 ---
 

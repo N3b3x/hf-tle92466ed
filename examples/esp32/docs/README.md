@@ -375,7 +375,7 @@ examples/esp32/
 │   └── SolenoidControlTest.cpp    # Real hardware solenoid test
 │
 ├── components/                     # ESP-IDF components
-│   └── tle92466ed-espidf/         # TLE92466ED driver component
+│   └── hf_tle92466ed/              # TLE92466ED driver component
 │       ├── CMakeLists.txt
 │       ├── idf_component.yml
 │       └── README.md

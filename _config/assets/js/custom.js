@@ -1,81 +1,38 @@
-// Custom JavaScript for TLE92466ED driver documentation
+// =============================================================================
+// Custom JavaScript for HardFOC Driver Documentation
+// =============================================================================
+// This file contains custom JavaScript for enhanced functionality.
+// All code is designed to be non-intrusive and enhance user experience.
+// =============================================================================
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Add copy buttons to code blocks if not already present
-  addCopyButtonsToCodeBlocks();
-  
-  // Enhance register field displays
-  enhanceRegisterFields();
-  
-  // Add tooltips to specification values
-  addSpecificationTooltips();
-});
+(function() {
+  'use strict';
 
-/**
- * Add copy buttons to code blocks
- */
-function addCopyButtonsToCodeBlocks() {
-  const codeBlocks = document.querySelectorAll('pre code');
-  
-  codeBlocks.forEach(block => {
-    if (block.parentElement.querySelector('.copy-button')) {
-      return; // Already has a copy button
-    }
+  // Wait for DOM to be ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  function init() {
+    // Add any custom JavaScript functionality here
+    // Examples:
+    // - Smooth scrolling
+    // - Copy code block buttons
+    // - Enhanced search
+    // - Analytics tracking
     
-    const button = document.createElement('button');
-    button.className = 'copy-button';
-    button.textContent = 'Copy';
-    button.onclick = function() {
-      navigator.clipboard.writeText(block.textContent).then(() => {
-        button.textContent = 'Copied!';
-        setTimeout(() => {
-          button.textContent = 'Copy';
-        }, 2000);
-      });
-    };
-    
-    block.parentElement.appendChild(button);
-  });
-}
+    console.log('HardFOC Driver Documentation loaded');
+  }
 
-/**
- * Enhance register field displays with hover effects
- */
-function enhanceRegisterFields() {
-  const registerFields = document.querySelectorAll('.register-field');
-  
-  registerFields.forEach(field => {
-    field.addEventListener('mouseenter', function() {
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.15)';
+  // Example: Add copy button to code blocks
+  function addCopyButtons() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    codeBlocks.forEach(function(block) {
+      // Implementation would go here
     });
-    
-    field.addEventListener('mouseleave', function() {
-      this.style.backgroundColor = 'rgba(0, 0, 0, 0.05)';
-    });
-  });
-}
+  }
 
-/**
- * Add tooltips to specification values
- */
-function addSpecificationTooltips() {
-  // This can be extended to add interactive tooltips
-  // for technical specifications throughout the documentation
-}
+})();
 
-/**
- * Smooth scroll to anchors
- */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});

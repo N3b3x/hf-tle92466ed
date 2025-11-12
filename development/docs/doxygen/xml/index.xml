@@ -24,20 +24,6 @@
     <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a3ef17aa73f6bc44607cc2f83bf3c7745" kind="variable"><name>ENABLE_AUTO_RECOVERY</name></member>
     <member refid="structTLE92466ED__TestConfig_1_1AppConfig_1a8e6b4f9371f9d222d1c605f03c7b5408" kind="variable"><name>MAX_ERROR_COUNT</name></member>
   </compound>
-  <compound refid="classArduino__HAL" kind="class"><name>Arduino_HAL</name>
-    <member refid="classArduino__HAL_1a428e17cab20dd81c769399a23bc4a1ad" kind="variable"><name>m_config</name></member>
-    <member refid="classArduino__HAL_1aadf746353286d023834466470087e5ae" kind="variable"><name>m_initialized</name></member>
-    <member refid="classArduino__HAL_1a64666a4a102a984c51ec04d587101e3b" kind="function"><name>Arduino_HAL</name></member>
-    <member refid="classArduino__HAL_1a003e7ec514421e325234ba32af378505" kind="function"><name>~Arduino_HAL</name></member>
-    <member refid="classArduino__HAL_1afc441d28da42aef29a55907a319086a5" kind="function"><name>initialize</name></member>
-    <member refid="classArduino__HAL_1a8dc961af6345a9355ac7f288ba97194a" kind="function"><name>spiTransfer</name></member>
-    <member refid="classArduino__HAL_1ad4454000b5545ee13fd4e0827f7fd020" kind="function"><name>delayMicroseconds</name></member>
-    <member refid="classArduino__HAL_1aa867c51a61820644bd4ea914e95db08d" kind="function"><name>isInitialized</name></member>
-    <member refid="classArduino__HAL_1af4fdc46e21a752b20f742bbfc08b1e81" kind="function"><name>getConfig</name></member>
-    <member refid="classArduino__HAL_1a0d6cb789947835469c5f5c785f7dd8e9" kind="function"><name>enableDevice</name></member>
-    <member refid="classArduino__HAL_1abf13cadba52f978f5b615f9cd60c3ea0" kind="function"><name>disableDevice</name></member>
-    <member refid="classArduino__HAL_1a71d3e0beaae96edb13ca2bb88d47b4e3" kind="function"><name>resetDevice</name></member>
-  </compound>
   <compound refid="structTLE92466ED__TestConfig_1_1ControlPins" kind="struct"><name>TLE92466ED_TestConfig::ControlPins</name>
     <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1a4ecb4cfcaf908b1a16bbb436093c268b" kind="variable"><name>RESN</name></member>
     <member refid="structTLE92466ED__TestConfig_1_1ControlPins_1a9d17758f1c459951f04a5e932f6b9157" kind="variable"><name>EN</name></member>
@@ -96,14 +82,6 @@
     <member refid="structSolenoid2Config_1a769dee9f1a7b1ab87d8fb850020ca52c" kind="variable"><name>MAX_CURRENT_MA</name></member>
     <member refid="structSolenoid2Config_1a4e4a6ac8ec60d7da4d74a3e0b54e94c5" kind="variable"><name>PARALLEL_MODE</name></member>
   </compound>
-  <compound refid="structArduino__HAL_1_1SPIConfig" kind="struct"><name>Arduino_HAL::SPIConfig</name>
-    <member refid="structArduino__HAL_1_1SPIConfig_1a78740088a33e446394e9cee68ddba7fa" kind="variable"><name>cs_pin</name></member>
-    <member refid="structArduino__HAL_1_1SPIConfig_1a7de47950621c64859459f02a0d1dd332" kind="variable"><name>en_pin</name></member>
-    <member refid="structArduino__HAL_1_1SPIConfig_1a7cfff9b0d70fe6020626cef0e58cedf7" kind="variable"><name>resn_pin</name></member>
-    <member refid="structArduino__HAL_1_1SPIConfig_1aebc777ca2b95407ed375ae145706718b" kind="variable"><name>spi_frequency</name></member>
-    <member refid="structArduino__HAL_1_1SPIConfig_1aad961b64c360ed72b697de2ad17284b7" kind="variable"><name>spi_mode</name></member>
-    <member refid="structArduino__HAL_1_1SPIConfig_1a0a559a92d54caa8ca33e9c8317f7ff75" kind="variable"><name>spi_bit_order</name></member>
-  </compound>
   <compound refid="structEsp32TleCommInterface_1_1SPIConfig" kind="struct"><name>Esp32TleCommInterface::SPIConfig</name>
     <member refid="structEsp32TleCommInterface_1_1SPIConfig_1ab6647e96f0166aac831640274d72a996" kind="variable"><name>host</name></member>
     <member refid="structEsp32TleCommInterface_1_1SPIConfig_1aba81c44b3babb1e7032cf25a23565b64" kind="variable"><name>miso_pin</name></member>
@@ -158,15 +136,18 @@
     <member refid="structTestResults_1a0acef46f38f27f0fbb8fa822bb218b3a" kind="variable"><name>failed_tests</name></member>
     <member refid="structTestResults_1a7eddc258a4288ac5f0a36a1008c9d014" kind="variable"><name>total_execution_time_us</name></member>
     <member refid="structTestResults_1a257eba3a9005a5c19c68ae27774948f7" kind="function"><name>add_result</name></member>
+    <member refid="structTestResults_1ab98f9ad5f994aa31bd7c0cd8ae551fb8" kind="function"><name>get_success_percentage</name></member>
+    <member refid="structTestResults_1a6d2e718d81a8b4a4dcca515ee858de57" kind="function"><name>get_total_time_ms</name></member>
+    <member refid="structTestResults_1a257eba3a9005a5c19c68ae27774948f7" kind="function"><name>add_result</name></member>
     <member refid="structTestResults_1abd312f39dea9e43056ca161f315c7569" kind="function"><name>get_success_percentage</name></member>
     <member refid="structTestResults_1a7466f28f6ee19443a8c8510588c7844e" kind="function"><name>get_total_time_ms</name></member>
     <member refid="structTestResults_1a630453426a26294b000f09ecc9063329" kind="function"><name>print_summary</name></member>
   </compound>
   <compound refid="structTestTaskContext" kind="struct"><name>TestTaskContext</name>
-    <member refid="structTestTaskContext_1abcf19d2762ab98990c3fdc1eacf86130" kind="variable"><name>test_name</name></member>
-    <member refid="structTestTaskContext_1aa72faa223fd0ff992772b12458f62ec8" kind="variable"><name>test_func</name></member>
-    <member refid="structTestTaskContext_1a1c97680bd267a35637278ea10a3fae0e" kind="variable"><name>results</name></member>
-    <member refid="structTestTaskContext_1ae51f49c33ea802bc7f8bdde560a27304" kind="variable"><name>tag</name></member>
+    <member refid="structTestTaskContext_1a5c77ed44fb48ace5e2b200c0e8d2209a" kind="variable"><name>test_name</name></member>
+    <member refid="structTestTaskContext_1a6064975974ef4e01a63df68792e88c9d" kind="variable"><name>test_func</name></member>
+    <member refid="structTestTaskContext_1a149a31dfc1c8ccf5cd7720ae94e1c434" kind="variable"><name>results</name></member>
+    <member refid="structTestTaskContext_1af7d2b95264861b235151fdd2ca110c75" kind="variable"><name>tag</name></member>
     <member refid="structTestTaskContext_1ab82bee11b198be2f2b4d6c908573ddb6" kind="variable"><name>completion_semaphore</name></member>
   </compound>
   <compound refid="structTLE92466ED__TestConfig_1_1Timing" kind="struct"><name>TLE92466ED_TestConfig::Timing</name>
@@ -184,12 +165,6 @@
     <member refid="namespaceTLE92466ED_1a2e59e77ac04459da595df2e873070090" kind="function"><name>getVddThresholds</name></member>
   </compound>
   <compound refid="namespaceTLE92466ED__TestConfig" kind="namespace"><name>TLE92466ED_TestConfig</name>
-  </compound>
-  <compound refid="Arduino__HAL_8cpp" kind="file"><name>Arduino_HAL.cpp</name>
-  </compound>
-  <compound refid="Arduino__HAL_8hpp" kind="file"><name>Arduino_HAL.hpp</name>
-    <member refid="Arduino__HAL_8hpp_1a27e3a03a64f12516d2e79a0bf0b991be" kind="function"><name>createTLE92466ED_HAL</name></member>
-    <member refid="Arduino__HAL_8hpp_1a15dc38e2361fd67e4945a771cca0bf96" kind="function"><name>createTLE92466ED_HAL</name></member>
   </compound>
   <compound refid="DriverIntegrationTest_8cpp" kind="file"><name>DriverIntegrationTest.cpp</name>
     <member refid="DriverIntegrationTest_8cpp_1afacebc97896e90c317ac62cf118945cd" kind="define"><name>ENABLE_INITIALIZATION_TESTS</name></member>
@@ -273,6 +248,29 @@
     <member refid="SolenoidControlTest_8cpp_1a8beedbcdc4953c460d1e38286a1883ae" kind="function"><name>set_solenoids_enabled</name></member>
     <member refid="SolenoidControlTest_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
   </compound>
+  <compound refid="TestFramework_8h" kind="file"><name>TestFramework.h</name>
+    <member refid="TestFramework_8h_1a36936b10eceab520bb9d3d95534a00db" kind="define"><name>RUN_TEST</name></member>
+    <member refid="TestFramework_8h_1a214e38e25939e45e31ae73a073fca47f" kind="define"><name>RUN_TEST_IN_TASK</name></member>
+    <member refid="TestFramework_8h_1a742c0e25111e9ee95def05464cab957b" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED</name></member>
+    <member refid="TestFramework_8h_1a7bc8e45ec7ef683e0b1692c05328b784" kind="define"><name>RUN_SINGLE_TEST_IF_ENABLED</name></member>
+    <member refid="TestFramework_8h_1a069d023efb0dd03f8c2304a56b4a9564" kind="define"><name>RUN_TEST_GROUP_IF_ENABLED</name></member>
+    <member refid="TestFramework_8h_1a75c45174f9dde97eb43339fcd0ac79c8" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED_WITH_PROGRESS</name></member>
+    <member refid="TestFramework_8h_1a42013656a31f033788afe39c84e96bec" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED_AUTO_PROGRESS</name></member>
+    <member refid="TestFramework_8h_1ab72cc2ae0fb724218e81479185ab38c6" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN</name></member>
+    <member refid="TestFramework_8h_1a9bf612ec5a7eaad74cbd8fce98033f70" kind="variable"><name>g_test_progress_initialized</name></member>
+    <member refid="TestFramework_8h_1a09ea58b300726075945c5f209f7d1aeb" kind="variable"><name>g_test_progress_state</name></member>
+    <member refid="TestFramework_8h_1a0897f1535fcbb73063a032f07550b12e" kind="variable"><name>TEST_PROGRESS_PIN</name></member>
+    <member refid="TestFramework_8h_1a3967179ac699a5b02ef9787b549409fe" kind="function"><name>init_test_progress_indicator</name></member>
+    <member refid="TestFramework_8h_1a7bb80345e5681c19686df292fa897daf" kind="function"><name>flip_test_progress_indicator</name></member>
+    <member refid="TestFramework_8h_1a5c86314094f10701c597cf07a95a4bae" kind="function"><name>cleanup_test_progress_indicator</name></member>
+    <member refid="TestFramework_8h_1a0b263a245b65a247ab95a28992b8cc4c" kind="function"><name>output_section_indicator</name></member>
+    <member refid="TestFramework_8h_1a57a48f91a141d98e45f82937581e1a97" kind="function"><name>ensure_gpio14_initialized</name></member>
+    <member refid="TestFramework_8h_1ae0c6ad85cd439fc16572fe4b495e5479" kind="function"><name>test_task_trampoline</name></member>
+    <member refid="TestFramework_8h_1ab7e4c076755ecdf2ad6212cb8f6578ab" kind="function"><name>print_test_summary</name></member>
+    <member refid="TestFramework_8h_1a200bb35a3a48c625b9cb8d2511d6bd87" kind="function"><name>print_test_section_status</name></member>
+    <member refid="TestFramework_8h_1a5c46ab8dc59b071f0843bc287145d5f1" kind="function"><name>print_test_section_header</name></member>
+    <member refid="TestFramework_8h_1a5fe4d7658c49a1f3999cd09c0db952c0" kind="function"><name>print_test_section_footer</name></member>
+  </compound>
   <compound refid="TLE92466ED__TestConfig_8hpp" kind="file"><name>TLE92466ED_TestConfig.hpp</name>
     <member refid="TLE92466ED__TestConfig_8hpp_1a8fb5b9bce3cb52f60c3eadce0f87afcc" kind="define"><name>ESP32_TLE_COMM_ENABLE_DETAILED_SPI_LOGGING</name></member>
     <member refid="TLE92466ED__TestConfig_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
@@ -295,9 +293,9 @@
     <member refid="TLE92466ED__TestFramework_8hpp_1ae0c6ad85cd439fc16572fe4b495e5479" kind="function"><name>test_task_trampoline</name></member>
     <member refid="TLE92466ED__TestFramework_8hpp_1aae72eb91e8194f94255a11e08192ac11" kind="function"><name>print_test_section_status</name></member>
   </compound>
-  <compound refid="TLE92466ED_8cpp" kind="file"><name>TLE92466ED.cpp</name>
+  <compound refid="README_8md" kind="file"><name>README.md</name>
   </compound>
-  <compound refid="dir_0e535fa075b5ad5af8b26417851ab675" kind="dir"><name>examples/arduino</name>
+  <compound refid="TLE92466ED_8cpp" kind="file"><name>TLE92466ED.cpp</name>
   </compound>
   <compound refid="dir_74be4f6a8c360206df72b1bb4057fb39" kind="dir"><name>examples/esp32</name>
   </compound>
@@ -306,5 +304,7 @@
   <compound refid="dir_7751913d9073a449937b5bcfd50bf3a6" kind="dir"><name>examples/esp32/main</name>
   </compound>
   <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
   </compound>
 </doxygenindex>

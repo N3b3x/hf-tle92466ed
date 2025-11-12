@@ -126,6 +126,7 @@
     <value><![CDATA[src/]]></value>
     <value><![CDATA[examples/]]></value>
     <value><![CDATA[docs/]]></value>
+    <value><![CDATA[README.md]]></value>
   </option>
   <option  id='INPUT_ENCODING' default='yes' type='string'><value><![CDATA[UTF-8]]></value></option>
   <option  id='INPUT_FILE_ENCODING' default='yes' type='stringlist'>
@@ -176,7 +177,7 @@
   <option  id='FILTER_SOURCE_FILES' default='yes' type='bool'><value>NO</value></option>
   <option  id='FILTER_SOURCE_PATTERNS' default='yes' type='stringlist'>
   </option>
-  <option  id='USE_MDFILE_AS_MAINPAGE' default='no' type='string'><value><![CDATA[docs/doxygen-mainpage.md]]></value></option>
+  <option  id='USE_MDFILE_AS_MAINPAGE' default='no' type='string'><value><![CDATA[README.md]]></value></option>
   <option  id='FORTRAN_COMMENT_AFTER' default='yes' type='int'><value>72</value></option>
   <option  id='SOURCE_BROWSER' default='yes' type='bool'><value>NO</value></option>
   <option  id='INLINE_SOURCES' default='yes' type='bool'><value>NO</value></option>
@@ -204,6 +205,7 @@
   <option  id='HTML_EXTRA_STYLESHEET' default='no' type='stringlist'>
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome.css]]></value>
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-sidebar-only.css]]></value>
+    <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css]]></value>
   </option>
   <option  id='HTML_EXTRA_FILES' default='no' type='stringlist'>
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js]]></value>
@@ -211,6 +213,9 @@
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-paragraph-link.js]]></value>
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-interactive-toc.js]]></value>
     <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js]]></value>
+    <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/toggle-alternative-theme.js]]></value>
+    <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/theme-round.css]]></value>
+    <value><![CDATA[_config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/theme-robot.css]]></value>
   </option>
   <option  id='HTML_COLORSTYLE' default='no' type='string'><value>LIGHT</value></option>
   <option  id='HTML_COLORSTYLE_HUE' default='yes' type='int'><value>220</value></option>

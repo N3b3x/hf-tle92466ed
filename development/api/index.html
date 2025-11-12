@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>TLE92466ED Driver: Main Page</title>
+<title>TLE92466ED Driver: TLE92466ED Driver</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -20,6 +20,7 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -92,10 +93,341 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">TLE92466ED Driver Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Driver </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><h2><a class="anchor" id="autotoc_md0"></a>
+} md_README</h2>
+<p>layout: default title: "🔧 HardFOC TLE92466ED Driver" description: "C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics" nav_order: 1 permalink: / </p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+has_children: true</h2>
+<h1><a class="anchor" id="autotoc_md2"></a>
+🔧 HardFOC TLE92466ED Driver</h1>
+<p><b>Six-Channel Low-Side Solenoid Driver</b></p>
+<p><img src="https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip" alt="TLE92466ED" class="inline"/> <img src="https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus" alt="C++23" class="inline"/> <img src="https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware" alt="Hardware-Agnostic" class="inline"/> <img src="https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative" alt="License" class="inline"/></p>
+<h2><a class="anchor" id="autotoc_md3"></a>
+🎯 Modern Solenoid Control Interface for Multi-MCU Development</h2>
+<p><em>A production-ready C++23 driver implementation for the Infineon <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> with comprehensive SPI interface, precision current control, and extensive diagnostics support</em></p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md5"></a>
+📚 <b>Table of Contents</b></h2>
+<ul>
+<li>🎯 **Overview**</li>
+<li>🏗️ **Architecture**</li>
+<li>🔌 **Features**</li>
+<li>🚀 **Quick Start**</li>
+<li>📖 **API Documentation**</li>
+<li>🔧 **Building**</li>
+<li>📊 **Examples**</li>
+<li>🤝 **Contributing**</li>
+<li>📄 **License**</li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md7"></a>
+🎯 <b>Overview</b></h2>
+<blockquote class="doxtable">
+<p>&zwj;<b>📖 <a href="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</a></b> - Interactive guides, examples, and step-by-step tutorials </p>
+</blockquote>
+<p><b><a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Driver</b> is a modern, production-ready C++23 driver implementation for the Infineon <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.</p>
+<h3><a class="anchor" id="autotoc_md8"></a>
+🏆 <b>Core Benefits</b></h3>
+<ul>
+<li><b>🔄 Hardware Portability</b> - Clean HAL interface for easy platform porting</li>
+<li><b>🎯 Modern C++23</b> - Using <code>std::expected</code> for type-safe error handling</li>
+<li><b>⚡ Precision Control</b> - 15-bit current resolution (0.061mA steps)</li>
+<li><b>🛡️ Safety Features</b> - Comprehensive diagnostics and protection systems</li>
+<li><b>📈 Zero Dependencies</b> - Freestanding-compatible, suitable for bare-metal</li>
+<li><b>🔌 Complete Coverage</b> - Full access to all 108 registers and features</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md9"></a>
+🎨 <b>Design Philosophy</b></h3>
+<div class="fragment"><div class="line"><span class="comment">// Write hardware-agnostic solenoid control code</span></div>
+<div class="line">YourPlatformHAL hal;  <span class="comment">// Your SPI implementation</span></div>
+<div class="line"><a class="code hl_namespace" href="namespaceTLE92466ED.html">TLE92466ED</a> driver(hal);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Initialize and control channels</span></div>
+<div class="line">driver.initialize();</div>
+<div class="line">driver.setChannelCurrent(0, 1500);  <span class="comment">// 1.5A</span></div>
+<div class="line">driver.enableChannel(0);</div>
+<div class="ttc" id="anamespaceTLE92466ED_html"><div class="ttname"><a href="namespaceTLE92466ED.html">TLE92466ED</a></div><div class="ttdef"><b>Definition</b> TLE92466ED.cpp:13</div></div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md11"></a>
+🏗️ <b>Architecture</b></h2>
+<h3><a class="anchor" id="autotoc_md12"></a>
+<b>HAL-Based Design</b></h3>
+<div class="fragment"><div class="line">📦 TLE92466ED Driver Architecture</div>
+<div class="line">├── 🎯 Driver Layer (TLE92466ED class)     # High-level channel control API</div>
+<div class="line">│   ├── Channel Control                  # Current setting, enable/disable</div>
+<div class="line">│   ├── Diagnostics                      # Fault detection and monitoring</div>
+<div class="line">│   ├── Configuration                    # Channel modes, PWM settings</div>
+<div class="line">│   └── Register Access                  # Direct register manipulation</div>
+<div class="line">│</div>
+<div class="line">├── 🔌 Hardware Abstraction Layer        # Platform-independent interface</div>
+<div class="line">│   ├── TLE92466ED_CommInterface         # Communication interface</div>
+<div class="line">│   ├── SPI Transfer                     # 32-bit frame communication</div>
+<div class="line">│   └── Delay Functions                  # Timing control</div>
+<div class="line">│</div>
+<div class="line">└── 🔧 Hardware Layer                   # Platform-specific implementations</div>
+<div class="line">    ├── ESP32 HAL                        # ESP32 family support</div>
+<div class="line">    ├── STM32 HAL                        # STM32 support</div>
+<div class="line">    └── Any MCU with SPI                 # Your implementation</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md13"></a>
+<b>Abstraction Benefits</b></h3>
+<h4><a class="anchor" id="autotoc_md14"></a>
+<b>1. MCU Independence</b></h4>
+<div class="fragment"><div class="line"><span class="comment">// Application code remains the same across MCUs</span></div>
+<div class="line"><span class="keyword">class </span>SolenoidController {</div>
+<div class="line">    <a class="code hl_namespace" href="namespaceTLE92466ED.html">TLE92466ED</a>* driver;</div>
+<div class="line">    </div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Initialize() {</div>
+<div class="line">        <span class="comment">// Platform-specific HAL, same driver code</span></div>
+<div class="line">        YourPlatformHAL hal;  <span class="comment">// ESP32, STM32, or any MCU</span></div>
+<div class="line">        driver = <span class="keyword">new</span> <a class="code hl_namespace" href="namespaceTLE92466ED.html">TLE92466ED</a>(hal);</div>
+<div class="line">        </div>
+<div class="line">        <span class="comment">// Same API regardless of MCU</span></div>
+<div class="line">        driver-&gt;initialize();</div>
+<div class="line">        driver-&gt;setChannelCurrent(0, 1500);</div>
+<div class="line">        driver-&gt;enableChannel(0);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md16"></a>
+🔌 <b>Features</b></h2>
+<h3><a class="anchor" id="autotoc_md17"></a>
+<b>Hardware Capabilities</b></h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Feature</b>   </th><th class="markdownTableHeadNone"><b>Specification</b>   </th><th class="markdownTableHeadNone"><b>Details</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Channels</b>   </td><td class="markdownTableBodyNone">6 independent outputs   </td><td class="markdownTableBodyNone">Low-side solenoid/load control    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Current Range</b>   </td><td class="markdownTableBodyNone">0-2A per channel   </td><td class="markdownTableBodyNone">Single channel operation    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Current Range</b>   </td><td class="markdownTableBodyNone">0-4A per channel   </td><td class="markdownTableBodyNone">Parallel mode operation    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Resolution</b>   </td><td class="markdownTableBodyNone">15-bit (0.061mA)   </td><td class="markdownTableBodyNone">Precision current control    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>SPI Interface</b>   </td><td class="markdownTableBodyNone">32-bit frames   </td><td class="markdownTableBodyNone">With CRC-8 (SAE J1850)    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>PWM &amp; Dither</b>   </td><td class="markdownTableBodyNone">Configurable   </td><td class="markdownTableBodyNone">Noise reduction and precision    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Diagnostics</b>   </td><td class="markdownTableBodyNone">Comprehensive   </td><td class="markdownTableBodyNone">Overcurrent, overtemperature, load detection   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md18"></a>
+<b>Driver Features</b></h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Feature</b>   </th><th class="markdownTableHeadNone"><b>Description</b>   </th><th class="markdownTableHeadNone"><b>Benefits</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Modern C++23</b>   </td><td class="markdownTableBodyNone">Using <code>std::expected</code>   </td><td class="markdownTableBodyNone">Type-safe error handling    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Hardware Agnostic</b>   </td><td class="markdownTableBodyNone">Clean HAL interface   </td><td class="markdownTableBodyNone">Easy platform porting    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Zero Dependencies</b>   </td><td class="markdownTableBodyNone">Freestanding-compatible   </td><td class="markdownTableBodyNone">Suitable for bare-metal    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>noexcept Guarantee</b>   </td><td class="markdownTableBodyNone">All functions noexcept   </td><td class="markdownTableBodyNone">Embedded safety    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Production Ready</b>   </td><td class="markdownTableBodyNone">Thoroughly documented   </td><td class="markdownTableBodyNone">Industry-grade quality   </td></tr>
+</table>
+<hr  />
+<h2><a class="anchor" id="autotoc_md20"></a>
+🚀 <b>Quick Start</b></h2>
+<h3><a class="anchor" id="autotoc_md21"></a>
+<b>1. Clone Repository</b></h3>
+<div class="fragment"><div class="line">git clone https://github.com/n3b3x/hf-tle92466ed-driver.git</div>
+<div class="line">cd hf-tle92466ed-driver</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md22"></a>
+<b>2. Implement HAL Interface</b></h3>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;inc/TLE92466ED_CommInterface.hpp&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>YourPlatformHAL : <span class="keyword">public</span> TLE92466ED::HAL {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">auto</span> spiTransfer(std::span&lt;const uint8_t&gt; txData, </div>
+<div class="line">                     std::span&lt;uint8_t&gt; rxData) <span class="keyword">noexcept</span> </div>
+<div class="line">        -&gt; std::expected&lt;void, HALError&gt; <span class="keyword">override</span> {</div>
+<div class="line">        <span class="comment">// Your SPI transfer implementation</span></div>
+<div class="line">        <span class="keywordflow">return</span> {};</div>
+<div class="line">    }</div>
+<div class="line">    </div>
+<div class="line">    <span class="keywordtype">void</span> delayMicroseconds(uint32_t us) <span class="keyword">noexcept</span> <span class="keyword">override</span> {</div>
+<div class="line">        <span class="comment">// Your delay implementation</span></div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md23"></a>
+<b>3. Basic Usage</b></h3>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;include/TLE92466ED.hpp&quot;</span></div>
+<div class="line"> </div>
+<div class="line">YourPlatformHAL hal;</div>
+<div class="line"><a class="code hl_namespace" href="namespaceTLE92466ED.html">TLE92466ED</a> driver(hal);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Initialize the IC</span></div>
+<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> result = driver.initialize(); !result) {</div>
+<div class="line">    <span class="keywordflow">return</span> -1;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Set current for channel 0 to 1.5A</span></div>
+<div class="line">driver.setChannelCurrent(0, 1500);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Enable channel 0</span></div>
+<div class="line">driver.enableChannel(0);</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md24"></a>
+<b>4. Build Example</b></h3>
+<div class="fragment"><div class="line">cd examples/esp32</div>
+<div class="line">./scripts/setup_repo.sh</div>
+<div class="line">./scripts/build_app.sh basic_usage Release</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md26"></a>
+📖 <b>API Documentation</b></h2>
+<h3><a class="anchor" id="autotoc_md27"></a>
+<b>Generated Documentation</b></h3>
+<ul>
+<li><b><a href="https://n3b3x.github.io/hf-tle92466ed-driver/">📚 Complete Documentation</a></b> - Interactive guides and tutorials</li>
+<li><b>API Reference</b> - Complete driver API documentation</li>
+<li><b>IC Overview</b> - Hardware specifications</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md28"></a>
+<b>Key Concepts</b></h3>
+<h4><a class="anchor" id="autotoc_md29"></a>
+<b>Initialization</b></h4>
+<div class="fragment"><div class="line"><span class="comment">// Initialize the driver</span></div>
+<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> result = driver.initialize(); !result) {</div>
+<div class="line">    <span class="comment">// Handle initialization error</span></div>
+<div class="line">    <span class="keywordflow">return</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md30"></a>
+<b>Channel Control</b></h4>
+<div class="fragment"><div class="line"><span class="comment">// Set current (0-2000 mA)</span></div>
+<div class="line">driver.setChannelCurrent(0, 1500);  <span class="comment">// 1.5A</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Enable/disable channels</span></div>
+<div class="line">driver.enableChannel(0);</div>
+<div class="line">driver.disableChannel(0);</div>
+</div><!-- fragment --><h4><a class="anchor" id="autotoc_md31"></a>
+<b>Diagnostics</b></h4>
+<div class="fragment"><div class="line"><span class="comment">// Read diagnostics</span></div>
+<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> diag = driver.readDiagnostics(); diag) {</div>
+<div class="line">    <span class="keywordflow">if</span> (diag-&gt;hasOvercurrent()) {</div>
+<div class="line">        <span class="comment">// Handle overcurrent condition</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md33"></a>
+🔧 <b>Building</b></h2>
+<h3><a class="anchor" id="autotoc_md34"></a>
+<b>Build System Features</b></h3>
+<ul>
+<li><b>CMake Integration</b> - Easy project integration</li>
+<li><b>ESP32 Examples</b> - Comprehensive test applications</li>
+<li><b>Manual Integration</b> - Simple header/source inclusion</li>
+<li><b>CI/CD Integration</b> - Automated builds and validation</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md35"></a>
+<b>Build Commands</b></h3>
+<div class="fragment"><div class="line">## For ESP32 development</div>
+<div class="line">cd examples/esp32</div>
+<div class="line">./scripts/setup_repo.sh</div>
+<div class="line">./scripts/build_app.sh &lt;app_name&gt; &lt;build_type&gt;</div>
+<div class="line"> </div>
+<div class="line">## Examples:</div>
+<div class="line">./scripts/build_app.sh basic_usage Release</div>
+<div class="line">./scripts/build_app.sh multi_channel Debug</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md36"></a>
+<b>CMake Integration</b></h3>
+<div class="fragment"><div class="line">add_subdirectory(external/hf-tle92466ed-driver)</div>
+<div class="line">target_link_libraries(your_target PRIVATE TLE92466ED)</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md38"></a>
+📊 <b>Examples</b></h2>
+<h3><a class="anchor" id="autotoc_md39"></a>
+<b>Available Test Applications</b></h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone"><b>Application</b>   </th><th class="markdownTableHeadNone"><b>Tests</b>   </th><th class="markdownTableHeadNone"><b>Purpose</b>    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>basic_usage</b>   </td><td class="markdownTableBodyNone">Single channel control   </td><td class="markdownTableBodyNone">Basic current setting and enable    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>multi_channel</b>   </td><td class="markdownTableBodyNone">Multi-channel operation   </td><td class="markdownTableBodyNone">Parallel channel control    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>diagnostics</b>   </td><td class="markdownTableBodyNone">Fault detection   </td><td class="markdownTableBodyNone">Overcurrent and overtemperature   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md40"></a>
+<b>Usage Examples</b></h3>
+<div class="fragment"><div class="line"><span class="comment">// Single Channel Control</span></div>
+<div class="line">driver.setChannelCurrent(0, 1500);  <span class="comment">// 1.5A</span></div>
+<div class="line">driver.enableChannel(0);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Multi-Channel Control</span></div>
+<div class="line"><span class="keywordflow">for</span> (uint8_t ch = 0; ch &lt; 6; ch++) {</div>
+<div class="line">    driver.setChannelCurrent(ch, 1000);  <span class="comment">// 1A per channel</span></div>
+<div class="line">    driver.enableChannel(ch);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Diagnostics Monitoring</span></div>
+<div class="line"><span class="keywordflow">if</span> (<span class="keyword">auto</span> diag = driver.readDiagnostics(); diag) {</div>
+<div class="line">    <span class="keywordflow">if</span> (diag-&gt;hasOvercurrent()) {</div>
+<div class="line">        driver.disableChannel(0);</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><hr  />
+<h2><a class="anchor" id="autotoc_md42"></a>
+🤝 <b>Contributing</b></h2>
+<h3><a class="anchor" id="autotoc_md43"></a>
+<b>Development Workflow</b></h3>
+<ol type="1">
+<li><b>Fork</b> the repository</li>
+<li><b>Create</b> feature branch (<code>feature/new-feature</code>)</li>
+<li><b>Implement</b> following coding standards</li>
+<li><b>Test</b> with existing applications</li>
+<li><b>Document</b> your changes</li>
+<li><b>Submit</b> pull request</li>
+</ol>
+<h3><a class="anchor" id="autotoc_md44"></a>
+<b>Coding Standards</b></h3>
+<ul>
+<li><b>Functions</b>: PascalCase (<code>SetChannelCurrent</code>, <code>ReadDiagnostics</code>)</li>
+<li><b>Types</b>: snake_case with <code>*t</code> suffix (<code>hal_error_t</code>)</li>
+<li><b>Error Handling</b>: Use <code>std::expected</code> for type safety</li>
+<li><b>Code Formatting</b>: Use <code>clang-format</code></li>
+</ul>
+<hr  />
+<h2><a class="anchor" id="autotoc_md46"></a>
+📄 <b>License</b></h2>
+<p>This software is released into the <b>Public Domain</b>. You can use, modify, and distribute it freely without any restrictions.</p>
+<hr  />
+<h2><a class="anchor" id="autotoc_md48"></a>
+🔗 <b>Quick Links</b></h2>
+<h3><a class="anchor" id="autotoc_md49"></a>
+<b>Documentation</b></h3>
+<ul>
+<li>📚 <a href="https://n3b3x.github.io/hf-tle92466ed-driver/">Complete Documentation</a> - Interactive guides and tutorials</li>
+<li>📋 Documentation Index - Complete documentation navigation</li>
+<li>🔌 IC Overview - Hardware specifications</li>
+<li>📡 SPI Protocol - Communication protocol</li>
+<li>🎛️ Driver API - C++ API reference</li>
+<li>🔧 HAL Implementation - Platform porting guide</li>
+<li>💻 Usage Examples - Practical code examples</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md50"></a>
+<b>Development</b></h3>
+<ul>
+<li>🚀 <a href="examples/esp32/">Examples</a> - Test applications and usage examples</li>
+<li>🧪 Test Documentation - Comprehensive test documentation</li>
+<li>🔧 <a href="examples/esp32/scripts/">Scripts</a> - Build, flash, and development tools</li>
+<li>📊 <a href="examples/esp32/app_config.yml">Configuration</a> - Application and build settings</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md51"></a>
+<b>Community</b></h3>
+<ul>
+<li>🤝 Contributing - Development guidelines</li>
+<li>🐛 <a href="https://github.com/n3b3x/hf-tle92466ed-driver/issues">Issue Tracker</a></li>
+<li>💬 <a href="https://github.com/n3b3x/hf-tle92466ed-driver/discussions">Discussions</a></li>
+</ul>
+<hr  />
+<p><b>Built for the HardFOC ecosystem - Enabling seamless solenoid control</b></p>
+<p><em>Precision current control that just works™</em> </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

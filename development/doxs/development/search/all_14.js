@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['warning_5fthreshold_0',['WARNING_THRESHOLD',['../structTLE92466ED__TestConfig_1_1Temperature.html#a7b7b095894cc1673d97c4b8343600378',1,'TLE92466ED_TestConfig::Temperature']]]
+  ['ramp_5fstep_5fdelay_5fms_0',['RAMP_STEP_DELAY_MS',['../structTLE92466ED__TestConfig_1_1TestConfig.html#aa61db0bd87a2c7ceeea0c5a27ee9c228',1,'TLE92466ED_TestConfig::TestConfig']]],
+  ['ramp_5fstep_5fma_1',['RAMP_STEP_MA',['../structTLE92466ED__TestConfig_1_1TestConfig.html#ad2a6e6656f915d99b58a64ab706b80cb',1,'TLE92466ED_TestConfig::TestConfig']]],
+  ['read_5fadc_5fpercentage_2',['read_adc_percentage',['../SolenoidControlTest_8cpp.html#a03489edd5b8ddc3229d593ac4df978e3',1,'SolenoidControlTest.cpp']]],
+  ['read_5fadc_5fvoltage_5fmv_3',['read_adc_voltage_mv',['../SolenoidControlTest_8cpp.html#a01ef3d19e2ecfe3d7c58492573b6d499',1,'SolenoidControlTest.cpp']]],
+  ['readme_2emd_4',['README.md',['../README_8md.html',1,'']]],
+  ['repository_20strong_5',['&lt;strong&gt;1. Clone Repository&lt;/strong&gt;',['../index.html#autotoc_md21',1,'']]],
+  ['reset_5fdelay_5fms_6',['RESET_DELAY_MS',['../structTLE92466ED__TestConfig_1_1Timing.html#aba1378da52ce221954d8958323003953',1,'TLE92466ED_TestConfig::Timing']]],
+  ['resn_7',['RESN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a4ecb4cfcaf908b1a16bbb436093c268b',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['resn_5fpin_8',['resn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a9b3000b1076cec4f955d6d5e21445f8a',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['resolution_9',['RESOLUTION',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a62d49ba58d58330a2007f5632c4d18c2',1,'TLE92466ED_TestConfig::CurrentLimits']]],
+  ['results_10',['results',['../structTestTaskContext.html#a149a31dfc1c8ccf5cd7720ae94e1c434',1,'TestTaskContext']]],
+  ['run_5fsingle_5ftest_5fif_5fenabled_11',['RUN_SINGLE_TEST_IF_ENABLED',['../TestFramework_8h.html#a7bc8e45ec7ef683e0b1692c05328b784',1,'TestFramework.h']]],
+  ['run_5ftest_12',['RUN_TEST',['../TestFramework_8h.html#a36936b10eceab520bb9d3d95534a00db',1,'RUN_TEST:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#a36936b10eceab520bb9d3d95534a00db',1,'RUN_TEST:&#160;TLE92466ED_TestFramework.hpp']]],
+  ['run_5ftest_5fgroup_5fif_5fenabled_13',['RUN_TEST_GROUP_IF_ENABLED',['../TestFramework_8h.html#a069d023efb0dd03f8c2304a56b4a9564',1,'TestFramework.h']]],
+  ['run_5ftest_5fin_5ftask_14',['RUN_TEST_IN_TASK',['../TestFramework_8h.html#a214e38e25939e45e31ae73a073fca47f',1,'RUN_TEST_IN_TASK:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#a214e38e25939e45e31ae73a073fca47f',1,'RUN_TEST_IN_TASK:&#160;TLE92466ED_TestFramework.hpp']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_15',['RUN_TEST_SECTION_IF_ENABLED',['../TestFramework_8h.html#a742c0e25111e9ee95def05464cab957b',1,'RUN_TEST_SECTION_IF_ENABLED:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#a474e37ca2ab214a02b4a2718aa8b4e5b',1,'RUN_TEST_SECTION_IF_ENABLED:&#160;TLE92466ED_TestFramework.hpp']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fauto_5fprogress_16',['RUN_TEST_SECTION_IF_ENABLED_AUTO_PROGRESS',['../TestFramework_8h.html#a42013656a31f033788afe39c84e96bec',1,'TestFramework.h']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fpattern_17',['RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN',['../TestFramework_8h.html#ab72cc2ae0fb724218e81479185ab38c6',1,'RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#a67d0268939c5e2304d0d649bb1fc6d0b',1,'RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN:&#160;TLE92466ED_TestFramework.hpp']]],
+  ['run_5ftest_5fsection_5fif_5fenabled_5fwith_5fprogress_18',['RUN_TEST_SECTION_IF_ENABLED_WITH_PROGRESS',['../TestFramework_8h.html#a75c45174f9dde97eb43339fcd0ac79c8',1,'TestFramework.h']]]
 ];

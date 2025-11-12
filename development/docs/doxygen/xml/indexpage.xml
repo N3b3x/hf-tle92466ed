@@ -1,0 +1,431 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="indexpage" kind="page">
+    <compoundname>index</compoundname>
+    <title>TLE92466ED Driver</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect2 id="index_1autotoc_md0">
+<title>} md_README</title><para>layout: default title: &quot;🔧 HardFOC TLE92466ED Driver&quot; description: &quot;C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics&quot; nav_order: 1 permalink: / </para>
+</sect2>
+<sect2 id="index_1autotoc_md1">
+<title>has_children: true</title></sect2>
+<sect1 id="index_1autotoc_md2">
+<title>🔧 HardFOC TLE92466ED Driver</title><para><bold>Six-Channel Low-Side Solenoid Driver</bold></para>
+<para><image type="html" name="https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip" alt="TLE92466ED" inline="yes"></image>
+ <image type="html" name="https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus" alt="C++23" inline="yes"></image>
+ <image type="html" name="https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware" alt="Hardware-Agnostic" inline="yes"></image>
+ <image type="html" name="https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative" alt="License" inline="yes"></image>
+</para>
+<sect2 id="index_1autotoc_md3">
+<title>🎯 Modern Solenoid Control Interface for Multi-MCU Development</title><para><emphasis>A production-ready C++23 driver implementation for the Infineon <ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref> with comprehensive SPI interface, precision current control, and extensive diagnostics support</emphasis></para>
+<para><hruler/>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md5">
+<title>📚 <bold>Table of Contents</bold></title><para><itemizedlist>
+<listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🎯 **Overview**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🏗️ **Architecture**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🔌 **Features**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🚀 **Quick Start**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">📖 **API Documentation**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🔧 **Building**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">📊 **Examples**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">🤝 **Contributing**</ref></para>
+</listitem><listitem><para><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">📄 **License**</ref></para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md7">
+<title>🎯 <bold>Overview</bold></title><para><blockquote><para><zwj/><bold>📖 <ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</ulink></bold> - Interactive guides, examples, and step-by-step tutorials </para>
+</blockquote><bold><ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref> Driver</bold> is a modern, production-ready C++23 driver implementation for the Infineon <ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref> Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.</para>
+<sect3 id="index_1autotoc_md8">
+<title>🏆 <bold>Core Benefits</bold></title><para><itemizedlist>
+<listitem><para><bold>🔄 Hardware Portability</bold> - Clean HAL interface for easy platform porting</para>
+</listitem><listitem><para><bold>🎯 Modern C++23</bold> - Using <computeroutput>std::expected</computeroutput> for type-safe error handling</para>
+</listitem><listitem><para><bold>⚡ Precision Control</bold> - 15-bit current resolution (0.061mA steps)</para>
+</listitem><listitem><para><bold>🛡️ Safety Features</bold> - Comprehensive diagnostics and protection systems</para>
+</listitem><listitem><para><bold>📈 Zero Dependencies</bold> - Freestanding-compatible, suitable for bare-metal</para>
+</listitem><listitem><para><bold>🔌 Complete Coverage</bold> - Full access to all 108 registers and features</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md9">
+<title>🎨 <bold>Design Philosophy</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Write<sp/>hardware-agnostic<sp/>solenoid<sp/>control<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">YourPlatformHAL</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Your<sp/>SPI<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>and<sp/>control<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.initialize();</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md11">
+<title>🏗️ <bold>Architecture</bold></title><sect3 id="index_1autotoc_md12">
+<title><bold>HAL-Based Design</bold></title><para><programlisting filename=".text"><codeline><highlight class="normal">📦<sp/>TLE92466ED<sp/>Driver<sp/>Architecture</highlight></codeline>
+<codeline><highlight class="normal">├──<sp/>🎯<sp/>Driver<sp/>Layer<sp/>(TLE92466ED<sp/>class)<sp/><sp/><sp/><sp/><sp/>#<sp/>High-level<sp/>channel<sp/>control<sp/>API</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Channel<sp/>Control<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Current<sp/>setting,<sp/>enable/disable</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Diagnostics<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Fault<sp/>detection<sp/>and<sp/>monitoring</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Channel<sp/>modes,<sp/>PWM<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>└──<sp/>Register<sp/>Access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Direct<sp/>register<sp/>manipulation</highlight></codeline>
+<codeline><highlight class="normal">│</highlight></codeline>
+<codeline><highlight class="normal">├──<sp/>🔌<sp/>Hardware<sp/>Abstraction<sp/>Layer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Platform-independent<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>TLE92466ED_CommInterface<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Communication<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>SPI<sp/>Transfer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>32-bit<sp/>frame<sp/>communication</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>└──<sp/>Delay<sp/>Functions<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Timing<sp/>control</highlight></codeline>
+<codeline><highlight class="normal">│</highlight></codeline>
+<codeline><highlight class="normal">└──<sp/>🔧<sp/>Hardware<sp/>Layer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Platform-specific<sp/>implementations</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>├──<sp/>ESP32<sp/>HAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>ESP32<sp/>family<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>├──<sp/>STM32<sp/>HAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>STM32<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>└──<sp/>Any<sp/>MCU<sp/>with<sp/>SPI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Your<sp/>implementation</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="index_1autotoc_md13">
+<title><bold>Abstraction Benefits</bold></title><sect4 id="index_1autotoc_md14">
+<title><bold>1. MCU Independence</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Application<sp/>code<sp/>remains<sp/>the<sp/>same<sp/>across<sp/>MCUs</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">SolenoidController</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref>*<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Initialize</ref>()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Platform-specific<sp/>HAL,<sp/>same<sp/>driver<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">YourPlatformHAL</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>ESP32,<sp/>STM32,<sp/>or<sp/>any<sp/>MCU</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Same<sp/>API<sp/>regardless<sp/>of<sp/>MCU</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>-&gt;initialize();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>-&gt;setChannelCurrent(0,<sp/>1500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>-&gt;enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect4>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md16">
+<title>🔌 <bold>Features</bold></title><sect3 id="index_1autotoc_md17">
+<title><bold>Hardware Capabilities</bold></title><para><table rows="8" cols="3"><row>
+<entry thead="yes"><para><bold>Feature</bold>   </para>
+</entry><entry thead="yes"><para><bold>Specification</bold>   </para>
+</entry><entry thead="yes"><para><bold>Details</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Channels</bold>   </para>
+</entry><entry thead="no"><para>6 independent outputs   </para>
+</entry><entry thead="no"><para>Low-side solenoid/load control    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Current Range</bold>   </para>
+</entry><entry thead="no"><para>0-2A per channel   </para>
+</entry><entry thead="no"><para>Single channel operation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Current Range</bold>   </para>
+</entry><entry thead="no"><para>0-4A per channel   </para>
+</entry><entry thead="no"><para>Parallel mode operation    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Resolution</bold>   </para>
+</entry><entry thead="no"><para>15-bit (0.061mA)   </para>
+</entry><entry thead="no"><para>Precision current control    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>SPI Interface</bold>   </para>
+</entry><entry thead="no"><para>32-bit frames   </para>
+</entry><entry thead="no"><para>With CRC-8 (SAE J1850)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>PWM &amp; Dither</bold>   </para>
+</entry><entry thead="no"><para>Configurable   </para>
+</entry><entry thead="no"><para>Noise reduction and precision    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Diagnostics</bold>   </para>
+</entry><entry thead="no"><para>Comprehensive   </para>
+</entry><entry thead="no"><para>Overcurrent, overtemperature, load detection   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md18">
+<title><bold>Driver Features</bold></title><para><table rows="6" cols="3"><row>
+<entry thead="yes"><para><bold>Feature</bold>   </para>
+</entry><entry thead="yes"><para><bold>Description</bold>   </para>
+</entry><entry thead="yes"><para><bold>Benefits</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Modern C++23</bold>   </para>
+</entry><entry thead="no"><para>Using <computeroutput>std::expected</computeroutput>   </para>
+</entry><entry thead="no"><para>Type-safe error handling    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Hardware Agnostic</bold>   </para>
+</entry><entry thead="no"><para>Clean HAL interface   </para>
+</entry><entry thead="no"><para>Easy platform porting    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Zero Dependencies</bold>   </para>
+</entry><entry thead="no"><para>Freestanding-compatible   </para>
+</entry><entry thead="no"><para>Suitable for bare-metal    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>noexcept Guarantee</bold>   </para>
+</entry><entry thead="no"><para>All functions noexcept   </para>
+</entry><entry thead="no"><para>Embedded safety    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>Production Ready</bold>   </para>
+</entry><entry thead="no"><para>Thoroughly documented   </para>
+</entry><entry thead="no"><para>Industry-grade quality   </para>
+</entry></row>
+</table>
+</para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md20">
+<title>🚀 <bold>Quick Start</bold></title><sect3 id="index_1autotoc_md21">
+<title><bold>1. Clone Repository</bold></title><para><programlisting filename=".bash"><codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/n3b3x/hf-tle92466ed-driver.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>hf-tle92466ed-driver</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="index_1autotoc_md22">
+<title><bold>2. Implement HAL Interface</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;inc/TLE92466ED_CommInterface.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">YourPlatformHAL</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>TLE92466ED::HAL<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">spiTransfer</ref>(std::span&lt;const<sp/>uint8_t&gt;<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">txData</ref>,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::span&lt;uint8_t&gt;<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">rxData</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>std::expected&lt;void,<sp/>HALError&gt;<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Your<sp/>SPI<sp/>transfer<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>{};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">delayMicroseconds</ref>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">uint32_t</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">us</ref>)<sp/></highlight><highlight class="keyword">noexcept</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Your<sp/>delay<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="index_1autotoc_md23">
+<title><bold>3. Basic Usage</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;include/TLE92466ED.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">YourPlatformHAL</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="namespaceTLE92466ED" kindref="compound">TLE92466ED</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>IC</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref><sp/>=<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.initialize();<sp/>!<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Set<sp/>current<sp/>for<sp/>channel<sp/>0<sp/>to<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Enable<sp/>channel<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="index_1autotoc_md24">
+<title><bold>4. Build Example</bold></title><para><programlisting filename=".bash"><codeline><highlight class="normal">cd<sp/>examples/esp32</highlight></codeline>
+<codeline><highlight class="normal">./scripts/setup_repo.sh</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>basic_usage<sp/>Release</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md26">
+<title>📖 <bold>API Documentation</bold></title><sect3 id="index_1autotoc_md27">
+<title><bold>Generated Documentation</bold></title><para><itemizedlist>
+<listitem><para><bold><ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">📚 Complete Documentation</ulink></bold> - Interactive guides and tutorials</para>
+</listitem><listitem><para><bold>API Reference</bold> - Complete driver API documentation</para>
+</listitem><listitem><para><bold>IC Overview</bold> - Hardware specifications</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md28">
+<title><bold>Key Concepts</bold></title><sect4 id="index_1autotoc_md29">
+<title><bold>Initialization</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>driver</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref><sp/>=<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.initialize();<sp/>!<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>initialization<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+</sect4>
+<sect4 id="index_1autotoc_md30">
+<title><bold>Channel Control</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Set<sp/>current<sp/>(0-2000<sp/>mA)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Enable/disable<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.disableChannel(0);</highlight></codeline>
+</programlisting></para>
+</sect4>
+<sect4 id="index_1autotoc_md31">
+<title><bold>Diagnostics</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Read<sp/>diagnostics</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref><sp/>=<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.readDiagnostics();<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>overcurrent<sp/>condition</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect4>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md33">
+<title>🔧 <bold>Building</bold></title><sect3 id="index_1autotoc_md34">
+<title><bold>Build System Features</bold></title><para><itemizedlist>
+<listitem><para><bold>CMake Integration</bold> - Easy project integration</para>
+</listitem><listitem><para><bold>ESP32 Examples</bold> - Comprehensive test applications</para>
+</listitem><listitem><para><bold>Manual Integration</bold> - Simple header/source inclusion</para>
+</listitem><listitem><para><bold>CI/CD Integration</bold> - Automated builds and validation</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md35">
+<title><bold>Build Commands</bold></title><para><programlisting filename=".bash"><codeline><highlight class="normal">##<sp/>For<sp/>ESP32<sp/>development</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>examples/esp32</highlight></codeline>
+<codeline><highlight class="normal">./scripts/setup_repo.sh</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>&lt;app_name&gt;<sp/>&lt;build_type&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Examples:</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>basic_usage<sp/>Release</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>multi_channel<sp/>Debug</highlight></codeline>
+</programlisting></para>
+</sect3>
+<sect3 id="index_1autotoc_md36">
+<title><bold>CMake Integration</bold></title><para><programlisting filename=".cmake"><codeline><highlight class="normal">add_subdirectory(external/hf-tle92466ed-driver)</highlight></codeline>
+<codeline><highlight class="normal">target_link_libraries(your_target<sp/>PRIVATE<sp/>TLE92466ED)</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md38">
+<title>📊 <bold>Examples</bold></title><sect3 id="index_1autotoc_md39">
+<title><bold>Available Test Applications</bold></title><para><table rows="4" cols="3"><row>
+<entry thead="yes"><para><bold>Application</bold>   </para>
+</entry><entry thead="yes"><para><bold>Tests</bold>   </para>
+</entry><entry thead="yes"><para><bold>Purpose</bold>    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>basic_usage</bold>   </para>
+</entry><entry thead="no"><para>Single channel control   </para>
+</entry><entry thead="no"><para>Basic current setting and enable    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>multi_channel</bold>   </para>
+</entry><entry thead="no"><para>Multi-channel operation   </para>
+</entry><entry thead="no"><para>Parallel channel control    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><bold>diagnostics</bold>   </para>
+</entry><entry thead="no"><para>Fault detection   </para>
+</entry><entry thead="no"><para>Overcurrent and overtemperature   </para>
+</entry></row>
+</table>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md40">
+<title><bold>Usage Examples</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Single<sp/>Channel<sp/>Control</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Multi-Channel<sp/>Control</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">uint8_t</ref><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref><sp/>=<sp/>0;<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref><sp/>&lt;<sp/>6;<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>,<sp/>1000);<sp/><sp/></highlight><highlight class="comment">//<sp/>1A<sp/>per<sp/>channel</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Diagnostics<sp/>Monitoring</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref><sp/>=<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.readDiagnostics();<sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.disableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md42">
+<title>🤝 <bold>Contributing</bold></title><sect3 id="index_1autotoc_md43">
+<title><bold>Development Workflow</bold></title><para><orderedlist>
+<listitem><para><bold>Fork</bold> the repository</para>
+</listitem><listitem><para><bold>Create</bold> feature branch (<computeroutput>feature/new-feature</computeroutput>)</para>
+</listitem><listitem><para><bold>Implement</bold> following coding standards</para>
+</listitem><listitem><para><bold>Test</bold> with existing applications</para>
+</listitem><listitem><para><bold>Document</bold> your changes</para>
+</listitem><listitem><para><bold>Submit</bold> pull request</para>
+</listitem></orderedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md44">
+<title><bold>Coding Standards</bold></title><para><itemizedlist>
+<listitem><para><bold>Functions</bold>: PascalCase (<computeroutput>SetChannelCurrent</computeroutput>, <computeroutput>ReadDiagnostics</computeroutput>)</para>
+</listitem><listitem><para><bold>Types</bold>: snake_case with <computeroutput>*t</computeroutput> suffix (<computeroutput>hal_error_t</computeroutput>)</para>
+</listitem><listitem><para><bold>Error Handling</bold>: Use <computeroutput>std::expected</computeroutput> for type safety</para>
+</listitem><listitem><para><bold>Code Formatting</bold>: Use <computeroutput>clang-format</computeroutput></para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+</sect3>
+</sect2>
+<sect2 id="index_1autotoc_md46">
+<title>📄 <bold>License</bold></title><para>This software is released into the <bold>Public Domain</bold>. You can use, modify, and distribute it freely without any restrictions.</para>
+<para><hruler/>
+</para>
+</sect2>
+<sect2 id="index_1autotoc_md48">
+<title>🔗 <bold>Quick Links</bold></title><sect3 id="index_1autotoc_md49">
+<title><bold>Documentation</bold></title><para><itemizedlist>
+<listitem><para>📚 <ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">Complete Documentation</ulink> - Interactive guides and tutorials</para>
+</listitem><listitem><para>📋 Documentation Index - Complete documentation navigation</para>
+</listitem><listitem><para>🔌 IC Overview - Hardware specifications</para>
+</listitem><listitem><para>📡 SPI Protocol - Communication protocol</para>
+</listitem><listitem><para>🎛️ Driver API - C++ API reference</para>
+</listitem><listitem><para>🔧 HAL Implementation - Platform porting guide</para>
+</listitem><listitem><para>💻 Usage Examples - Practical code examples</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md50">
+<title><bold>Development</bold></title><para><itemizedlist>
+<listitem><para>🚀 <ulink url="examples/esp32/">Examples</ulink> - Test applications and usage examples</para>
+</listitem><listitem><para>🧪 Test Documentation - Comprehensive test documentation</para>
+</listitem><listitem><para>🔧 <ulink url="examples/esp32/scripts/">Scripts</ulink> - Build, flash, and development tools</para>
+</listitem><listitem><para>📊 <ulink url="examples/esp32/app_config.yml">Configuration</ulink> - Application and build settings</para>
+</listitem></itemizedlist>
+</para>
+</sect3>
+<sect3 id="index_1autotoc_md51">
+<title><bold>Community</bold></title><para><itemizedlist>
+<listitem><para>🤝 Contributing - Development guidelines</para>
+</listitem><listitem><para>🐛 <ulink url="https://github.com/n3b3x/hf-tle92466ed-driver/issues">Issue Tracker</ulink></para>
+</listitem><listitem><para>💬 <ulink url="https://github.com/n3b3x/hf-tle92466ed-driver/discussions">Discussions</ulink></para>
+</listitem></itemizedlist>
+</para>
+<para><hruler/>
+</para>
+<para><bold>Built for the HardFOC ecosystem - Enabling seamless solenoid control</bold></para>
+<para><emphasis>Precision current control that just works™</emphasis> </para>
+</sect3>
+</sect2>
+</sect1>
+    </detaileddescription>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

@@ -1821,7 +1821,7 @@ extern "C" void app_main() {
     );
     
     // Print test results summary
-    g_test_results.print_summary(TAG);
+    print_test_summary(g_test_results, "TLE92466ED", TAG);
     
     // Cleanup
     if (g_driver) {

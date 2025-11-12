@@ -6,6 +6,7 @@
     <innerfile refid="Esp32TleCommInterface_8cpp">Esp32TleCommInterface.cpp</innerfile>
     <innerfile refid="Esp32TleCommInterface_8hpp">Esp32TleCommInterface.hpp</innerfile>
     <innerfile refid="SolenoidControlTest_8cpp">SolenoidControlTest.cpp</innerfile>
+    <innerfile refid="TestFramework_8h">TestFramework.h</innerfile>
     <innerfile refid="TLE92466ED__TestConfig_8hpp">TLE92466ED_TestConfig.hpp</innerfile>
     <innerfile refid="TLE92466ED__TestFramework_8hpp">TLE92466ED_TestFramework.hpp</innerfile>
     <briefdescription>

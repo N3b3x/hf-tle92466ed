@@ -17,7 +17,7 @@ examples/esp32/
 │   └── Esp32TleCommInterface.cpp    # ESP32 communication interface
 ├── sdkconfig                         # ESP-IDF SDK configuration
 └── components/
-    └── tle92466ed-espidf/
+    └── hf_tle92466ed/
         ├── CMakeLists.txt            # Component build config
         └── idf_component.yml         # Component metadata
 ```
@@ -464,7 +464,7 @@ idf.py reconfigure
 
 ### Component CMakeLists.txt
 
-**Location**: `examples/esp32/components/tle92466ed-espidf/CMakeLists.txt`
+**Location**: `examples/esp32/components/hf_tle92466ed/CMakeLists.txt`
 
 ```cmake
 # Source resolution (automatic)
@@ -498,10 +498,10 @@ target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_23)
 
 ### Component Manifest (idf_component.yml)
 
-**Location**: `examples/esp32/components/tle92466ed-espidf/idf_component.yml`
+**Location**: `examples/esp32/components/hf_tle92466ed/idf_component.yml`
 
 ```yaml
-name: tle92466ed-driver
+name: hf-tle92466ed-driver
 version: "2.0.0"
 description: TLE92466ED driver for ESP-IDF
 dependencies:

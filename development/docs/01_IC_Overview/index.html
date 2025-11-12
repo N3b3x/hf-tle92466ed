@@ -15,9 +15,10 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -26,14 +27,16 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(1) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(1) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(3) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(3) > ul > li:nth-child(1) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(1) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(3) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
       display: block;
     }
   </style>
@@ -53,7 +56,7 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>🔌 IC Overview | TLE92466ED Driver - development</title>
+<title>🔌 IC Overview | HardFOC TLE92466ED Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="🔌 IC Overview" />
 <meta name="author" content="N3b3x" />
@@ -62,7 +65,7 @@
 <meta property="og:description" content="TLE92466ED hardware specifications and architecture" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/01_IC_Overview/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/01_IC_Overview/" />
-<meta property="og:site_name" content="TLE92466ED Driver - development" />
+<meta property="og:site_name" content="HardFOC TLE92466ED Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="🔌 IC Overview" />
@@ -71,326 +74,18 @@
 <!-- End Jekyll SEO tag -->
 
 
-  <!-- Custom head content for TLE92466ED driver documentation -->
+  <!-- =============================================================================
+     Custom Head Content for HardFOC Driver Documentation
+     =============================================================================
+     This file is included in the <head> section of every page.
+     It loads custom CSS and JavaScript for enhanced functionality.
+     ============================================================================= -->
+
+<!-- Custom CSS for enhanced styling and fixes -->
 <link rel="stylesheet" href="/hf-tle92466ed-driver/development/assets/css/custom.css">
+
+<!-- Custom JavaScript for interactive features -->
 <script src="/hf-tle92466ed-driver/development/assets/js/custom.js" defer></script>
-
-<!-- Version selector for multi-version documentation -->
-<!-- Version Selector Component for Multi-Version Documentation -->
-<div class="version-selector">
-  <div class="version-dropdown">
-    <label for="version-select" class="version-label">
-      <span class="version-icon">📚</span>
-      Version:
-    </label>
-    <select id="version-select" class="version-select" onchange="switchVersion(this.value)">
-      <option value="latest" data-url="/hf-tle92466ed-driver/">Development (main)</option>
-      <option value="v2.0.0" data-url="/hf-tle92466ed-driver/v2.0.0/">v2.0.0 (Latest Stable)</option>
-    </select>
-  </div>
-  
-  <div class="version-info">
-    <span class="current-version" id="current-version">Latest (main)</span>
-    <span class="version-badge" id="version-badge">dev</span>
-  </div>
-</div>
-
-<script>
-// Version switching logic
-function switchVersion(version) {
-  const select = document.getElementById('version-select');
-  const selectedOption = select.options[select.selectedIndex];
-  const targetUrl = selectedOption.getAttribute('data-url');
-  
-  if (targetUrl) {
-    // Update current page URL to new version
-    const currentPath = window.location.pathname;
-    const baseUrl = window.location.origin;
-    
-    // Extract the path after the version prefix
-    let newPath = currentPath;
-    if (currentPath.includes('/hf-tle92466ed-driver/')) {
-      const pathParts = currentPath.split('/hf-tle92466ed-driver/');
-      if (pathParts.length > 1) {
-        newPath = pathParts[1];
-      }
-    }
-    
-    // Construct new URL
-    const newUrl = baseUrl + targetUrl + newPath;
-    window.location.href = newUrl;
-  }
-}
-
-// Set current version based on URL
-document.addEventListener('DOMContentLoaded', function() {
-  const currentPath = window.location.pathname;
-  const versionSelect = document.getElementById('version-select');
-  const currentVersionSpan = document.getElementById('current-version');
-  const versionBadge = document.getElementById('version-badge');
-  
-  // Determine current version from URL
-  let currentVersion = 'latest';
-  let versionType = 'dev';
-  
-  if (currentPath.includes('/stable/')) {
-    currentVersion = 'stable';
-    versionType = 'stable';
-  } else if (currentPath.includes('/v2.0.0/')) {
-    currentVersion = 'v2.0.0';
-    versionType = 'release';
-  }
-  
-  // Update UI
-  versionSelect.value = currentVersion;
-  currentVersionSpan.textContent = currentVersion === 'latest' ? 'Latest (main)' : 
-                                  currentVersion === 'stable' ? 'Stable (latest release)' : 
-                                  currentVersion;
-  
-  // Update badge
-  versionBadge.textContent = versionType;
-  versionBadge.className = 'version-badge ' + versionType;
-});
-</script>
-
-<style>
-.version-selector {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--nav-child-link-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-}
-
-.version-dropdown {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.version-label {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-icon {
-  font-size: 1rem;
-}
-
-.version-select {
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--body-bg);
-  color: var(--body-text-color);
-  font-size: 0.9rem;
-  min-width: 150px;
-}
-
-.version-select:focus {
-  outline: 2px solid var(--link-color);
-  outline-offset: 2px;
-}
-
-.version-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-
-.current-version {
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-badge {
-  padding: 0.125rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.version-badge.dev {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.version-badge.stable {
-  background: #e8f5e8;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
-}
-
-.version-badge.release {
-  background: #fff3e0;
-  color: #f57c00;
-  border: 1px solid #ffcc02;
-}
-
-@media (max-width: 768px) {
-  .version-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-  
-  .version-info {
-    margin-left: 0;
-    justify-content: center;
-  }
-}
-</style>
-
-
-
-<!-- Version information display -->
-<!-- Version Information Display Component -->
-<div class="version-info-display">
-  <div class="version-details">
-    <span class="version-label">Version:</span>
-    <span class="version-value">2.0.0</span>
-    <span class="version-badge version-stable">stable</span>
-  </div>
-  
-  <div class="version-meta">
-    <span class="branch-info">
-      <span class="branch-icon">🌿</span>
-      <span class="branch-name">main</span>
-    </span>
-    
-    <span class="build-info">
-      <span class="build-icon">🔨</span>
-      <span class="build-date">2025-11-08</span>
-    </span>
-  </div>
-</div>
-
-<style>
-.version-info-display {
-  background: var(--nav-child-link-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.version-details {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.version-label {
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-value {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 600;
-  color: var(--link-color);
-  background: var(--code-bg);
-  padding: 0.125rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-}
-
-.version-badge {
-  padding: 0.125rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.version-badge.development {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.version-badge.stable {
-  background: #e8f5e8;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
-}
-
-.version-badge.release {
-  background: #fff3e0;
-  color: #f57c00;
-  border: 1px solid #ffcc02;
-}
-
-.version-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.branch-info,
-.build-info {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: var(--body-text-color);
-  font-size: 0.85rem;
-}
-
-.branch-icon,
-.build-icon {
-  font-size: 0.9rem;
-}
-
-.branch-name {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 500;
-}
-
-.build-date {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  .version-info-display {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-  
-  .version-details,
-  .version-meta {
-    justify-content: center;
-  }
-  
-  .version-meta {
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border-color);
-  }
-}
-</style>
-
-
 
 
 
@@ -466,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="side-bar">
   <div class="site-header" role="banner">
     <a href="/hf-tle92466ed-driver/development/" class="site-title lh-tight">
-  TLE92466ED Driver - development
+  HardFOC TLE92466ED Driver - development
 
 </a>
     <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false">
@@ -477,23 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HardFOC ESP-IDF Project Tools</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/CONTRIBUTING/" class="nav-list-link">🤝 Contributing</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Getting Started category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/getting-started/" class="nav-list-link">Getting Started</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/installation/" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/configuration/" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/project-setup/" class="nav-list-link">Project Setup</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 Core Systems category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/core-systems/" class="nav-list-link">🔧 Core Systems</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/build-system/" class="nav-list-link">Build System</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Configuration System category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/configuration/" class="nav-list-link">Configuration System</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration/centralized/" class="nav-list-link">Centralized Configuration</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/flash-system/" class="nav-list-link">Flash System</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/logging-system/" class="nav-list-link">Logging System</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in ⚡ CI Pipeline category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">⚡ CI Pipeline</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">CI Pipeline Usage</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-integration-patterns/" class="nav-list-link">CI/CD Integration Patterns</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔬 Advanced Topics category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/advanced-topics/" class="nav-list-link">🔬 Advanced Topics</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/multi-version-idf/" class="nav-list-link">Multi-Version ESP-IDF Support</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/port-detection/" class="nav-list-link">Port Detection</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/utility-scripts/" class="nav-list-link">Utility Scripts</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Reference category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/reference/" class="nav-list-link">📚 Reference</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/features/" class="nav-list-link">Features</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples/" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/" class="nav-list-link">Troubleshooting</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/contributing/" class="nav-list-link">Contributing</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/arduino/" class="nav-list-link">TLE92466ED Arduino Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/tle92466ed-espidf/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
+      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/hf_tle92466ed/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
   
 </nav>
 
@@ -502,24 +185,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
-    <footer class="site-nav-footer">
-  <div class="nav-footer-links">
-    <a href="https://github.com/n3b3x/hf-internal-interface-wrap" class="nav-footer-link" aria-label="GitHub Repository">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-      </svg>
-      GitHub
-    </a>
-    <a href="https://github.com/n3b3x/hf-internal-interface-wrap/issues" class="nav-footer-link" aria-label="Report Issues">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-      </svg>
-      Issues
-    </a>
-  </div>
-</footer>
-
-
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
   
 </div>
 
@@ -531,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="search" role="search">
   <div class="search-input-wrap">
-    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search workflows, examples, and guides..." aria-label="Search workflows, examples, and guides..." autocomplete="off">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search HardFOC TLE92466ED Driver - development" aria-label="Search HardFOC TLE92466ED Driver - development" autocomplete="off">
     <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
   </div>
   <div id="search-results" class="search-results"></div>
@@ -575,14 +243,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </a>
       </li>
     
-      <li class="aux-nav-list-item">
-        <a href="https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/" class="site-button"
-          
-        >
-          📖 API Documentation
-        </a>
-      </li>
-    
   </ul>
 </nav>
 
@@ -592,6 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="main-content-wrap">
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/">🔧 HardFOC TLE92466ED Driver</a></li>
     <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/">📚 Documentation</a></li>
     <li class="breadcrumb-nav-list-item"><span>🔌 IC Overview</span></li>
   </ol>
@@ -1494,10 +1155,19 @@ Application: Solenoid actuators, valves, relays
   <footer>
     
 
-    <footer class="site-footer">
+    <!-- =============================================================================
+     Custom Footer Content for HardFOC Driver Documentation
+     =============================================================================
+     This footer is displayed at the bottom of every page.
+     ============================================================================= -->
+
+<footer class="site-footer">
   <div class="site-footer-credits">
     <p>Built with ❤️ using <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a></p>
-    <p><a href="https://github.com/n3b3x/hf-internal-interface-wrap/blob/main/LICENSE">GPL v3 License</a> • <a href="https://github.com/n3b3x/hf-internal-interface-wrap">View on GitHub</a></p>
+    <p>
+      <a href="https://github.com/n3b3x/hf-tle92466ed-driver/development/blob/main/LICENSE">GPL v3 License</a> • 
+      <a href="https://github.com/n3b3x/hf-tle92466ed-driver/development">View on GitHub</a>
+    </p>
   </div>
 </footer>
 

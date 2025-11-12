@@ -5,9 +5,6 @@ var searchData=
   ['sclk_5fpin_2',['sclk_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a1daa1da38006a8151a6616a2ea5e6794',1,'Esp32TleCommInterface::SPIConfig']]],
   ['single_5fchannel_5fmax_3',['SINGLE_CHANNEL_MAX',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#aa6e214ca2a7e8aae7fbf3ac68be1ee1d',1,'TLE92466ED_TestConfig::CurrentLimits']]],
   ['single_5fchannel_5fmin_4',['SINGLE_CHANNEL_MIN',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a8809a699bc2464e910742e10609e546a',1,'TLE92466ED_TestConfig::CurrentLimits']]],
-  ['spi_5fbit_5forder_5',['spi_bit_order',['../structArduino__HAL_1_1SPIConfig.html#a0a559a92d54caa8ca33e9c8317f7ff75',1,'Arduino_HAL::SPIConfig']]],
-  ['spi_5fdevice_5f_6',['spi_device_',['../classEsp32TleCommInterface.html#a1b5cb637e8dcd9bab9824aabd20f1ba4',1,'Esp32TleCommInterface']]],
-  ['spi_5ffrequency_7',['spi_frequency',['../structArduino__HAL_1_1SPIConfig.html#aebc777ca2b95407ed375ae145706718b',1,'Arduino_HAL::SPIConfig']]],
-  ['spi_5fmode_8',['spi_mode',['../structArduino__HAL_1_1SPIConfig.html#aad961b64c360ed72b697de2ad17284b7',1,'Arduino_HAL::SPIConfig']]],
-  ['stats_5freport_5finterval_5fms_9',['STATS_REPORT_INTERVAL_MS',['../structTLE92466ED__TestConfig_1_1AppConfig.html#a73d040921dd27c8d9446c7aa0848c66f',1,'TLE92466ED_TestConfig::AppConfig']]]
+  ['spi_5fdevice_5f_5',['spi_device_',['../classEsp32TleCommInterface.html#a1b5cb637e8dcd9bab9824aabd20f1ba4',1,'Esp32TleCommInterface']]],
+  ['stats_5freport_5finterval_5fms_6',['STATS_REPORT_INTERVAL_MS',['../structTLE92466ED__TestConfig_1_1AppConfig.html#a73d040921dd27c8d9446c7aa0848c66f',1,'TLE92466ED_TestConfig::AppConfig']]]
 ];

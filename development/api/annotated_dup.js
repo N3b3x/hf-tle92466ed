@@ -14,7 +14,6 @@ var annotated_dup =
       [ "Timing", "structTLE92466ED__TestConfig_1_1Timing.html", "structTLE92466ED__TestConfig_1_1Timing" ]
     ] ],
     [ "ADCConfig", "structADCConfig.html", "structADCConfig" ],
-    [ "Arduino_HAL", "classArduino__HAL.html", "classArduino__HAL" ],
     [ "Esp32TleCommInterface", "classEsp32TleCommInterface.html", "classEsp32TleCommInterface" ],
     [ "Solenoid1Config", "structSolenoid1Config.html", "structSolenoid1Config" ],
     [ "Solenoid2Config", "structSolenoid2Config.html", "structSolenoid2Config" ],

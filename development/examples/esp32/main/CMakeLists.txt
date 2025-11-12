@@ -90,7 +90,7 @@ set(COMPONENT_REQUIRES_LIST
     freertos 
     spi_flash 
     nvs_flash 
-    tle92466ed-espidf
+    hf_tle92466ed
 )
 
 # Add ADC component for solenoid control test

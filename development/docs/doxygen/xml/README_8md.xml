@@ -1,0 +1,372 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
+  <compounddef id="README_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline><highlight class="normal">layout:<sp/>default</highlight></codeline>
+<codeline><highlight class="normal">title:<sp/>&quot;🔧<sp/>HardFOC<sp/>TLE92466ED<sp/>Driver&quot;</highlight></codeline>
+<codeline><highlight class="normal">description:<sp/>&quot;C++23<sp/>driver<sp/>for<sp/>Infineon<sp/>TLE92466ED<sp/>Six-Channel<sp/>Low-Side<sp/>Solenoid<sp/>Driver<sp/>IC<sp/>with<sp/>comprehensive<sp/>SPI<sp/>interface,<sp/>current<sp/>control,<sp/>and<sp/>diagnostics&quot;</highlight></codeline>
+<codeline><highlight class="normal">nav_order:<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">permalink:<sp/>/</highlight></codeline>
+<codeline><highlight class="normal">has_children:<sp/>true</highlight></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>🔧<sp/>HardFOC<sp/>TLE92466ED<sp/>Driver</highlight></codeline>
+<codeline><highlight class="normal">**Six-Channel<sp/>Low-Side<sp/>Solenoid<sp/>Driver**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">![TLE92466ED](https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip)</highlight></codeline>
+<codeline><highlight class="normal">![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus)</highlight></codeline>
+<codeline><highlight class="normal">![Hardware-Agnostic](https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware)</highlight></codeline>
+<codeline><highlight class="normal">![License](https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🎯<sp/>Modern<sp/>Solenoid<sp/>Control<sp/>Interface<sp/>for<sp/>Multi-MCU<sp/>Development</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*A<sp/>production-ready<sp/>C++23<sp/>driver<sp/>implementation<sp/>for<sp/>the<sp/>Infineon<sp/>TLE92466ED<sp/>with</highlight></codeline>
+<codeline><highlight class="normal">comprehensive<sp/>SPI<sp/>interface,<sp/>precision<sp/>current<sp/>control,<sp/>and<sp/>extensive<sp/>diagnostics</highlight></codeline>
+<codeline><highlight class="normal">support*</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📚<sp/>**Table<sp/>of<sp/>Contents**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[🎯<sp/>**Overview**](#-overview)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[🏗️<sp/>**Architecture**](#-architecture)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[🔌<sp/>**Features**](#-features)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[🚀<sp/>**Quick<sp/>Start**](#-quick-start)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[📖<sp/>**API<sp/>Documentation**](#-api-documentation)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[🔧<sp/>**Building**](#-building)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[📊<sp/>**Examples**](#-examples)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[🤝<sp/>**Contributing**](#-contributing)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[📄<sp/>**License**](#-license)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🎯<sp/>**Overview**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&gt;<sp/>**📖<sp/>[📚🌐<sp/>Live<sp/>Complete<sp/>Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)**<sp/>-</highlight></codeline>
+<codeline><highlight class="normal">&gt;<sp/>Interactive<sp/>guides,<sp/>examples,<sp/>and<sp/>step-by-step<sp/>tutorials</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**TLE92466ED<sp/>Driver**<sp/>is<sp/>a<sp/>modern,<sp/>production-ready<sp/>C++23<sp/>driver<sp/>implementation<sp/>for</highlight></codeline>
+<codeline><highlight class="normal">the<sp/>Infineon<sp/>TLE92466ED<sp/>Six-Channel<sp/>Low-Side<sp/>Solenoid<sp/>Driver<sp/>IC.<sp/>The<sp/>driver</highlight></codeline>
+<codeline><highlight class="normal">provides<sp/>comprehensive<sp/>SPI<sp/>interface,<sp/>precision<sp/>current<sp/>control,<sp/>and<sp/>extensive</highlight></codeline>
+<codeline><highlight class="normal">diagnostics<sp/>support<sp/>with<sp/>a<sp/>clean<sp/>hardware-agnostic<sp/>HAL<sp/>interface.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>🏆<sp/>**Core<sp/>Benefits**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**🔄<sp/>Hardware<sp/>Portability**<sp/>-<sp/>Clean<sp/>HAL<sp/>interface<sp/>for<sp/>easy<sp/>platform<sp/>porting</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**🎯<sp/>Modern<sp/>C++23**<sp/>-<sp/>Using<sp/>`std::expected`<sp/>for<sp/>type-safe<sp/>error<sp/>handling</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**⚡<sp/>Precision<sp/>Control**<sp/>-<sp/>15-bit<sp/>current<sp/>resolution<sp/>(0.061mA<sp/>steps)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**🛡️<sp/>Safety<sp/>Features**<sp/>-<sp/>Comprehensive<sp/>diagnostics<sp/>and<sp/>protection<sp/>systems</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**📈<sp/>Zero<sp/>Dependencies**<sp/>-<sp/>Freestanding-compatible,<sp/>suitable<sp/>for<sp/>bare-metal</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**🔌<sp/>Complete<sp/>Coverage**<sp/>-<sp/>Full<sp/>access<sp/>to<sp/>all<sp/>108<sp/>registers<sp/>and<sp/>features</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>🎨<sp/>**Design<sp/>Philosophy**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Write<sp/>hardware-agnostic<sp/>solenoid<sp/>control<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">YourPlatformHAL<sp/>hal;<sp/><sp/>//<sp/>Your<sp/>SPI<sp/>implementation</highlight></codeline>
+<codeline><highlight class="normal">TLE92466ED<sp/>driver(hal);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>and<sp/>control<sp/>channels</highlight></codeline>
+<codeline><highlight class="normal">driver.initialize();</highlight></codeline>
+<codeline><highlight class="normal">driver.setChannelCurrent(0,<sp/>1500);<sp/><sp/>//<sp/>1.5A</highlight></codeline>
+<codeline><highlight class="normal">driver.enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🏗️<sp/>**Architecture**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**HAL-Based<sp/>Design**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```text</highlight></codeline>
+<codeline><highlight class="normal">📦<sp/>TLE92466ED<sp/>Driver<sp/>Architecture</highlight></codeline>
+<codeline><highlight class="normal">├──<sp/>🎯<sp/>Driver<sp/>Layer<sp/>(TLE92466ED<sp/>class)<sp/><sp/><sp/><sp/><sp/>#<sp/>High-level<sp/>channel<sp/>control<sp/>API</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Channel<sp/>Control<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Current<sp/>setting,<sp/>enable/disable</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Diagnostics<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Fault<sp/>detection<sp/>and<sp/>monitoring</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>Configuration<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Channel<sp/>modes,<sp/>PWM<sp/>settings</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>└──<sp/>Register<sp/>Access<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Direct<sp/>register<sp/>manipulation</highlight></codeline>
+<codeline><highlight class="normal">│</highlight></codeline>
+<codeline><highlight class="normal">├──<sp/>🔌<sp/>Hardware<sp/>Abstraction<sp/>Layer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Platform-independent<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>TLE92466ED_CommInterface<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Communication<sp/>interface</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>├──<sp/>SPI<sp/>Transfer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>32-bit<sp/>frame<sp/>communication</highlight></codeline>
+<codeline><highlight class="normal">│<sp/><sp/><sp/>└──<sp/>Delay<sp/>Functions<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Timing<sp/>control</highlight></codeline>
+<codeline><highlight class="normal">│</highlight></codeline>
+<codeline><highlight class="normal">└──<sp/>🔧<sp/>Hardware<sp/>Layer<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Platform-specific<sp/>implementations</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>├──<sp/>ESP32<sp/>HAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>ESP32<sp/>family<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>├──<sp/>STM32<sp/>HAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>STM32<sp/>support</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>└──<sp/>Any<sp/>MCU<sp/>with<sp/>SPI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#<sp/>Your<sp/>implementation</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Abstraction<sp/>Benefits**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>**1.<sp/>MCU<sp/>Independence**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Application<sp/>code<sp/>remains<sp/>the<sp/>same<sp/>across<sp/>MCUs</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>SolenoidController<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>TLE92466ED*<sp/>driver;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>Initialize()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Platform-specific<sp/>HAL,<sp/>same<sp/>driver<sp/>code</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>YourPlatformHAL<sp/>hal;<sp/><sp/>//<sp/>ESP32,<sp/>STM32,<sp/>or<sp/>any<sp/>MCU</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>driver<sp/>=<sp/>new<sp/>TLE92466ED(hal);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Same<sp/>API<sp/>regardless<sp/>of<sp/>MCU</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>driver-&gt;initialize();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>driver-&gt;setChannelCurrent(0,<sp/>1500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>driver-&gt;enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🔌<sp/>**Features**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Hardware<sp/>Capabilities**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Feature**<sp/>|<sp/>**Specification**<sp/>|<sp/>**Details**<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------|-------------------|-------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Channels**<sp/>|<sp/>6<sp/>independent<sp/>outputs<sp/>|<sp/>Low-side<sp/>solenoid/load<sp/>control<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Current<sp/>Range**<sp/>|<sp/>0-2A<sp/>per<sp/>channel<sp/>|<sp/>Single<sp/>channel<sp/>operation<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Current<sp/>Range**<sp/>|<sp/>0-4A<sp/>per<sp/>channel<sp/>|<sp/>Parallel<sp/>mode<sp/>operation<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Resolution**<sp/>|<sp/>15-bit<sp/>(0.061mA)<sp/>|<sp/>Precision<sp/>current<sp/>control<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**SPI<sp/>Interface**<sp/>|<sp/>32-bit<sp/>frames<sp/>|<sp/>With<sp/>CRC-8<sp/>(SAE<sp/>J1850)<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**PWM<sp/>&amp;<sp/>Dither**<sp/>|<sp/>Configurable<sp/>|<sp/>Noise<sp/>reduction<sp/>and<sp/>precision<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Diagnostics**<sp/>|<sp/>Comprehensive<sp/>|<sp/>Overcurrent,<sp/>overtemperature,<sp/>load<sp/>detection<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Driver<sp/>Features**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Feature**<sp/>|<sp/>**Description**<sp/>|<sp/>**Benefits**<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-------------|-----------------|--------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Modern<sp/>C++23**<sp/>|<sp/>Using<sp/>`std::expected`<sp/>|<sp/>Type-safe<sp/>error<sp/>handling<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Hardware<sp/>Agnostic**<sp/>|<sp/>Clean<sp/>HAL<sp/>interface<sp/>|<sp/>Easy<sp/>platform<sp/>porting<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Zero<sp/>Dependencies**<sp/>|<sp/>Freestanding-compatible<sp/>|<sp/>Suitable<sp/>for<sp/>bare-metal<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**noexcept<sp/>Guarantee**<sp/>|<sp/>All<sp/>functions<sp/>noexcept<sp/>|<sp/>Embedded<sp/>safety<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**Production<sp/>Ready**<sp/>|<sp/>Thoroughly<sp/>documented<sp/>|<sp/>Industry-grade<sp/>quality<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🚀<sp/>**Quick<sp/>Start**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**1.<sp/>Clone<sp/>Repository**</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">git<sp/>clone<sp/>https://github.com/n3b3x/hf-tle92466ed-driver.git</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>hf-tle92466ed-driver</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**2.<sp/>Implement<sp/>HAL<sp/>Interface**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;inc/TLE92466ED_CommInterface.hpp&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">class<sp/>YourPlatformHAL<sp/>:<sp/>public<sp/>TLE92466ED::HAL<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">public:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>spiTransfer(std::span&lt;const<sp/>uint8_t&gt;<sp/>txData,<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::span&lt;uint8_t&gt;<sp/>rxData)<sp/>noexcept<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>std::expected&lt;void,<sp/>HALError&gt;<sp/>override<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Your<sp/>SPI<sp/>transfer<sp/>implementation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>void<sp/>delayMicroseconds(uint32_t<sp/>us)<sp/>noexcept<sp/>override<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Your<sp/>delay<sp/>implementation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**3.<sp/>Basic<sp/>Usage**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">#include<sp/>&quot;include/TLE92466ED.hpp&quot;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">YourPlatformHAL<sp/>hal;</highlight></codeline>
+<codeline><highlight class="normal">TLE92466ED<sp/>driver(hal);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>the<sp/>IC</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(auto<sp/>result<sp/>=<sp/>driver.initialize();<sp/>!result)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>-1;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Set<sp/>current<sp/>for<sp/>channel<sp/>0<sp/>to<sp/>1.5A</highlight></codeline>
+<codeline><highlight class="normal">driver.setChannelCurrent(0,<sp/>1500);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Enable<sp/>channel<sp/>0</highlight></codeline>
+<codeline><highlight class="normal">driver.enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**4.<sp/>Build<sp/>Example**</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>examples/esp32</highlight></codeline>
+<codeline><highlight class="normal">./scripts/setup_repo.sh</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>basic_usage<sp/>Release</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📖<sp/>**API<sp/>Documentation**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Generated<sp/>Documentation**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**[📚<sp/>Complete<sp/>Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)**<sp/>-</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Interactive<sp/>guides<sp/>and<sp/>tutorials</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**[API<sp/>Reference](docs/00_INDEX.md)**<sp/>-<sp/>Complete<sp/>driver<sp/>API<sp/>documentation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**[IC<sp/>Overview](docs/01_IC_Overview.md)**<sp/>-<sp/>Hardware<sp/>specifications</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Key<sp/>Concepts**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>**Initialization**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Initialize<sp/>the<sp/>driver</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(auto<sp/>result<sp/>=<sp/>driver.initialize();<sp/>!result)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>initialization<sp/>error</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>**Channel<sp/>Control**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Set<sp/>current<sp/>(0-2000<sp/>mA)</highlight></codeline>
+<codeline><highlight class="normal">driver.setChannelCurrent(0,<sp/>1500);<sp/><sp/>//<sp/>1.5A</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Enable/disable<sp/>channels</highlight></codeline>
+<codeline><highlight class="normal">driver.enableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal">driver.disableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">####<sp/>**Diagnostics**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Read<sp/>diagnostics</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(auto<sp/>diag<sp/>=<sp/>driver.readDiagnostics();<sp/>diag)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(diag-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Handle<sp/>overcurrent<sp/>condition</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🔧<sp/>**Building**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Build<sp/>System<sp/>Features**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**CMake<sp/>Integration**<sp/>-<sp/>Easy<sp/>project<sp/>integration</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**ESP32<sp/>Examples**<sp/>-<sp/>Comprehensive<sp/>test<sp/>applications</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Manual<sp/>Integration**<sp/>-<sp/>Simple<sp/>header/source<sp/>inclusion</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**CI/CD<sp/>Integration**<sp/>-<sp/>Automated<sp/>builds<sp/>and<sp/>validation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Build<sp/>Commands**</highlight></codeline>
+<codeline><highlight class="normal">```bash</highlight></codeline>
+<codeline><highlight class="normal">##<sp/>For<sp/>ESP32<sp/>development</highlight></codeline>
+<codeline><highlight class="normal">cd<sp/>examples/esp32</highlight></codeline>
+<codeline><highlight class="normal">./scripts/setup_repo.sh</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>&lt;app_name&gt;<sp/>&lt;build_type&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Examples:</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>basic_usage<sp/>Release</highlight></codeline>
+<codeline><highlight class="normal">./scripts/build_app.sh<sp/>multi_channel<sp/>Debug</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**CMake<sp/>Integration**</highlight></codeline>
+<codeline><highlight class="normal">```cmake</highlight></codeline>
+<codeline><highlight class="normal">add_subdirectory(external/hf-tle92466ed-driver)</highlight></codeline>
+<codeline><highlight class="normal">target_link_libraries(your_target<sp/>PRIVATE<sp/>TLE92466ED)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📊<sp/>**Examples**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Available<sp/>Test<sp/>Applications**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>**Application**<sp/>|<sp/>**Tests**<sp/>|<sp/>**Purpose**<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|-----------------|-----------|-------------|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**basic_usage**<sp/>|<sp/>Single<sp/>channel<sp/>control<sp/>|<sp/>Basic<sp/>current<sp/>setting<sp/>and<sp/>enable<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**multi_channel**<sp/>|<sp/>Multi-channel<sp/>operation<sp/>|<sp/>Parallel<sp/>channel<sp/>control<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>**diagnostics**<sp/>|<sp/>Fault<sp/>detection<sp/>|<sp/>Overcurrent<sp/>and<sp/>overtemperature<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Usage<sp/>Examples**</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">//<sp/>Single<sp/>Channel<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">driver.setChannelCurrent(0,<sp/>1500);<sp/><sp/>//<sp/>1.5A</highlight></codeline>
+<codeline><highlight class="normal">driver.enableChannel(0);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Multi-Channel<sp/>Control</highlight></codeline>
+<codeline><highlight class="normal">for<sp/>(uint8_t<sp/>ch<sp/>=<sp/>0;<sp/>ch<sp/>&lt;<sp/>6;<sp/>ch++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>driver.setChannelCurrent(ch,<sp/>1000);<sp/><sp/>//<sp/>1A<sp/>per<sp/>channel</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>driver.enableChannel(ch);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">//<sp/>Diagnostics<sp/>Monitoring</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(auto<sp/>diag<sp/>=<sp/>driver.readDiagnostics();<sp/>diag)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(diag-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>driver.disableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🤝<sp/>**Contributing**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Development<sp/>Workflow**</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>**Fork**<sp/>the<sp/>repository</highlight></codeline>
+<codeline><highlight class="normal">2.<sp/>**Create**<sp/>feature<sp/>branch<sp/>(`feature/new-feature`)</highlight></codeline>
+<codeline><highlight class="normal">3.<sp/>**Implement**<sp/>following<sp/>coding<sp/>standards</highlight></codeline>
+<codeline><highlight class="normal">4.<sp/>**Test**<sp/>with<sp/>existing<sp/>applications</highlight></codeline>
+<codeline><highlight class="normal">5.<sp/>**Document**<sp/>your<sp/>changes</highlight></codeline>
+<codeline><highlight class="normal">6.<sp/>**Submit**<sp/>pull<sp/>request</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Coding<sp/>Standards**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Functions**:<sp/>PascalCase<sp/>(`SetChannelCurrent`,<sp/>`ReadDiagnostics`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Types**:<sp/>snake_case<sp/>with<sp/>`*t`<sp/>suffix<sp/>(`hal_error_t`)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Error<sp/>Handling**:<sp/>Use<sp/>`std::expected`<sp/>for<sp/>type<sp/>safety</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Code<sp/>Formatting**:<sp/>Use<sp/>`clang-format`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>📄<sp/>**License**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>software<sp/>is<sp/>released<sp/>into<sp/>the<sp/>**Public<sp/>Domain**.<sp/>You<sp/>can<sp/>use,<sp/>modify,<sp/>and</highlight></codeline>
+<codeline><highlight class="normal">distribute<sp/>it<sp/>freely<sp/>without<sp/>any<sp/>restrictions.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>🔗<sp/>**Quick<sp/>Links**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Documentation**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📚<sp/>[Complete<sp/>Documentation](https://n3b3x.github.io/hf-tle92466ed-driver/)<sp/>-</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Interactive<sp/>guides<sp/>and<sp/>tutorials</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📋<sp/>[Documentation<sp/>Index](docs/00_INDEX.md)<sp/>-<sp/>Complete<sp/>documentation</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>navigation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🔌<sp/>[IC<sp/>Overview](docs/01_IC_Overview.md)<sp/>-<sp/>Hardware<sp/>specifications</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📡<sp/>[SPI<sp/>Protocol](docs/02_SPI_Protocol.md)<sp/>-<sp/>Communication<sp/>protocol</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🎛️<sp/>[Driver<sp/>API](docs/07_Driver_API.md)<sp/>-<sp/>C++<sp/>API<sp/>reference</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🔧<sp/>[HAL<sp/>Implementation](docs/08_HAL_Implementation.md)<sp/>-<sp/>Platform<sp/>porting</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>guide</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>💻<sp/>[Usage<sp/>Examples](docs/09_Usage_Examples.md)<sp/>-<sp/>Practical<sp/>code<sp/>examples</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Development**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🚀<sp/>[Examples](examples/esp32/)<sp/>-<sp/>Test<sp/>applications<sp/>and<sp/>usage<sp/>examples</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🧪<sp/>[Test<sp/>Documentation](examples/esp32/docs/README.md)<sp/>-<sp/>Comprehensive<sp/>test</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>documentation</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🔧<sp/>[Scripts](examples/esp32/scripts/)<sp/>-<sp/>Build,<sp/>flash,<sp/>and<sp/>development<sp/>tools</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>📊<sp/>[Configuration](examples/esp32/app_config.yml)<sp/>-<sp/>Application<sp/>and<sp/>build</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>settings</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>**Community**</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🤝<sp/>[Contributing](CONTRIBUTING.md)<sp/>-<sp/>Development<sp/>guidelines</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🐛<sp/>[Issue<sp/>Tracker](https://github.com/n3b3x/hf-tle92466ed-driver/issues)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>💬<sp/>[Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Built<sp/>for<sp/>the<sp/>HardFOC<sp/>ecosystem<sp/>-<sp/>Enabling<sp/>seamless<sp/>solenoid<sp/>control**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*Precision<sp/>current<sp/>control<sp/>that<sp/>just<sp/>works™*</highlight></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

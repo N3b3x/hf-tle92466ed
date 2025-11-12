@@ -61,7 +61,7 @@ The datasheet provides min-max ranges, not typical values. We use mid-range esti
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/TLE92466ED.cpp" line="1226" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1226" bodyend="1236"/>
+        <location file="src/TLE92466ED.cpp" line="1212" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1212" bodyend="1222"/>
       </memberdef>
       <memberdef kind="function" id="namespaceTLE92466ED_1a2e59e77ac04459da595df2e873070090" prot="public" static="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>void</type>
@@ -105,7 +105,7 @@ The datasheet provides min-max ranges, not typical values. We use mid-range esti
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/TLE92466ED.cpp" line="1255" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1255" bodyend="1259"/>
+        <location file="src/TLE92466ED.cpp" line="1241" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1241" bodyend="1245"/>
       </memberdef>
     </sectiondef>
     <briefdescription>

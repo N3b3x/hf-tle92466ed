@@ -50,344 +50,36 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Home | TLE92466ED Driver - development</title>
+<title>🔧 HardFOC TLE92466ED Driver | HardFOC TLE92466ED Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Home" />
+<meta property="og:title" content="🔧 HardFOC TLE92466ED Driver" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC" />
-<meta property="og:description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC" />
+<meta name="description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics" />
+<meta property="og:description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-tle92466ed-driver/development/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-tle92466ed-driver/development/" />
-<meta property="og:site_name" content="TLE92466ED Driver - development" />
+<meta property="og:site_name" content="HardFOC TLE92466ED Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Home" />
+<meta property="twitter:title" content="🔧 HardFOC TLE92466ED Driver" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC","headline":"Home","name":"TLE92466ED Driver","sameAs":["https://github.com/n3b3x/hf-tle92466ed-driver","https://github.com/n3b3x"],"url":"https://n3b3x.github.io/hf-tle92466ed-driver/development/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics","headline":"🔧 HardFOC TLE92466ED Driver","name":"HardFOC TLE92466ED Driver","sameAs":["https://github.com/n3b3x/hf-tle92466ed-driver","https://github.com/n3b3x"],"url":"https://n3b3x.github.io/hf-tle92466ed-driver/development/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <!-- Custom head content for TLE92466ED driver documentation -->
+  <!-- =============================================================================
+     Custom Head Content for HardFOC Driver Documentation
+     =============================================================================
+     This file is included in the <head> section of every page.
+     It loads custom CSS and JavaScript for enhanced functionality.
+     ============================================================================= -->
+
+<!-- Custom CSS for enhanced styling and fixes -->
 <link rel="stylesheet" href="/hf-tle92466ed-driver/development/assets/css/custom.css">
+
+<!-- Custom JavaScript for interactive features -->
 <script src="/hf-tle92466ed-driver/development/assets/js/custom.js" defer></script>
-
-<!-- Version selector for multi-version documentation -->
-<!-- Version Selector Component for Multi-Version Documentation -->
-<div class="version-selector">
-  <div class="version-dropdown">
-    <label for="version-select" class="version-label">
-      <span class="version-icon">📚</span>
-      Version:
-    </label>
-    <select id="version-select" class="version-select" onchange="switchVersion(this.value)">
-      <option value="latest" data-url="/hf-tle92466ed-driver/">Development (main)</option>
-      <option value="v2.0.0" data-url="/hf-tle92466ed-driver/v2.0.0/">v2.0.0 (Latest Stable)</option>
-    </select>
-  </div>
-  
-  <div class="version-info">
-    <span class="current-version" id="current-version">Latest (main)</span>
-    <span class="version-badge" id="version-badge">dev</span>
-  </div>
-</div>
-
-<script>
-// Version switching logic
-function switchVersion(version) {
-  const select = document.getElementById('version-select');
-  const selectedOption = select.options[select.selectedIndex];
-  const targetUrl = selectedOption.getAttribute('data-url');
-  
-  if (targetUrl) {
-    // Update current page URL to new version
-    const currentPath = window.location.pathname;
-    const baseUrl = window.location.origin;
-    
-    // Extract the path after the version prefix
-    let newPath = currentPath;
-    if (currentPath.includes('/hf-tle92466ed-driver/')) {
-      const pathParts = currentPath.split('/hf-tle92466ed-driver/');
-      if (pathParts.length > 1) {
-        newPath = pathParts[1];
-      }
-    }
-    
-    // Construct new URL
-    const newUrl = baseUrl + targetUrl + newPath;
-    window.location.href = newUrl;
-  }
-}
-
-// Set current version based on URL
-document.addEventListener('DOMContentLoaded', function() {
-  const currentPath = window.location.pathname;
-  const versionSelect = document.getElementById('version-select');
-  const currentVersionSpan = document.getElementById('current-version');
-  const versionBadge = document.getElementById('version-badge');
-  
-  // Determine current version from URL
-  let currentVersion = 'latest';
-  let versionType = 'dev';
-  
-  if (currentPath.includes('/stable/')) {
-    currentVersion = 'stable';
-    versionType = 'stable';
-  } else if (currentPath.includes('/v2.0.0/')) {
-    currentVersion = 'v2.0.0';
-    versionType = 'release';
-  }
-  
-  // Update UI
-  versionSelect.value = currentVersion;
-  currentVersionSpan.textContent = currentVersion === 'latest' ? 'Latest (main)' : 
-                                  currentVersion === 'stable' ? 'Stable (latest release)' : 
-                                  currentVersion;
-  
-  // Update badge
-  versionBadge.textContent = versionType;
-  versionBadge.className = 'version-badge ' + versionType;
-});
-</script>
-
-<style>
-.version-selector {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--nav-child-link-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-}
-
-.version-dropdown {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.version-label {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-icon {
-  font-size: 1rem;
-}
-
-.version-select {
-  padding: 0.25rem 0.5rem;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  background: var(--body-bg);
-  color: var(--body-text-color);
-  font-size: 0.9rem;
-  min-width: 150px;
-}
-
-.version-select:focus {
-  outline: 2px solid var(--link-color);
-  outline-offset: 2px;
-}
-
-.version-info {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-left: auto;
-}
-
-.current-version {
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-badge {
-  padding: 0.125rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.version-badge.dev {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.version-badge.stable {
-  background: #e8f5e8;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
-}
-
-.version-badge.release {
-  background: #fff3e0;
-  color: #f57c00;
-  border: 1px solid #ffcc02;
-}
-
-@media (max-width: 768px) {
-  .version-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-  
-  .version-info {
-    margin-left: 0;
-    justify-content: center;
-  }
-}
-</style>
-
-
-
-<!-- Version information display -->
-<!-- Version Information Display Component -->
-<div class="version-info-display">
-  <div class="version-details">
-    <span class="version-label">Version:</span>
-    <span class="version-value">2.0.0</span>
-    <span class="version-badge version-stable">stable</span>
-  </div>
-  
-  <div class="version-meta">
-    <span class="branch-info">
-      <span class="branch-icon">🌿</span>
-      <span class="branch-name">main</span>
-    </span>
-    
-    <span class="build-info">
-      <span class="build-icon">🔨</span>
-      <span class="build-date">2025-11-08</span>
-    </span>
-  </div>
-</div>
-
-<style>
-.version-info-display {
-  background: var(--nav-child-link-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1rem;
-  margin: 1rem 0;
-  font-size: 0.9rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.version-details {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.version-label {
-  font-weight: 500;
-  color: var(--body-text-color);
-}
-
-.version-value {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 600;
-  color: var(--link-color);
-  background: var(--code-bg);
-  padding: 0.125rem 0.5rem;
-  border-radius: 4px;
-  border: 1px solid var(--border-color);
-}
-
-.version-badge {
-  padding: 0.125rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.version-badge.development {
-  background: #e3f2fd;
-  color: #1976d2;
-  border: 1px solid #bbdefb;
-}
-
-.version-badge.stable {
-  background: #e8f5e8;
-  color: #2e7d32;
-  border: 1px solid #c8e6c9;
-}
-
-.version-badge.release {
-  background: #fff3e0;
-  color: #f57c00;
-  border: 1px solid #ffcc02;
-}
-
-.version-meta {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.branch-info,
-.build-info {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  color: var(--body-text-color);
-  font-size: 0.85rem;
-}
-
-.branch-icon,
-.build-icon {
-  font-size: 0.9rem;
-}
-
-.branch-name {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 500;
-}
-
-.build-date {
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  .version-info-display {
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-  }
-  
-  .version-details,
-  .version-meta {
-    justify-content: center;
-  }
-  
-  .version-meta {
-    margin-top: 0.5rem;
-    padding-top: 0.5rem;
-    border-top: 1px solid var(--border-color);
-  }
-}
-</style>
-
-
 
 
 
@@ -463,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="side-bar">
   <div class="site-header" role="banner">
     <a href="/hf-tle92466ed-driver/development/" class="site-title lh-tight">
-  TLE92466ED Driver - development
+  HardFOC TLE92466ED Driver - development
 
 </a>
     <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false">
@@ -474,23 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HardFOC ESP-IDF Project Tools</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 HardFOC TLE92466ED Driver category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/CONTRIBUTING/" class="nav-list-link">🤝 Contributing</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">🔧 HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Getting Started category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/getting-started/" class="nav-list-link">Getting Started</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/installation/" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/configuration/" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/getting-started/project-setup/" class="nav-list-link">Project Setup</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">Home</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔧 Core Systems category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/core-systems/" class="nav-list-link">🔧 Core Systems</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/build-system/" class="nav-list-link">Build System</a></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in Configuration System category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/configuration/" class="nav-list-link">Configuration System</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration/centralized/" class="nav-list-link">Centralized Configuration</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/flash-system/" class="nav-list-link">Flash System</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/logging-system/" class="nav-list-link">Logging System</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in ⚡ CI Pipeline category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">⚡ CI Pipeline</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-pipeline/" class="nav-list-link">CI Pipeline Usage</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/ci-integration-patterns/" class="nav-list-link">CI/CD Integration Patterns</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 🔬 Advanced Topics category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/advanced-topics/" class="nav-list-link">🔬 Advanced Topics</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/multi-version-idf/" class="nav-list-link">Multi-Version ESP-IDF Support</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/port-detection/" class="nav-list-link">Port Detection</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/advanced/utility-scripts/" class="nav-list-link">Utility Scripts</a></li></ul></li><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Reference category" aria-pressed="false">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-tle92466ed-driver/development/docs/reference/" class="nav-list-link">📚 Reference</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/features/" class="nav-list-link">Features</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples/" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/" class="nav-list-link">Troubleshooting</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/contributing/" class="nav-list-link">Contributing</a></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/arduino/" class="nav-list-link">TLE92466ED Arduino Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/tle92466ed-espidf/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
+      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/" class="nav-list-link">🔌 IC Overview</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/" class="nav-list-link">📡 SPI Protocol</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/" class="nav-list-link">📋 Register Map</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/" class="nav-list-link">⚡ Current Control</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/" class="nav-list-link">🎛️ Channel Modes</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/" class="nav-list-link">🛡️ Diagnostics</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/" class="nav-list-link">🔧 Driver API</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/" class="nav-list-link">🔌 HAL Implementation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/" class="nav-list-link">💻 Usage Examples</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/hf_tle92466ed/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
   
 </nav>
 
@@ -499,24 +179,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   
   
-    <footer class="site-nav-footer">
-  <div class="nav-footer-links">
-    <a href="https://github.com/n3b3x/hf-internal-interface-wrap" class="nav-footer-link" aria-label="GitHub Repository">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-      </svg>
-      GitHub
-    </a>
-    <a href="https://github.com/n3b3x/hf-internal-interface-wrap/issues" class="nav-footer-link" aria-label="Report Issues">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-      </svg>
-      Issues
-    </a>
-  </div>
-</footer>
-
-
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
   
 </div>
 
@@ -528,7 +193,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <div class="search" role="search">
   <div class="search-input-wrap">
-    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search workflows, examples, and guides..." aria-label="Search workflows, examples, and guides..." autocomplete="off">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search HardFOC TLE92466ED Driver - development" aria-label="Search HardFOC TLE92466ED Driver - development" autocomplete="off">
     <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
   </div>
   <div id="search-results" class="search-results"></div>
@@ -572,14 +237,6 @@ document.addEventListener('DOMContentLoaded', function() {
         </a>
       </li>
     
-      <li class="aux-nav-list-item">
-        <a href="https://n3b3x.github.io/hf-tle92466ed-driver/doxygen/html/" class="site-button"
-          
-        >
-          📖 API Documentation
-        </a>
-      </li>
-    
   </ul>
 </nav>
 
@@ -591,365 +248,793 @@ document.addEventListener('DOMContentLoaded', function() {
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 class="fs-9" id="tle92466ed-driver">
+            <h1 id="-hardfoc-tle92466ed-driver">
   
   
-    <a href="#tle92466ed-driver" class="anchor-heading" aria-labelledby="tle92466ed-driver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> TLE92466ED Driver
+    <a href="#-hardfoc-tle92466ed-driver" class="anchor-heading" aria-labelledby="-hardfoc-tle92466ed-driver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔧 HardFOC TLE92466ED Driver
   
   
 </h1>
     
+<p><strong>Six-Channel Low-Side Solenoid Driver</strong></p>
 
-<p class="fs-6 fw-300">Modern C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC</p>
-
-<p><a href="/hf-tle92466ed-driver/development/docs/" class="btn btn-primary fs-5 mb-4 mb-md-0 mr-2">Get Started</a>
-<a href="https://github.com/n3b3x/hf-tle92466ed-driver" class="btn fs-5 mb-4 mb-md-0">View on GitHub</a></p><hr />
-<h2 id="overview">
+<p><img src="https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip" alt="TLE92466ED" />
+<img src="https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus" alt="C++23" />
+<img src="https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware" alt="Hardware-Agnostic" />
+<img src="https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative" alt="License" /></p>
+<h2 id="-modern-solenoid-control-interface-for-multi-mcu-development">
   
   
-    <a href="#overview" class="anchor-heading" aria-labelledby="overview"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Overview
+    <a href="#-modern-solenoid-control-interface-for-multi-mcu-development" class="anchor-heading" aria-labelledby="-modern-solenoid-control-interface-for-multi-mcu-development"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🎯 Modern Solenoid Control Interface for Multi-MCU Development
   
   
 </h2>
     
 
-<p>The TLE92466ED driver is a production-ready C++23 implementation for controlling the
-Infineon TLE92466ED IC, a sophisticated six-channel low-side solenoid driver with
-precision current control.</p>
-<h3 id="key-features">
+<p><em>A production-ready C++23 driver implementation for the Infineon TLE92466ED with
+comprehensive SPI interface, precision current control, and extensive diagnostics
+support</em></p><hr />
+<h2 id="-table-of-contents">
   
   
-    <a href="#key-features" class="anchor-heading" aria-labelledby="key-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Key Features
+    <a href="#-table-of-contents" class="anchor-heading" aria-labelledby="-table-of-contents"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📚 <strong>Table of Contents</strong>
+  
+  
+</h2>
+    
+
+<ul>
+  <li><a href="#-overview">🎯 <strong>Overview</strong></a></li>
+  <li><a href="#-architecture">🏗️ <strong>Architecture</strong></a></li>
+  <li><a href="#-features">🔌 <strong>Features</strong></a></li>
+  <li><a href="#-quick-start">🚀 <strong>Quick Start</strong></a></li>
+  <li><a href="#-api-documentation">📖 <strong>API Documentation</strong></a></li>
+  <li><a href="#-building">🔧 <strong>Building</strong></a></li>
+  <li><a href="#-examples">📊 <strong>Examples</strong></a></li>
+  <li><a href="#-contributing">🤝 <strong>Contributing</strong></a></li>
+  <li><a href="#-license">📄 <strong>License</strong></a></li>
+</ul><hr />
+<h2 id="-overview">
+  
+  
+    <a href="#-overview" class="anchor-heading" aria-labelledby="-overview"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🎯 <strong>Overview</strong>
+  
+  
+</h2>
+    
+
+<blockquote>
+  <p><strong>📖 <a href="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</a></strong> -
+Interactive guides, examples, and step-by-step tutorials</p>
+</blockquote>
+
+<p><strong>TLE92466ED Driver</strong> is a modern, production-ready C++23 driver implementation for
+the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver
+provides comprehensive SPI interface, precision current control, and extensive
+diagnostics support with a clean hardware-agnostic HAL interface.</p>
+<h3 id="-core-benefits">
+  
+  
+    <a href="#-core-benefits" class="anchor-heading" aria-labelledby="-core-benefits"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🏆 <strong>Core Benefits</strong>
   
   
 </h3>
     
 
 <ul>
-  <li><strong>6 Independent Channels</strong> - Low-side solenoid/load control</li>
-  <li><strong>15-bit Current Control</strong> - 0.061mA resolution, 0-2A per channel (0-4A parallel)</li>
-  <li><strong>32-bit SPI with CRC-8</strong> - Robust communication with data integrity</li>
-  <li><strong>Modern C++23</strong> - Using <code class="language-plaintext highlighter-rouge">std::expected</code> for error handling</li>
-  <li><strong>Hardware Agnostic</strong> - Clean HAL interface for platform portability</li>
-  <li><strong>Zero Dependencies</strong> - Freestanding-compatible for embedded systems</li>
-  <li><strong>Comprehensive Diagnostics</strong> - Overcurrent, temperature, load detection</li>
+  <li><strong>🔄 Hardware Portability</strong> - Clean HAL interface for easy platform porting</li>
+  <li><strong>🎯 Modern C++23</strong> - Using <code class="language-plaintext highlighter-rouge">std::expected</code> for type-safe error handling</li>
+  <li><strong>⚡ Precision Control</strong> - 15-bit current resolution (0.061mA steps)</li>
+  <li><strong>🛡️ Safety Features</strong> - Comprehensive diagnostics and protection systems</li>
+  <li><strong>📈 Zero Dependencies</strong> - Freestanding-compatible, suitable for bare-metal</li>
+  <li><strong>🔌 Complete Coverage</strong> - Full access to all 108 registers and features</li>
 </ul>
-<h2 id="quick-start">
+<h3 id="-design-philosophy">
   
   
-    <a href="#quick-start" class="anchor-heading" aria-labelledby="quick-start"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Quick Start
+    <a href="#-design-philosophy" class="anchor-heading" aria-labelledby="-design-philosophy"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🎨 <strong>Design Philosophy</strong>
+  
+  
+</h3>
+    
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c1">// Write hardware-agnostic solenoid control code</span>
+<span class="n">YourPlatformHAL</span> <span class="n">hal</span><span class="p">;</span>  <span class="c1">// Your SPI implementation</span>
+<span class="n">TLE92466ED</span> <span class="nf">driver</span><span class="p">(</span><span class="n">hal</span><span class="p">);</span>
+
+<span class="c1">// Initialize and control channels</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>  <span class="c1">// 1.5A</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="️-architecture">
+  
+  
+    <a href="#️-architecture" class="anchor-heading" aria-labelledby="️-architecture"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🏗️ <strong>Architecture</strong>
   
   
 </h2>
     
-<h3 id="1-include-the-driver">
+<h3 id="hal-based-design">
   
   
-    <a href="#1-include-the-driver" class="anchor-heading" aria-labelledby="1-include-the-driver"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 1. Include the Driver
-  
-  
-</h3>
-    
-
-<p><code class="language-plaintext highlighter-rouge">cpp
-#include "TLE92466ED.hpp"
-#include "your_platform_hal.hpp"
-</code>text</p>
-<h3 id="2-create-and-initialize">
-  
-  
-    <a href="#2-create-and-initialize" class="anchor-heading" aria-labelledby="2-create-and-initialize"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 2. Create and Initialize
+    <a href="#hal-based-design" class="anchor-heading" aria-labelledby="hal-based-design"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>HAL-Based Design</strong>
   
   
 </h3>
     
 
-<p>```cpp
-YourPlatformHAL hal;
-TLE92466ED driver(hal);</p>
-
-<p>if (auto result = driver.initialize(); !result) {
-    // Handle initialization error
-}
-```text</p>
-<h3 id="3-control-channels">
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>📦 TLE92466ED Driver Architecture
+├── 🎯 Driver Layer (TLE92466ED class)     # High-level channel control API
+│   ├── Channel Control                  # Current setting, enable/disable
+│   ├── Diagnostics                      # Fault detection and monitoring
+│   ├── Configuration                    # Channel modes, PWM settings
+│   └── Register Access                  # Direct register manipulation
+│
+├── 🔌 Hardware Abstraction Layer        # Platform-independent interface
+│   ├── TLE92466ED_CommInterface         # Communication interface
+│   ├── SPI Transfer                     # 32-bit frame communication
+│   └── Delay Functions                  # Timing control
+│
+└── 🔧 Hardware Layer                   # Platform-specific implementations
+    ├── ESP32 HAL                        # ESP32 family support
+    ├── STM32 HAL                        # STM32 support
+    └── Any MCU with SPI                 # Your implementation
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="abstraction-benefits">
   
   
-    <a href="#3-control-channels" class="anchor-heading" aria-labelledby="3-control-channels"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 3. Control Channels
+    <a href="#abstraction-benefits" class="anchor-heading" aria-labelledby="abstraction-benefits"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Abstraction Benefits</strong>
   
   
 </h3>
     
-
-<p>```cpp
-// Set current to 1.5A
-driver.setChannelCurrent(0, 1500);</p>
-
-<p>// Enable channel
-driver.enableChannel(0);</p>
-
-<p>// Read diagnostics
-if (auto diag = driver.readDiagnostics(); diag) {
-    if (diag-&gt;hasOvercurrent()) {
-        // Handle overcurrent
-    }
-}
-```text</p>
-<h2 id="documentation">
+<h4 id="1-mcu-independence">
   
   
-    <a href="#documentation" class="anchor-heading" aria-labelledby="documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Documentation
+    <a href="#1-mcu-independence" class="anchor-heading" aria-labelledby="1-mcu-independence"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>1. MCU Independence</strong>
+  
+  
+</h4>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">// Application code remains the same across MCUs</span>
+<span class="k">class</span> <span class="nc">SolenoidController</span> <span class="p">{</span>
+    <span class="n">TLE92466ED</span><span class="o">*</span> <span class="n">driver</span><span class="p">;</span>
+    
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">Initialize</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Platform-specific HAL, same driver code</span>
+        <span class="n">YourPlatformHAL</span> <span class="n">hal</span><span class="p">;</span>  <span class="c1">// ESP32, STM32, or any MCU</span>
+        <span class="n">driver</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TLE92466ED</span><span class="p">(</span><span class="n">hal</span><span class="p">);</span>
+        
+        <span class="c1">// Same API regardless of MCU</span>
+        <span class="n">driver</span><span class="o">-&gt;</span><span class="n">initialize</span><span class="p">();</span>
+        <span class="n">driver</span><span class="o">-&gt;</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>
+        <span class="n">driver</span><span class="o">-&gt;</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="-features">
+  
+  
+    <a href="#-features" class="anchor-heading" aria-labelledby="-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔌 <strong>Features</strong>
   
   
 </h2>
     
-
-<div class="code-example">
-<h3 id="complete-guides">
+<h3 id="hardware-capabilities">
   
   
-    <a href="#complete-guides" class="anchor-heading" aria-labelledby="complete-guides"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📖 Complete Guides
-  
-  
-</h3>
-    
-
-  <ul>
-    <li><a href="/hf-tle92466ed-driver/development/docs/"><strong>Documentation Index</strong></a> - Navigation hub</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/"><strong>IC Overview</strong></a> - Hardware specifications</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/"><strong>SPI Protocol</strong></a> - Communication details</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/03_Register_Map/"><strong>Register Map</strong></a> - All 108 registers</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/04_Current_Control/"><strong>Current Control</strong></a> - ICC system</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/05_Channel_Modes/"><strong>Channel Modes</strong></a> - Operating modes</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/06_Diagnostics/"><strong>Diagnostics</strong></a> - Fault detection</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/"><strong>Driver API</strong></a> - C++ interface</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/"><strong>HAL Implementation</strong></a> - Platform porting</li>
-    <li><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/"><strong>Usage Examples</strong></a> - Code samples</li>
-  </ul>
-<h3 id="api-reference">
-  
-  
-    <a href="#api-reference" class="anchor-heading" aria-labelledby="api-reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔧 API Reference
+    <a href="#hardware-capabilities" class="anchor-heading" aria-labelledby="hardware-capabilities"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Hardware Capabilities</strong>
   
   
 </h3>
-    
-
-  <ul>
-    <li><a href="doxygen/html/"><strong>Doxygen Documentation</strong></a> - Complete API reference</li>
-  </ul>
-
-</div>
-<h2 id="hardware-specifications">
-  
-  
-    <a href="#hardware-specifications" class="anchor-heading" aria-labelledby="hardware-specifications"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Hardware Specifications
-  
-  
-</h2>
     
 
 <div class="table-wrapper"><table>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th>Specification</th>
+      <th><strong>Feature</strong></th>
+      <th><strong>Specification</strong></th>
+      <th><strong>Details</strong></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><strong>Channels</strong></td>
       <td>6 independent outputs</td>
+      <td>Low-side solenoid/load control</td>
     </tr>
     <tr>
       <td><strong>Current Range</strong></td>
-      <td>0-2A (single), 0-4A (parallel)</td>
+      <td>0-2A per channel</td>
+      <td>Single channel operation</td>
+    </tr>
+    <tr>
+      <td><strong>Current Range</strong></td>
+      <td>0-4A per channel</td>
+      <td>Parallel mode operation</td>
     </tr>
     <tr>
       <td><strong>Resolution</strong></td>
       <td>15-bit (0.061mA)</td>
+      <td>Precision current control</td>
     </tr>
     <tr>
       <td><strong>SPI Interface</strong></td>
-      <td>32-bit frames with CRC-8</td>
+      <td>32-bit frames</td>
+      <td>With CRC-8 (SAE J1850)</td>
     </tr>
     <tr>
-      <td><strong>PWM Support</strong></td>
-      <td>Configurable frequency</td>
+      <td><strong>PWM &amp; Dither</strong></td>
+      <td>Configurable</td>
+      <td>Noise reduction and precision</td>
     </tr>
     <tr>
-      <td><strong>Dither</strong></td>
-      <td>Up to 1.8A amplitude</td>
-    </tr>
-    <tr>
-      <td><strong>Protection</strong></td>
-      <td>Overcurrent, overtemp, load detection</td>
+      <td><strong>Diagnostics</strong></td>
+      <td>Comprehensive</td>
+      <td>Overcurrent, overtemperature, load detection</td>
     </tr>
   </tbody>
 </table></div>
-<h2 id="requirements">
+<h3 id="driver-features">
   
   
-    <a href="#requirements" class="anchor-heading" aria-labelledby="requirements"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Requirements
-  
-  
-</h2>
-    
-<h3 id="compiler-support">
-  
-  
-    <a href="#compiler-support" class="anchor-heading" aria-labelledby="compiler-support"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Compiler Support
+    <a href="#driver-features" class="anchor-heading" aria-labelledby="driver-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Driver Features</strong>
   
   
 </h3>
     
-<ul>
-  <li>GCC 12.0+ or Clang 16.0+ or MSVC 19.33+</li>
-  <li>C++23 standard library with <code class="language-plaintext highlighter-rouge">std::expected</code></li>
-</ul>
-<h3 id="dependencies">
-  
-  
-    <a href="#dependencies" class="anchor-heading" aria-labelledby="dependencies"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Dependencies
-  
-  
-</h3>
-    
-<ul>
-  <li>None - freestanding compatible</li>
-</ul>
-<h2 id="installation">
-  
-  
-    <a href="#installation" class="anchor-heading" aria-labelledby="installation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Installation
-  
-  
-</h2>
-    
-<h3 id="cmake">
-  
-  
-    <a href="#cmake" class="anchor-heading" aria-labelledby="cmake"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CMake
-  
-  
-</h3>
-    
-
-<p><code class="language-plaintext highlighter-rouge">cmake
-add_subdirectory(external/hf-tle92466ed-driver)
-target_link_libraries(your_target PRIVATE TLE92466ED)
-</code>text</p>
-<h3 id="manual">
-  
-  
-    <a href="#manual" class="anchor-heading" aria-labelledby="manual"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Manual
-  
-  
-</h3>
-    
-
-<p>Include the following files in your project:</p>
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED.hpp</code></li>
-  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED_Registers.hpp</code></li>
-  <li><code class="language-plaintext highlighter-rouge">inc/TLE92466ED_CommInterface.hpp</code></li>
-  <li><code class="language-plaintext highlighter-rouge">src/TLE92466ED.cpp</code></li>
-</ul>
-<h2 id="platform-integration">
-  
-  
-    <a href="#platform-integration" class="anchor-heading" aria-labelledby="platform-integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Platform Integration
-  
-  
-</h2>
-    
-
-<p>Implement the HAL interface for your platform:</p>
-
-<p>```cpp
-class YourPlatformHAL : public TLE92466ED::HAL {
-public:
-    auto spiTransfer(std::span<const uint8_t=""> txData, 
-                     std::span<uint8_t> rxData) noexcept 
-        -&gt; std::expected&lt;void, HALError&gt; override {
-        // Your SPI implementation
-        return {};
-    }</uint8_t></const></p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre>void delayMicroseconds(uint32_t us) noexcept override {
-    // Your delay implementation
-} }; ```text
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="use-cases">
-  
-  
-    <a href="#use-cases" class="anchor-heading" aria-labelledby="use-cases"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Use Cases
-  
-  
-</h2>
-    
-
-<ul>
-  <li>🚗 Automotive solenoid control</li>
-  <li>🏭 Industrial valve control</li>
-  <li>🤖 Robotics actuator control</li>
-  <li>⚡ Precision motor control</li>
-  <li>🔬 Test and measurement equipment</li>
-</ul>
-<h2 id="contributing">
-  
-  
-    <a href="#contributing" class="anchor-heading" aria-labelledby="contributing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Contributing
-  
-  
-</h2>
-    
-
-<p>Contributions are welcome! Please feel free to submit issues, feature requests, or pull
-requests on <a href="https://github.com/n3b3x/hf-tle92466ed-driver">GitHub</a>.</p>
-<h2 id="license">
-  
-  
-    <a href="#license" class="anchor-heading" aria-labelledby="license"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> License
-  
-  
-</h2>
-    
-
-<p>This software is released into the <strong>Public Domain</strong>. You can use, modify, and distribute it freely without any restrictions.</p>
-<h2 id="resources">
-  
-  
-    <a href="#resources" class="anchor-heading" aria-labelledby="resources"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Resources
-  
-  
-</h2>
-    
-
-<ul>
-  <li><a href="https://www.infineon.com/">Infineon TLE92466ED Product Page</a></li>
-  <li><a href="Datasheet/">Datasheet</a> (included in repository)</li>
-  <li><a href="https://github.com/n3b3x/hf-tle92466ed-driver">GitHub Repository</a></li>
-  <li><a href="https://github.com/n3b3x/hf-tle92466ed-driver/issues">Issue Tracker</a></li>
-</ul><hr />
 
 <div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th><strong>Feature</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Benefits</strong></th>
+    </tr>
+  </thead>
   <tbody>
     <tr>
-      <td><strong>Version</strong>: 2.0.0</td>
-      <td><strong>Status</strong>: Production Ready</td>
-      <td><strong>Last Updated</strong>: 2025-10-21</td>
+      <td><strong>Modern C++23</strong></td>
+      <td>Using <code class="language-plaintext highlighter-rouge">std::expected</code></td>
+      <td>Type-safe error handling</td>
+    </tr>
+    <tr>
+      <td><strong>Hardware Agnostic</strong></td>
+      <td>Clean HAL interface</td>
+      <td>Easy platform porting</td>
+    </tr>
+    <tr>
+      <td><strong>Zero Dependencies</strong></td>
+      <td>Freestanding-compatible</td>
+      <td>Suitable for bare-metal</td>
+    </tr>
+    <tr>
+      <td><strong>noexcept Guarantee</strong></td>
+      <td>All functions noexcept</td>
+      <td>Embedded safety</td>
+    </tr>
+    <tr>
+      <td><strong>Production Ready</strong></td>
+      <td>Thoroughly documented</td>
+      <td>Industry-grade quality</td>
+    </tr>
+  </tbody>
+</table></div><hr />
+<h2 id="-quick-start">
+  
+  
+    <a href="#-quick-start" class="anchor-heading" aria-labelledby="-quick-start"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🚀 <strong>Quick Start</strong>
+  
+  
+</h2>
+    
+<h3 id="1-clone-repository">
+  
+  
+    <a href="#1-clone-repository" class="anchor-heading" aria-labelledby="1-clone-repository"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>1. Clone Repository</strong>
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>git clone https://github.com/n3b3x/hf-tle92466ed-driver.git
+<span class="nb">cd </span>hf-tle92466ed-driver
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="2-implement-hal-interface">
+  
+  
+    <a href="#2-implement-hal-interface" class="anchor-heading" aria-labelledby="2-implement-hal-interface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>2. Implement HAL Interface</strong>
+  
+  
+</h3>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"inc/TLE92466ED_CommInterface.hpp"</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">YourPlatformHAL</span> <span class="o">:</span> <span class="k">public</span> <span class="n">TLE92466ED</span><span class="o">::</span><span class="n">HAL</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">auto</span> <span class="n">spiTransfer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="n">txData</span><span class="p">,</span> 
+                     <span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="n">rxData</span><span class="p">)</span> <span class="k">noexcept</span> 
+        <span class="o">-&gt;</span> <span class="n">std</span><span class="o">::</span><span class="n">expected</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">,</span> <span class="n">HALError</span><span class="o">&gt;</span> <span class="k">override</span> <span class="p">{</span>
+        <span class="c1">// Your SPI transfer implementation</span>
+        <span class="k">return</span> <span class="p">{};</span>
+    <span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="n">delayMicroseconds</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">us</span><span class="p">)</span> <span class="k">noexcept</span> <span class="k">override</span> <span class="p">{</span>
+        <span class="c1">// Your delay implementation</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="3-basic-usage">
+  
+  
+    <a href="#3-basic-usage" class="anchor-heading" aria-labelledby="3-basic-usage"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>3. Basic Usage</strong>
+  
+  
+</h3>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"include/TLE92466ED.hpp"</span><span class="cp">
+</span>
+<span class="n">YourPlatformHAL</span> <span class="n">hal</span><span class="p">;</span>
+<span class="n">TLE92466ED</span> <span class="nf">driver</span><span class="p">(</span><span class="n">hal</span><span class="p">);</span>
+
+<span class="c1">// Initialize the IC</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span> <span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Set current for channel 0 to 1.5A</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>
+
+<span class="c1">// Enable channel 0</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="4-build-example">
+  
+  
+    <a href="#4-build-example" class="anchor-heading" aria-labelledby="4-build-example"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>4. Build Example</strong>
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nb">cd </span>examples/esp32
+./scripts/setup_repo.sh
+./scripts/build_app.sh basic_usage Release
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="-api-documentation">
+  
+  
+    <a href="#-api-documentation" class="anchor-heading" aria-labelledby="-api-documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📖 <strong>API Documentation</strong>
+  
+  
+</h2>
+    
+<h3 id="generated-documentation">
+  
+  
+    <a href="#generated-documentation" class="anchor-heading" aria-labelledby="generated-documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Generated Documentation</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li><strong><a href="https://n3b3x.github.io/hf-tle92466ed-driver/">📚 Complete Documentation</a></strong> -
+Interactive guides and tutorials</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/">API Reference</a></strong> - Complete driver API documentation</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/">IC Overview</a></strong> - Hardware specifications</li>
+</ul>
+<h3 id="key-concepts">
+  
+  
+    <a href="#key-concepts" class="anchor-heading" aria-labelledby="key-concepts"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Key Concepts</strong>
+  
+  
+</h3>
+    
+<h4 id="initialization">
+  
+  
+    <a href="#initialization" class="anchor-heading" aria-labelledby="initialization"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Initialization</strong>
+  
+  
+</h4>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// Initialize the driver</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span> <span class="o">!</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Handle initialization error</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="channel-control">
+  
+  
+    <a href="#channel-control" class="anchor-heading" aria-labelledby="channel-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Channel Control</strong>
+  
+  
+</h4>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// Set current (0-2000 mA)</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>  <span class="c1">// 1.5A</span>
+
+<span class="c1">// Enable/disable channels</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">disableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="diagnostics">
+  
+  
+    <a href="#diagnostics" class="anchor-heading" aria-labelledby="diagnostics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Diagnostics</strong>
+  
+  
+</h4>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// Read diagnostics</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">diag</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">readDiagnostics</span><span class="p">();</span> <span class="n">diag</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">diag</span><span class="o">-&gt;</span><span class="n">hasOvercurrent</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// Handle overcurrent condition</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="-building">
+  
+  
+    <a href="#-building" class="anchor-heading" aria-labelledby="-building"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔧 <strong>Building</strong>
+  
+  
+</h2>
+    
+<h3 id="build-system-features">
+  
+  
+    <a href="#build-system-features" class="anchor-heading" aria-labelledby="build-system-features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Build System Features</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li><strong>CMake Integration</strong> - Easy project integration</li>
+  <li><strong>ESP32 Examples</strong> - Comprehensive test applications</li>
+  <li><strong>Manual Integration</strong> - Simple header/source inclusion</li>
+  <li><strong>CI/CD Integration</strong> - Automated builds and validation</li>
+</ul>
+<h3 id="build-commands">
+  
+  
+    <a href="#build-commands" class="anchor-heading" aria-labelledby="build-commands"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Build Commands</strong>
+  
+  
+</h3>
+    
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="c">## For ESP32 development</span>
+<span class="nb">cd </span>examples/esp32
+./scripts/setup_repo.sh
+./scripts/build_app.sh &lt;app_name&gt; &lt;build_type&gt;
+
+<span class="c">## Examples:</span>
+./scripts/build_app.sh basic_usage Release
+./scripts/build_app.sh multi_channel Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="cmake-integration">
+  
+  
+    <a href="#cmake-integration" class="anchor-heading" aria-labelledby="cmake-integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>CMake Integration</strong>
+  
+  
+</h3>
+    
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">add_subdirectory</span><span class="p">(</span>external/hf-tle92466ed-driver<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>your_target PRIVATE TLE92466ED<span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="-examples">
+  
+  
+    <a href="#-examples" class="anchor-heading" aria-labelledby="-examples"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📊 <strong>Examples</strong>
+  
+  
+</h2>
+    
+<h3 id="available-test-applications">
+  
+  
+    <a href="#available-test-applications" class="anchor-heading" aria-labelledby="available-test-applications"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Available Test Applications</strong>
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th><strong>Application</strong></th>
+      <th><strong>Tests</strong></th>
+      <th><strong>Purpose</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>basic_usage</strong></td>
+      <td>Single channel control</td>
+      <td>Basic current setting and enable</td>
+    </tr>
+    <tr>
+      <td><strong>multi_channel</strong></td>
+      <td>Multi-channel operation</td>
+      <td>Parallel channel control</td>
+    </tr>
+    <tr>
+      <td><strong>diagnostics</strong></td>
+      <td>Fault detection</td>
+      <td>Overcurrent and overtemperature</td>
     </tr>
   </tbody>
 </table></div>
+<h3 id="usage-examples">
+  
+  
+    <a href="#usage-examples" class="anchor-heading" aria-labelledby="usage-examples"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Usage Examples</strong>
+  
+  
+</h3>
+    
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">// Single Channel Control</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>  <span class="c1">// 1.5A</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Multi-Channel Control</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="n">ch</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ch</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">ch</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">setChannelCurrent</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>  <span class="c1">// 1A per channel</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Diagnostics Monitoring</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">diag</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">readDiagnostics</span><span class="p">();</span> <span class="n">diag</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">diag</span><span class="o">-&gt;</span><span class="n">hasOvercurrent</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">driver</span><span class="p">.</span><span class="n">disableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h2 id="-contributing">
+  
+  
+    <a href="#-contributing" class="anchor-heading" aria-labelledby="-contributing"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🤝 <strong>Contributing</strong>
+  
+  
+</h2>
+    
+<h3 id="development-workflow">
+  
+  
+    <a href="#development-workflow" class="anchor-heading" aria-labelledby="development-workflow"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Development Workflow</strong>
+  
+  
+</h3>
+    
+<ol>
+  <li><strong>Fork</strong> the repository</li>
+  <li><strong>Create</strong> feature branch (<code class="language-plaintext highlighter-rouge">feature/new-feature</code>)</li>
+  <li><strong>Implement</strong> following coding standards</li>
+  <li><strong>Test</strong> with existing applications</li>
+  <li><strong>Document</strong> your changes</li>
+  <li><strong>Submit</strong> pull request</li>
+</ol>
+<h3 id="coding-standards">
+  
+  
+    <a href="#coding-standards" class="anchor-heading" aria-labelledby="coding-standards"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Coding Standards</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li><strong>Functions</strong>: PascalCase (<code class="language-plaintext highlighter-rouge">SetChannelCurrent</code>, <code class="language-plaintext highlighter-rouge">ReadDiagnostics</code>)</li>
+  <li><strong>Types</strong>: snake_case with <code class="language-plaintext highlighter-rouge">*t</code> suffix (<code class="language-plaintext highlighter-rouge">hal_error_t</code>)</li>
+  <li><strong>Error Handling</strong>: Use <code class="language-plaintext highlighter-rouge">std::expected</code> for type safety</li>
+  <li><strong>Code Formatting</strong>: Use <code class="language-plaintext highlighter-rouge">clang-format</code></li>
+</ul><hr />
+<h2 id="-license">
+  
+  
+    <a href="#-license" class="anchor-heading" aria-labelledby="-license"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📄 <strong>License</strong>
+  
+  
+</h2>
+    
+
+<p>This software is released into the <strong>Public Domain</strong>. You can use, modify, and
+distribute it freely without any restrictions.</p><hr />
+<h2 id="-quick-links">
+  
+  
+    <a href="#-quick-links" class="anchor-heading" aria-labelledby="-quick-links"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🔗 <strong>Quick Links</strong>
+  
+  
+</h2>
+    
+<h3 id="documentation">
+  
+  
+    <a href="#documentation" class="anchor-heading" aria-labelledby="documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Documentation</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li>📚 <a href="https://n3b3x.github.io/hf-tle92466ed-driver/">Complete Documentation</a> -
+Interactive guides and tutorials</li>
+  <li>📋 <a href="/hf-tle92466ed-driver/development/docs/">Documentation Index</a> - Complete documentation
+navigation</li>
+  <li>🔌 <a href="/hf-tle92466ed-driver/development/docs/01_IC_Overview/">IC Overview</a> - Hardware specifications</li>
+  <li>📡 <a href="/hf-tle92466ed-driver/development/docs/02_SPI_Protocol/">SPI Protocol</a> - Communication protocol</li>
+  <li>🎛️ <a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/">Driver API</a> - C++ API reference</li>
+  <li>🔧 <a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/">HAL Implementation</a> - Platform porting
+guide</li>
+  <li>💻 <a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/">Usage Examples</a> - Practical code examples</li>
+</ul>
+<h3 id="development">
+  
+  
+    <a href="#development" class="anchor-heading" aria-labelledby="development"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Development</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li>🚀 <a href="examples/esp32/">Examples</a> - Test applications and usage examples</li>
+  <li>🧪 <a href="/hf-tle92466ed-driver/development/examples/esp32/docs/">Test Documentation</a> - Comprehensive test
+documentation</li>
+  <li>🔧 <a href="examples/esp32/scripts/">Scripts</a> - Build, flash, and development tools</li>
+  <li>📊 <a href="/hf-tle92466ed-driver/development/examples/esp32/app_config.yml">Configuration</a> - Application and build
+settings</li>
+</ul>
+<h3 id="community">
+  
+  
+    <a href="#community" class="anchor-heading" aria-labelledby="community"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Community</strong>
+  
+  
+</h3>
+    
+<ul>
+  <li>🤝 <a href="CONTRIBUTING.md">Contributing</a> - Development guidelines</li>
+  <li>🐛 <a href="https://github.com/n3b3x/hf-tle92466ed-driver/issues">Issue Tracker</a></li>
+  <li>💬 <a href="https://github.com/n3b3x/hf-tle92466ed-driver/discussions">Discussions</a></li>
+</ul><hr />
+
+<p><strong>Built for the HardFOC ecosystem - Enabling seamless solenoid control</strong></p>
+
+<p><em>Precision current control that just works™</em></p>
 
           
 
           
-            
+            <hr>
+<h2 class="text-delta">Table of contents</h2>
+
+<ul>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/">📚 Documentation</a>
+  </li>
+  
+</ul>
           
         </main>
         
@@ -958,10 +1043,19 @@ requests on <a href="https://github.com/n3b3x/hf-tle92466ed-driver">GitHub</a>.<
   <footer>
     
 
-    <footer class="site-footer">
+    <!-- =============================================================================
+     Custom Footer Content for HardFOC Driver Documentation
+     =============================================================================
+     This footer is displayed at the bottom of every page.
+     ============================================================================= -->
+
+<footer class="site-footer">
   <div class="site-footer-credits">
     <p>Built with ❤️ using <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a></p>
-    <p><a href="https://github.com/n3b3x/hf-internal-interface-wrap/blob/main/LICENSE">GPL v3 License</a> • <a href="https://github.com/n3b3x/hf-internal-interface-wrap">View on GitHub</a></p>
+    <p>
+      <a href="https://github.com/n3b3x/hf-tle92466ed-driver/development/blob/main/LICENSE">GPL v3 License</a> • 
+      <a href="https://github.com/n3b3x/hf-tle92466ed-driver/development">View on GitHub</a>
+    </p>
   </div>
 </footer>
 

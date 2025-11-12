@@ -1,7 +1,7 @@
 /**
  * @file TLE92466ED.cpp
  * @brief Implementation of TLE92466ED driver class
- 
+
  * @details
  * This file contains the complete implementation of all driver methods
  * for the TLE92466ED IC. All methods include comprehensive error checking,
@@ -17,148 +17,151 @@ namespace TLE92466ED {
 //==============================================================================
 
 DriverResult<void> Driver::Init() noexcept {
-    // 1. Initialize CommInterface (GPIO and SPI bus only)
-    if (auto result = comm_.Init(); !result) {
-        return std::unexpected(DriverError::HardwareError);
-    }
+  // 1. Initialize CommInterface (GPIO and SPI bus only)
+  if (auto result = comm_.Init(); !result) {
+    return std::unexpected(DriverError::HardwareError);
+  }
 
-    // 2. Perform device reset sequence
-    // RESN is active low: LOW = reset, HIGH = normal operation
-    // EN is active high: HIGH = enabled, LOW = disabled
-    // We keep EN disabled during initialization - user must explicitly enable
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Performing device reset sequence...\n");
-    
-    // Step 1: Ensure EN is LOW (disabled) during reset
-    if (auto result = SetEnable(false); !result) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", 
-                  "Failed to set EN pin LOW (error: %u) - continuing anyway\n",
-                  static_cast<unsigned>(result.error()));
-    }
-    
-    // Step 2: Hold device in reset (LOW)
-    if (auto result = SetReset(true); !result) {
-        comm_.Log(LogLevel::Error, "TLE92466ED", 
-                  "Failed to hold device in reset (error: %u)\n",
-                  static_cast<unsigned>(result.error()));
-        return std::unexpected(DriverError::HardwareError);
-    }
-    comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set LOW (device in reset)\n");
-    
-    // Step 3: Wait for reset pulse duration (minimum 10ms per datasheet)
-    if (auto result = comm_.Delay(10000); !result) {  // 10ms = 10000 microseconds
-        return std::unexpected(DriverError::HardwareError);
-    }
-    
-    // Step 4: Release reset (HIGH)
-    if (auto result = SetReset(false); !result) {
-        comm_.Log(LogLevel::Error, "TLE92466ED", 
-                  "Failed to release device from reset (error: %u)\n",
-                  static_cast<unsigned>(result.error()));
-        return std::unexpected(DriverError::HardwareError);
-    }
-    comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set HIGH (device released from reset)\n");
-    
-    // Step 5: Wait for device to stabilize after reset release (minimum 10ms per datasheet)
-    if (auto result = comm_.Delay(10000); !result) {  // 10ms = 10000 microseconds
-        return std::unexpected(DriverError::HardwareError);
-    }
-    
-    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Device reset sequence completed (EN remains disabled)\n");
+  // 2. Perform device reset sequence
+  // RESN is active low: LOW = reset, HIGH = normal operation
+  // EN is active high: HIGH = enabled, LOW = disabled
+  // We keep EN disabled during initialization - user must explicitly enable
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Performing device reset sequence...\n");
 
-    // 3. Read and diagnose CLK_DIV register to check clock configuration
-    // This helps diagnose clock-related critical faults early
-    diagnoseClockConfiguration();
+  // Step 1: Ensure EN is LOW (disabled) during reset
+  if (auto result = SetEnable(false); !result) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "Failed to set EN pin LOW (error: %u) - continuing anyway\n",
+              static_cast<unsigned>(result.error()));
+  }
 
-    // 4. Verify device communication by reading IC version
-    auto verify_result = VerifyDevice();
-    if (!verify_result) {
-        return std::unexpected(verify_result.error());
-    }
-    if (!*verify_result) {
-        return std::unexpected(DriverError::WrongDeviceID);
-    }
+  // Step 2: Hold device in reset (LOW)
+  if (auto result = SetReset(true); !result) {
+    comm_.Log(LogLevel::Error, "TLE92466ED", "Failed to hold device in reset (error: %u)\n",
+              static_cast<unsigned>(result.error()));
+    return std::unexpected(DriverError::HardwareError);
+  }
+  comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set LOW (device in reset)\n");
 
-    // 5. Device starts in Config Mode after power-up
-    mission_mode_ = false;
+  // Step 3: Wait for reset pulse duration (minimum 10ms per datasheet)
+  if (auto result = comm_.Delay(10000); !result) { // 10ms = 10000 microseconds
+    return std::unexpected(DriverError::HardwareError);
+  }
 
-    // 6. Apply default configuration
-    if (auto result = applyDefaultConfig(); !result) {
-        return std::unexpected(result.error());
-    }
+  // Step 4: Release reset (HIGH)
+  if (auto result = SetReset(false); !result) {
+    comm_.Log(LogLevel::Error, "TLE92466ED", "Failed to release device from reset (error: %u)\n",
+              static_cast<unsigned>(result.error()));
+    return std::unexpected(DriverError::HardwareError);
+  }
+  comm_.Log(LogLevel::Info, "TLE92466ED", "  RESN set HIGH (device released from reset)\n");
 
-    // 7. Clear any power-on reset flags (skip initialization check during Init)
-    if (auto result = clearFaultsInternal(); !result) {
-        return std::unexpected(result.error());
-    }
+  // Step 5: Wait for device to stabilize after reset release (minimum 10ms per datasheet)
+  if (auto result = comm_.Delay(10000); !result) { // 10ms = 10000 microseconds
+    return std::unexpected(DriverError::HardwareError);
+  }
 
-    // 8. Initialize cached state
-    ch_ctrl_cache_ = 0;  // CH_CTRL cache (reads return 0x0000, so we track state here)
-    channel_enable_cache_ = 0;
-    vio_5v_mode_ = false;  // Default to 3.3V mode (VIO_SEL=0)
-    channel_setpoints_.fill(0);
-    crc_enabled_ = false;  // CRC starts disabled until user explicitly enables it
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "✅ Device reset sequence completed (EN remains disabled)\n");
 
-    initialized_ = true;
-    return {};
+  // 3. Read and diagnose CLK_DIV register to check clock configuration
+  // This helps diagnose clock-related critical faults early
+  diagnoseClockConfiguration();
+
+  // 4. Verify device communication by reading IC version
+  auto verify_result = VerifyDevice();
+  if (!verify_result) {
+    return std::unexpected(verify_result.error());
+  }
+  if (!*verify_result) {
+    return std::unexpected(DriverError::WrongDeviceID);
+  }
+
+  // 5. Device starts in Config Mode after power-up
+  mission_mode_ = false;
+
+  // 6. Apply default configuration
+  if (auto result = applyDefaultConfig(); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // 7. Clear any power-on reset flags (skip initialization check during Init)
+  if (auto result = clearFaultsInternal(); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // 8. Initialize cached state
+  ch_ctrl_cache_ = 0; // CH_CTRL cache (reads return 0x0000, so we track state here)
+  channel_enable_cache_ = 0;
+  vio_5v_mode_ = false; // Default to 3.3V mode (VIO_SEL=0)
+  channel_setpoints_.fill(0);
+  crc_enabled_ = false; // CRC starts disabled until user explicitly enables it
+
+  initialized_ = true;
+  return {};
 }
 
 DriverResult<void> Driver::applyDefaultConfig() noexcept {
-    // Configure GLOBAL_CONFIG: Enable CRC and clock watchdog
-    // Note: SPI watchdog is DISABLED by default because it requires periodic reloading
-    //       If enabled without periodic reload, the device will timeout and enter Config Mode
-    //       User should enable SPI watchdog only if they can guarantee periodic reloading
-    // Note: VIO_SEL is NOT set (defaults to 0 = 3.3V mode) to match typical use case
-    // If user needs 5V mode, they should call ConfigureGlobal() with vio_5v=true
-    uint16_t global_cfg = GLOBAL_CONFIG::CRC_EN | 
-                          // GLOBAL_CONFIG::SPI_WD_EN |  // Disabled by default - requires periodic reload
-                          GLOBAL_CONFIG::CLK_WD_EN;
-    // VIO_SEL = 0 (3.3V mode) - bit 14 is NOT set, ensuring 3.3V mode
-    // This prevents false VIO undervoltage faults when using 3.3V supply
-    // Note: VIO thresholds are FIXED hardware values (not programmable)
-    //       We can only select 3.3V or 5V mode via VIO_SEL bit
-    //       - 3.3V mode: UV=2.6-3.0V, OV=3.6-4.1V (typical: 2.8V, 3.85V)
-    //       - 5V mode: UV=3.7-4.5V, OV=5.5-6.4V (typical: 4.1V, 5.95V)
-    
-    if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg, false); !result) {
-        return std::unexpected(result.error());
+  // Configure GLOBAL_CONFIG: Enable CRC and clock watchdog
+  // Note: SPI watchdog is DISABLED by default because it requires periodic reloading
+  //       If enabled without periodic reload, the device will timeout and enter Config Mode
+  //       User should enable SPI watchdog only if they can guarantee periodic reloading
+  // Note: VIO_SEL is NOT set (defaults to 0 = 3.3V mode) to match typical use case
+  // If user needs 5V mode, they should call ConfigureGlobal() with vio_5v=true
+  uint16_t global_cfg =
+      GLOBAL_CONFIG::CRC_EN |
+      // GLOBAL_CONFIG::SPI_WD_EN |  // Disabled by default - requires periodic reload
+      GLOBAL_CONFIG::CLK_WD_EN;
+  // VIO_SEL = 0 (3.3V mode) - bit 14 is NOT set, ensuring 3.3V mode
+  // This prevents false VIO undervoltage faults when using 3.3V supply
+  // Note: VIO thresholds are FIXED hardware values (not programmable)
+  //       We can only select 3.3V or 5V mode via VIO_SEL bit
+  //       - 3.3V mode: UV=2.6-3.0V, OV=3.6-4.1V (typical: 2.8V, 3.85V)
+  //       - 5V mode: UV=3.7-4.5V, OV=5.5-6.4V (typical: 4.1V, 5.95V)
+
+  if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg, false); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // Update internal CRC enable state (CRC_EN is enabled in default config)
+  crc_enabled_ = true;
+
+  // Set default VBAT thresholds (UV=7V, OV=40V)
+  // Use internal version that doesn't check initialization (called during Init)
+  if (auto result = setVbatThresholdsInternal(7.0f, 40.0f); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // Configure all channels with default settings (ICC mode, 1V/us slew, disabled)
+  for (uint8_t ch = 0; ch < static_cast<uint8_t>(Channel::COUNT); ++ch) {
+    Channel channel = static_cast<Channel>(ch);
+    uint16_t ch_base = GetChannelBase(channel);
+
+    // Set mode to ICC (0x0001)
+    if (auto result = WriteRegister(ch_base + ChannelReg::MODE,
+                                    static_cast<uint16_t>(ChannelMode::ICC), false);
+        !result) {
+      return std::unexpected(result.error());
     }
 
-    // Update internal CRC enable state (CRC_EN is enabled in default config)
-    crc_enabled_ = true;
-
-    // Set default VBAT thresholds (UV=7V, OV=40V)
-    // Use internal version that doesn't check initialization (called during Init)
-    if (auto result = setVbatThresholdsInternal(7.0f, 40.0f); !result) {
-        return std::unexpected(result.error());
+    // Set default CH_CONFIG (slew rate 2.5V/us, OL disabled)
+    if (auto result =
+            WriteRegister(ch_base + ChannelReg::CH_CONFIG, CH_CONFIG::SLEWR_2V5_US, false);
+        !result) {
+      return std::unexpected(result.error());
     }
 
-    // Configure all channels with default settings (ICC mode, 1V/us slew, disabled)
-    for (uint8_t ch = 0; ch < static_cast<uint8_t>(Channel::COUNT); ++ch) {
-        Channel channel = static_cast<Channel>(ch);
-        uint16_t ch_base = GetChannelBase(channel);
-        
-        // Set mode to ICC (0x0001)
-        if (auto result = WriteRegister(ch_base + ChannelReg::MODE, 
-                                        static_cast<uint16_t>(ChannelMode::ICC), false); !result) {
-            return std::unexpected(result.error());
-        }
-        
-        // Set default CH_CONFIG (slew rate 2.5V/us, OL disabled)
-        if (auto result = WriteRegister(ch_base + ChannelReg::CH_CONFIG, 
-                                        CH_CONFIG::SLEWR_2V5_US, false); !result) {
-            return std::unexpected(result.error());
-        }
-        
-        // Set current setpoint to 0
-        if (auto result = WriteRegister(ch_base + ChannelReg::SETPOINT, 0, false); !result) {
-            return std::unexpected(result.error());
-        }
+    // Set current setpoint to 0
+    if (auto result = WriteRegister(ch_base + ChannelReg::SETPOINT, 0, false); !result) {
+      return std::unexpected(result.error());
     }
+  }
 
-    // Note: SPI watchdog is disabled by default, so no need to reload here
-    // If user enables SPI watchdog via ConfigureGlobal(), they must call ReloadSpiWatchdog() periodically
+  // Note: SPI watchdog is disabled by default, so no need to reload here
+  // If user enables SPI watchdog via ConfigureGlobal(), they must call ReloadSpiWatchdog()
+  // periodically
 
-    return {};
+  return {};
 }
 
 //==========================================================================
@@ -166,41 +169,41 @@ DriverResult<void> Driver::applyDefaultConfig() noexcept {
 //==========================================================================
 
 DriverResult<void> Driver::EnterMissionMode() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Mission Mode\n");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Mission Mode\n");
 
-    // Set OP_MODE bit in CH_CTRL register
-    // Note: CH_CTRL reads return 0x0000, so we use cached value
-    ch_ctrl_cache_ |= CH_CTRL::OP_MODE;
-    if (auto result = WriteRegister(CentralReg::CH_CTRL, ch_ctrl_cache_, false, false); !result) {
-        return std::unexpected(result.error());
-    }
+  // Set OP_MODE bit in CH_CTRL register
+  // Note: CH_CTRL reads return 0x0000, so we use cached value
+  ch_ctrl_cache_ |= CH_CTRL::OP_MODE;
+  if (auto result = WriteRegister(CentralReg::CH_CTRL, ch_ctrl_cache_, false, false); !result) {
+    return std::unexpected(result.error());
+  }
 
-    mission_mode_ = true;
-    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Mission Mode entered\n");
-    return {};
+  mission_mode_ = true;
+  comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Mission Mode entered\n");
+  return {};
 }
 
 DriverResult<void> Driver::EnterConfigMode() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Config Mode\n");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Entering Config Mode\n");
 
-    // Clear OP_MODE bit in CH_CTRL register
-    // Note: CH_CTRL reads return 0x0000, so we use cached value
-    ch_ctrl_cache_ &= ~CH_CTRL::OP_MODE;
-    if (auto result = WriteRegister(CentralReg::CH_CTRL, ch_ctrl_cache_, false, false); !result) {
-        return std::unexpected(result.error());
-    }
+  // Clear OP_MODE bit in CH_CTRL register
+  // Note: CH_CTRL reads return 0x0000, so we use cached value
+  ch_ctrl_cache_ &= ~CH_CTRL::OP_MODE;
+  if (auto result = WriteRegister(CentralReg::CH_CTRL, ch_ctrl_cache_, false, false); !result) {
+    return std::unexpected(result.error());
+  }
 
-    mission_mode_ = false;
-    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Config Mode entered\n");
-    return {};
+  mission_mode_ = false;
+  comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Config Mode entered\n");
+  return {};
 }
 
 //==========================================================================
@@ -208,150 +211,159 @@ DriverResult<void> Driver::EnterConfigMode() noexcept {
 //==========================================================================
 
 DriverResult<void> Driver::ConfigureGlobal(const GlobalConfig& config) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
+
+  // Must be in config mode to change global configuration
+  if (auto result = checkConfigMode(); !result) {
+    return result;
+  }
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring global settings: CRC=%s, SPI_WD=%s, CLK_WD=%s, VIO_5V=%s, "
+            "UV=%.2fV, OV=%.2fV, WD_Reload=%u\n",
+            config.crc_enabled ? "enabled" : "disabled",
+            config.spi_watchdog_enabled ? "enabled" : "disabled",
+            config.clock_watchdog_enabled ? "enabled" : "disabled",
+            config.vio_5v ? "true" : "false", config.vbat_uv_voltage, config.vbat_ov_voltage,
+            config.spi_watchdog_reload);
+
+  // Check if VIO_SEL is changing (use internal tracking since GLOBAL_CONFIG is write-only)
+  // When VIO_SEL changes, VIO fault thresholds change, so we should clear VIO fault flags
+  bool vio_sel_changed = (vio_5v_mode_ != config.vio_5v);
+
+  // Build GLOBAL_CONFIG register value
+  uint16_t global_cfg = 0;
+  if (config.clock_watchdog_enabled)
+    global_cfg |= GLOBAL_CONFIG::CLK_WD_EN;
+  if (config.spi_watchdog_enabled)
+    global_cfg |= GLOBAL_CONFIG::SPI_WD_EN;
+  if (config.crc_enabled)
+    global_cfg |= GLOBAL_CONFIG::CRC_EN;
+  if (config.vio_5v)
+    global_cfg |= GLOBAL_CONFIG::VIO_SEL;
+
+  if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // Update internal CRC enable state
+  crc_enabled_ = config.crc_enabled;
+
+  // Update internal VIO mode tracking
+  vio_5v_mode_ = config.vio_5v;
+
+  // Clear VIO fault flags when VIO_SEL changes (thresholds change, old fault state invalid)
+  if (vio_sel_changed) {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "VIO_SEL changed, clearing VIO fault flags\n");
+    // Write 1 to clear VIO_UV and VIO_OV bits in GLOBAL_DIAG0
+    if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0,
+                                    GLOBAL_DIAG0::VIO_UV | GLOBAL_DIAG0::VIO_OV, false);
+        !result) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED",
+                "Failed to clear VIO fault flags after VIO_SEL change\n");
+      // Don't fail the operation, just log warning
     }
+  }
 
-    // Must be in config mode to change global configuration
-    if (auto result = checkConfigMode(); !result) {
-        return result;
+  // Configure VBAT thresholds
+  if (auto result = SetVbatThresholds(config.vbat_uv_voltage, config.vbat_ov_voltage); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // Configure SPI watchdog reload (mask to 11-bit field)
+  if (config.spi_watchdog_enabled) {
+    uint16_t wd_reload_value = WD_RELOAD::MaskValue(config.spi_watchdog_reload);
+    if (auto result = WriteRegister(CentralReg::WD_RELOAD, wd_reload_value); !result) {
+      return std::unexpected(result.error());
     }
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring global settings: CRC=%s, SPI_WD=%s, CLK_WD=%s, VIO_5V=%s, "
-              "UV=%.2fV, OV=%.2fV, WD_Reload=%u\n",
-              config.crc_enabled ? "enabled" : "disabled",
-              config.spi_watchdog_enabled ? "enabled" : "disabled",
-              config.clock_watchdog_enabled ? "enabled" : "disabled",
-              config.vio_5v ? "true" : "false",
-              config.vbat_uv_voltage, config.vbat_ov_voltage,
-              config.spi_watchdog_reload);
-
-    // Check if VIO_SEL is changing (use internal tracking since GLOBAL_CONFIG is write-only)
-    // When VIO_SEL changes, VIO fault thresholds change, so we should clear VIO fault flags
-    bool vio_sel_changed = (vio_5v_mode_ != config.vio_5v);
-
-    // Build GLOBAL_CONFIG register value
-    uint16_t global_cfg = 0;
-    if (config.clock_watchdog_enabled) global_cfg |= GLOBAL_CONFIG::CLK_WD_EN;
-    if (config.spi_watchdog_enabled) global_cfg |= GLOBAL_CONFIG::SPI_WD_EN;
-    if (config.crc_enabled) global_cfg |= GLOBAL_CONFIG::CRC_EN;
-    if (config.vio_5v) global_cfg |= GLOBAL_CONFIG::VIO_SEL;
-
-    if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg); !result) {
-        return std::unexpected(result.error());
-    }
-    
-    // Update internal CRC enable state
-    crc_enabled_ = config.crc_enabled;
-    
-    // Update internal VIO mode tracking
-    vio_5v_mode_ = config.vio_5v;
-
-    // Clear VIO fault flags when VIO_SEL changes (thresholds change, old fault state invalid)
-    if (vio_sel_changed) {
-        comm_.Log(LogLevel::Info, "TLE92466ED", "VIO_SEL changed, clearing VIO fault flags\n");
-        // Write 1 to clear VIO_UV and VIO_OV bits in GLOBAL_DIAG0
-        if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0, 
-                                         GLOBAL_DIAG0::VIO_UV | GLOBAL_DIAG0::VIO_OV, false); !result) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "Failed to clear VIO fault flags after VIO_SEL change\n");
-            // Don't fail the operation, just log warning
-        }
-    }
-
-    // Configure VBAT thresholds
-    if (auto result = SetVbatThresholds(config.vbat_uv_voltage, 
-                                          config.vbat_ov_voltage); !result) {
-        return std::unexpected(result.error());
-    }
-
-    // Configure SPI watchdog reload (mask to 11-bit field)
-    if (config.spi_watchdog_enabled) {
-        uint16_t wd_reload_value = WD_RELOAD::MaskValue(config.spi_watchdog_reload);
-        if (auto result = WriteRegister(CentralReg::WD_RELOAD, wd_reload_value); !result) {
-            return std::unexpected(result.error());
-        }
-    }
-
-    return {};
+  return {};
 }
 
 DriverResult<void> Driver::SetCrcEnabled(bool enabled) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting CRC enabled: %s\n", enabled ? "true" : "false");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting CRC enabled: %s\n", enabled ? "true" : "false");
 
-    auto result = ModifyRegister(CentralReg::GLOBAL_CONFIG,
-                          GLOBAL_CONFIG::CRC_EN,
-                          enabled ? GLOBAL_CONFIG::CRC_EN : 0);
-    
-    if (result) {
-        // Update internal CRC enable state only if register write succeeded
-        crc_enabled_ = enabled;
-        comm_.Log(LogLevel::Info, "TLE92466ED", "CRC enabled state updated: %s\n", enabled ? "true" : "false");
-}
+  auto result = ModifyRegister(CentralReg::GLOBAL_CONFIG, GLOBAL_CONFIG::CRC_EN,
+                               enabled ? GLOBAL_CONFIG::CRC_EN : 0);
 
-        return result;
+  if (result) {
+    // Update internal CRC enable state only if register write succeeded
+    crc_enabled_ = enabled;
+    comm_.Log(LogLevel::Info, "TLE92466ED", "CRC enabled state updated: %s\n",
+              enabled ? "true" : "false");
+  }
+
+  return result;
 }
 
 DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting VBAT thresholds: UV=%.2fV, OV=%.2fV\n", uv_voltage, ov_voltage);
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting VBAT thresholds: UV=%.2fV, OV=%.2fV\n",
+            uv_voltage, ov_voltage);
 
-    return setVbatThresholdsInternal(uv_voltage, ov_voltage);
+  return setVbatThresholdsInternal(uv_voltage, ov_voltage);
 }
 
 DriverResult<void> Driver::setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept {
-    // Validate voltage range
-    if (uv_voltage < 0.0f || uv_voltage > 41.4f || 
-        ov_voltage < 0.0f || ov_voltage > 41.4f) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Validate voltage range
+  if (uv_voltage < 0.0f || uv_voltage > 41.4f || ov_voltage < 0.0f || ov_voltage > 41.4f) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    // Calculate register values from voltage
-    uint8_t uv_threshold = VBAT_THRESHOLD::CalculateFromVoltage(uv_voltage);
-    uint8_t ov_threshold = VBAT_THRESHOLD::CalculateFromVoltage(ov_voltage);
+  // Calculate register values from voltage
+  uint8_t uv_threshold = VBAT_THRESHOLD::CalculateFromVoltage(uv_voltage);
+  uint8_t ov_threshold = VBAT_THRESHOLD::CalculateFromVoltage(ov_voltage);
 
-    // Check if calculation was successful (non-zero values)
-    if (uv_threshold == 0 && uv_voltage > 0.0f) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
-    if (ov_threshold == 0 && ov_voltage > 0.0f) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Check if calculation was successful (non-zero values)
+  if (uv_threshold == 0 && uv_voltage > 0.0f) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
+  if (ov_threshold == 0 && ov_voltage > 0.0f) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
-    if (auto result = WriteRegister(CentralReg::VBAT_TH, value, false); !result) {
-        return result; // Don't verify CRC during init
-    }
+  uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
+  if (auto result = WriteRegister(CentralReg::VBAT_TH, value, false); !result) {
+    return result; // Don't verify CRC during init
+  }
 
-    // Clear VBAT fault flags when thresholds change (old fault state is no longer valid)
-    // Write 1 to clear VBAT_UV and VBAT_OV bits in GLOBAL_DIAG0
-    if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0, 
-                                     GLOBAL_DIAG0::VBAT_UV | GLOBAL_DIAG0::VBAT_OV, false); !result) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "Failed to clear VBAT fault flags after threshold change\n");
-        // Don't fail the operation, just log warning
-    }
+  // Clear VBAT fault flags when thresholds change (old fault state is no longer valid)
+  // Write 1 to clear VBAT_UV and VBAT_OV bits in GLOBAL_DIAG0
+  if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0,
+                                  GLOBAL_DIAG0::VBAT_UV | GLOBAL_DIAG0::VBAT_OV, false);
+      !result) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "Failed to clear VBAT fault flags after threshold change\n");
+    // Don't fail the operation, just log warning
+  }
 
-    return {};
+  return {};
 }
 
-DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold, uint8_t ov_threshold) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold,
+                                                uint8_t ov_threshold) noexcept {
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    float uv_voltage = VBAT_THRESHOLD::CalculateVoltage(uv_threshold);
-    float ov_voltage = VBAT_THRESHOLD::CalculateVoltage(ov_threshold);
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting VBAT thresholds (raw): UV_reg=%u (%.2fV), OV_reg=%u (%.2fV)\n",
-              uv_threshold, uv_voltage, ov_threshold, ov_voltage);
+  float uv_voltage = VBAT_THRESHOLD::CalculateVoltage(uv_threshold);
+  float ov_voltage = VBAT_THRESHOLD::CalculateVoltage(ov_threshold);
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Setting VBAT thresholds (raw): UV_reg=%u (%.2fV), OV_reg=%u (%.2fV)\n", uv_threshold,
+            uv_voltage, ov_threshold, ov_voltage);
 
-    uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
-    return WriteRegister(CentralReg::VBAT_TH, value);
+  uint16_t value = (static_cast<uint16_t>(ov_threshold) << 8) | uv_threshold;
+  return WriteRegister(CentralReg::VBAT_TH, value);
 }
 
 //==========================================================================
@@ -359,444 +371,436 @@ DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold, uint8_t ov
 //==========================================================================
 
 DriverResult<void> Driver::EnableChannel(Channel channel, bool enabled) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    // Channel enable can only be changed in Mission Mode
-    if (auto result = checkMissionMode(); !result) {
-        comm_.Log(LogLevel::Error, "TLE92466ED", "Cannot enable/disable channel: Device must be in Mission Mode (currently in Config Mode). Call EnterMissionMode() first.\n");
-        return result;
-    }
+  // Channel enable can only be changed in Mission Mode
+  if (auto result = checkMissionMode(); !result) {
+    comm_.Log(LogLevel::Error, "TLE92466ED",
+              "Cannot enable/disable channel: Device must be in Mission Mode (currently in Config "
+              "Mode). Call EnterMissionMode() first.\n");
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channel: Channel=%s, Enabled=%s\n",
-              ToString(channel), enabled ? "true" : "false");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channel: Channel=%s, Enabled=%s\n",
+            ToString(channel), enabled ? "true" : "false");
 
-    uint16_t mask = CH_CTRL::ChannelMask(ToIndex(channel));
+  uint16_t mask = CH_CTRL::ChannelMask(ToIndex(channel));
 
-    if (enabled) {
-        channel_enable_cache_ |= mask;
-    } else {
-        channel_enable_cache_ &= ~mask;
-    }
+  if (enabled) {
+    channel_enable_cache_ |= mask;
+  } else {
+    channel_enable_cache_ &= ~mask;
+  }
 
-    // Build full CH_CTRL value: preserve OP_MODE and parallel bits, update channel enable bits
-    uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_CH_MASK;  // Clear channel bits
-    ch_ctrl_value |= channel_enable_cache_;  // Set channel enable bits from cache
-    
-    // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
-    // We track state in ch_ctrl_cache_ and channel_enable_cache_ instead
-    ch_ctrl_cache_ = ch_ctrl_value;
-    return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
+  // Build full CH_CTRL value: preserve OP_MODE and parallel bits, update channel enable bits
+  uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_CH_MASK; // Clear channel bits
+  ch_ctrl_value |= channel_enable_cache_; // Set channel enable bits from cache
+
+  // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
+  // We track state in ch_ctrl_cache_ and channel_enable_cache_ instead
+  ch_ctrl_cache_ = ch_ctrl_value;
+  return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
 }
 
 DriverResult<void> Driver::EnableChannels(uint8_t channel_mask) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
+
+  if (auto result = checkMissionMode(); !result) {
+    return result;
+  }
+
+  // Mask to valid channels only (bits 0-5)
+  channel_mask &= CH_CTRL::ALL_CH_MASK;
+  channel_enable_cache_ = channel_mask;
+
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channels: Mask=0x%02X (", channel_mask);
+  bool first = true;
+  for (uint8_t ch = 0; ch < 6; ++ch) {
+    if (channel_mask & (1 << ch)) {
+      if (!first)
+        comm_.Log(LogLevel::Info, "TLE92466ED", ", ");
+      comm_.Log(LogLevel::Info, "TLE92466ED", "%s", ToString(static_cast<Channel>(ch)));
+      first = false;
     }
+  }
+  comm_.Log(LogLevel::Info, "TLE92466ED", ")\n");
 
-    if (auto result = checkMissionMode(); !result) {
-        return result;
-    }
+  // Build full CH_CTRL value: preserve OP_MODE and parallel bits, update channel enable bits
+  uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_CH_MASK; // Clear channel bits
+  ch_ctrl_value |= channel_mask;                                   // Set new channel enable bits
 
-    // Mask to valid channels only (bits 0-5)
-    channel_mask &= CH_CTRL::ALL_CH_MASK;
-    channel_enable_cache_ = channel_mask;
-
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channels: Mask=0x%02X (", channel_mask);
-    bool first = true;
-    for (uint8_t ch = 0; ch < 6; ++ch) {
-        if (channel_mask & (1 << ch)) {
-            if (!first) comm_.Log(LogLevel::Info, "TLE92466ED", ", ");
-            comm_.Log(LogLevel::Info, "TLE92466ED", "%s", ToString(static_cast<Channel>(ch)));
-            first = false;
-        }
-    }
-    comm_.Log(LogLevel::Info, "TLE92466ED", ")\n");
-
-    // Build full CH_CTRL value: preserve OP_MODE and parallel bits, update channel enable bits
-    uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_CH_MASK;  // Clear channel bits
-    ch_ctrl_value |= channel_mask;  // Set new channel enable bits
-    
-    // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
-    // We track state in ch_ctrl_cache_ and channel_enable_cache_ instead
-    ch_ctrl_cache_ = ch_ctrl_value;
-    return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
+  // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
+  // We track state in ch_ctrl_cache_ and channel_enable_cache_ instead
+  ch_ctrl_cache_ = ch_ctrl_value;
+  return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
 }
 
 DriverResult<void> Driver::EnableAllChannels() noexcept {
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling all channels\n");
-    return EnableChannels(CH_CTRL::ALL_CH_MASK);
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling all channels\n");
+  return EnableChannels(CH_CTRL::ALL_CH_MASK);
 }
 
 DriverResult<void> Driver::DisableAllChannels() noexcept {
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Disabling all channels\n");
-    return EnableChannels(0);
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Disabling all channels\n");
+  return EnableChannels(0);
 }
 
 DriverResult<void> Driver::SetChannelMode(Channel channel, ChannelMode mode) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    // Mode can only be changed in Config Mode
-    if (auto result = checkConfigMode(); !result) {
-        return result;
-    }
+  // Mode can only be changed in Config Mode
+  if (auto result = checkConfigMode(); !result) {
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::MODE);
-    
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting channel mode: Channel=%s, Mode=%s (0x%04X)\n",
-              ToString(channel), ToString(mode), static_cast<uint16_t>(mode));
-    
-    return WriteRegister(ch_addr, static_cast<uint16_t>(mode));
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::MODE);
+
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting channel mode: Channel=%s, Mode=%s (0x%04X)\n",
+            ToString(channel), ToString(mode), static_cast<uint16_t>(mode));
+
+  return WriteRegister(ch_addr, static_cast<uint16_t>(mode));
 }
 
 DriverResult<void> Driver::SetParallelOperation(ParallelPair pair, bool enabled) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    // Parallel operation can only be changed in Config Mode
-    if (auto result = checkConfigMode(); !result) {
-        return result;
-    }
+  // Parallel operation can only be changed in Config Mode
+  if (auto result = checkConfigMode(); !result) {
+    return result;
+  }
 
-    uint16_t mask = 0;
-    switch (pair) {
-        case ParallelPair::CH0_CH3:
-            mask = CH_CTRL::CH_PAR_0_3;
-            break;
-        case ParallelPair::CH1_CH2:
-            mask = CH_CTRL::CH_PAR_1_2;
-            break;
-        case ParallelPair::CH4_CH5:
-            mask = CH_CTRL::CH_PAR_4_5;
-            break;
-        default:
-            return std::unexpected(DriverError::InvalidParameter);
-    }
+  uint16_t mask = 0;
+  switch (pair) {
+  case ParallelPair::CH0_CH3:
+    mask = CH_CTRL::CH_PAR_0_3;
+    break;
+  case ParallelPair::CH1_CH2:
+    mask = CH_CTRL::CH_PAR_1_2;
+    break;
+  case ParallelPair::CH4_CH5:
+    mask = CH_CTRL::CH_PAR_4_5;
+    break;
+  default:
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting parallel operation: Pair=%s, Enabled=%s\n",
-              ToString(pair), enabled ? "true" : "false");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting parallel operation: Pair=%s, Enabled=%s\n",
+            ToString(pair), enabled ? "true" : "false");
 
-    // Build full CH_CTRL value: preserve OP_MODE and channel enable bits, update parallel bits
-    uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_PAR_MASK;  // Clear parallel bits
-    if (enabled) {
-        ch_ctrl_value |= mask;  // Set parallel bit
-    }
-    // If disabled, parallel bit is already cleared
-    
-    // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
-    // We track state in ch_ctrl_cache_ instead
-    ch_ctrl_cache_ = ch_ctrl_value;
-    return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
+  // Build full CH_CTRL value: preserve OP_MODE and channel enable bits, update parallel bits
+  uint16_t ch_ctrl_value = ch_ctrl_cache_ & ~CH_CTRL::ALL_PAR_MASK; // Clear parallel bits
+  if (enabled) {
+    ch_ctrl_value |= mask; // Set parallel bit
+  }
+  // If disabled, parallel bit is already cleared
+
+  // CH_CTRL write verification is disabled because reads return 0x0000 (known device behavior)
+  // We track state in ch_ctrl_cache_ instead
+  ch_ctrl_cache_ = ch_ctrl_value;
+  return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
 }
 
 //==========================================================================
 // CURRENT CONTROL
 //==========================================================================
 
-DriverResult<void> Driver::SetCurrentSetpoint(
-    Channel channel,
-    uint16_t current_ma,
-    bool parallel_mode) noexcept {
+DriverResult<void> Driver::SetCurrentSetpoint(Channel channel, uint16_t current_ma,
+                                              bool parallel_mode) noexcept {
 
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Validate current range (using absolute register scale)
-    // Note: Datasheet typical continuous limits are ~1.5A single, ~2.7A parallel
-    // but register scale allows up to 2A/4A for transient operation
-    uint16_t max_current = parallel_mode ? 4000 : 2000;
-    if (current_ma > max_current) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Validate current range (using absolute register scale)
+  // Note: Datasheet typical continuous limits are ~1.5A single, ~2.7A parallel
+  // but register scale allows up to 2A/4A for transient operation
+  uint16_t max_current = parallel_mode ? 4000 : 2000;
+  if (current_ma > max_current) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    // Calculate setpoint register value
-    uint16_t target = SETPOINT::CalculateTarget(current_ma, parallel_mode);
-    
-    // Cache the setpoint
-    channel_setpoints_[ToIndex(channel)] = target;
+  // Calculate setpoint register value
+  uint16_t target = SETPOINT::CalculateTarget(current_ma, parallel_mode);
 
-    // Write to SETPOINT register
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::SETPOINT);
-    
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting current setpoint: Channel=%s, Current=%u mA, Target=0x%04X, Parallel=%s\n",
-              ToString(channel), current_ma, target, parallel_mode ? "true" : "false");
-    
-    return WriteRegister(ch_addr, target);
+  // Cache the setpoint
+  channel_setpoints_[ToIndex(channel)] = target;
+
+  // Write to SETPOINT register
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::SETPOINT);
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Setting current setpoint: Channel=%s, Current=%u mA, Target=0x%04X, Parallel=%s\n",
+            ToString(channel), current_ma, target, parallel_mode ? "true" : "false");
+
+  return WriteRegister(ch_addr, target);
 }
 
-DriverResult<uint16_t> Driver::GetCurrentSetpoint(
-    Channel channel,
-    bool parallel_mode) noexcept {
+DriverResult<uint16_t> Driver::GetCurrentSetpoint(Channel channel, bool parallel_mode) noexcept {
 
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Read SETPOINT register
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::SETPOINT);
-    auto result = ReadRegister(ch_addr);
-    if (!result) {
-        return std::unexpected(result.error());
-    }
+  // Read SETPOINT register
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::SETPOINT);
+  auto result = ReadRegister(ch_addr);
+  if (!result) {
+    return std::unexpected(result.error());
+  }
 
-    // Convert to current in mA
-    uint16_t target = *result & SETPOINT::TARGET_MASK;
-    uint16_t current_ma = SETPOINT::CalculateCurrent(target, parallel_mode);
+  // Convert to current in mA
+  uint16_t target = *result & SETPOINT::TARGET_MASK;
+  uint16_t current_ma = SETPOINT::CalculateCurrent(target, parallel_mode);
 
-    return current_ma;
+  return current_ma;
 }
 
-DriverResult<void> Driver::ConfigurePwmPeriod(
-    Channel channel,
-    float period_us) noexcept {
+DriverResult<void> Driver::ConfigurePwmPeriod(Channel channel, float period_us) noexcept {
 
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Validate period range
-    if (period_us < 0.125f || period_us > 32640.0f) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Validate period range
+  if (period_us < 0.125f || period_us > 32640.0f) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    // Calculate register values from desired period
-    auto config = PERIOD::CalculateFromPeriodUs(period_us);
-    
-    // Check if calculation was successful (mantissa != 0)
-    if (config.mantissa == 0) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Calculate register values from desired period
+  auto config = PERIOD::CalculateFromPeriodUs(period_us);
 
-    // Build PERIOD register value
-    uint16_t value = PERIOD::BuildRegisterValue(config);
+  // Check if calculation was successful (mantissa != 0)
+  if (config.mantissa == 0) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring PWM period: Channel=%s, Period=%.3f us, Mantissa=%u, Exponent=%u, Register=0x%04X\n",
-              ToString(channel), period_us, config.mantissa, config.exponent, value);
+  // Build PERIOD register value
+  uint16_t value = PERIOD::BuildRegisterValue(config);
 
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
-    return WriteRegister(ch_addr, value);
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring PWM period: Channel=%s, Period=%.3f us, Mantissa=%u, Exponent=%u, "
+            "Register=0x%04X\n",
+            ToString(channel), period_us, config.mantissa, config.exponent, value);
+
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
+  return WriteRegister(ch_addr, value);
 }
 
-DriverResult<void> Driver::ConfigurePwmPeriodRaw(
-    Channel channel,
-    uint8_t period_mantissa,
-    uint8_t period_exponent,
-    bool low_freq_range) noexcept {
+DriverResult<void> Driver::ConfigurePwmPeriodRaw(Channel channel, uint8_t period_mantissa,
+                                                 uint8_t period_exponent,
+                                                 bool low_freq_range) noexcept {
 
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Build PERIOD register value
-    uint16_t value = period_mantissa | 
-                    ((period_exponent & PERIOD::EXP_VALUE_MASK) << PERIOD::EXP_SHIFT) |
-                    (low_freq_range ? PERIOD::LOW_FREQ_BIT : 0);
+  // Build PERIOD register value
+  uint16_t value = period_mantissa |
+                   ((period_exponent & PERIOD::EXP_VALUE_MASK) << PERIOD::EXP_SHIFT) |
+                   (low_freq_range ? PERIOD::LOW_FREQ_BIT : 0);
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring PWM period (raw): Channel=%s, Mantissa=%u, Exponent=%u, "
-              "LowFreq=%s, Register=0x%04X\n",
-              ToString(channel), period_mantissa, period_exponent,
-              low_freq_range ? "true" : "false", value);
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring PWM period (raw): Channel=%s, Mantissa=%u, Exponent=%u, "
+            "LowFreq=%s, Register=0x%04X\n",
+            ToString(channel), period_mantissa, period_exponent, low_freq_range ? "true" : "false",
+            value);
 
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
-    return WriteRegister(ch_addr, value);
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::PERIOD);
+  return WriteRegister(ch_addr, value);
 }
 
-DriverResult<void> Driver::ConfigureDither(
-    Channel channel,
-    float amplitude_ma,
-    float frequency_hz,
-    bool parallel_mode) noexcept {
+DriverResult<void> Driver::ConfigureDither(Channel channel, float amplitude_ma, float frequency_hz,
+                                           bool parallel_mode) noexcept {
 
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Validate parameters
-    if (amplitude_ma < 0.0f || frequency_hz <= 0.0f) {
-        return std::unexpected(DriverError::InvalidParameter);
-    }
+  // Validate parameters
+  if (amplitude_ma < 0.0f || frequency_hz <= 0.0f) {
+    return std::unexpected(DriverError::InvalidParameter);
+  }
 
-    // Check if channel is in parallel mode (if not specified, detect it)
-    if (!parallel_mode) {
-        auto parallel_result = isChannelParallel(channel);
-        if (parallel_result) {
-            parallel_mode = *parallel_result;
-        }
-    }
-
-    // Calculate dither configuration from amplitude and frequency
-    auto config = DITHER::CalculateFromAmplitudeFrequency(
-        amplitude_ma, frequency_hz, parallel_mode);
-
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring dither: Channel=%s, Amplitude=%.2f mA, Frequency=%.2f Hz, "
-              "StepSize=%u, NumSteps=%u, FlatSteps=%u, Parallel=%s\n",
-              ToString(channel), amplitude_ma, frequency_hz,
-              config.step_size, config.num_steps, config.flat_steps, parallel_mode ? "true" : "false");
-
-    // Configure dither registers
-    return ConfigureDitherRaw(channel, config.step_size, config.num_steps, config.flat_steps);
-}
-
-DriverResult<void> Driver::ConfigureDitherRaw(
-    Channel channel,
-    uint16_t step_size,
-    uint8_t num_steps,
-    uint8_t flat_steps) noexcept {
-
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
-
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
-
-    uint16_t ch_base = GetChannelBase(channel);
-
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring dither (raw): Channel=%s, StepSize=%u, NumSteps=%u, FlatSteps=%u\n",
-              ToString(channel), step_size, num_steps, flat_steps);
-
-    // Configure DITHER_CTRL (step size)
-    uint16_t ctrl_value = step_size & DITHER_CTRL::STEP_SIZE_MASK;
-    if (auto result = WriteRegister(ch_base + ChannelReg::DITHER_CTRL, ctrl_value); !result) {
-        return std::unexpected(result.error());
-    }
-
-    // Configure DITHER_STEP (steps and flat period)
-    uint16_t step_value = flat_steps | (static_cast<uint16_t>(num_steps) << DITHER_STEP::STEPS_SHIFT);
-    if (auto result = WriteRegister(ch_base + ChannelReg::DITHER_STEP, step_value); !result) {
-        return std::unexpected(result.error());
-    }
-
-    return {};
-}
-
-DriverResult<void> Driver::ConfigureChannel(
-    Channel channel,
-    const ChannelConfig& config) noexcept {
-
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
-
-    // Most configuration requires Config Mode
-    if (auto result = checkConfigMode(); !result) {
-        return result;
-    }
-
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
-
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Configuring channel: %s, Mode=%s, Current=%u mA, "
-              "SlewRate=%s, DiagCurrent=%s, OL_Threshold=%u\n",
-              ToString(channel), ToString(config.mode), config.current_setpoint_ma,
-              ToString(config.slew_rate), ToString(config.diag_current), config.open_load_threshold);
-
-    uint16_t ch_base = GetChannelBase(channel);
-
-    // 1. Set channel mode
-    if (auto result = WriteRegister(ch_base + ChannelReg::MODE, 
-                                     static_cast<uint16_t>(config.mode)); !result) {
-        return std::unexpected(result.error());
-    }
-
-    // 2. Set current setpoint with parallel mode detection
+  // Check if channel is in parallel mode (if not specified, detect it)
+  if (!parallel_mode) {
     auto parallel_result = isChannelParallel(channel);
-    bool is_parallel = parallel_result.value_or(false); // Default to false if can't determine
-    uint16_t target = SETPOINT::CalculateTarget(config.current_setpoint_ma, is_parallel);
-    if (config.auto_limit_disabled) {
-        target |= SETPOINT::AUTO_LIMIT_DIS;
+    if (parallel_result) {
+      parallel_mode = *parallel_result;
     }
-    if (auto result = WriteRegister(ch_base + ChannelReg::SETPOINT, target); !result) {
+  }
+
+  // Calculate dither configuration from amplitude and frequency
+  auto config = DITHER::CalculateFromAmplitudeFrequency(amplitude_ma, frequency_hz, parallel_mode);
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring dither: Channel=%s, Amplitude=%.2f mA, Frequency=%.2f Hz, "
+            "StepSize=%u, NumSteps=%u, FlatSteps=%u, Parallel=%s\n",
+            ToString(channel), amplitude_ma, frequency_hz, config.step_size, config.num_steps,
+            config.flat_steps, parallel_mode ? "true" : "false");
+
+  // Configure dither registers
+  return ConfigureDitherRaw(channel, config.step_size, config.num_steps, config.flat_steps);
+}
+
+DriverResult<void> Driver::ConfigureDitherRaw(Channel channel, uint16_t step_size,
+                                              uint8_t num_steps, uint8_t flat_steps) noexcept {
+
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
+
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
+
+  uint16_t ch_base = GetChannelBase(channel);
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring dither (raw): Channel=%s, StepSize=%u, NumSteps=%u, FlatSteps=%u\n",
+            ToString(channel), step_size, num_steps, flat_steps);
+
+  // Configure DITHER_CTRL (step size)
+  uint16_t ctrl_value = step_size & DITHER_CTRL::STEP_SIZE_MASK;
+  if (auto result = WriteRegister(ch_base + ChannelReg::DITHER_CTRL, ctrl_value); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // Configure DITHER_STEP (steps and flat period)
+  uint16_t step_value = flat_steps | (static_cast<uint16_t>(num_steps) << DITHER_STEP::STEPS_SHIFT);
+  if (auto result = WriteRegister(ch_base + ChannelReg::DITHER_STEP, step_value); !result) {
+    return std::unexpected(result.error());
+  }
+
+  return {};
+}
+
+DriverResult<void> Driver::ConfigureChannel(Channel channel, const ChannelConfig& config) noexcept {
+
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
+
+  // Most configuration requires Config Mode
+  if (auto result = checkConfigMode(); !result) {
+    return result;
+  }
+
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Configuring channel: %s, Mode=%s, Current=%u mA, "
+            "SlewRate=%s, DiagCurrent=%s, OL_Threshold=%u\n",
+            ToString(channel), ToString(config.mode), config.current_setpoint_ma,
+            ToString(config.slew_rate), ToString(config.diag_current), config.open_load_threshold);
+
+  uint16_t ch_base = GetChannelBase(channel);
+
+  // 1. Set channel mode
+  if (auto result = WriteRegister(ch_base + ChannelReg::MODE, static_cast<uint16_t>(config.mode));
+      !result) {
+    return std::unexpected(result.error());
+  }
+
+  // 2. Set current setpoint with parallel mode detection
+  auto parallel_result = isChannelParallel(channel);
+  bool is_parallel = parallel_result.value_or(false); // Default to false if can't determine
+  uint16_t target = SETPOINT::CalculateTarget(config.current_setpoint_ma, is_parallel);
+  if (config.auto_limit_disabled) {
+    target |= SETPOINT::AUTO_LIMIT_DIS;
+  }
+  if (auto result = WriteRegister(ch_base + ChannelReg::SETPOINT, target); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // 3. Configure CH_CONFIG register
+  uint16_t ch_cfg = static_cast<uint16_t>(config.slew_rate) |
+                    (static_cast<uint16_t>(config.diag_current) << 2) |
+                    (static_cast<uint16_t>(config.open_load_threshold & CH_CONFIG::OL_TH_VALUE_MASK)
+                     << CH_CONFIG::OL_TH_SHIFT);
+
+  if (auto result = WriteRegister(ch_base + ChannelReg::CH_CONFIG, ch_cfg); !result) {
+    return std::unexpected(result.error());
+  }
+
+  // 3a. Configure OLSG warning enable if requested (bit 14 of CTRL register)
+  if (config.olsg_warning_enabled) {
+    if (auto result = ModifyRegister(ch_base + ChannelReg::CTRL, CH_CTRL_REG::OLSG_WARN_EN,
+                                     CH_CTRL_REG::OLSG_WARN_EN);
+        !result) {
+      return std::unexpected(result.error());
+    }
+  }
+
+  // 4. Configure PWM if specified
+  // Note: ChannelConfig still uses low-level parameters for backward compatibility
+  // New code should use ConfigurePwmPeriod(period_us) directly
+  if (config.pwm_period_mantissa > 0) {
+    if (auto result = ConfigurePwmPeriodRaw(channel, config.pwm_period_mantissa,
+                                            config.pwm_period_exponent, false);
+        !result) {
+      return std::unexpected(result.error());
+    }
+  }
+
+  // 5. Configure dither if specified
+  // Note: ChannelConfig still uses low-level parameters for backward compatibility
+  // New code should use ConfigureDither(amplitude_ma, frequency_hz) directly
+  if (config.dither_step_size > 0) {
+    if (auto result = ConfigureDitherRaw(channel, config.dither_step_size, config.dither_steps,
+                                         config.dither_flat);
+        !result) {
+      return std::unexpected(result.error());
+    }
+
+    // 5a. Enable deep dither if requested (bit 13 of DITHER_CTRL)
+    if (config.deep_dither_enabled) {
+      if (auto result = ModifyRegister(ch_base + ChannelReg::DITHER_CTRL, DITHER_CTRL::DEEP_DITHER,
+                                       DITHER_CTRL::DEEP_DITHER);
+          !result) {
         return std::unexpected(result.error());
+      }
     }
+  }
 
-    // 3. Configure CH_CONFIG register
-    uint16_t ch_cfg = static_cast<uint16_t>(config.slew_rate) |
-                     (static_cast<uint16_t>(config.diag_current) << 2) |
-                     (static_cast<uint16_t>(config.open_load_threshold & CH_CONFIG::OL_TH_VALUE_MASK) << CH_CONFIG::OL_TH_SHIFT);
-    
-    if (auto result = WriteRegister(ch_base + ChannelReg::CH_CONFIG, ch_cfg); !result) {
-        return std::unexpected(result.error());
-    }
-
-    // 3a. Configure OLSG warning enable if requested (bit 14 of CTRL register)
-    if (config.olsg_warning_enabled) {
-        if (auto result = ModifyRegister(ch_base + ChannelReg::CTRL, 
-                                         CH_CTRL_REG::OLSG_WARN_EN,
-                                         CH_CTRL_REG::OLSG_WARN_EN); !result) {
-            return std::unexpected(result.error());
-        }
-    }
-
-    // 4. Configure PWM if specified
-    // Note: ChannelConfig still uses low-level parameters for backward compatibility
-    // New code should use ConfigurePwmPeriod(period_us) directly
-    if (config.pwm_period_mantissa > 0) {
-        if (auto result = ConfigurePwmPeriodRaw(channel, 
-                                              config.pwm_period_mantissa,
-                                              config.pwm_period_exponent,
-                                              false); !result) {
-            return std::unexpected(result.error());
-        }
-    }
-
-    // 5. Configure dither if specified
-    // Note: ChannelConfig still uses low-level parameters for backward compatibility
-    // New code should use ConfigureDither(amplitude_ma, frequency_hz) directly
-    if (config.dither_step_size > 0) {
-        if (auto result = ConfigureDitherRaw(channel,
-                                          config.dither_step_size,
-                                          config.dither_steps,
-                                          config.dither_flat); !result) {
-            return std::unexpected(result.error());
-        }
-        
-        // 5a. Enable deep dither if requested (bit 13 of DITHER_CTRL)
-        if (config.deep_dither_enabled) {
-            if (auto result = ModifyRegister(ch_base + ChannelReg::DITHER_CTRL,
-                                             DITHER_CTRL::DEEP_DITHER,
-                                             DITHER_CTRL::DEEP_DITHER); !result) {
-                return std::unexpected(result.error());
-            }
-        }
-    }
-
-    return {};
+  return {};
 }
 
 //==========================================================================
@@ -804,230 +808,231 @@ DriverResult<void> Driver::ConfigureChannel(
 //==========================================================================
 
 DriverResult<DeviceStatus> Driver::GetDeviceStatus() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    DeviceStatus status{};
+  DeviceStatus status{};
 
-    // Read GLOBAL_DIAG0
-    auto diag0_result = ReadRegister(CentralReg::GLOBAL_DIAG0);
-    if (!diag0_result) {
-        return std::unexpected(diag0_result.error());
-    }
+  // Read GLOBAL_DIAG0
+  auto diag0_result = ReadRegister(CentralReg::GLOBAL_DIAG0);
+  if (!diag0_result) {
+    return std::unexpected(diag0_result.error());
+  }
 
-    uint16_t diag0 = *diag0_result;
-    status.vbat_uv = (diag0 & GLOBAL_DIAG0::VBAT_UV) != 0;
-    status.vbat_ov = (diag0 & GLOBAL_DIAG0::VBAT_OV) != 0;
-    status.vio_uv = (diag0 & GLOBAL_DIAG0::VIO_UV) != 0;
-    status.vio_ov = (diag0 & GLOBAL_DIAG0::VIO_OV) != 0;
-    status.vdd_uv = (diag0 & GLOBAL_DIAG0::VDD_UV) != 0;
-    status.vdd_ov = (diag0 & GLOBAL_DIAG0::VDD_OV) != 0;
-    status.clock_fault = (diag0 & GLOBAL_DIAG0::CLK_NOK) != 0;
-    status.ot_error = (diag0 & GLOBAL_DIAG0::COTERR) != 0;
-    status.ot_warning = (diag0 & GLOBAL_DIAG0::COTWARN) != 0;
-    status.reset_event = (diag0 & GLOBAL_DIAG0::RES_EVENT) != 0;
-    status.por_event = (diag0 & GLOBAL_DIAG0::POR_EVENT) != 0;
-    status.spi_wd_error = (diag0 & GLOBAL_DIAG0::SPI_WD_ERR) != 0;
+  uint16_t diag0 = *diag0_result;
+  status.vbat_uv = (diag0 & GLOBAL_DIAG0::VBAT_UV) != 0;
+  status.vbat_ov = (diag0 & GLOBAL_DIAG0::VBAT_OV) != 0;
+  status.vio_uv = (diag0 & GLOBAL_DIAG0::VIO_UV) != 0;
+  status.vio_ov = (diag0 & GLOBAL_DIAG0::VIO_OV) != 0;
+  status.vdd_uv = (diag0 & GLOBAL_DIAG0::VDD_UV) != 0;
+  status.vdd_ov = (diag0 & GLOBAL_DIAG0::VDD_OV) != 0;
+  status.clock_fault = (diag0 & GLOBAL_DIAG0::CLK_NOK) != 0;
+  status.ot_error = (diag0 & GLOBAL_DIAG0::COTERR) != 0;
+  status.ot_warning = (diag0 & GLOBAL_DIAG0::COTWARN) != 0;
+  status.reset_event = (diag0 & GLOBAL_DIAG0::RES_EVENT) != 0;
+  status.por_event = (diag0 & GLOBAL_DIAG0::POR_EVENT) != 0;
+  status.spi_wd_error = (diag0 & GLOBAL_DIAG0::SPI_WD_ERR) != 0;
 
-    status.any_fault = (diag0 & GLOBAL_DIAG0::FAULT_MASK) != 0;
+  status.any_fault = (diag0 & GLOBAL_DIAG0::FAULT_MASK) != 0;
 
-    // Read FB_STAT for additional status
-    auto fb_stat_result = ReadRegister(CentralReg::FB_STAT);
-    if (fb_stat_result) {
-        uint16_t fb_stat = *fb_stat_result;
-        status.supply_nok_internal = (fb_stat & FB_STAT::SUP_NOK_INT) != 0;
-        status.supply_nok_external = (fb_stat & FB_STAT::SUP_NOK_EXT) != 0;
-        status.init_done = (fb_stat & FB_STAT::INIT_DONE) != 0;
-    }
+  // Read FB_STAT for additional status
+  auto fb_stat_result = ReadRegister(CentralReg::FB_STAT);
+  if (fb_stat_result) {
+    uint16_t fb_stat = *fb_stat_result;
+    status.supply_nok_internal = (fb_stat & FB_STAT::SUP_NOK_INT) != 0;
+    status.supply_nok_external = (fb_stat & FB_STAT::SUP_NOK_EXT) != 0;
+    status.init_done = (fb_stat & FB_STAT::INIT_DONE) != 0;
+  }
 
-    // Read CH_CTRL to get mode
-    auto ch_ctrl_result = ReadRegister(CentralReg::CH_CTRL);
-    if (ch_ctrl_result) {
-        status.config_mode = (*ch_ctrl_result & CH_CTRL::OP_MODE) == 0;
-    }
+  // Read CH_CTRL to get mode
+  auto ch_ctrl_result = ReadRegister(CentralReg::CH_CTRL);
+  if (ch_ctrl_result) {
+    status.config_mode = (*ch_ctrl_result & CH_CTRL::OP_MODE) == 0;
+  }
 
-    // Read voltage feedbacks
-    // FB_VOLTAGE1 contains VIO and VDD (22-bit reply frame)
-    auto fb_voltage1_result = ReadRegister(CentralReg::FB_VOLTAGE1);
-    if (fb_voltage1_result) {
-        status.vio_voltage = VOLTAGE_FEEDBACK::ExtractVioMillivolts(*fb_voltage1_result);
-        // Note: VDD is also available in FB_VOLTAGE1 but not stored in DeviceStatus
-    }
+  // Read voltage feedbacks
+  // FB_VOLTAGE1 contains VIO and VDD (22-bit reply frame)
+  auto fb_voltage1_result = ReadRegister(CentralReg::FB_VOLTAGE1);
+  if (fb_voltage1_result) {
+    status.vio_voltage = VOLTAGE_FEEDBACK::ExtractVioMillivolts(*fb_voltage1_result);
+    // Note: VDD is also available in FB_VOLTAGE1 but not stored in DeviceStatus
+  }
 
-    // FB_VOLTAGE2 contains VBAT and temperature (22-bit reply frame)
-    auto fb_voltage2_result = ReadRegister(CentralReg::FB_VOLTAGE2);
-    if (fb_voltage2_result) {
-        status.vbat_voltage = VOLTAGE_FEEDBACK::ExtractVbatMillivolts(*fb_voltage2_result);
-    }
+  // FB_VOLTAGE2 contains VBAT and temperature (22-bit reply frame)
+  auto fb_voltage2_result = ReadRegister(CentralReg::FB_VOLTAGE2);
+  if (fb_voltage2_result) {
+    status.vbat_voltage = VOLTAGE_FEEDBACK::ExtractVbatMillivolts(*fb_voltage2_result);
+  }
 
-    return status;
+  return status;
 }
 
 DriverResult<ChannelDiagnostics> Driver::GetChannelDiagnostics(Channel channel) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    ChannelDiagnostics diag{};
+  ChannelDiagnostics diag{};
 
-    // Read DIAG_ERR register for this channel group
-    auto diag_err_result = ReadRegister(CentralReg::DIAG_ERR_CHGR0 + ToIndex(channel));
-    if (diag_err_result) {
-        uint16_t diag_err = *diag_err_result;
-        // Parse error flags (bit positions from datasheet Table in page 67)
-        diag.overcurrent = (diag_err & (1 << 0)) != 0;         // OC bit
-        diag.short_to_ground = (diag_err & (1 << 1)) != 0;     // SG bit
-        diag.open_load = (diag_err & (1 << 2)) != 0;           // OL bit
-        diag.over_temperature = (diag_err & (1 << 3)) != 0;    // OTE bit
-        diag.open_load_short_ground = (diag_err & (1 << 4)) != 0; // OLSG bit
-    }
+  // Read DIAG_ERR register for this channel group
+  auto diag_err_result = ReadRegister(CentralReg::DIAG_ERR_CHGR0 + ToIndex(channel));
+  if (diag_err_result) {
+    uint16_t diag_err = *diag_err_result;
+    // Parse error flags (bit positions from datasheet Table in page 67)
+    diag.overcurrent = (diag_err & (1 << 0)) != 0;            // OC bit
+    diag.short_to_ground = (diag_err & (1 << 1)) != 0;        // SG bit
+    diag.open_load = (diag_err & (1 << 2)) != 0;              // OL bit
+    diag.over_temperature = (diag_err & (1 << 3)) != 0;       // OTE bit
+    diag.open_load_short_ground = (diag_err & (1 << 4)) != 0; // OLSG bit
+  }
 
-    // Read DIAG_WARN register for warnings
-    auto diag_warn_result = ReadRegister(CentralReg::DIAG_WARN_CHGR0 + ToIndex(channel));
-    if (diag_warn_result) {
-        uint16_t diag_warn = *diag_warn_result;
-        diag.ot_warning = (diag_warn & (1 << 0)) != 0;
-        diag.current_regulation_warning = (diag_warn & (1 << 1)) != 0;
-        diag.pwm_regulation_warning = (diag_warn & (1 << 2)) != 0;
-        diag.olsg_warning = (diag_warn & (1 << 3)) != 0;
-    }
+  // Read DIAG_WARN register for warnings
+  auto diag_warn_result = ReadRegister(CentralReg::DIAG_WARN_CHGR0 + ToIndex(channel));
+  if (diag_warn_result) {
+    uint16_t diag_warn = *diag_warn_result;
+    diag.ot_warning = (diag_warn & (1 << 0)) != 0;
+    diag.current_regulation_warning = (diag_warn & (1 << 1)) != 0;
+    diag.pwm_regulation_warning = (diag_warn & (1 << 2)) != 0;
+    diag.olsg_warning = (diag_warn & (1 << 3)) != 0;
+  }
 
-    // Read feedback values
-    uint16_t ch_base = GetChannelBase(channel);
-    
-    auto fb_i_avg_result = ReadRegister(ch_base + ChannelReg::FB_I_AVG);
-    if (fb_i_avg_result) {
-        diag.average_current = *fb_i_avg_result;
-    }
+  // Read feedback values
+  uint16_t ch_base = GetChannelBase(channel);
 
-    auto fb_dc_result = ReadRegister(ch_base + ChannelReg::FB_DC);
-    if (fb_dc_result) {
-        diag.duty_cycle = *fb_dc_result;
-    }
+  auto fb_i_avg_result = ReadRegister(ch_base + ChannelReg::FB_I_AVG);
+  if (fb_i_avg_result) {
+    diag.average_current = *fb_i_avg_result;
+  }
 
-    auto fb_vbat_result = ReadRegister(ch_base + ChannelReg::FB_VBAT);
-    if (fb_vbat_result) {
-        diag.vbat_feedback = *fb_vbat_result;
-    }
+  auto fb_dc_result = ReadRegister(ch_base + ChannelReg::FB_DC);
+  if (fb_dc_result) {
+    diag.duty_cycle = *fb_dc_result;
+  }
 
-    // Read min/max current feedback (FB_IMIN_IMAX register)
-    // Register format: [15:8] = I_MAX, [7:0] = I_MIN
-    auto fb_minmax_result = ReadRegister(ch_base + ChannelReg::FB_IMIN_IMAX);
-    if (fb_minmax_result) {
-        uint16_t minmax = *fb_minmax_result;
-        diag.min_current = minmax & DeviceID::REVISION_MASK;        // Lower 8 bits
-        diag.max_current = (minmax >> 8) & DeviceID::REVISION_MASK; // Upper 8 bits
-    }
+  auto fb_vbat_result = ReadRegister(ch_base + ChannelReg::FB_VBAT);
+  if (fb_vbat_result) {
+    diag.vbat_feedback = *fb_vbat_result;
+  }
 
-    return diag;
+  // Read min/max current feedback (FB_IMIN_IMAX register)
+  // Register format: [15:8] = I_MAX, [7:0] = I_MIN
+  auto fb_minmax_result = ReadRegister(ch_base + ChannelReg::FB_IMIN_IMAX);
+  if (fb_minmax_result) {
+    uint16_t minmax = *fb_minmax_result;
+    diag.min_current = minmax & DeviceID::REVISION_MASK;        // Lower 8 bits
+    diag.max_current = (minmax >> 8) & DeviceID::REVISION_MASK; // Upper 8 bits
+  }
+
+  return diag;
 }
 
 DriverResult<uint16_t> Driver::GetAverageCurrent(Channel channel, bool parallel_mode) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::FB_I_AVG);
-    auto result = ReadRegister(ch_addr);
-    if (!result) {
-        return std::unexpected(result.error());
-    }
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::FB_I_AVG);
+  auto result = ReadRegister(ch_addr);
+  if (!result) {
+    return std::unexpected(result.error());
+  }
 
-    // Convert raw value to mA
-    // Based on datasheet: similar calculation to setpoint
-    uint16_t current_ma = SETPOINT::CalculateCurrent(*result, parallel_mode);
-    return current_ma;
+  // Convert raw value to mA
+  // Based on datasheet: similar calculation to setpoint
+  uint16_t current_ma = SETPOINT::CalculateCurrent(*result, parallel_mode);
+  return current_ma;
 }
 
 DriverResult<uint16_t> Driver::GetDutyCycle(Channel channel) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::FB_DC);
-    return ReadRegister(ch_addr);
+  uint16_t ch_addr = GetChannelRegister(channel, ChannelReg::FB_DC);
+  return ReadRegister(ch_addr);
 }
 
 DriverResult<uint16_t> Driver::GetVbatVoltage() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // FB_VOLTAGE2 contains VBAT (22-bit reply frame)
-    // VBAT is in bits [21:11], formula: V_BAT = 41.47 V × <VBAT>/2047
-    auto result = ReadRegister(CentralReg::FB_VOLTAGE2);
-    if (!result) {
-        return std::unexpected(result.error());
-    }
+  // FB_VOLTAGE2 contains VBAT (22-bit reply frame)
+  // VBAT is in bits [21:11], formula: V_BAT = 41.47 V × <VBAT>/2047
+  auto result = ReadRegister(CentralReg::FB_VOLTAGE2);
+  if (!result) {
+    return std::unexpected(result.error());
+  }
 
-    // Extract VBAT voltage in millivolts
-    return VOLTAGE_FEEDBACK::ExtractVbatMillivolts(*result);
+  // Extract VBAT voltage in millivolts
+  return VOLTAGE_FEEDBACK::ExtractVbatMillivolts(*result);
 }
 
 DriverResult<uint16_t> Driver::GetVioVoltage() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // FB_VOLTAGE1 contains VIO (22-bit reply frame)
-    // VIO is in bits [10:0], formula: V_IO = 0.0034534 V × <VIO>
-    auto result = ReadRegister(CentralReg::FB_VOLTAGE1);
-    if (!result) {
-        return std::unexpected(result.error());
-    }
+  // FB_VOLTAGE1 contains VIO (22-bit reply frame)
+  // VIO is in bits [10:0], formula: V_IO = 0.0034534 V × <VIO>
+  auto result = ReadRegister(CentralReg::FB_VOLTAGE1);
+  if (!result) {
+    return std::unexpected(result.error());
+  }
 
-    // Extract VIO voltage in millivolts
-    return VOLTAGE_FEEDBACK::ExtractVioMillivolts(*result);
+  // Extract VIO voltage in millivolts
+  return VOLTAGE_FEEDBACK::ExtractVioMillivolts(*result);
 }
 
 DriverResult<uint16_t> Driver::GetVddVoltage() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // FB_VOLTAGE1 contains VDD (22-bit reply frame)
-    // VDD is in bits [21:11], formula: V_DD = 0.0034534 V × <VDD>
-    auto result = ReadRegister(CentralReg::FB_VOLTAGE1);
-    if (!result) {
-        return std::unexpected(result.error());
-    }
+  // FB_VOLTAGE1 contains VDD (22-bit reply frame)
+  // VDD is in bits [21:11], formula: V_DD = 0.0034534 V × <VDD>
+  auto result = ReadRegister(CentralReg::FB_VOLTAGE1);
+  if (!result) {
+    return std::unexpected(result.error());
+  }
 
-    // Extract VDD voltage in millivolts
-    return VOLTAGE_FEEDBACK::ExtractVddMillivolts(*result);
+  // Extract VDD voltage in millivolts
+  return VOLTAGE_FEEDBACK::ExtractVddMillivolts(*result);
 }
 
-DriverResult<void> Driver::GetVbatThresholds(uint16_t& uv_threshold, uint16_t& ov_threshold) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+DriverResult<void> Driver::GetVbatThresholds(uint16_t& uv_threshold,
+                                             uint16_t& ov_threshold) noexcept {
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // Read VBAT thresholds from VBAT_TH register
-    auto vbat_th_result = ReadRegister(CentralReg::VBAT_TH);
-    if (!vbat_th_result) {
-        return std::unexpected(vbat_th_result.error());
-    }
+  // Read VBAT thresholds from VBAT_TH register
+  auto vbat_th_result = ReadRegister(CentralReg::VBAT_TH);
+  if (!vbat_th_result) {
+    return std::unexpected(vbat_th_result.error());
+  }
 
-    uint16_t vbat_th = *vbat_th_result;
-    uint8_t uv_th = (vbat_th >> 0) & 0xFF;
-    uint8_t ov_th = (vbat_th >> 8) & 0xFF;
-    
-    uv_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(uv_th) * 1000.0f + 0.5f);
-    ov_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(ov_th) * 1000.0f + 0.5f);
+  uint16_t vbat_th = *vbat_th_result;
+  uint8_t uv_th = (vbat_th >> 0) & 0xFF;
+  uint8_t ov_th = (vbat_th >> 8) & 0xFF;
 
-    return {};
+  uv_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(uv_th) * 1000.0f + 0.5f);
+  ov_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(ov_th) * 1000.0f + 0.5f);
+
+  return {};
 }
 
 //==========================================================================
@@ -1035,454 +1040,486 @@ DriverResult<void> Driver::GetVbatThresholds(uint16_t& uv_threshold, uint16_t& o
 //==========================================================================
 
 DriverResult<void> Driver::ClearFaults() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Clearing all fault flags\n");
-    return clearFaultsInternal();
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Clearing all fault flags\n");
+  return clearFaultsInternal();
 }
 
 DriverResult<void> Driver::clearFaultsInternal() noexcept {
-    // Write 1s to clear fault bits in GLOBAL_DIAG0 (rwh type - clear on write 1)
-    // Note: Fault flags are latched. Writing 1 clears the latch, but if the underlying
-    // condition still exists (or existed recently), the fault may be re-asserted immediately.
-    // For voltage faults, the voltage must be within valid range for the fault to clear.
-    // Some faults may have hysteresis (trigger at one voltage, clear at different voltage).
-    if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0, GLOBAL_DIAG0::CLEAR_ALL); !result) {
-        return std::unexpected(result.error());
-    }
+  // Write 1s to clear fault bits in GLOBAL_DIAG0 (rwh type - clear on write 1)
+  // Note: Fault flags are latched. Writing 1 clears the latch, but if the underlying
+  // condition still exists (or existed recently), the fault may be re-asserted immediately.
+  // For voltage faults, the voltage must be within valid range for the fault to clear.
+  // Some faults may have hysteresis (trigger at one voltage, clear at different voltage).
+  if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG0, GLOBAL_DIAG0::CLEAR_ALL); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // Clear GLOBAL_DIAG1
-    if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG1, GLOBAL_DIAG1::CLEAR_ALL); !result) {
-        return std::unexpected(result.error());
-    }
+  // Clear GLOBAL_DIAG1
+  if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG1, GLOBAL_DIAG1::CLEAR_ALL); !result) {
+    return std::unexpected(result.error());
+  }
 
-    // Clear GLOBAL_DIAG2
-    if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG2, GLOBAL_DIAG2::CLEAR_ALL); !result) {
-        return std::unexpected(result.error());
-    }
+  // Clear GLOBAL_DIAG2
+  if (auto result = WriteRegister(CentralReg::GLOBAL_DIAG2, GLOBAL_DIAG2::CLEAR_ALL); !result) {
+    return std::unexpected(result.error());
+  }
 
-    return {};
+  return {};
 }
 
 DriverResult<bool> Driver::HasAnyFault() noexcept {
-    auto status_result = GetDeviceStatus();
-    if (!status_result) {
-        return std::unexpected(status_result.error());
-    }
+  auto status_result = GetDeviceStatus();
+  if (!status_result) {
+    return std::unexpected(status_result.error());
+  }
 
-    return status_result->any_fault;
+  return status_result->any_fault;
 }
 
 DriverResult<FaultReport> Driver::GetAllFaults() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
+
+  FaultReport report{};
+
+  // Read GLOBAL_DIAG0
+  auto diag0_result = ReadRegister(CentralReg::GLOBAL_DIAG0);
+  if (!diag0_result) {
+    return std::unexpected(diag0_result.error());
+  }
+  uint16_t diag0 = *diag0_result;
+
+  // External supply faults
+  report.vbat_uv = (diag0 & GLOBAL_DIAG0::VBAT_UV) != 0;
+  report.vbat_ov = (diag0 & GLOBAL_DIAG0::VBAT_OV) != 0;
+  report.vio_uv = (diag0 & GLOBAL_DIAG0::VIO_UV) != 0;
+  report.vio_ov = (diag0 & GLOBAL_DIAG0::VIO_OV) != 0;
+  report.vdd_uv = (diag0 & GLOBAL_DIAG0::VDD_UV) != 0;
+  report.vdd_ov = (diag0 & GLOBAL_DIAG0::VDD_OV) != 0;
+
+  // System faults
+  report.clock_fault = (diag0 & GLOBAL_DIAG0::CLK_NOK) != 0;
+  report.spi_wd_error = (diag0 & GLOBAL_DIAG0::SPI_WD_ERR) != 0;
+
+  // Temperature faults
+  report.ot_error = (diag0 & GLOBAL_DIAG0::COTERR) != 0;
+  report.ot_warning = (diag0 & GLOBAL_DIAG0::COTWARN) != 0;
+
+  // Reset events
+  report.reset_event = (diag0 & GLOBAL_DIAG0::RES_EVENT) != 0;
+  report.por_event = (diag0 & GLOBAL_DIAG0::POR_EVENT) != 0;
+
+  // Read GLOBAL_DIAG1
+  auto diag1_result = ReadRegister(CentralReg::GLOBAL_DIAG1);
+  if (diag1_result) {
+    uint16_t diag1 = *diag1_result;
+    report.vr_iref_uv = (diag1 & GLOBAL_DIAG1::VR_IREF_UV) != 0;
+    report.vr_iref_ov = (diag1 & GLOBAL_DIAG1::VR_IREF_OV) != 0;
+    report.vdd2v5_uv = (diag1 & GLOBAL_DIAG1::VDD2V5_UV) != 0;
+    report.vdd2v5_ov = (diag1 & GLOBAL_DIAG1::VDD2V5_OV) != 0;
+    report.ref_uv = (diag1 & GLOBAL_DIAG1::REF_UV) != 0;
+    report.ref_ov = (diag1 & GLOBAL_DIAG1::REF_OV) != 0;
+    report.vpre_ov = (diag1 & GLOBAL_DIAG1::VPRE_OV) != 0;
+    report.hvadc_err = (diag1 & GLOBAL_DIAG1::HVADC_ERR) != 0;
+  }
+
+  // Read GLOBAL_DIAG2
+  auto diag2_result = ReadRegister(CentralReg::GLOBAL_DIAG2);
+  if (diag2_result) {
+    uint16_t diag2 = *diag2_result;
+    report.reg_ecc_err = (diag2 & GLOBAL_DIAG2::REG_ECC_ERR) != 0;
+    report.otp_ecc_err = (diag2 & GLOBAL_DIAG2::OTP_ECC_ERR) != 0;
+    report.otp_virgin = (diag2 & GLOBAL_DIAG2::OTP_VIRGIN) != 0;
+  }
+
+  // Read FB_STAT for summary flags
+  auto fb_stat_result = ReadRegister(CentralReg::FB_STAT);
+  if (fb_stat_result) {
+    uint16_t fb_stat = *fb_stat_result;
+    report.supply_nok_internal = (fb_stat & FB_STAT::SUP_NOK_INT) != 0;
+    report.supply_nok_external = (fb_stat & FB_STAT::SUP_NOK_EXT) != 0;
+  }
+
+  // Read channel-specific faults
+  for (uint8_t ch = 0; ch < 6; ++ch) {
+    // Read DIAG_ERR register
+    auto diag_err_result = ReadRegister(CentralReg::DIAG_ERR_CHGR0 + ch);
+    if (diag_err_result) {
+      uint16_t diag_err = *diag_err_result;
+      report.channels[ch].overcurrent = (diag_err & (1 << 0)) != 0;
+      report.channels[ch].short_to_ground = (diag_err & (1 << 1)) != 0;
+      report.channels[ch].open_load = (diag_err & (1 << 2)) != 0;
+      report.channels[ch].over_temperature = (diag_err & (1 << 3)) != 0;
+      report.channels[ch].open_load_short_ground = (diag_err & (1 << 4)) != 0;
     }
 
-    FaultReport report{};
-
-    // Read GLOBAL_DIAG0
-    auto diag0_result = ReadRegister(CentralReg::GLOBAL_DIAG0);
-    if (!diag0_result) {
-        return std::unexpected(diag0_result.error());
-    }
-    uint16_t diag0 = *diag0_result;
-
-    // External supply faults
-    report.vbat_uv = (diag0 & GLOBAL_DIAG0::VBAT_UV) != 0;
-    report.vbat_ov = (diag0 & GLOBAL_DIAG0::VBAT_OV) != 0;
-    report.vio_uv = (diag0 & GLOBAL_DIAG0::VIO_UV) != 0;
-    report.vio_ov = (diag0 & GLOBAL_DIAG0::VIO_OV) != 0;
-    report.vdd_uv = (diag0 & GLOBAL_DIAG0::VDD_UV) != 0;
-    report.vdd_ov = (diag0 & GLOBAL_DIAG0::VDD_OV) != 0;
-
-    // System faults
-    report.clock_fault = (diag0 & GLOBAL_DIAG0::CLK_NOK) != 0;
-    report.spi_wd_error = (diag0 & GLOBAL_DIAG0::SPI_WD_ERR) != 0;
-
-    // Temperature faults
-    report.ot_error = (diag0 & GLOBAL_DIAG0::COTERR) != 0;
-    report.ot_warning = (diag0 & GLOBAL_DIAG0::COTWARN) != 0;
-
-    // Reset events
-    report.reset_event = (diag0 & GLOBAL_DIAG0::RES_EVENT) != 0;
-    report.por_event = (diag0 & GLOBAL_DIAG0::POR_EVENT) != 0;
-
-    // Read GLOBAL_DIAG1
-    auto diag1_result = ReadRegister(CentralReg::GLOBAL_DIAG1);
-    if (diag1_result) {
-        uint16_t diag1 = *diag1_result;
-        report.vr_iref_uv = (diag1 & GLOBAL_DIAG1::VR_IREF_UV) != 0;
-        report.vr_iref_ov = (diag1 & GLOBAL_DIAG1::VR_IREF_OV) != 0;
-        report.vdd2v5_uv = (diag1 & GLOBAL_DIAG1::VDD2V5_UV) != 0;
-        report.vdd2v5_ov = (diag1 & GLOBAL_DIAG1::VDD2V5_OV) != 0;
-        report.ref_uv = (diag1 & GLOBAL_DIAG1::REF_UV) != 0;
-        report.ref_ov = (diag1 & GLOBAL_DIAG1::REF_OV) != 0;
-        report.vpre_ov = (diag1 & GLOBAL_DIAG1::VPRE_OV) != 0;
-        report.hvadc_err = (diag1 & GLOBAL_DIAG1::HVADC_ERR) != 0;
+    // Read DIAG_WARN register
+    auto diag_warn_result = ReadRegister(CentralReg::DIAG_WARN_CHGR0 + ch);
+    if (diag_warn_result) {
+      uint16_t diag_warn = *diag_warn_result;
+      report.channels[ch].ot_warning = (diag_warn & (1 << 0)) != 0;
+      report.channels[ch].current_regulation_warning = (diag_warn & (1 << 1)) != 0;
+      report.channels[ch].pwm_regulation_warning = (diag_warn & (1 << 2)) != 0;
+      report.channels[ch].olsg_warning = (diag_warn & (1 << 3)) != 0;
     }
 
-    // Read GLOBAL_DIAG2
-    auto diag2_result = ReadRegister(CentralReg::GLOBAL_DIAG2);
-    if (diag2_result) {
-        uint16_t diag2 = *diag2_result;
-        report.reg_ecc_err = (diag2 & GLOBAL_DIAG2::REG_ECC_ERR) != 0;
-        report.otp_ecc_err = (diag2 & GLOBAL_DIAG2::OTP_ECC_ERR) != 0;
-        report.otp_virgin = (diag2 & GLOBAL_DIAG2::OTP_VIRGIN) != 0;
-    }
+    // Check if channel has any fault
+    report.channels[ch].has_fault =
+        report.channels[ch].overcurrent || report.channels[ch].short_to_ground ||
+        report.channels[ch].open_load || report.channels[ch].over_temperature ||
+        report.channels[ch].open_load_short_ground || report.channels[ch].ot_warning ||
+        report.channels[ch].current_regulation_warning ||
+        report.channels[ch].pwm_regulation_warning || report.channels[ch].olsg_warning;
+  }
 
-    // Read FB_STAT for summary flags
-    auto fb_stat_result = ReadRegister(CentralReg::FB_STAT);
-    if (fb_stat_result) {
-        uint16_t fb_stat = *fb_stat_result;
-        report.supply_nok_internal = (fb_stat & FB_STAT::SUP_NOK_INT) != 0;
-        report.supply_nok_external = (fb_stat & FB_STAT::SUP_NOK_EXT) != 0;
-    }
+  // Determine if any fault exists
+  report.any_fault =
+      report.vbat_uv || report.vbat_ov || report.vio_uv || report.vio_ov || report.vdd_uv ||
+      report.vdd_ov || report.vr_iref_uv || report.vr_iref_ov || report.vdd2v5_uv ||
+      report.vdd2v5_ov || report.ref_uv || report.ref_ov || report.vpre_ov || report.hvadc_err ||
+      report.clock_fault || report.spi_wd_error || report.ot_error || report.ot_warning ||
+      report.reg_ecc_err || report.otp_ecc_err || report.otp_virgin || report.supply_nok_internal ||
+      report.supply_nok_external || report.channels[0].has_fault || report.channels[1].has_fault ||
+      report.channels[2].has_fault || report.channels[3].has_fault ||
+      report.channels[4].has_fault || report.channels[5].has_fault;
 
-    // Read channel-specific faults
-    for (uint8_t ch = 0; ch < 6; ++ch) {
-        // Read DIAG_ERR register
-        auto diag_err_result = ReadRegister(CentralReg::DIAG_ERR_CHGR0 + ch);
-        if (diag_err_result) {
-            uint16_t diag_err = *diag_err_result;
-            report.channels[ch].overcurrent = (diag_err & (1 << 0)) != 0;
-            report.channels[ch].short_to_ground = (diag_err & (1 << 1)) != 0;
-            report.channels[ch].open_load = (diag_err & (1 << 2)) != 0;
-            report.channels[ch].over_temperature = (diag_err & (1 << 3)) != 0;
-            report.channels[ch].open_load_short_ground = (diag_err & (1 << 4)) != 0;
-        }
-
-        // Read DIAG_WARN register
-        auto diag_warn_result = ReadRegister(CentralReg::DIAG_WARN_CHGR0 + ch);
-        if (diag_warn_result) {
-            uint16_t diag_warn = *diag_warn_result;
-            report.channels[ch].ot_warning = (diag_warn & (1 << 0)) != 0;
-            report.channels[ch].current_regulation_warning = (diag_warn & (1 << 1)) != 0;
-            report.channels[ch].pwm_regulation_warning = (diag_warn & (1 << 2)) != 0;
-            report.channels[ch].olsg_warning = (diag_warn & (1 << 3)) != 0;
-        }
-
-        // Check if channel has any fault
-        report.channels[ch].has_fault = 
-            report.channels[ch].overcurrent ||
-            report.channels[ch].short_to_ground ||
-            report.channels[ch].open_load ||
-            report.channels[ch].over_temperature ||
-            report.channels[ch].open_load_short_ground ||
-            report.channels[ch].ot_warning ||
-            report.channels[ch].current_regulation_warning ||
-            report.channels[ch].pwm_regulation_warning ||
-            report.channels[ch].olsg_warning;
-    }
-
-    // Determine if any fault exists
-    report.any_fault = 
-        report.vbat_uv || report.vbat_ov ||
-        report.vio_uv || report.vio_ov ||
-        report.vdd_uv || report.vdd_ov ||
-        report.vr_iref_uv || report.vr_iref_ov ||
-        report.vdd2v5_uv || report.vdd2v5_ov ||
-        report.ref_uv || report.ref_ov ||
-        report.vpre_ov ||
-        report.hvadc_err ||
-        report.clock_fault ||
-        report.spi_wd_error ||
-        report.ot_error ||
-        report.ot_warning ||
-        report.reg_ecc_err ||
-        report.otp_ecc_err ||
-        report.otp_virgin ||
-        report.supply_nok_internal ||
-        report.supply_nok_external ||
-        report.channels[0].has_fault ||
-        report.channels[1].has_fault ||
-        report.channels[2].has_fault ||
-        report.channels[3].has_fault ||
-        report.channels[4].has_fault ||
-        report.channels[5].has_fault;
-
-    return report;
+  return report;
 }
 
 /**
  * @brief Get VIO thresholds (fixed hardware values, not programmable)
- * 
+ *
  * @details
  * VIO thresholds are fixed hardware values that depend on VIO_SEL bit setting.
  * These thresholds are NOT stored in registers and cannot be read or programmed.
  * Values are from datasheet Table 9 (Electrical characteristics power supply).
- * 
+ *
  * @param uv_threshold Output: UV threshold in millivolts
  * @param ov_threshold Output: OV threshold in millivolts
  * @param vio_5v VIO_SEL setting (false=3.3V mode, true=5V mode)
- * 
+ *
  * @note
  * - 3.3V mode (VIO_SEL=0): UV = 2.6-3.0V (using 2.8V), OV = 3.6-4.1V (using 3.85V)
  * - 5V mode (VIO_SEL=1): UV = 3.7-4.5V (using 4.1V), OV = 5.5-6.4V (using 5.95V)
- * 
+ *
  * The datasheet provides min-max ranges, not typical values. We use mid-range estimates.
  */
 static void getVioThresholds(uint16_t& uv_threshold, uint16_t& ov_threshold, bool vio_5v) noexcept {
-    if (vio_5v) {
-        // 5V mode: VIO_UV,5V,TH = 3.7-4.5V, VIO_OV,5V,TH = 5.5-6.4V
-        uv_threshold = 4100;  // Mid-range estimate (3.7-4.5V range)
-        ov_threshold = 5950;  // Mid-range estimate (5.5-6.4V range)
-    } else {
-        // 3.3V mode: VIO_UV,3V3,TH = 2.6-3.0V, VIO_OV,3V3,TH = 3.6-4.1V
-        uv_threshold = 2800;  // Mid-range estimate (2.6-3.0V range)
-        ov_threshold = 3850;  // Mid-range estimate (3.6-4.1V range)
-    }
+  if (vio_5v) {
+    // 5V mode: VIO_UV,5V,TH = 3.7-4.5V, VIO_OV,5V,TH = 5.5-6.4V
+    uv_threshold = 4100; // Mid-range estimate (3.7-4.5V range)
+    ov_threshold = 5950; // Mid-range estimate (5.5-6.4V range)
+  } else {
+    // 3.3V mode: VIO_UV,3V3,TH = 2.6-3.0V, VIO_OV,3V3,TH = 3.6-4.1V
+    uv_threshold = 2800; // Mid-range estimate (2.6-3.0V range)
+    ov_threshold = 3850; // Mid-range estimate (3.6-4.1V range)
+  }
 }
 
 /**
  * @brief Get VDD thresholds (fixed hardware values, not programmable)
- * 
+ *
  * @details
  * VDD thresholds are fixed hardware values that are NOT stored in registers
  * and cannot be read or programmed. Values are from datasheet Table 9
  * (Electrical characteristics power supply).
- * 
+ *
  * @param uv_threshold Output: UV threshold in millivolts
  * @param ov_threshold Output: OV threshold in millivolts
- * 
+ *
  * @note
  * VDD_UV,TH = 3.7-4.5V (using 4.1V mid-range)
  * VDD_OV,TH = 5.5-6.4V (using 5.95V mid-range)
- * 
+ *
  * The datasheet provides min-max ranges, not typical values. We use mid-range estimates.
  */
 static void getVddThresholds(uint16_t& uv_threshold, uint16_t& ov_threshold) noexcept {
-    // VDD thresholds (fixed hardware): VDD_UV,TH = 3.7-4.5V, VDD_OV,TH = 5.5-6.4V
-    uv_threshold = 4100;  // Mid-range estimate (3.7-4.5V range)
-    ov_threshold = 5950;  // Mid-range estimate (5.5-6.4V range)
+  // VDD thresholds (fixed hardware): VDD_UV,TH = 3.7-4.5V, VDD_OV,TH = 5.5-6.4V
+  uv_threshold = 4100; // Mid-range estimate (3.7-4.5V range)
+  ov_threshold = 5950; // Mid-range estimate (5.5-6.4V range)
 }
 
 DriverResult<void> Driver::PrintAllFaults() noexcept {
-    auto fault_result = GetAllFaults();
-    if (!fault_result) {
-        return std::unexpected(fault_result.error());
-    }
+  auto fault_result = GetAllFaults();
+  if (!fault_result) {
+    return std::unexpected(fault_result.error());
+  }
 
-    const FaultReport& report = *fault_result;
+  const FaultReport& report = *fault_result;
 
-    if (!report.any_fault) {
-        comm_.Log(LogLevel::Info, "TLE92466ED", "✅ No faults detected - All systems normal\n");
-        return {};
-    }
-
-    // Read voltage measurements and thresholds for voltage-related faults
-    uint16_t vbat_mv = 0;
-    uint16_t vio_mv = 0;
-    uint16_t vdd_mv = 0;
-    uint16_t vbat_uv_th_mv = 0;
-    uint16_t vbat_ov_th_mv = 0;
-    uint16_t vio_uv_th_mv = 0;
-    uint16_t vio_ov_th_mv = 0;
-    uint16_t vdd_uv_th_mv = 0;
-    uint16_t vdd_ov_th_mv = 0;
-    bool vio_5v = false;
-
-    // Read current voltages
-    if (auto vbat_result = GetVbatVoltage(); vbat_result) {
-        vbat_mv = *vbat_result;
-    }
-    if (auto vio_result = GetVioVoltage(); vio_result) {
-        vio_mv = *vio_result;
-    }
-    if (auto vdd_result = GetVddVoltage(); vdd_result) {
-        vdd_mv = *vdd_result;
-    }
-
-    // Read VBAT thresholds
-    if (auto result = GetVbatThresholds(vbat_uv_th_mv, vbat_ov_th_mv); !result) {
-        // If reading fails, thresholds remain 0
-    }
-
-    // Determine VIO thresholds based on VIO_SEL setting
-    // Note: GLOBAL_CONFIG may be write-only, so we can't reliably read it back
-    // We default to 3.3V mode (VIO_SEL=0) which is set in applyDefaultConfig()
-    // If user needs 5V mode, they should call ConfigureGlobal() with vio_5v=true
-    // For now, we'll try to read it, but default to 3.3V if read fails or returns unexpected value
-    // vio_5v is already declared above, just update it
-    if (auto global_config_result = ReadRegister(CentralReg::GLOBAL_CONFIG); global_config_result) {
-        // Try to read VIO_SEL bit, but don't trust it if it's write-only
-        vio_5v = (*global_config_result & GLOBAL_CONFIG::VIO_SEL) != 0;
-        // If read returns 0x4005 (default), it might be the power-on default, not what we wrote
-        // So we'll use it as a hint, but the actual setting is what we wrote in applyDefaultConfig()
-        if (*global_config_result == 0x4005) {
-            // This is the datasheet default (5V mode), but we wrote 3.3V mode in applyDefaultConfig()
-            // So trust our write, not the read
-            vio_5v = false;
-            comm_.Log(LogLevel::Info, "TLE92466ED", "GLOBAL_CONFIG read returned default 0x4005, using 3.3V mode (as written in applyDefaultConfig)\n");
-        } else {
-            comm_.Log(LogLevel::Info, "TLE92466ED", "Read GLOBAL_CONFIG: 0x%04X, VIO_SEL=%s\n",
-                      *global_config_result, vio_5v ? "5V" : "3.3V");
-        }
-    } else {
-        comm_.Log(LogLevel::Info, "TLE92466ED", "GLOBAL_CONFIG read failed, assuming 3.3V mode (as written in applyDefaultConfig)\n");
-    }
-    getVioThresholds(vio_uv_th_mv, vio_ov_th_mv, vio_5v);
-
-    // Get VDD thresholds (fixed values)
-    getVddThresholds(vdd_uv_th_mv, vdd_ov_th_mv);
-
-    // Print header
-    comm_.Log(LogLevel::Warn, "TLE92466ED", "╔══════════════════════════════════════════════════════════════════════════════╗\n");
-    comm_.Log(LogLevel::Warn, "TLE92466ED", "║                          FAULT DETECTION REPORT                              ║\n");
-    comm_.Log(LogLevel::Warn, "TLE92466ED", "╠══════════════════════════════════════════════════════════════════════════════╣\n");
-
-    // External Supply Faults
-    bool has_external_faults = report.vbat_uv || report.vbat_ov ||
-                                report.vio_uv || report.vio_ov ||
-                                report.vdd_uv || report.vdd_ov;
-    if (has_external_faults) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ External Supply Faults:\n");
-        if (report.vbat_uv) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VBAT Undervoltage\n");
-            if (vbat_mv > 0 && vbat_uv_th_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | UV Threshold: %u mV\n", vbat_mv, vbat_uv_th_mv);
-            }
-        }
-        if (report.vbat_ov) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VBAT Overvoltage\n");
-            if (vbat_mv > 0 && vbat_ov_th_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | OV Threshold: %u mV\n", vbat_mv, vbat_ov_th_mv);
-            }
-        }
-        if (report.vio_uv) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VIO Undervoltage\n");
-            if (vio_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | UV Threshold: %u mV (fixed hw, est)\n", vio_mv, vio_uv_th_mv);
-                // Note: VIO thresholds have a range (2.6-3.0V for 3.3V mode, 3.7-4.5V for 5V mode)
-                // The actual threshold may be anywhere in this range, and there may be hysteresis
-                // If fault flag is set, hardware detected the condition - voltage may have been lower
-                // when fault triggered, or threshold may be higher than our estimate
-                if (vio_mv > vio_uv_th_mv) {
-                    comm_.Log(LogLevel::Info, "TLE92466ED", "║     Note: Current voltage is above estimated threshold, but fault flag is set.\n");
-                    comm_.Log(LogLevel::Info, "TLE92466ED", "║     This may indicate: (1) voltage was lower when fault triggered, (2) actual\n");
-                    comm_.Log(LogLevel::Info, "TLE92466ED", "║     threshold is higher than estimate, or (3) hysteresis in fault detection.\n");
-                }
-            }
-        }
-        if (report.vio_ov) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VIO Overvoltage\n");
-            if (vio_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | OV Threshold: %u mV (fixed hw, est)\n", vio_mv, vio_ov_th_mv);
-            }
-        }
-        if (report.vdd_uv) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VDD Undervoltage\n");
-            if (vdd_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | UV Threshold: %u mV (fixed hw, est)\n", vdd_mv, vdd_uv_th_mv);
-            }
-        }
-        if (report.vdd_ov) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VDD Overvoltage\n");
-            if (vdd_mv > 0) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | OV Threshold: %u mV (fixed hw, est)\n", vdd_mv, vdd_ov_th_mv);
-            }
-        }
-    }
-
-    // Internal Supply Faults
-    bool has_internal_faults = report.vr_iref_uv || report.vr_iref_ov ||
-                                report.vdd2v5_uv || report.vdd2v5_ov ||
-                                report.ref_uv || report.ref_ov ||
-                                report.vpre_ov || report.hvadc_err;
-    if (has_internal_faults) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Internal Supply Faults:\n");
-        if (report.vr_iref_uv) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Undervoltage\n");
-        if (report.vr_iref_ov) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Overvoltage\n");
-        if (report.vdd2v5_uv) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Undervoltage\n");
-        if (report.vdd2v5_ov) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Overvoltage\n");
-        if (report.ref_uv) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Undervoltage\n");
-        if (report.ref_ov) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Overvoltage\n");
-        if (report.vpre_ov) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Pre-Regulator Overvoltage\n");
-        if (report.hvadc_err) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Monitoring ADC Error\n");
-    }
-
-    // System Faults
-    if (report.clock_fault || report.spi_wd_error) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ System Faults:\n");
-        if (report.clock_fault) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Clock Fault\n");
-        if (report.spi_wd_error) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ SPI Watchdog Error\n");
-    }
-
-    // Temperature Faults
-    if (report.ot_error || report.ot_warning) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Temperature Faults:\n");
-        if (report.ot_error) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Central Over-Temperature Error\n");
-        if (report.ot_warning) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  Central Over-Temperature Warning\n");
-    }
-
-    // Reset Events
-    if (report.por_event || report.reset_event) {
-        comm_.Log(LogLevel::Info, "TLE92466ED", "║ Reset Events:\n");
-        if (report.por_event) comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  Power-On Reset Event\n");
-        if (report.reset_event) comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  External Reset Event (RESN pin)\n");
-    }
-
-    // Memory/ECC Faults
-    if (report.reg_ecc_err || report.otp_ecc_err || report.otp_virgin) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Memory/ECC Faults:\n");
-        if (report.reg_ecc_err) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Register ECC Error\n");
-        if (report.otp_ecc_err) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ OTP ECC Error\n");
-        if (report.otp_virgin) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  OTP Virgin/Unconfigured\n");
-    }
-
-    // Summary Flags
-    if (report.supply_nok_internal || report.supply_nok_external) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Supply Summary:\n");
-        if (report.supply_nok_external) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ External Supply Fault Summary\n");
-        if (report.supply_nok_internal) comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Supply Fault Summary\n");
-    }
-
-    // Channel-specific faults
-    bool has_channel_faults = false;
-    for (uint8_t ch = 0; ch < 6; ++ch) {
-        if (report.channels[ch].has_fault) {
-            if (!has_channel_faults) {
-                comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Channel Faults:\n");
-                has_channel_faults = true;
-            }
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "║   Channel %u:\n", ch);
-            if (report.channels[ch].overcurrent) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Current\n");
-            if (report.channels[ch].short_to_ground) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Short to Ground\n");
-            if (report.channels[ch].open_load) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load\n");
-            if (report.channels[ch].over_temperature) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Temperature\n");
-            if (report.channels[ch].open_load_short_ground) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load or Short to Ground\n");
-            if (report.channels[ch].ot_warning) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Over-Temperature Warning\n");
-            if (report.channels[ch].current_regulation_warning) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Current Regulation Warning\n");
-            if (report.channels[ch].pwm_regulation_warning) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  PWM Regulation Warning\n");
-            if (report.channels[ch].olsg_warning) comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  OLSG Warning\n");
-        }
-    }
-
-    comm_.Log(LogLevel::Warn, "TLE92466ED", "╚══════════════════════════════════════════════════════════════════════════════╝\n");
-
+  if (!report.any_fault) {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ No faults detected - All systems normal\n");
     return {};
+  }
+
+  // Read voltage measurements and thresholds for voltage-related faults
+  uint16_t vbat_mv = 0;
+  uint16_t vio_mv = 0;
+  uint16_t vdd_mv = 0;
+  uint16_t vbat_uv_th_mv = 0;
+  uint16_t vbat_ov_th_mv = 0;
+  uint16_t vio_uv_th_mv = 0;
+  uint16_t vio_ov_th_mv = 0;
+  uint16_t vdd_uv_th_mv = 0;
+  uint16_t vdd_ov_th_mv = 0;
+  bool vio_5v = false;
+
+  // Read current voltages
+  if (auto vbat_result = GetVbatVoltage(); vbat_result) {
+    vbat_mv = *vbat_result;
+  }
+  if (auto vio_result = GetVioVoltage(); vio_result) {
+    vio_mv = *vio_result;
+  }
+  if (auto vdd_result = GetVddVoltage(); vdd_result) {
+    vdd_mv = *vdd_result;
+  }
+
+  // Read VBAT thresholds
+  if (auto result = GetVbatThresholds(vbat_uv_th_mv, vbat_ov_th_mv); !result) {
+    // If reading fails, thresholds remain 0
+  }
+
+  // Determine VIO thresholds based on VIO_SEL setting
+  // Note: GLOBAL_CONFIG may be write-only, so we can't reliably read it back
+  // We default to 3.3V mode (VIO_SEL=0) which is set in applyDefaultConfig()
+  // If user needs 5V mode, they should call ConfigureGlobal() with vio_5v=true
+  // For now, we'll try to read it, but default to 3.3V if read fails or returns unexpected value
+  // vio_5v is already declared above, just update it
+  if (auto global_config_result = ReadRegister(CentralReg::GLOBAL_CONFIG); global_config_result) {
+    // Try to read VIO_SEL bit, but don't trust it if it's write-only
+    vio_5v = (*global_config_result & GLOBAL_CONFIG::VIO_SEL) != 0;
+    // If read returns 0x4005 (default), it might be the power-on default, not what we wrote
+    // So we'll use it as a hint, but the actual setting is what we wrote in applyDefaultConfig()
+    if (*global_config_result == 0x4005) {
+      // This is the datasheet default (5V mode), but we wrote 3.3V mode in applyDefaultConfig()
+      // So trust our write, not the read
+      vio_5v = false;
+      comm_.Log(LogLevel::Info, "TLE92466ED",
+                "GLOBAL_CONFIG read returned default 0x4005, using 3.3V mode (as written in "
+                "applyDefaultConfig)\n");
+    } else {
+      comm_.Log(LogLevel::Info, "TLE92466ED", "Read GLOBAL_CONFIG: 0x%04X, VIO_SEL=%s\n",
+                *global_config_result, vio_5v ? "5V" : "3.3V");
+    }
+  } else {
+    comm_.Log(LogLevel::Info, "TLE92466ED",
+              "GLOBAL_CONFIG read failed, assuming 3.3V mode (as written in applyDefaultConfig)\n");
+  }
+  getVioThresholds(vio_uv_th_mv, vio_ov_th_mv, vio_5v);
+
+  // Get VDD thresholds (fixed values)
+  getVddThresholds(vdd_uv_th_mv, vdd_ov_th_mv);
+
+  // Print header
+  comm_.Log(LogLevel::Warn, "TLE92466ED",
+            "╔══════════════════════════════════════════════════════════════════════════════╗\n");
+  comm_.Log(LogLevel::Warn, "TLE92466ED",
+            "║                          FAULT DETECTION REPORT                              ║\n");
+  comm_.Log(LogLevel::Warn, "TLE92466ED",
+            "╠══════════════════════════════════════════════════════════════════════════════╣\n");
+
+  // External Supply Faults
+  bool has_external_faults = report.vbat_uv || report.vbat_ov || report.vio_uv || report.vio_ov ||
+                             report.vdd_uv || report.vdd_ov;
+  if (has_external_faults) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ External Supply Faults:\n");
+    if (report.vbat_uv) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VBAT Undervoltage\n");
+      if (vbat_mv > 0 && vbat_uv_th_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | UV Threshold: %u mV\n",
+                  vbat_mv, vbat_uv_th_mv);
+      }
+    }
+    if (report.vbat_ov) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VBAT Overvoltage\n");
+      if (vbat_mv > 0 && vbat_ov_th_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     Current: %u mV | OV Threshold: %u mV\n",
+                  vbat_mv, vbat_ov_th_mv);
+      }
+    }
+    if (report.vio_uv) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VIO Undervoltage\n");
+      if (vio_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED",
+                  "║     Current: %u mV | UV Threshold: %u mV (fixed hw, est)\n", vio_mv,
+                  vio_uv_th_mv);
+        // Note: VIO thresholds have a range (2.6-3.0V for 3.3V mode, 3.7-4.5V for 5V mode)
+        // The actual threshold may be anywhere in this range, and there may be hysteresis
+        // If fault flag is set, hardware detected the condition - voltage may have been lower
+        // when fault triggered, or threshold may be higher than our estimate
+        if (vio_mv > vio_uv_th_mv) {
+          comm_.Log(
+              LogLevel::Info, "TLE92466ED",
+              "║     Note: Current voltage is above estimated threshold, but fault flag is set.\n");
+          comm_.Log(
+              LogLevel::Info, "TLE92466ED",
+              "║     This may indicate: (1) voltage was lower when fault triggered, (2) actual\n");
+          comm_.Log(
+              LogLevel::Info, "TLE92466ED",
+              "║     threshold is higher than estimate, or (3) hysteresis in fault detection.\n");
+        }
+      }
+    }
+    if (report.vio_ov) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VIO Overvoltage\n");
+      if (vio_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED",
+                  "║     Current: %u mV | OV Threshold: %u mV (fixed hw, est)\n", vio_mv,
+                  vio_ov_th_mv);
+      }
+    }
+    if (report.vdd_uv) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VDD Undervoltage\n");
+      if (vdd_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED",
+                  "║     Current: %u mV | UV Threshold: %u mV (fixed hw, est)\n", vdd_mv,
+                  vdd_uv_th_mv);
+      }
+    }
+    if (report.vdd_ov) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ VDD Overvoltage\n");
+      if (vdd_mv > 0) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED",
+                  "║     Current: %u mV | OV Threshold: %u mV (fixed hw, est)\n", vdd_mv,
+                  vdd_ov_th_mv);
+      }
+    }
+  }
+
+  // Internal Supply Faults
+  bool has_internal_faults = report.vr_iref_uv || report.vr_iref_ov || report.vdd2v5_uv ||
+                             report.vdd2v5_ov || report.ref_uv || report.ref_ov || report.vpre_ov ||
+                             report.hvadc_err;
+  if (has_internal_faults) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Internal Supply Faults:\n");
+    if (report.vr_iref_uv)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Undervoltage\n");
+    if (report.vr_iref_ov)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Overvoltage\n");
+    if (report.vdd2v5_uv)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Undervoltage\n");
+    if (report.vdd2v5_ov)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Overvoltage\n");
+    if (report.ref_uv)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Undervoltage\n");
+    if (report.ref_ov)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Overvoltage\n");
+    if (report.vpre_ov)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Pre-Regulator Overvoltage\n");
+    if (report.hvadc_err)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Monitoring ADC Error\n");
+  }
+
+  // System Faults
+  if (report.clock_fault || report.spi_wd_error) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ System Faults:\n");
+    if (report.clock_fault)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Clock Fault\n");
+    if (report.spi_wd_error)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ SPI Watchdog Error\n");
+  }
+
+  // Temperature Faults
+  if (report.ot_error || report.ot_warning) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Temperature Faults:\n");
+    if (report.ot_error)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Central Over-Temperature Error\n");
+    if (report.ot_warning)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  Central Over-Temperature Warning\n");
+  }
+
+  // Reset Events
+  if (report.por_event || report.reset_event) {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "║ Reset Events:\n");
+    if (report.por_event)
+      comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  Power-On Reset Event\n");
+    if (report.reset_event)
+      comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  External Reset Event (RESN pin)\n");
+  }
+
+  // Memory/ECC Faults
+  if (report.reg_ecc_err || report.otp_ecc_err || report.otp_virgin) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Memory/ECC Faults:\n");
+    if (report.reg_ecc_err)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Register ECC Error\n");
+    if (report.otp_ecc_err)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ OTP ECC Error\n");
+    if (report.otp_virgin)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  OTP Virgin/Unconfigured\n");
+  }
+
+  // Summary Flags
+  if (report.supply_nok_internal || report.supply_nok_external) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Supply Summary:\n");
+    if (report.supply_nok_external)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ External Supply Fault Summary\n");
+    if (report.supply_nok_internal)
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Supply Fault Summary\n");
+  }
+
+  // Channel-specific faults
+  bool has_channel_faults = false;
+  for (uint8_t ch = 0; ch < 6; ++ch) {
+    if (report.channels[ch].has_fault) {
+      if (!has_channel_faults) {
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Channel Faults:\n");
+        has_channel_faults = true;
+      }
+      comm_.Log(LogLevel::Warn, "TLE92466ED", "║   Channel %u:\n", ch);
+      if (report.channels[ch].overcurrent)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Current\n");
+      if (report.channels[ch].short_to_ground)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Short to Ground\n");
+      if (report.channels[ch].open_load)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load\n");
+      if (report.channels[ch].over_temperature)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Temperature\n");
+      if (report.channels[ch].open_load_short_ground)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load or Short to Ground\n");
+      if (report.channels[ch].ot_warning)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Over-Temperature Warning\n");
+      if (report.channels[ch].current_regulation_warning)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Current Regulation Warning\n");
+      if (report.channels[ch].pwm_regulation_warning)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  PWM Regulation Warning\n");
+      if (report.channels[ch].olsg_warning)
+        comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  OLSG Warning\n");
+    }
+  }
+
+  comm_.Log(LogLevel::Warn, "TLE92466ED",
+            "╚══════════════════════════════════════════════════════════════════════════════╝\n");
+
+  return {};
 }
 
 DriverResult<void> Driver::SoftwareReset() noexcept {
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Performing software reset (entering config mode and clearing channel enable cache)\n");
-    // Software reset would require toggling RESN pin or power cycle
-    // This IC doesn't have a software reset register
-    // Return to config mode and clear channel enable cache
-    // Note: Cannot disable channels in Config Mode (requires Mission Mode)
-    //       So we just clear the cache - channels will be disabled when entering Mission Mode
-    
-    if (auto result = EnterConfigMode(); !result) {
-        return result;
-    }
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Performing software reset (entering config mode and clearing channel enable cache)\n");
+  // Software reset would require toggling RESN pin or power cycle
+  // This IC doesn't have a software reset register
+  // Return to config mode and clear channel enable cache
+  // Note: Cannot disable channels in Config Mode (requires Mission Mode)
+  //       So we just clear the cache - channels will be disabled when entering Mission Mode
 
-    // Clear channel enable cache (channels are automatically disabled in Config Mode)
-    channel_enable_cache_ = 0;
-    // Also clear channel enable bits in ch_ctrl_cache_ (but keep OP_MODE and parallel bits)
-    ch_ctrl_cache_ &= ~CH_CTRL::ALL_CH_MASK;
+  if (auto result = EnterConfigMode(); !result) {
+    return result;
+  }
 
-    comm_.Log(LogLevel::Info, "TLE92466ED", "✅ Software reset completed (Config Mode entered, channel cache cleared)\n");
-    return {};
+  // Clear channel enable cache (channels are automatically disabled in Config Mode)
+  channel_enable_cache_ = 0;
+  // Also clear channel enable bits in ch_ctrl_cache_ (but keep OP_MODE and parallel bits)
+  ch_ctrl_cache_ &= ~CH_CTRL::ALL_CH_MASK;
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "✅ Software reset completed (Config Mode entered, channel cache cleared)\n");
+  return {};
 }
 
 //==========================================================================
@@ -1490,18 +1527,19 @@ DriverResult<void> Driver::SoftwareReset() noexcept {
 //==========================================================================
 
 DriverResult<void> Driver::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return result;
-    }
+  if (auto result = checkInitialized(); !result) {
+    return result;
+  }
 
-    // Mask to 11-bit field (bits 10:0) per datasheet
-    uint16_t masked_value = WD_RELOAD::MaskValue(reload_value);
-    
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Reloading SPI watchdog: ReloadValue=%u (masked to 0x%03X)\n", 
-              reload_value, masked_value);
-    
-    // Note: Writing any non-zero value clears SPI_WD_ERR if it was set
-    return WriteRegister(CentralReg::WD_RELOAD, masked_value);
+  // Mask to 11-bit field (bits 10:0) per datasheet
+  uint16_t masked_value = WD_RELOAD::MaskValue(reload_value);
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "Reloading SPI watchdog: ReloadValue=%u (masked to 0x%03X)\n", reload_value,
+            masked_value);
+
+  // Note: Writing any non-zero value clears SPI_WD_ERR if it was set
+  return WriteRegister(CentralReg::WD_RELOAD, masked_value);
 }
 
 //==========================================================================
@@ -1509,75 +1547,79 @@ DriverResult<void> Driver::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
 //==========================================================================
 
 DriverResult<uint16_t> Driver::GetIcVersion() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    return ReadRegister(CentralReg::ICVID);
+  return ReadRegister(CentralReg::ICVID);
 }
 
 DriverResult<std::array<uint16_t, 3>> Driver::GetChipId() noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    std::array<uint16_t, 3> chip_id;
+  std::array<uint16_t, 3> chip_id;
 
-    auto id0_result = ReadRegister(CentralReg::CHIPID0);
-    if (!id0_result) {
-        return std::unexpected(id0_result.error());
-    }
-    chip_id[0] = *id0_result;
+  auto id0_result = ReadRegister(CentralReg::CHIPID0);
+  if (!id0_result) {
+    return std::unexpected(id0_result.error());
+  }
+  chip_id[0] = *id0_result;
 
-    auto id1_result = ReadRegister(CentralReg::CHIPID1);
-    if (!id1_result) {
-        return std::unexpected(id1_result.error());
-    }
-    chip_id[1] = *id1_result;
+  auto id1_result = ReadRegister(CentralReg::CHIPID1);
+  if (!id1_result) {
+    return std::unexpected(id1_result.error());
+  }
+  chip_id[1] = *id1_result;
 
-    auto id2_result = ReadRegister(CentralReg::CHIPID2);
-    if (!id2_result) {
-        return std::unexpected(id2_result.error());
-    }
-    chip_id[2] = *id2_result;
+  auto id2_result = ReadRegister(CentralReg::CHIPID2);
+  if (!id2_result) {
+    return std::unexpected(id2_result.error());
+  }
+  chip_id[2] = *id2_result;
 
-    return chip_id;
+  return chip_id;
 }
 
 DriverResult<bool> Driver::VerifyDevice() noexcept {
-    // Read ICVID register to verify device is responding and check device type
-    auto id_result = ReadRegister(CentralReg::ICVID, false); // Don't verify CRC during init
-    
-    if (!id_result) {
-        comm_.Log(LogLevel::Error, "TLE92466ED", "Device verification failed: Failed to read ICVID register (error: %u)\n", 
-                  static_cast<unsigned>(id_result.error()));
-        return std::unexpected(id_result.error());
-    }
+  // Read ICVID register to verify device is responding and check device type
+  auto id_result = ReadRegister(CentralReg::ICVID, false); // Don't verify CRC during init
 
-    uint16_t icvid = *id_result;
-    
-    // Check if we got a valid response (not all zeros or all ones)
-    if (icvid == 0x0000 || icvid == 0xFFFF) {
-        comm_.Log(LogLevel::Error, "TLE92466ED", "Device verification failed: Invalid ICVID response (0x%04X)\n", icvid);
-        return false;
-    }
-    
-    // Validate device ID
-    bool valid = DeviceID::IsValidDevice(icvid);
-    
-    // Extract and log device information
-    uint8_t device_type = DeviceID::GetDeviceType(icvid);
-    uint8_t revision = DeviceID::GetRevision(icvid);
-    
-    if (valid) {
-        comm_.Log(LogLevel::Info, "TLE92466ED", "Device verified: ICVID=0x%04X, Type=0x%02X, Revision=0x%02X\n", 
-                  icvid, device_type, revision);
-    } else {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "Device verification: ICVID=0x%04X (Type=0x%02X, Rev=0x%02X) - Unknown device type\n", 
-                  icvid, device_type, revision);
-    }
-    
-    return valid;
+  if (!id_result) {
+    comm_.Log(LogLevel::Error, "TLE92466ED",
+              "Device verification failed: Failed to read ICVID register (error: %u)\n",
+              static_cast<unsigned>(id_result.error()));
+    return std::unexpected(id_result.error());
+  }
+
+  uint16_t icvid = *id_result;
+
+  // Check if we got a valid response (not all zeros or all ones)
+  if (icvid == 0x0000 || icvid == 0xFFFF) {
+    comm_.Log(LogLevel::Error, "TLE92466ED",
+              "Device verification failed: Invalid ICVID response (0x%04X)\n", icvid);
+    return false;
+  }
+
+  // Validate device ID
+  bool valid = DeviceID::IsValidDevice(icvid);
+
+  // Extract and log device information
+  uint8_t device_type = DeviceID::GetDeviceType(icvid);
+  uint8_t revision = DeviceID::GetRevision(icvid);
+
+  if (valid) {
+    comm_.Log(LogLevel::Info, "TLE92466ED",
+              "Device verified: ICVID=0x%04X, Type=0x%02X, Revision=0x%02X\n", icvid, device_type,
+              revision);
+  } else {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "Device verification: ICVID=0x%04X (Type=0x%02X, Rev=0x%02X) - Unknown device type\n",
+              icvid, device_type, revision);
+  }
+
+  return valid;
 }
 
 //==========================================================================
@@ -1585,146 +1627,145 @@ DriverResult<bool> Driver::VerifyDevice() noexcept {
 //==========================================================================
 
 DriverResult<uint32_t> Driver::ReadRegister(uint16_t address, bool verify_crc) noexcept {
-    if (!comm_.IsReady()) {
-        return std::unexpected(DriverError::HardwareError);
+  if (!comm_.IsReady()) {
+    return std::unexpected(DriverError::HardwareError);
+  }
+
+  // Use internal CRC enable state by default
+  // verify_crc=false allows override to disable CRC verification (e.g., during init)
+  // verify_crc=true allows override to force CRC verification
+  bool should_verify_crc = verify_crc ? true : crc_enabled_;
+
+  // Use CommInterface Read function (handles frame construction, CRC, and transfer)
+  auto result = comm_.Read(address, should_verify_crc);
+  if (!result) {
+    // Map CommInterface error to driver error
+    switch (result.error()) {
+    case CommError::Timeout:
+      return std::unexpected(DriverError::TimeoutError);
+    case CommError::CRCError:
+      return std::unexpected(DriverError::CRCError);
+    case CommError::BusError:
+    case CommError::TransferError:
+      return std::unexpected(DriverError::HardwareError);
+    default:
+      return std::unexpected(DriverError::HardwareError);
     }
+  }
 
-    // Use internal CRC enable state by default
-    // verify_crc=false allows override to disable CRC verification (e.g., during init)
-    // verify_crc=true allows override to force CRC verification
-    bool should_verify_crc = verify_crc ? true : crc_enabled_;
-
-    // Use CommInterface Read function (handles frame construction, CRC, and transfer)
-    auto result = comm_.Read(address, should_verify_crc);
-    if (!result) {
-        // Map CommInterface error to driver error
-        switch (result.error()) {
-            case CommError::Timeout:
-                return std::unexpected(DriverError::TimeoutError);
-            case CommError::CRCError:
-                return std::unexpected(DriverError::CRCError);
-            case CommError::BusError:
-            case CommError::TransferError:
-                return std::unexpected(DriverError::HardwareError);
-            default:
-                return std::unexpected(DriverError::HardwareError);
-        }
-    }
-
-    return *result;
+  return *result;
 }
 
-DriverResult<void> Driver::WriteRegister(uint16_t address, uint16_t value, bool verify_crc, bool verify_write) noexcept {
-    if (!comm_.IsReady()) {
-        return std::unexpected(DriverError::HardwareError);
-    }
+DriverResult<void> Driver::WriteRegister(uint16_t address, uint16_t value, bool verify_crc,
+                                         bool verify_write) noexcept {
+  if (!comm_.IsReady()) {
+    return std::unexpected(DriverError::HardwareError);
+  }
 
-    // Use internal CRC enable state by default
-    // verify_crc=false allows override to disable CRC verification (e.g., during init)
-    // verify_crc=true allows override to force CRC verification
-    bool should_verify_crc = verify_crc ? true : crc_enabled_;
+  // Use internal CRC enable state by default
+  // verify_crc=false allows override to disable CRC verification (e.g., during init)
+  // verify_crc=true allows override to force CRC verification
+  bool should_verify_crc = verify_crc ? true : crc_enabled_;
 
-    // Use CommInterface Write function (handles frame construction, CRC, and transfer)
-    auto result = comm_.Write(address, value, should_verify_crc);
-    if (!result) {
-        // Map CommInterface error to driver error
-        switch (result.error()) {
-            case CommError::Timeout:
-                return std::unexpected(DriverError::TimeoutError);
-            case CommError::CRCError:
-                return std::unexpected(DriverError::CRCError);
-            case CommError::BusError:
-            case CommError::TransferError:
-                return std::unexpected(DriverError::HardwareError);
-            default:
-        return std::unexpected(DriverError::HardwareError);
+  // Use CommInterface Write function (handles frame construction, CRC, and transfer)
+  auto result = comm_.Write(address, value, should_verify_crc);
+  if (!result) {
+    // Map CommInterface error to driver error
+    switch (result.error()) {
+    case CommError::Timeout:
+      return std::unexpected(DriverError::TimeoutError);
+    case CommError::CRCError:
+      return std::unexpected(DriverError::CRCError);
+    case CommError::BusError:
+    case CommError::TransferError:
+      return std::unexpected(DriverError::HardwareError);
+    default:
+      return std::unexpected(DriverError::HardwareError);
     }
-    }
+  }
 
-    // Read back register to verify write succeeded
-    if (verify_write) {
-        // Small delay to ensure write has propagated (some registers may need time)
-        comm_.Delay(1);  // 1ms delay
-        
-        auto read_result = ReadRegister(address, verify_crc);
-        if (read_result) {
-            uint16_t read_value = static_cast<uint16_t>(*read_result);
-    
-            // Special handling for known problematic registers
-            // CH_CTRL (0x0000): Reads may return 0x0000 even after write due to device behavior
-            // GLOBAL_CONFIG (0x0002): Write-only, reads return default or previous value
-            // GLOBAL_DIAGx (0x0003-0x0005): Write-1-to-clear, reads return current fault state
-            bool known_issue = false;
-            const char* reason = nullptr;
-            
-            if (address == CentralReg::CH_CTRL) {
-                // CH_CTRL is readable per datasheet, but may return 0x0000 in some cases
-                // This is a known device behavior - the write succeeds but read-back may not reflect it immediately
-                // We track CH_CTRL state in cache (ch_ctrl_cache_) for this reason
-                known_issue = true;
-                reason = "CH_CTRL may return 0x0000 on read (known device behavior, write succeeds)";
-            } else if (address == CentralReg::GLOBAL_CONFIG) {
-                known_issue = true;
-                reason = "GLOBAL_CONFIG is write-only, reads return default/previous value";
-            } else if (address == CentralReg::WD_RELOAD) {
-                // WD_RELOAD counter is constantly decremented by the watchdog timer
-                // Read value will be less than or equal to written value (may have decremented)
-                // This is expected behavior - the watchdog is actively counting down
-                known_issue = true;
-                reason = "WD_RELOAD counter decrements continuously (read value <= written value is expected)";
-            } else if (address == CentralReg::GLOBAL_DIAG0 || 
-                      address == CentralReg::GLOBAL_DIAG1 || 
-                      address == CentralReg::GLOBAL_DIAG2) {
-                // These are write-1-to-clear registers, reads return current fault state
-                // Mismatch is expected when clearing faults (writing 0xFFFF to clear, but read shows current faults)
-                known_issue = true;
-                reason = "GLOBAL_DIAGx are write-1-to-clear, reads return current fault state";
-            }
-            
-            if (read_value != value) {
-                if (known_issue) {
-                    comm_.Log(LogLevel::Debug, "TLE92466ED", 
-                             "Write verification mismatch (expected): Address=0x%04X, Written=0x%04X, Read=0x%04X\n"
-                             "  %s\n",
-                             address, value, read_value, reason);
-                } else {
-                    comm_.Log(LogLevel::Warn, "TLE92466ED", 
-                             "Write verification failed: Address=0x%04X, Written=0x%04X, Read=0x%04X\n"
-                             "  (This may be normal for write-only or special registers)\n",
-                             address, value, read_value);
-                }
-            } else {
-                comm_.Log(LogLevel::Debug, "TLE92466ED", 
-                         "Write verified: Address=0x%04X, Value=0x%04X\n",
-                         address, value);
-            }
+  // Read back register to verify write succeeded
+  if (verify_write) {
+    // Small delay to ensure write has propagated (some registers may need time)
+    comm_.Delay(1); // 1ms delay
+
+    auto read_result = ReadRegister(address, verify_crc);
+    if (read_result) {
+      uint16_t read_value = static_cast<uint16_t>(*read_result);
+
+      // Special handling for known problematic registers
+      // CH_CTRL (0x0000): Reads may return 0x0000 even after write due to device behavior
+      // GLOBAL_CONFIG (0x0002): Write-only, reads return default or previous value
+      // GLOBAL_DIAGx (0x0003-0x0005): Write-1-to-clear, reads return current fault state
+      bool known_issue = false;
+      const char* reason = nullptr;
+
+      if (address == CentralReg::CH_CTRL) {
+        // CH_CTRL is readable per datasheet, but may return 0x0000 in some cases
+        // This is a known device behavior - the write succeeds but read-back may not reflect it
+        // immediately We track CH_CTRL state in cache (ch_ctrl_cache_) for this reason
+        known_issue = true;
+        reason = "CH_CTRL may return 0x0000 on read (known device behavior, write succeeds)";
+      } else if (address == CentralReg::GLOBAL_CONFIG) {
+        known_issue = true;
+        reason = "GLOBAL_CONFIG is write-only, reads return default/previous value";
+      } else if (address == CentralReg::WD_RELOAD) {
+        // WD_RELOAD counter is constantly decremented by the watchdog timer
+        // Read value will be less than or equal to written value (may have decremented)
+        // This is expected behavior - the watchdog is actively counting down
+        known_issue = true;
+        reason =
+            "WD_RELOAD counter decrements continuously (read value <= written value is expected)";
+      } else if (address == CentralReg::GLOBAL_DIAG0 || address == CentralReg::GLOBAL_DIAG1 ||
+                 address == CentralReg::GLOBAL_DIAG2) {
+        // These are write-1-to-clear registers, reads return current fault state
+        // Mismatch is expected when clearing faults (writing 0xFFFF to clear, but read shows
+        // current faults)
+        known_issue = true;
+        reason = "GLOBAL_DIAGx are write-1-to-clear, reads return current fault state";
+      }
+
+      if (read_value != value) {
+        if (known_issue) {
+          comm_.Log(LogLevel::Debug, "TLE92466ED",
+                    "Write verification mismatch (expected): Address=0x%04X, Written=0x%04X, "
+                    "Read=0x%04X\n"
+                    "  %s\n",
+                    address, value, read_value, reason);
         } else {
-            // Read failed - this might be expected for write-only registers
-            comm_.Log(LogLevel::Debug, "TLE92466ED", 
-                     "Write verification read failed for address 0x%04X (may be write-only)\n",
-                     address);
+          comm_.Log(LogLevel::Warn, "TLE92466ED",
+                    "Write verification failed: Address=0x%04X, Written=0x%04X, Read=0x%04X\n"
+                    "  (This may be normal for write-only or special registers)\n",
+                    address, value, read_value);
         }
+      } else {
+        comm_.Log(LogLevel::Debug, "TLE92466ED", "Write verified: Address=0x%04X, Value=0x%04X\n",
+                  address, value);
+      }
+    } else {
+      // Read failed - this might be expected for write-only registers
+      comm_.Log(LogLevel::Debug, "TLE92466ED",
+                "Write verification read failed for address 0x%04X (may be write-only)\n", address);
     }
+  }
 
-    return {};
+  return {};
 }
 
-DriverResult<void> Driver::ModifyRegister(
-    uint16_t address,
-    uint16_t mask,
-    uint16_t value) noexcept {
+DriverResult<void> Driver::ModifyRegister(uint16_t address, uint16_t mask,
+                                          uint16_t value) noexcept {
 
-    // Read current value
-    auto read_result = ReadRegister(address);
-    if (!read_result) {
-        return std::unexpected(read_result.error());
-    }
+  // Read current value
+  auto read_result = ReadRegister(address);
+  if (!read_result) {
+    return std::unexpected(read_result.error());
+  }
 
-    // Modify bits
-    uint16_t new_value = (*read_result & ~mask) | (value & mask);
+  // Modify bits
+  uint16_t new_value = (*read_result & ~mask) | (value & mask);
 
-    // Write back
-    return WriteRegister(address, new_value);
+  // Write back
+  return WriteRegister(address, new_value);
 }
 
 //==========================================================================
@@ -1732,106 +1773,106 @@ DriverResult<void> Driver::ModifyRegister(
 //==========================================================================
 
 DriverResult<SPIFrame> Driver::transferFrame(const SPIFrame& tx_frame, bool verify_crc) noexcept {
-    // Transfer 32-bit frame via CommInterface
-    auto comm_result = comm_.Transfer32(tx_frame.word);
-    if (!comm_result) {
-        // Map CommInterface error to driver error
-        switch (comm_result.error()) {
-            case CommError::Timeout:
-                return std::unexpected(DriverError::TimeoutError);
-            case CommError::CRCError:
-                return std::unexpected(DriverError::CRCError);
-            case CommError::TransferError:
-            case CommError::BusError:
-                return std::unexpected(DriverError::HardwareError);
-            default:
-                return std::unexpected(DriverError::RegisterError);
-        }
+  // Transfer 32-bit frame via CommInterface
+  auto comm_result = comm_.Transfer32(tx_frame.word);
+  if (!comm_result) {
+    // Map CommInterface error to driver error
+    switch (comm_result.error()) {
+    case CommError::Timeout:
+      return std::unexpected(DriverError::TimeoutError);
+    case CommError::CRCError:
+      return std::unexpected(DriverError::CRCError);
+    case CommError::TransferError:
+    case CommError::BusError:
+      return std::unexpected(DriverError::HardwareError);
+    default:
+      return std::unexpected(DriverError::RegisterError);
     }
+  }
 
-    SPIFrame rx_frame;
-    rx_frame.word = *comm_result;
+  SPIFrame rx_frame;
+  rx_frame.word = *comm_result;
 
-    // Verify CRC if requested
-    if (verify_crc) {
-        if (!VerifyFrameCrc(rx_frame)) {
-            return std::unexpected(DriverError::CRCError);
-        }
+  // Verify CRC if requested
+  if (verify_crc) {
+    if (!VerifyFrameCrc(rx_frame)) {
+      return std::unexpected(DriverError::CRCError);
     }
+  }
 
-    // Check SPI status in reply
-    if (auto result = checkSpiStatus(rx_frame); !result) {
-        return std::unexpected(result.error());
-    }
+  // Check SPI status in reply
+  if (auto result = checkSpiStatus(rx_frame); !result) {
+    return std::unexpected(result.error());
+  }
 
-    return rx_frame;
+  return rx_frame;
 }
 
 DriverResult<void> Driver::checkSpiStatus(const SPIFrame& rx_frame) noexcept {
-    // Status field only exists in 16-bit reply frames
-    if (rx_frame.rx_common.reply_mode != 0x00) {
-        // For non-16-bit frames, check if it's a critical fault
-        if (rx_frame.rx_common.reply_mode == 0x02) {
-            // Critical fault frame - extract and log fault flags
-            auto fault_flags = CriticalFaultFlags::Extract(rx_frame);
-            // Return hardware error for critical faults
-            return std::unexpected(DriverError::HardwareError);
-        }
-        // 22-bit reply frames don't have status field, assume OK
-        return {};
+  // Status field only exists in 16-bit reply frames
+  if (rx_frame.rx_common.reply_mode != 0x00) {
+    // For non-16-bit frames, check if it's a critical fault
+    if (rx_frame.rx_common.reply_mode == 0x02) {
+      // Critical fault frame - extract and log fault flags
+      auto fault_flags = CriticalFaultFlags::Extract(rx_frame);
+      // Return hardware error for critical faults
+      return std::unexpected(DriverError::HardwareError);
     }
-    
-    // 16-bit reply frame - check status field
-    SPIStatus status = static_cast<SPIStatus>(rx_frame.rx_16bit.status);
+    // 22-bit reply frames don't have status field, assume OK
+    return {};
+  }
 
-    switch (status) {
-        case SPIStatus::NO_ERROR:
-            return {};
-        case SPIStatus::SPI_FRAME_ERROR:
-            return std::unexpected(DriverError::SPIFrameError);
-        case SPIStatus::CRC_ERROR:
-            return std::unexpected(DriverError::CRCError);
-        case SPIStatus::WRITE_RO_REG:
-            return std::unexpected(DriverError::WriteToReadOnly);
-        case SPIStatus::INTERNAL_BUS_FAULT:
-            return std::unexpected(DriverError::RegisterError);
-        default:
-            return std::unexpected(DriverError::RegisterError);
-    }
+  // 16-bit reply frame - check status field
+  SPIStatus status = static_cast<SPIStatus>(rx_frame.rx_16bit.status);
+
+  switch (status) {
+  case SPIStatus::NO_ERROR:
+    return {};
+  case SPIStatus::SPI_FRAME_ERROR:
+    return std::unexpected(DriverError::SPIFrameError);
+  case SPIStatus::CRC_ERROR:
+    return std::unexpected(DriverError::CRCError);
+  case SPIStatus::WRITE_RO_REG:
+    return std::unexpected(DriverError::WriteToReadOnly);
+  case SPIStatus::INTERNAL_BUS_FAULT:
+    return std::unexpected(DriverError::RegisterError);
+  default:
+    return std::unexpected(DriverError::RegisterError);
+  }
 }
 
 DriverResult<bool> Driver::isChannelParallel(Channel channel) noexcept {
-    if (auto result = checkInitialized(); !result) {
-        return std::unexpected(result.error());
-    }
+  if (auto result = checkInitialized(); !result) {
+    return std::unexpected(result.error());
+  }
 
-    if (!isValidChannelInternal(channel)) {
-        return std::unexpected(DriverError::InvalidChannel);
-    }
+  if (!isValidChannelInternal(channel)) {
+    return std::unexpected(DriverError::InvalidChannel);
+  }
 
-    // Read CH_CTRL to check parallel configuration bits
-    auto ctrl_result = ReadRegister(CentralReg::CH_CTRL);
-    if (!ctrl_result) {
-        return std::unexpected(ctrl_result.error());
-    }
+  // Read CH_CTRL to check parallel configuration bits
+  auto ctrl_result = ReadRegister(CentralReg::CH_CTRL);
+  if (!ctrl_result) {
+    return std::unexpected(ctrl_result.error());
+  }
 
-    uint16_t ch_ctrl = *ctrl_result;
-    uint8_t ch_index = ToIndex(channel);
+  uint16_t ch_ctrl = *ctrl_result;
+  uint8_t ch_index = ToIndex(channel);
 
-    // Check which parallel pair this channel belongs to
-    switch (ch_index) {
-        case 0:
-        case 3:
-            return (ch_ctrl & CH_CTRL::CH_PAR_0_3) != 0;
-        case 1:
-        case 2:
-            return (ch_ctrl & CH_CTRL::CH_PAR_1_2) != 0;
-        case 4:
-        case 5:
-            return (ch_ctrl & CH_CTRL::CH_PAR_4_5) != 0;
-        default:
-            return false;
-    }
+  // Check which parallel pair this channel belongs to
+  switch (ch_index) {
+  case 0:
+  case 3:
+    return (ch_ctrl & CH_CTRL::CH_PAR_0_3) != 0;
+  case 1:
+  case 2:
+    return (ch_ctrl & CH_CTRL::CH_PAR_1_2) != 0;
+  case 4:
+  case 5:
+    return (ch_ctrl & CH_CTRL::CH_PAR_4_5) != 0;
+  default:
+    return false;
+  }
 }
 
 //==========================================================================
@@ -1839,52 +1880,58 @@ DriverResult<bool> Driver::isChannelParallel(Channel channel) noexcept {
 //==========================================================================
 
 DriverResult<void> Driver::SetReset(bool reset) noexcept {
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting reset pin: %s\n", reset ? "LOW (in reset)" : "HIGH (released)");
-    // RESN is active low: reset=true means hold in reset (GPIO LOW), reset=false means release (GPIO HIGH)
-    ActiveLevel level = reset ? ActiveLevel::INACTIVE : ActiveLevel::ACTIVE;
-    
-    auto result = comm_.SetGpioPin(ControlPin::RESN, level);
-    if (!result) {
-        return std::unexpected(DriverError::HardwareError);
-    }
-    
-    return {};
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting reset pin: %s\n",
+            reset ? "LOW (in reset)" : "HIGH (released)");
+  // RESN is active low: reset=true means hold in reset (GPIO LOW), reset=false means release (GPIO
+  // HIGH)
+  ActiveLevel level = reset ? ActiveLevel::INACTIVE : ActiveLevel::ACTIVE;
+
+  auto result = comm_.SetGpioPin(ControlPin::RESN, level);
+  if (!result) {
+    return std::unexpected(DriverError::HardwareError);
+  }
+
+  return {};
 }
 
 DriverResult<void> Driver::SetEnable(bool enable) noexcept {
-    comm_.Log(LogLevel::Info, "TLE92466ED", "Setting enable pin: %s\n", enable ? "HIGH (enabled)" : "LOW (disabled)");
-    // EN is active high: enable=true means enable outputs (GPIO HIGH), enable=false means disable (GPIO LOW)
-    ActiveLevel level = enable ? ActiveLevel::ACTIVE : ActiveLevel::INACTIVE;
-    
-    auto result = comm_.SetGpioPin(ControlPin::EN, level);
-    if (!result) {
-        return std::unexpected(DriverError::HardwareError);
-    }
-    
-    return {};
+  comm_.Log(LogLevel::Info, "TLE92466ED", "Setting enable pin: %s\n",
+            enable ? "HIGH (enabled)" : "LOW (disabled)");
+  // EN is active high: enable=true means enable outputs (GPIO HIGH), enable=false means disable
+  // (GPIO LOW)
+  ActiveLevel level = enable ? ActiveLevel::ACTIVE : ActiveLevel::INACTIVE;
+
+  auto result = comm_.SetGpioPin(ControlPin::EN, level);
+  if (!result) {
+    return std::unexpected(DriverError::HardwareError);
+  }
+
+  return {};
 }
 
 DriverResult<bool> Driver::IsFault(bool print_faults) noexcept {
-    auto result = comm_.GetGpioPin(ControlPin::FAULTN);
-    if (!result) {
-        return std::unexpected(DriverError::HardwareError);
+  auto result = comm_.GetGpioPin(ControlPin::FAULTN);
+  if (!result) {
+    return std::unexpected(DriverError::HardwareError);
+  }
+
+  // FAULTN is active low: ACTIVE means fault detected, INACTIVE means no fault
+  bool fault_detected = (*result == ActiveLevel::ACTIVE);
+
+  // If fault is detected and print_faults is true, automatically print detailed fault report
+  // Only print if driver is initialized (PrintAllFaults requires initialization)
+  if (fault_detected && print_faults && initialized_) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "⚠️  Fault detected on FAULTN pin - Printing detailed fault report:\n");
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "");
+    if (auto print_result = PrintAllFaults(); !print_result) {
+      comm_.Log(LogLevel::Warn, "TLE92466ED",
+                "⚠️  Failed to print detailed fault report: error code %u\n",
+                static_cast<unsigned>(print_result.error()));
     }
-    
-    // FAULTN is active low: ACTIVE means fault detected, INACTIVE means no fault
-    bool fault_detected = (*result == ActiveLevel::ACTIVE);
-    
-    // If fault is detected and print_faults is true, automatically print detailed fault report
-    // Only print if driver is initialized (PrintAllFaults requires initialization)
-    if (fault_detected && print_faults && initialized_) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "⚠️  Fault detected on FAULTN pin - Printing detailed fault report:\n");
-        comm_.Log(LogLevel::Warn, "TLE92466ED", "");
-        if (auto print_result = PrintAllFaults(); !print_result) {
-            comm_.Log(LogLevel::Warn, "TLE92466ED", "⚠️  Failed to print detailed fault report: error code %u\n", 
-                      static_cast<unsigned>(print_result.error()));
-        }
-    }
-    
-    return fault_detected;
+  }
+
+  return fault_detected;
 }
 
 //==========================================================================
@@ -1892,70 +1939,63 @@ DriverResult<bool> Driver::IsFault(bool print_faults) noexcept {
 //==========================================================================
 
 void Driver::diagnoseClockConfiguration() noexcept {
-    // Read CLK_DIV register to check clock configuration
-    // This helps diagnose clock-related critical faults early
-    auto clk_div_result = ReadRegister(CentralReg::CLK_DIV, false); // Don't verify CRC during init
-    
-    if (!clk_div_result) {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", 
-                  "Failed to read CLK_DIV register (error: %u) - continuing anyway\n",
-                  static_cast<unsigned>(clk_div_result.error()));
-        return;
+  // Read CLK_DIV register to check clock configuration
+  // This helps diagnose clock-related critical faults early
+  auto clk_div_result = ReadRegister(CentralReg::CLK_DIV, false); // Don't verify CRC during init
+
+  if (!clk_div_result) {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "Failed to read CLK_DIV register (error: %u) - continuing anyway\n",
+              static_cast<unsigned>(clk_div_result.error()));
+    return;
+  }
+
+  uint16_t clk_div = static_cast<uint16_t>(*clk_div_result);
+
+  // Parse CLK_DIV register fields
+  bool ext_clk = (clk_div & 0x8000) != 0;     // Bit 15: EXT_CLK
+  uint8_t pll_refdiv = (clk_div >> 9) & 0x3F; // Bits 14:9: PLL_REFDIV (6 bits)
+  uint16_t pll_fbdiv = clk_div & 0x01FF;      // Bits 8:0: PLL_FBDIV (9 bits)
+
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "═══════════════════════════════════════════════════════════\n");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "CLK_DIV Register (0x0019): 0x%04X\n", clk_div);
+  comm_.Log(LogLevel::Info, "TLE92466ED", "  Bit 15 (EXT_CLK): %d (%s)\n", ext_clk ? 1 : 0,
+            ext_clk ? "External Clock (CLK-pin)" : "Internal Oscillator");
+  comm_.Log(LogLevel::Info, "TLE92466ED", "  Bits 14:9 (PLL_REFDIV): %d (0x%02X)\n", pll_refdiv,
+            pll_refdiv);
+  comm_.Log(LogLevel::Info, "TLE92466ED", "  Bits 8:0 (PLL_FBDIV): %d (0x%03X)\n", pll_fbdiv,
+            pll_fbdiv);
+
+  // Calculate system clock frequency if external clock is used
+  if (ext_clk && pll_refdiv > 0 && pll_fbdiv > 0) {
+    // fSYS = fCLK * (PLL_FBDIV) / (2 * PLL_REFDIV)
+    // We don't know fCLK, but we can show the divider ratio
+    float divider_ratio = static_cast<float>(pll_fbdiv) / (2.0f * static_cast<float>(pll_refdiv));
+    comm_.Log(LogLevel::Info, "TLE92466ED", "  PLL Divider Ratio: %.3f (fSYS = fCLK * %.3f)\n",
+              divider_ratio, divider_ratio);
+    comm_.Log(LogLevel::Info, "TLE92466ED",
+              "  Note: fCLK is the external clock frequency on CLK-pin\n");
+
+    // Show expected fSYS for common fCLK values
+    comm_.Log(LogLevel::Info, "TLE92466ED", "  Expected fSYS for common fCLK values:\n");
+    for (float fclk_mhz = 1.0f; fclk_mhz <= 8.0f; fclk_mhz += 0.5f) {
+      float fsys_mhz = fclk_mhz * divider_ratio;
+      comm_.Log(LogLevel::Info, "TLE92466ED", "    fCLK=%.1f MHz -> fSYS=%.2f MHz\n", fclk_mhz,
+                fsys_mhz);
     }
-    
-    uint16_t clk_div = static_cast<uint16_t>(*clk_div_result);
-    
-    // Parse CLK_DIV register fields
-    bool ext_clk = (clk_div & 0x8000) != 0;           // Bit 15: EXT_CLK
-    uint8_t pll_refdiv = (clk_div >> 9) & 0x3F;       // Bits 14:9: PLL_REFDIV (6 bits)
-    uint16_t pll_fbdiv = clk_div & 0x01FF;            // Bits 8:0: PLL_FBDIV (9 bits)
-    
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "═══════════════════════════════════════════════════════════\n");
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "CLK_DIV Register (0x0019): 0x%04X\n", clk_div);
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "  Bit 15 (EXT_CLK): %d (%s)\n", 
-              ext_clk ? 1 : 0,
-              ext_clk ? "External Clock (CLK-pin)" : "Internal Oscillator");
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "  Bits 14:9 (PLL_REFDIV): %d (0x%02X)\n", pll_refdiv, pll_refdiv);
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "  Bits 8:0 (PLL_FBDIV): %d (0x%03X)\n", pll_fbdiv, pll_fbdiv);
-    
-    // Calculate system clock frequency if external clock is used
-    if (ext_clk && pll_refdiv > 0 && pll_fbdiv > 0) {
-        // fSYS = fCLK * (PLL_FBDIV) / (2 * PLL_REFDIV)
-        // We don't know fCLK, but we can show the divider ratio
-        float divider_ratio = static_cast<float>(pll_fbdiv) / (2.0f * static_cast<float>(pll_refdiv));
-        comm_.Log(LogLevel::Info, "TLE92466ED", 
-                  "  PLL Divider Ratio: %.3f (fSYS = fCLK * %.3f)\n", 
-                  divider_ratio, divider_ratio);
-        comm_.Log(LogLevel::Info, "TLE92466ED", 
-                  "  Note: fCLK is the external clock frequency on CLK-pin\n");
-        
-        // Show expected fSYS for common fCLK values
-        comm_.Log(LogLevel::Info, "TLE92466ED", 
-                  "  Expected fSYS for common fCLK values:\n");
-        for (float fclk_mhz = 1.0f; fclk_mhz <= 8.0f; fclk_mhz += 0.5f) {
-            float fsys_mhz = fclk_mhz * divider_ratio;
-            comm_.Log(LogLevel::Info, "TLE92466ED", 
-                      "    fCLK=%.1f MHz -> fSYS=%.2f MHz\n", fclk_mhz, fsys_mhz);
-        }
-    } else if (!ext_clk) {
-        comm_.Log(LogLevel::Info, "TLE92466ED", 
-                  "  Using Internal Oscillator (PLL dividers ignored)\n");
-        comm_.Log(LogLevel::Info, "TLE92466ED", 
-                  "  System clock fSYS is generated from internal oscillator\n");
-    } else {
-        comm_.Log(LogLevel::Warn, "TLE92466ED", 
-                  "  ⚠️  Invalid PLL divider values (PLL_REFDIV=%d, PLL_FBDIV=%d)\n", 
-                  pll_refdiv, pll_fbdiv);
-        comm_.Log(LogLevel::Warn, "TLE92466ED", 
-                  "  This may cause clock watchdog faults!\n");
-    }
-    comm_.Log(LogLevel::Info, "TLE92466ED", 
-              "═══════════════════════════════════════════════════════════\n");
+  } else if (!ext_clk) {
+    comm_.Log(LogLevel::Info, "TLE92466ED", "  Using Internal Oscillator (PLL dividers ignored)\n");
+    comm_.Log(LogLevel::Info, "TLE92466ED",
+              "  System clock fSYS is generated from internal oscillator\n");
+  } else {
+    comm_.Log(LogLevel::Warn, "TLE92466ED",
+              "  ⚠️  Invalid PLL divider values (PLL_REFDIV=%d, PLL_FBDIV=%d)\n", pll_refdiv,
+              pll_fbdiv);
+    comm_.Log(LogLevel::Warn, "TLE92466ED", "  This may cause clock watchdog faults!\n");
+  }
+  comm_.Log(LogLevel::Info, "TLE92466ED",
+            "═══════════════════════════════════════════════════════════\n");
 }
 
 } // namespace TLE92466ED

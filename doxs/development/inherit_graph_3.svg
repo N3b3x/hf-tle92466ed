@@ -11,9 +11,9 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structSolenoid1Config.html" target="_top" xlink:title="Solenoid 1 Configuration (Single Channel)">
+<g id="a_Node000000"><a xlink:href="structSolenoid2Config.html" target="_top" xlink:title="Solenoid 2 Configuration (Parallel Pair)">
 <polygon fill="white" stroke="#666666" points="116,-23 0,-23 0,0 116,0 116,-23"/>
-<text text-anchor="middle" x="58" y="-7.8" font-family="Arial" font-size="14.00">Solenoid1Config</text>
+<text text-anchor="middle" x="58" y="-7.8" font-family="Arial" font-size="14.00">Solenoid2Config</text>
 </a>
 </g>
 </g>

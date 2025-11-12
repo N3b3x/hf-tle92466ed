@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structTLE92466ED__TestConfig_1_1Diagnostics.html" target="_top" xlink:title="Diagnostic Thresholds.">
+<g id="a_Node000000"><a xlink:href="structTLE92466ED__TestConfig_1_1SPIParams.html" target="_top" xlink:title="SPI Communication Parameters.">
 <polygon fill="white" stroke="#666666" points="169,-38 0,-38 0,0 169,0 169,-38"/>
 <text text-anchor="start" x="8" y="-22.8" font-family="Arial" font-size="14.00">TLE92466ED_TestConfig</text>
-<text text-anchor="middle" x="84.5" y="-7.8" font-family="Arial" font-size="14.00">::Diagnostics</text>
+<text text-anchor="middle" x="84.5" y="-7.8" font-family="Arial" font-size="14.00">::SPIParams</text>
 </a>
 </g>
 </g>

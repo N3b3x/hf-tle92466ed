@@ -20,6 +20,7 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -129,7 +130,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test execution tracking and results accumulation.  <a href="structTestResults.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structTestTaskContext.html">TestTaskContext</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context for test task.  <a href="structTestTaskContext.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Context passed to test task trampoline.  <a href="structTestTaskContext.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -232,7 +233,7 @@ Variables</h2></td></tr>
 <div class="line">} <span class="keywordflow">while</span> (0)</div>
 <div class="ttc" id="aDriverIntegrationTest_8cpp_html_a5a85b9c772bbeb480b209a3e6ea92b4c"><div class="ttname"><a href="DriverIntegrationTest_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c">TAG</a></div><div class="ttdeci">static const char * TAG</div><div class="ttdef"><b>Definition</b> DriverIntegrationTest.cpp:43</div></div>
 <div class="ttc" id="aTLE92466ED__TestFramework_8hpp_html_aaff89257c54366921eebb8ec1348b1fd"><div class="ttname"><a href="#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a></div><div class="ttdeci">static TestResults g_test_results</div><div class="ttdef"><b>Definition</b> TLE92466ED_TestFramework.hpp:161</div></div>
-<div class="ttc" id="astructTestResults_html_a257eba3a9005a5c19c68ae27774948f7"><div class="ttname"><a href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">TestResults::add_result</a></div><div class="ttdeci">void add_result(bool passed, uint64_t execution_time) noexcept</div><div class="ttdef"><b>Definition</b> TLE92466ED_TestFramework.hpp:127</div></div>
+<div class="ttc" id="astructTestResults_html_a257eba3a9005a5c19c68ae27774948f7"><div class="ttname"><a href="structTestResults.html#a257eba3a9005a5c19c68ae27774948f7">TestResults::add_result</a></div><div class="ttdeci">void add_result(bool passed, uint64_t execution_time) noexcept</div><div class="ttdoc">Add test result and update statistics.</div><div class="ttdef"><b>Definition</b> TestFramework.h:169</div></div>
 </div><!-- fragment -->
 <p>Run a test function inline (no separate task) </p>
 

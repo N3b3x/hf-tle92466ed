@@ -10,7 +10,9 @@
 # -----------------------------------------------------------------------------
 title: "HardFOC TLE92466ED Driver"
 description: >
-  C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics
+  C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid
+  Driver IC with comprehensive SPI interface, current control, and
+  diagnostics
 
 baseurl: "/hf-tle92466ed-driver"
 url: "https://n3b3x.github.io"
@@ -152,7 +154,7 @@ footer_content: >
 just_the_docs:
   # Navigation configuration
   nav_fold: true  # Allow folding navigation items
-  
+
   # External links in navigation
   nav_external_links:
     - title: "📚 GitHub Repository"
@@ -188,7 +190,6 @@ exclude:
   - examples/esp32/scripts/  # ESP32 project tools (not part of docs)
   - _config/doxygen-extensions/  # Doxygen extensions (separate from Jekyll)
   - src/                      # Source code
-    - inc/                  # Header files
   - inc/                      # Alternative header directory
   - tests/                    # Test files
 
@@ -211,7 +212,9 @@ seo:
   type: "SoftwareApplication"
   name: "HardFOC TLE92466ED Driver"
   description: >
-    C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics
+    C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid
+    Driver IC with comprehensive SPI interface, current control, and
+    diagnostics
   url: "https://n3b3x.github.io/hf-tle92466ed-driver"
   twitter:
     card: "summary_large_image"

@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['based_20design_20strong_0',['&lt;strong&gt;HAL-Based Design&lt;/strong&gt;',['../index.html#autotoc_md12',1,'']]],
-  ['basic_20usage_20strong_1',['&lt;strong&gt;3. Basic Usage&lt;/strong&gt;',['../index.html#autotoc_md23',1,'']]],
-  ['benefits_20strong_2',['Benefits strong',['../index.html#autotoc_md8',1,'🏆 &lt;strong&gt;Core Benefits&lt;/strong&gt;'],['../index.html#autotoc_md13',1,'&lt;strong&gt;Abstraction Benefits&lt;/strong&gt;']]],
-  ['bitwidth_3',['BITWIDTH',['../structADCConfig.html#a2c750253b441627940641261ca5b955b',1,'ADCConfig']]],
-  ['build_20commands_20strong_4',['&lt;strong&gt;Build Commands&lt;/strong&gt;',['../index.html#autotoc_md35',1,'']]],
-  ['build_20example_20strong_5',['&lt;strong&gt;4. Build Example&lt;/strong&gt;',['../index.html#autotoc_md24',1,'']]],
-  ['build_20system_20features_20strong_6',['&lt;strong&gt;Build System Features&lt;/strong&gt;',['../index.html#autotoc_md34',1,'']]],
-  ['building_20strong_7',['🔧 &lt;strong&gt;Building&lt;/strong&gt;',['../index.html#autotoc_md33',1,'']]],
-  ['byte_5fswap_5f32_8',['byte_swap_32',['../namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03.html#a51780481383278f8fba3f1a482ba4e59',1,'anonymous_namespace{Esp32TleCommInterface.cpp}']]]
+  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
+  ['faultn_1',['FAULTN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#abd525deb25fcb647fa6c4690c63f74c4',1,'TLE92466ED_TestConfig::ControlPins']]],
+  ['faultn_5fpin_2',['faultn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a07ce16cb9d074e5f98955c150e4a98ac',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['features_20strong_3',['Features strong',['../index.html#autotoc_md5',1,'🔌 &lt;strong&gt;Features&lt;/strong&gt;'],['../index.html#autotoc_md7',1,'&lt;strong&gt;Driver Features&lt;/strong&gt;']]],
+  ['flip_5ftest_5fprogress_5findicator_4',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'flip_test_progress_indicator() noexcept:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#a7bb80345e5681c19686df292fa897daf',1,'flip_test_progress_indicator() noexcept:&#160;TLE92466ED_TestFramework.hpp']]],
+  ['for_20multi_20mcu_20development_5',['🎯 Modern Solenoid Control Interface for Multi-MCU Development',['../index.html#autotoc_md1',1,'']]],
+  ['frequency_6',['FREQUENCY',['../structTLE92466ED__TestConfig_1_1SPIParams.html#a7c1be1681df077d91b1fd20fed51652b',1,'TLE92466ED_TestConfig::SPIParams']]],
+  ['frequency_7',['frequency',['../structEsp32TleCommInterface_1_1SPIConfig.html#a74056b2cb52a216ad251bc8d603fc0b8',1,'Esp32TleCommInterface::SPIConfig']]]
 ];

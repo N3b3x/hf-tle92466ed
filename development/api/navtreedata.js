@@ -25,59 +25,7 @@
 var NAVTREE =
 [
   [ "TLE92466ED Driver", "index.html", [
-    [ "🔧 HardFOC TLE92466ED Driver", "index.html#autotoc_md2", [
-      [ "} md_README", "index.html#autotoc_md0", null ],
-      [ "has_children: true", "index.html#autotoc_md1", null ],
-      [ "🎯 Modern Solenoid Control Interface for Multi-MCU Development", "index.html#autotoc_md3", null ],
-      [ "📚 Table of Contents", "index.html#autotoc_md5", null ],
-      [ "🎯 Overview", "index.html#autotoc_md7", [
-        [ "🏆 Core Benefits", "index.html#autotoc_md8", null ],
-        [ "🎨 Design Philosophy", "index.html#autotoc_md9", null ]
-      ] ],
-      [ "🏗️ Architecture", "index.html#autotoc_md11", [
-        [ "HAL-Based Design", "index.html#autotoc_md12", null ],
-        [ "Abstraction Benefits", "index.html#autotoc_md13", [
-          [ "1. MCU Independence", "index.html#autotoc_md14", null ]
-        ] ]
-      ] ],
-      [ "🔌 Features", "index.html#autotoc_md16", [
-        [ "Hardware Capabilities", "index.html#autotoc_md17", null ],
-        [ "Driver Features", "index.html#autotoc_md18", null ]
-      ] ],
-      [ "🚀 Quick Start", "index.html#autotoc_md20", [
-        [ "1. Clone Repository", "index.html#autotoc_md21", null ],
-        [ "2. Implement HAL Interface", "index.html#autotoc_md22", null ],
-        [ "3. Basic Usage", "index.html#autotoc_md23", null ],
-        [ "4. Build Example", "index.html#autotoc_md24", null ]
-      ] ],
-      [ "📖 API Documentation", "index.html#autotoc_md26", [
-        [ "Generated Documentation", "index.html#autotoc_md27", null ],
-        [ "Key Concepts", "index.html#autotoc_md28", [
-          [ "Initialization", "index.html#autotoc_md29", null ],
-          [ "Channel Control", "index.html#autotoc_md30", null ],
-          [ "Diagnostics", "index.html#autotoc_md31", null ]
-        ] ]
-      ] ],
-      [ "🔧 Building", "index.html#autotoc_md33", [
-        [ "Build System Features", "index.html#autotoc_md34", null ],
-        [ "Build Commands", "index.html#autotoc_md35", null ],
-        [ "CMake Integration", "index.html#autotoc_md36", null ]
-      ] ],
-      [ "📊 Examples", "index.html#autotoc_md38", [
-        [ "Available Test Applications", "index.html#autotoc_md39", null ],
-        [ "Usage Examples", "index.html#autotoc_md40", null ]
-      ] ],
-      [ "🤝 Contributing", "index.html#autotoc_md42", [
-        [ "Development Workflow", "index.html#autotoc_md43", null ],
-        [ "Coding Standards", "index.html#autotoc_md44", null ]
-      ] ],
-      [ "📄 License", "index.html#autotoc_md46", null ],
-      [ "🔗 Quick Links", "index.html#autotoc_md48", [
-        [ "Documentation", "index.html#autotoc_md49", null ],
-        [ "Development", "index.html#autotoc_md50", null ],
-        [ "Community", "index.html#autotoc_md51", null ]
-      ] ]
-    ] ],
+    [ "🔧 HardFOC TLE92466ED Driver", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -110,7 +58,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "DriverIntegrationTest_8cpp.html",
-"structSolenoid1Config.html#a9c997115be102f6fa179821485844680"
+"structTLE92466ED__TestConfig_1_1AppConfig.html#a73d040921dd27c8d9446c7aa0848c66f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

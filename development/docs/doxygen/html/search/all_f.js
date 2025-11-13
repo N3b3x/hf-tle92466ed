@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['last_5ferror_5f_0',['last_error_',['../classEsp32TleCommInterface.html#a6f15bfa4f81b66e087011f9d63e736a9',1,'Esp32TleCommInterface']]],
-  ['license_20strong_1',['📄 &lt;strong&gt;License&lt;/strong&gt;',['../index.html#autotoc_md46',1,'']]],
-  ['links_20strong_2',['🔗 &lt;strong&gt;Quick Links&lt;/strong&gt;',['../index.html#autotoc_md48',1,'']]],
-  ['log_3',['Log',['../classEsp32TleCommInterface.html#ad42bff82ecd69a28fccb4d81ab6236e0',1,'Esp32TleCommInterface']]]
+  ['queue_5fsize_0',['queue_size',['../structEsp32TleCommInterface_1_1SPIConfig.html#aa2a36d6fe244594bcb7daf6ae5c4c8ed',1,'Esp32TleCommInterface::SPIConfig']]],
+  ['queue_5fsize_1',['QUEUE_SIZE',['../structTLE92466ED__TestConfig_1_1SPIParams.html#abf680fed7c43ef4c0e7397db7c5b1e26',1,'TLE92466ED_TestConfig::SPIParams']]]
 ];

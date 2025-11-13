@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7eesp32tlecomminterface_0',['~Esp32TleCommInterface',['../classEsp32TleCommInterface.html#aa0bbb6a8fd460945f8c0c53c44b1ca90',1,'Esp32TleCommInterface']]]
+  ['📄_20strong_20license_20strong_0',['📄 &lt;strong&gt;License&lt;/strong&gt;',['../index.html#autotoc_md17',1,'']]]
 ];

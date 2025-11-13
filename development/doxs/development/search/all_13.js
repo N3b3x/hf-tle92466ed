@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['queue_5fsize_0',['queue_size',['../structEsp32TleCommInterface_1_1SPIConfig.html#aa2a36d6fe244594bcb7daf6ae5c4c8ed',1,'Esp32TleCommInterface::SPIConfig']]],
-  ['queue_5fsize_1',['QUEUE_SIZE',['../structTLE92466ED__TestConfig_1_1SPIParams.html#abf680fed7c43ef4c0e7397db7c5b1e26',1,'TLE92466ED_TestConfig::SPIParams']]],
-  ['quick_20links_20strong_2',['🔗 &lt;strong&gt;Quick Links&lt;/strong&gt;',['../index.html#autotoc_md48',1,'']]],
-  ['quick_20start_20strong_3',['🚀 &lt;strong&gt;Quick Start&lt;/strong&gt;',['../index.html#autotoc_md20',1,'']]]
+  ['unit_0',['UNIT',['../structADCConfig.html#a1fbd7e6cfa8e6321a752fb8d95e9ecad',1,'ADCConfig']]],
+  ['update_5fsolenoid_5fcurrents_1',['update_solenoid_currents',['../SolenoidControlTest_8cpp.html#ae75b9efaa99cfa8c2b9295288cf8304d',1,'SolenoidControlTest.cpp']]],
+  ['usage_20examples_20strong_2',['&lt;strong&gt;Usage Examples&lt;/strong&gt;',['../index.html#autotoc_md16',1,'']]]
 ];

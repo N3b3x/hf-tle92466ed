@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🏗️_20strong_20architecture_20strong_0',['🏗️ &lt;strong&gt;Architecture&lt;/strong&gt;',['../index.html#autotoc_md11',1,'']]]
+  ['🔧_20hardfoc_20tle92466ed_20driver_0',['🔧 HardFOC TLE92466ED Driver',['../index.html',1,'']]]
 ];

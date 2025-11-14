@@ -94,20 +94,20 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">🔧 HardFOC <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Driver </div></div>
+  <div class="headertitle"><div class="title">🔧 HardFOC TLE92466ED Driver </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a><b>Six-Channel Low-Side Solenoid Driver</b></p>
 <p><img src="https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip" alt="TLE92466ED" class="inline"/> <img src="https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus" alt="C++23" class="inline"/> <img src="https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware" alt="Hardware-Agnostic" class="inline"/> <img src="https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative" alt="License" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 🎯 Modern Solenoid Control Interface for Multi-MCU Development</h1>
-<p><em>A production-ready C++23 driver implementation for the Infineon <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> with comprehensive SPI interface, precision current control, and extensive diagnostics support</em></p>
+<p><em>A production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support</em></p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 🎯 <b>Overview</b></h1>
 <blockquote class="doxtable">
 <p>&zwj;<b>📖 <a href="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</a></b> - Interactive guides, examples, and step-by-step tutorials </p>
 </blockquote>
-<p><b><a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Driver</b> is a modern, production-ready C++23 driver implementation for the Infineon <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.</p>
+<p><b>TLE92466ED Driver</b> is a modern, production-ready C++23 driver implementation for the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.</p>
 <h2><a class="anchor" id="autotoc_md3"></a>
 🏆 <b>Core Benefits</b></h2>
 <ul>
@@ -122,13 +122,12 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 🎨 <b>Design Philosophy</b></h2>
 <div class="fragment"><div class="line"><span class="comment">// Write hardware-agnostic solenoid control code</span></div>
 <div class="line">YourPlatformHAL hal;  <span class="comment">// Your SPI implementation</span></div>
-<div class="line"><a class="code hl_namespace" href="namespaceTLE92466ED.html">TLE92466ED</a> driver(hal);</div>
+<div class="line">TLE92466ED driver(hal);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize and control channels</span></div>
 <div class="line">driver.initialize();</div>
 <div class="line">driver.setChannelCurrent(0, 1500);  <span class="comment">// 1.5A</span></div>
 <div class="line">driver.enableChannel(0);</div>
-<div class="ttc" id="anamespaceTLE92466ED_html"><div class="ttname"><a href="namespaceTLE92466ED.html">TLE92466ED</a></div><div class="ttdef"><b>Definition</b> TLE92466ED.cpp:22</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
 🔌 <b>Features</b></h1>
 <h2><a class="anchor" id="autotoc_md6"></a>

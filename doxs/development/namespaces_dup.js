@@ -1,11 +1,11 @@
 var namespaces_dup =
 [
-    [ "anonymous_namespace{Esp32TleCommInterface.cpp}", "namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03.html", [
-      [ "byte_swap_32", "namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03.html#a51780481383278f8fba3f1a482ba4e59", null ]
+    [ "anonymous_namespace{esp32_tle_comm_interface.cpp}", "namespaceanonymous__namespace_02esp32__tle__comm__interface_8cpp_03.html", [
+      [ "byte_swap_32", "namespaceanonymous__namespace_02esp32__tle__comm__interface_8cpp_03.html#a054217a8dbc9de406a8f71383bdfaafd", null ]
     ] ],
-    [ "TLE92466ED", "namespaceTLE92466ED.html", [
-      [ "getVddThresholds", "namespaceTLE92466ED.html#a2e59e77ac04459da595df2e873070090", null ],
-      [ "getVioThresholds", "namespaceTLE92466ED.html#af84a6a448ad7cf483c55af8604b73128", null ]
+    [ "tle92466ed", "namespacetle92466ed.html", [
+      [ "getVddThresholds", "namespacetle92466ed.html#a63183dc1e07ba814cc8b07de53f1163d", null ],
+      [ "getVioThresholds", "namespacetle92466ed.html#a9f640321ea3c3415fb289c7530e62c8f", null ]
     ] ],
     [ "TLE92466ED_TestConfig", "namespaceTLE92466ED__TestConfig.html", "namespaceTLE92466ED__TestConfig" ]
 ];

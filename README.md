@@ -353,7 +353,6 @@ distribute it freely without any restrictions.
 ### **Community**
 - 🤝 [Contributing](#-contributing) - How to contribute
 - 🐛 [Issue Tracker](https://github.com/n3b3x/hf-tle92466ed-driver/issues)
-- 💬 [Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)
 
 ---
 

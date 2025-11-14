@@ -2,8 +2,8 @@ var searchData=
 [
   ['ramp_5fstep_5fdelay_5fms_0',['RAMP_STEP_DELAY_MS',['../structTLE92466ED__TestConfig_1_1TestConfig.html#aa61db0bd87a2c7ceeea0c5a27ee9c228',1,'TLE92466ED_TestConfig::TestConfig']]],
   ['ramp_5fstep_5fma_1',['RAMP_STEP_MA',['../structTLE92466ED__TestConfig_1_1TestConfig.html#ad2a6e6656f915d99b58a64ab706b80cb',1,'TLE92466ED_TestConfig::TestConfig']]],
-  ['read_5fadc_5fpercentage_2',['read_adc_percentage',['../SolenoidControlTest_8cpp.html#a03489edd5b8ddc3229d593ac4df978e3',1,'SolenoidControlTest.cpp']]],
-  ['read_5fadc_5fvoltage_5fmv_3',['read_adc_voltage_mv',['../SolenoidControlTest_8cpp.html#a01ef3d19e2ecfe3d7c58492573b6d499',1,'SolenoidControlTest.cpp']]],
+  ['read_5fadc_5fpercentage_2',['read_adc_percentage',['../solenoid__control__test_8cpp.html#a03489edd5b8ddc3229d593ac4df978e3',1,'solenoid_control_test.cpp']]],
+  ['read_5fadc_5fvoltage_5fmv_3',['read_adc_voltage_mv',['../solenoid__control__test_8cpp.html#a01ef3d19e2ecfe3d7c58492573b6d499',1,'solenoid_control_test.cpp']]],
   ['readme_2emd_4',['README.md',['../README_8md.html',1,'']]],
   ['reset_5fdelay_5fms_5',['RESET_DELAY_MS',['../structTLE92466ED__TestConfig_1_1Timing.html#aba1378da52ce221954d8958323003953',1,'TLE92466ED_TestConfig::Timing']]],
   ['resn_6',['RESN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a4ecb4cfcaf908b1a16bbb436093c268b',1,'TLE92466ED_TestConfig::ControlPins']]],

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['esp32tlecomminterface_2ecpp_0',['Esp32TleCommInterface.cpp',['../Esp32TleCommInterface_8cpp.html',1,'']]],
-  ['esp32tlecomminterface_2ehpp_1',['Esp32TleCommInterface.hpp',['../Esp32TleCommInterface_8hpp.html',1,'']]]
+  ['esp32_5ftle_5fcomm_5finterface_2ecpp_0',['esp32_tle_comm_interface.cpp',['../esp32__tle__comm__interface_8cpp.html',1,'']]],
+  ['esp32_5ftle_5fcomm_5finterface_2ehpp_1',['esp32_tle_comm_interface.hpp',['../esp32__tle__comm__interface_8hpp.html',1,'']]]
 ];

@@ -99,7 +99,7 @@ if(APP_TYPE STREQUAL "solenoid_control_test")
 endif()
 
 idf_component_register(
-    SRCS "${MAIN_SOURCE}" "Esp32TleCommInterface.cpp"
+    SRCS "${MAIN_SOURCE}" "esp32_tle_comm_interface.cpp"
     INCLUDE_DIRS "." "${INC_BASE_PATH}"
     REQUIRES ${COMPONENT_REQUIRES_LIST}
 )

@@ -5,6 +5,6 @@ var searchData=
   ['getconfig_2',['getConfig',['../classEsp32TleCommInterface.html#a8216498d7d1b270b06a4a711bd2a21ef',1,'Esp32TleCommInterface']]],
   ['getgpiopin_3',['GetGpioPin',['../classEsp32TleCommInterface.html#abd1d9136759271e29d1be9752aec4322',1,'Esp32TleCommInterface']]],
   ['getlasterror_4',['GetLastError',['../classEsp32TleCommInterface.html#a1173fdbda741381bed6ee777ae27fd0f',1,'Esp32TleCommInterface']]],
-  ['getvddthresholds_5',['getVddThresholds',['../namespaceTLE92466ED.html#a2e59e77ac04459da595df2e873070090',1,'TLE92466ED']]],
-  ['getviothresholds_6',['getVioThresholds',['../namespaceTLE92466ED.html#af84a6a448ad7cf483c55af8604b73128',1,'TLE92466ED']]]
+  ['getvddthresholds_5',['getVddThresholds',['../namespacetle92466ed.html#a63183dc1e07ba814cc8b07de53f1163d',1,'tle92466ed']]],
+  ['getviothresholds_6',['getVioThresholds',['../namespacetle92466ed.html#a9f640321ea3c3415fb289c7530e62c8f',1,'tle92466ed']]]
 ];

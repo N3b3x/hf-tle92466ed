@@ -2,12 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dir_7751913d9073a449937b5bcfd50bf3a6" kind="dir">
     <compoundname>examples/esp32/main</compoundname>
-    <innerfile refid="DriverIntegrationTest_8cpp">DriverIntegrationTest.cpp</innerfile>
-    <innerfile refid="Esp32TleCommInterface_8cpp">Esp32TleCommInterface.cpp</innerfile>
-    <innerfile refid="Esp32TleCommInterface_8hpp">Esp32TleCommInterface.hpp</innerfile>
-    <innerfile refid="SolenoidControlTest_8cpp">SolenoidControlTest.cpp</innerfile>
+    <innerfile refid="driver__integration__test_8cpp">driver_integration_test.cpp</innerfile>
+    <innerfile refid="esp32__tle__comm__interface_8cpp">esp32_tle_comm_interface.cpp</innerfile>
+    <innerfile refid="esp32__tle__comm__interface_8hpp">esp32_tle_comm_interface.hpp</innerfile>
+    <innerfile refid="solenoid__control__test_8cpp">solenoid_control_test.cpp</innerfile>
     <innerfile refid="TestFramework_8h">TestFramework.h</innerfile>
-    <innerfile refid="TLE92466ED__TestConfig_8hpp">TLE92466ED_TestConfig.hpp</innerfile>
+    <innerfile refid="tle92466ed__test__config_8hpp">tle92466ed_test_config.hpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

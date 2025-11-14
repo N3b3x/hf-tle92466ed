@@ -295,10 +295,10 @@ platform.</p>
     Application Code
          │
          ▼
-    TLE92466ED::Driver ◄──── High-level API
+    tle92466ed::Driver ◄──── High-level API
          │
          ▼
-    TLE92466ED::HAL ◄──────── Abstract interface (YOU IMPLEMENT)
+    tle92466ed::SpiInterface ◄──────── Abstract interface (YOU IMPLEMENT)
          │
          ▼
     Platform SPI ◄────────────  Your hardware (STM32, ESP32, etc.)
@@ -408,10 +408,10 @@ using HALResult = std::expected&lt;T, HALError&gt;;
     
 
 <p>```cpp
-class STM32<em>HAL : public TLE92466ED::HAL {
+class STM32_HAL : public tle92466ed::SpiInterface<STM32_HAL> {
 public:
     STM32_HAL(SPI_HandleTypeDef* hspi, GPIO_TypeDef* cs_port, uint16_t cs_pin)
-        : hspi</em>(hspi), cs_port_(cs_port), cs_pin_(cs_pin), initialized_(false) {}</p>
+        : hspi_(hspi), cs_port_(cs_port), cs_pin_(cs_pin), initialized_(false) {}</STM32_HAL></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -568,10 +568,10 @@ bool is_ready() const noexcept override {
     
 
 <p>```cpp
-class ESP32<em>HAL : public TLE92466ED::HAL {
+class ESP32_HAL : public tle92466ed::SpiInterface<ESP32_HAL> {
 public:
     ESP32_HAL(spi_host_device_t spi_host, int cs_pin)
-        : spi_host</em>(spi_host), cs_pin_(cs_pin), spi_device_(nullptr) {}</p>
+        : spi_host_(spi_host), cs_pin_(cs_pin), spi_device_(nullptr) {}</ESP32_HAL></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -713,10 +713,10 @@ HALResult&lt;void&gt; delay(uint32_t microseconds) noexcept override {
     
 
 <p>```cpp
-class LinuxSPI_HAL : public TLE92466ED::HAL {
+class LinuxSPI_HAL : public tle92466ed::SpiInterface<LinuxSPI_HAL> {
 public:
     LinuxSPI_HAL(const char* device, int cs_gpio)
-        : device_path_(device), cs_gpio_(cs_gpio), spi_fd_(-1) {}</p>
+        : device_path_(device), cs_gpio_(cs_gpio), spi_fd_(-1) {}</LinuxSPI_HAL></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -979,7 +979,7 @@ assert(delay_result.has_value());
 <p>```cpp
 // Create driver with your HAL
 MyPlatformHAL hal;
-TLE92466ED::Driver driver(hal);</p>
+tle92466ed::Driver driver(hal);</p>
 
 <p>// Test full initialization
 auto result = driver.init();
@@ -1153,7 +1153,7 @@ HALResult&lt;uint32_t&gt; transfer32(uint32_t data) noexcept override {
   <tbody>
     <tr>
       <td><strong>Navigation</strong>: <a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/">← Driver API</a></td>
-      <td><a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/">Next: Usage Examples →</a></td>
+      <td><a href="09_Usage_examples.md">Next: Usage Examples →</a></td>
     </tr>
   </tbody>
 </table></div>

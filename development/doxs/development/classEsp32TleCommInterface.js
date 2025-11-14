@@ -6,7 +6,7 @@ var classEsp32TleCommInterface =
     [ "~Esp32TleCommInterface", "classEsp32TleCommInterface.html#a9ea5cdfd9492290839f09bc07a3310f9", null ],
     [ "addSPIDevice", "classEsp32TleCommInterface.html#a96518d50ae1b94bd9f98687ee1241fc9", null ],
     [ "ClearErrors", "classEsp32TleCommInterface.html#a7aac348ec07e96dd168bbd73a6c01794", null ],
-    [ "Configure", "classEsp32TleCommInterface.html#a0f15445d49d963d0c8596852cad38a38", null ],
+    [ "Configure", "classEsp32TleCommInterface.html#a5edc38a9be8700ae9d1e2771154a25bb", null ],
     [ "Deinit", "classEsp32TleCommInterface.html#ace087a68e524499e0948bad1901abd88", null ],
     [ "Delay", "classEsp32TleCommInterface.html#a31edd503bbf1a1db7aa20b2475e66026", null ],
     [ "getConfig", "classEsp32TleCommInterface.html#a8216498d7d1b270b06a4a711bd2a21ef", null ],

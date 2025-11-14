@@ -56,7 +56,7 @@
     <member refid="classEsp32TleCommInterface_1ab5f7c06936fa0cde6d682778993c4af1" kind="function"><name>Transfer32</name></member>
     <member refid="classEsp32TleCommInterface_1a18bad257c45ff0f43384555f97d45eca" kind="function"><name>TransferMulti</name></member>
     <member refid="classEsp32TleCommInterface_1a31edd503bbf1a1db7aa20b2475e66026" kind="function"><name>Delay</name></member>
-    <member refid="classEsp32TleCommInterface_1a0f15445d49d963d0c8596852cad38a38" kind="function"><name>Configure</name></member>
+    <member refid="classEsp32TleCommInterface_1a5edc38a9be8700ae9d1e2771154a25bb" kind="function"><name>Configure</name></member>
     <member refid="classEsp32TleCommInterface_1af1461cdead0b4743bb71dab55c9ea36f" kind="function"><name>IsReady</name></member>
     <member refid="classEsp32TleCommInterface_1a1173fdbda741381bed6ee777ae27fd0f" kind="function"><name>GetLastError</name></member>
     <member refid="classEsp32TleCommInterface_1a7aac348ec07e96dd168bbd73a6c01794" kind="function"><name>ClearErrors</name></member>
@@ -153,97 +153,98 @@
     <member refid="structTLE92466ED__TestConfig_1_1Timing_1a1f88aa3a269db676482a797545b65476" kind="variable"><name>POWER_ON_DELAY_MS</name></member>
     <member refid="structTLE92466ED__TestConfig_1_1Timing_1aba1378da52ce221954d8958323003953" kind="variable"><name>RESET_DELAY_MS</name></member>
   </compound>
-  <compound refid="namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03" kind="namespace"><name>anonymous_namespace{Esp32TleCommInterface.cpp}</name>
-    <member refid="namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03_1a51780481383278f8fba3f1a482ba4e59" kind="function"><name>byte_swap_32</name></member>
+  <compound refid="namespaceanonymous__namespace_02esp32__tle__comm__interface_8cpp_03" kind="namespace"><name>anonymous_namespace{esp32_tle_comm_interface.cpp}</name>
+    <member refid="namespaceanonymous__namespace_02esp32__tle__comm__interface_8cpp_03_1a054217a8dbc9de406a8f71383bdfaafd" kind="function"><name>byte_swap_32</name></member>
   </compound>
-  <compound refid="namespaceTLE92466ED" kind="namespace"><name>TLE92466ED</name>
-    <member refid="namespaceTLE92466ED_1af84a6a448ad7cf483c55af8604b73128" kind="function"><name>getVioThresholds</name></member>
-    <member refid="namespaceTLE92466ED_1a2e59e77ac04459da595df2e873070090" kind="function"><name>getVddThresholds</name></member>
+  <compound refid="namespacetle92466ed" kind="namespace"><name>tle92466ed</name>
+    <member refid="namespacetle92466ed_1a9f640321ea3c3415fb289c7530e62c8f" kind="function"><name>getVioThresholds</name></member>
+    <member refid="namespacetle92466ed_1a63183dc1e07ba814cc8b07de53f1163d" kind="function"><name>getVddThresholds</name></member>
   </compound>
   <compound refid="namespaceTLE92466ED__TestConfig" kind="namespace"><name>TLE92466ED_TestConfig</name>
   </compound>
-  <compound refid="DriverIntegrationTest_8cpp" kind="file"><name>DriverIntegrationTest.cpp</name>
-    <member refid="DriverIntegrationTest_8cpp_1afacebc97896e90c317ac62cf118945cd" kind="define"><name>ENABLE_INITIALIZATION_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a24bfa2f29d093d3fb649a0de6526af33" kind="define"><name>ENABLE_MODE_CONTROL_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a02d474f07e97d727b8183f5a935d76af" kind="define"><name>ENABLE_GLOBAL_CONFIG_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a27221e1d38d938b661ccbfcc44262b50" kind="define"><name>ENABLE_CHANNEL_CONTROL_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a9cc129a2aef2a2615a4c4a621e436473" kind="define"><name>ENABLE_CURRENT_CONTROL_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a9c20ba02d9933c7c01671a402bda9f58" kind="define"><name>ENABLE_PWM_CONFIG_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ad6730e658e760cc0feb77d6365e4576d" kind="define"><name>ENABLE_DITHER_CONFIG_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a8eca7d6e77454f75424cbbd938eb9783" kind="define"><name>ENABLE_DIAGNOSTICS_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a5e19c1214bf3df6d4d64a87dc31b72dc" kind="define"><name>ENABLE_FAULT_MANAGEMENT_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a99ffa3a4b3f2ac3cdfa9c4ababcdb6a1" kind="define"><name>ENABLE_WATCHDOG_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a755b3a4c89ac79be41476354523fde8d" kind="define"><name>ENABLE_GPIO_CONTROL_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a1df80a95e94f04329061bae38bf3dd39" kind="define"><name>ENABLE_MULTI_CHANNEL_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a13fa69e119ecc502376e99ad59d488d3" kind="define"><name>ENABLE_PARALLEL_OPERATION_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a529316bff799bb47de7b992c298cff8c" kind="define"><name>ENABLE_ERROR_CONDITION_TESTS</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1aaff89257c54366921eebb8ec1348b1fd" kind="variable"><name>g_test_results</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1adc7b455320b851067d00fc9470ab773d" kind="variable"><name>g_driver</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ae884f3c8e83e03b4cc6c9c4ccd686f4a" kind="function"><name>ensure_config_mode</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a6a1a43d07287e49047f360bf0faedac8" kind="function"><name>ensure_mission_mode</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a80233776e6e686d797ce641472542b03" kind="function"><name>print_device_status</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ab1392a0ca089a059fb3dfd7fddac69ba" kind="function"><name>print_channel_diagnostics</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1abb4b230389c72bfdce3ec626624637d7" kind="function"><name>test_hal_initialization</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ae11eb6cb1d8f2e300e874298a5d3ecb3" kind="function"><name>test_driver_initialization</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a52b1703a7f4c0c38ded4d24e8fa4a2c5" kind="function"><name>test_chip_id</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1af5b24a2565ae2b821c5677c1b6a2a719" kind="function"><name>test_ic_version</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ad06bb98bb87d74d331dd24114a8a87c8" kind="function"><name>test_device_verification</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a74680e40ac52a407195575e5aa2ecc21" kind="function"><name>test_enter_mission_mode</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a1c56ee8ec8d43ef73498dec33b4bd1ca" kind="function"><name>test_enter_config_mode</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a41e2bb2cb7036d69df7762cb83173170" kind="function"><name>test_mode_transitions</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a8654648f460ed67329e74fe5809c895c" kind="function"><name>test_crc_control</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a522cb8d7da6197e14bb1b3823cd72dbe" kind="function"><name>test_vbat_thresholds</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ab9d2b3bbc2e5b5459393f89058b352d4" kind="function"><name>test_global_configuration</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a7d47a21357614fad17a25d7fed341f58" kind="function"><name>test_single_channel_control</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a43f6a43e16d988b07ec68139cb912f3d" kind="function"><name>test_all_channels_control</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ac045b9f4aee0ed911929f4d4b4fd67c1" kind="function"><name>test_channel_mask_control</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a05594a9aa96a8b108a031eac5e9999e7" kind="function"><name>test_channel_mode_configuration</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1aebc4d517d7ae47d3b8c4545654111451" kind="function"><name>test_current_setpoint</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a38639a803276bf11e31f3592d25e3d80" kind="function"><name>test_current_ramping</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a80839a8da4fe45f95bd941cb72dd270c" kind="function"><name>test_pwm_period_configuration</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a9a3eb04cea7e9ec70fb6fd17f69e1f8d" kind="function"><name>test_pwm_period_raw</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a2cf5a04279b206b06d5aa65b1b808ba7" kind="function"><name>test_dither_configuration</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a896572f3873ec6a46a2a5ed589254cc8" kind="function"><name>test_dither_raw</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a3716ddac428ceff53f5400b10f07d662" kind="function"><name>test_device_status</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ad6988ef73c4562412ea5a09abc318fd6" kind="function"><name>test_channel_diagnostics</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a33ced9d335d2f2d33969d7180f88fa43" kind="function"><name>test_voltage_reading</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ae7156a1d431a70f48b0231201861e814" kind="function"><name>test_current_reading</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1aa17032374a5d25152459317a981bc3af" kind="function"><name>test_all_channels_telemetry</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a8173e95efadc1c63eb12378dfd32fed7" kind="function"><name>test_device_telemetry</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a01f3dc5889509fa100606c90ef1930d6" kind="function"><name>test_telemetry_with_active_channel</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1accc4cbd28ece229c1cc42fadfc6301ce" kind="function"><name>test_fault_reporting</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a20f5328b9390b58369ee850075875f1a" kind="function"><name>test_fault_clearing</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a5ce0bd503b0c435e033a23779704fe85" kind="function"><name>test_software_reset</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ac771b66525d7d0b3c4bef1fd4a96c2b0" kind="function"><name>test_spi_watchdog</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a3458b48356a1c36952a03734228f0a5d" kind="function"><name>test_gpio_control</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a39c19d8105c05b714afc7beaa406941e" kind="function"><name>test_all_channels_individually</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a1b73ecdfe00b38795be06f2f17d285d3" kind="function"><name>test_parallel_operation</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1a42bbaae2d6c0f07c32cafb6cca9cbf13" kind="function"><name>test_error_conditions</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
+  <compound refid="driver__integration__test_8cpp" kind="file"><name>driver_integration_test.cpp</name>
+    <member refid="driver__integration__test_8cpp_1afacebc97896e90c317ac62cf118945cd" kind="define"><name>ENABLE_INITIALIZATION_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a24bfa2f29d093d3fb649a0de6526af33" kind="define"><name>ENABLE_MODE_CONTROL_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a02d474f07e97d727b8183f5a935d76af" kind="define"><name>ENABLE_GLOBAL_CONFIG_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a27221e1d38d938b661ccbfcc44262b50" kind="define"><name>ENABLE_CHANNEL_CONTROL_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a9cc129a2aef2a2615a4c4a621e436473" kind="define"><name>ENABLE_CURRENT_CONTROL_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a9c20ba02d9933c7c01671a402bda9f58" kind="define"><name>ENABLE_PWM_CONFIG_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1ad6730e658e760cc0feb77d6365e4576d" kind="define"><name>ENABLE_DITHER_CONFIG_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a8eca7d6e77454f75424cbbd938eb9783" kind="define"><name>ENABLE_DIAGNOSTICS_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a5e19c1214bf3df6d4d64a87dc31b72dc" kind="define"><name>ENABLE_FAULT_MANAGEMENT_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a99ffa3a4b3f2ac3cdfa9c4ababcdb6a1" kind="define"><name>ENABLE_WATCHDOG_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a755b3a4c89ac79be41476354523fde8d" kind="define"><name>ENABLE_GPIO_CONTROL_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a1df80a95e94f04329061bae38bf3dd39" kind="define"><name>ENABLE_MULTI_CHANNEL_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a13fa69e119ecc502376e99ad59d488d3" kind="define"><name>ENABLE_PARALLEL_OPERATION_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a529316bff799bb47de7b992c298cff8c" kind="define"><name>ENABLE_ERROR_CONDITION_TESTS</name></member>
+    <member refid="driver__integration__test_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="driver__integration__test_8cpp_1aaff89257c54366921eebb8ec1348b1fd" kind="variable"><name>g_test_results</name></member>
+    <member refid="driver__integration__test_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
+    <member refid="driver__integration__test_8cpp_1a02003d146ba6a2cf9db8ddfbb8642231" kind="variable"><name>g_driver</name></member>
+    <member refid="driver__integration__test_8cpp_1ae884f3c8e83e03b4cc6c9c4ccd686f4a" kind="function"><name>ensure_config_mode</name></member>
+    <member refid="driver__integration__test_8cpp_1a6a1a43d07287e49047f360bf0faedac8" kind="function"><name>ensure_mission_mode</name></member>
+    <member refid="driver__integration__test_8cpp_1a80233776e6e686d797ce641472542b03" kind="function"><name>print_device_status</name></member>
+    <member refid="driver__integration__test_8cpp_1ab1392a0ca089a059fb3dfd7fddac69ba" kind="function"><name>print_channel_diagnostics</name></member>
+    <member refid="driver__integration__test_8cpp_1abb4b230389c72bfdce3ec626624637d7" kind="function"><name>test_hal_initialization</name></member>
+    <member refid="driver__integration__test_8cpp_1ae11eb6cb1d8f2e300e874298a5d3ecb3" kind="function"><name>test_driver_initialization</name></member>
+    <member refid="driver__integration__test_8cpp_1a52b1703a7f4c0c38ded4d24e8fa4a2c5" kind="function"><name>test_chip_id</name></member>
+    <member refid="driver__integration__test_8cpp_1af5b24a2565ae2b821c5677c1b6a2a719" kind="function"><name>test_ic_version</name></member>
+    <member refid="driver__integration__test_8cpp_1ad06bb98bb87d74d331dd24114a8a87c8" kind="function"><name>test_device_verification</name></member>
+    <member refid="driver__integration__test_8cpp_1a74680e40ac52a407195575e5aa2ecc21" kind="function"><name>test_enter_mission_mode</name></member>
+    <member refid="driver__integration__test_8cpp_1a1c56ee8ec8d43ef73498dec33b4bd1ca" kind="function"><name>test_enter_config_mode</name></member>
+    <member refid="driver__integration__test_8cpp_1a41e2bb2cb7036d69df7762cb83173170" kind="function"><name>test_mode_transitions</name></member>
+    <member refid="driver__integration__test_8cpp_1a8654648f460ed67329e74fe5809c895c" kind="function"><name>test_crc_control</name></member>
+    <member refid="driver__integration__test_8cpp_1a522cb8d7da6197e14bb1b3823cd72dbe" kind="function"><name>test_vbat_thresholds</name></member>
+    <member refid="driver__integration__test_8cpp_1ab9d2b3bbc2e5b5459393f89058b352d4" kind="function"><name>test_global_configuration</name></member>
+    <member refid="driver__integration__test_8cpp_1a7d47a21357614fad17a25d7fed341f58" kind="function"><name>test_single_channel_control</name></member>
+    <member refid="driver__integration__test_8cpp_1a43f6a43e16d988b07ec68139cb912f3d" kind="function"><name>test_all_channels_control</name></member>
+    <member refid="driver__integration__test_8cpp_1ac045b9f4aee0ed911929f4d4b4fd67c1" kind="function"><name>test_channel_mask_control</name></member>
+    <member refid="driver__integration__test_8cpp_1a05594a9aa96a8b108a031eac5e9999e7" kind="function"><name>test_channel_mode_configuration</name></member>
+    <member refid="driver__integration__test_8cpp_1aebc4d517d7ae47d3b8c4545654111451" kind="function"><name>test_current_setpoint</name></member>
+    <member refid="driver__integration__test_8cpp_1a38639a803276bf11e31f3592d25e3d80" kind="function"><name>test_current_ramping</name></member>
+    <member refid="driver__integration__test_8cpp_1a80839a8da4fe45f95bd941cb72dd270c" kind="function"><name>test_pwm_period_configuration</name></member>
+    <member refid="driver__integration__test_8cpp_1a9a3eb04cea7e9ec70fb6fd17f69e1f8d" kind="function"><name>test_pwm_period_raw</name></member>
+    <member refid="driver__integration__test_8cpp_1a2cf5a04279b206b06d5aa65b1b808ba7" kind="function"><name>test_dither_configuration</name></member>
+    <member refid="driver__integration__test_8cpp_1a896572f3873ec6a46a2a5ed589254cc8" kind="function"><name>test_dither_raw</name></member>
+    <member refid="driver__integration__test_8cpp_1a3716ddac428ceff53f5400b10f07d662" kind="function"><name>test_device_status</name></member>
+    <member refid="driver__integration__test_8cpp_1ad6988ef73c4562412ea5a09abc318fd6" kind="function"><name>test_channel_diagnostics</name></member>
+    <member refid="driver__integration__test_8cpp_1a33ced9d335d2f2d33969d7180f88fa43" kind="function"><name>test_voltage_reading</name></member>
+    <member refid="driver__integration__test_8cpp_1ae7156a1d431a70f48b0231201861e814" kind="function"><name>test_current_reading</name></member>
+    <member refid="driver__integration__test_8cpp_1aa17032374a5d25152459317a981bc3af" kind="function"><name>test_all_channels_telemetry</name></member>
+    <member refid="driver__integration__test_8cpp_1a8173e95efadc1c63eb12378dfd32fed7" kind="function"><name>test_device_telemetry</name></member>
+    <member refid="driver__integration__test_8cpp_1a01f3dc5889509fa100606c90ef1930d6" kind="function"><name>test_telemetry_with_active_channel</name></member>
+    <member refid="driver__integration__test_8cpp_1accc4cbd28ece229c1cc42fadfc6301ce" kind="function"><name>test_fault_reporting</name></member>
+    <member refid="driver__integration__test_8cpp_1a20f5328b9390b58369ee850075875f1a" kind="function"><name>test_fault_clearing</name></member>
+    <member refid="driver__integration__test_8cpp_1a5ce0bd503b0c435e033a23779704fe85" kind="function"><name>test_software_reset</name></member>
+    <member refid="driver__integration__test_8cpp_1ac771b66525d7d0b3c4bef1fd4a96c2b0" kind="function"><name>test_spi_watchdog</name></member>
+    <member refid="driver__integration__test_8cpp_1a3458b48356a1c36952a03734228f0a5d" kind="function"><name>test_gpio_control</name></member>
+    <member refid="driver__integration__test_8cpp_1a39c19d8105c05b714afc7beaa406941e" kind="function"><name>test_all_channels_individually</name></member>
+    <member refid="driver__integration__test_8cpp_1a1b73ecdfe00b38795be06f2f17d285d3" kind="function"><name>test_parallel_operation</name></member>
+    <member refid="driver__integration__test_8cpp_1a42bbaae2d6c0f07c32cafb6cca9cbf13" kind="function"><name>test_error_conditions</name></member>
+    <member refid="driver__integration__test_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
   </compound>
-  <compound refid="Esp32TleCommInterface_8cpp" kind="file"><name>Esp32TleCommInterface.cpp</name>
+  <compound refid="esp32__tle__comm__interface_8cpp" kind="file"><name>esp32_tle_comm_interface.cpp</name>
+    <member refid="esp32__tle__comm__interface_8cpp_1aeade4dbff3786b7971a573f81397e4fb" kind="function"><name>CreateEsp32TleCommInterface</name></member>
   </compound>
-  <compound refid="Esp32TleCommInterface_8hpp" kind="file"><name>Esp32TleCommInterface.hpp</name>
-    <member refid="Esp32TleCommInterface_8hpp_1aeade4dbff3786b7971a573f81397e4fb" kind="function"><name>CreateEsp32TleCommInterface</name></member>
+  <compound refid="esp32__tle__comm__interface_8hpp" kind="file"><name>esp32_tle_comm_interface.hpp</name>
+    <member refid="esp32__tle__comm__interface_8hpp_1aeade4dbff3786b7971a573f81397e4fb" kind="function"><name>CreateEsp32TleCommInterface</name></member>
   </compound>
-  <compound refid="SolenoidControlTest_8cpp" kind="file"><name>SolenoidControlTest.cpp</name>
-    <member refid="SolenoidControlTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
-    <member refid="SolenoidControlTest_8cpp_1adc7b455320b851067d00fc9470ab773d" kind="variable"><name>g_driver</name></member>
-    <member refid="SolenoidControlTest_8cpp_1acefbb4b5237cd7692227db14429b5dff" kind="variable"><name>g_adc_handle</name></member>
-    <member refid="SolenoidControlTest_8cpp_1ae17bd7fdeae9b708d352e36672e0b72e" kind="variable"><name>g_adc_cali_handle</name></member>
-    <member refid="SolenoidControlTest_8cpp_1ada173abbf00fbde83e3b902c93b35bd4" kind="function"><name>initialize_adc</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a01ef3d19e2ecfe3d7c58492573b6d499" kind="function"><name>read_adc_voltage_mv</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a03489edd5b8ddc3229d593ac4df978e3" kind="function"><name>read_adc_percentage</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a684b069c84ce5dc67835571c78d5759c" kind="function"><name>calculate_current_from_percentage</name></member>
-    <member refid="SolenoidControlTest_8cpp_1ac614c84d2ade8f11186e731cf694917e" kind="function"><name>initialize_solenoids</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a17ca04cd9442f88cbb4e8b981742280f" kind="function"><name>print_solenoid_telemetry</name></member>
-    <member refid="SolenoidControlTest_8cpp_1adec0a6b3616c9e4cabb444bff299ac8e" kind="function"><name>print_device_telemetry</name></member>
-    <member refid="SolenoidControlTest_8cpp_1ae75b9efaa99cfa8c2b9295288cf8304d" kind="function"><name>update_solenoid_currents</name></member>
-    <member refid="SolenoidControlTest_8cpp_1a8beedbcdc4953c460d1e38286a1883ae" kind="function"><name>set_solenoids_enabled</name></member>
-    <member refid="SolenoidControlTest_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
+  <compound refid="solenoid__control__test_8cpp" kind="file"><name>solenoid_control_test.cpp</name>
+    <member refid="solenoid__control__test_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="solenoid__control__test_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
+    <member refid="solenoid__control__test_8cpp_1a02003d146ba6a2cf9db8ddfbb8642231" kind="variable"><name>g_driver</name></member>
+    <member refid="solenoid__control__test_8cpp_1acefbb4b5237cd7692227db14429b5dff" kind="variable"><name>g_adc_handle</name></member>
+    <member refid="solenoid__control__test_8cpp_1ae17bd7fdeae9b708d352e36672e0b72e" kind="variable"><name>g_adc_cali_handle</name></member>
+    <member refid="solenoid__control__test_8cpp_1ada173abbf00fbde83e3b902c93b35bd4" kind="function"><name>initialize_adc</name></member>
+    <member refid="solenoid__control__test_8cpp_1a01ef3d19e2ecfe3d7c58492573b6d499" kind="function"><name>read_adc_voltage_mv</name></member>
+    <member refid="solenoid__control__test_8cpp_1a03489edd5b8ddc3229d593ac4df978e3" kind="function"><name>read_adc_percentage</name></member>
+    <member refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kind="function"><name>calculate_current_from_percentage</name></member>
+    <member refid="solenoid__control__test_8cpp_1ac614c84d2ade8f11186e731cf694917e" kind="function"><name>initialize_solenoids</name></member>
+    <member refid="solenoid__control__test_8cpp_1a17ca04cd9442f88cbb4e8b981742280f" kind="function"><name>print_solenoid_telemetry</name></member>
+    <member refid="solenoid__control__test_8cpp_1adec0a6b3616c9e4cabb444bff299ac8e" kind="function"><name>print_device_telemetry</name></member>
+    <member refid="solenoid__control__test_8cpp_1ae75b9efaa99cfa8c2b9295288cf8304d" kind="function"><name>update_solenoid_currents</name></member>
+    <member refid="solenoid__control__test_8cpp_1a8beedbcdc4953c460d1e38286a1883ae" kind="function"><name>set_solenoids_enabled</name></member>
+    <member refid="solenoid__control__test_8cpp_1abce06be17fc37d675118a678a8100a36" kind="function"><name>app_main</name></member>
   </compound>
   <compound refid="TestFramework_8h" kind="file"><name>TestFramework.h</name>
     <member refid="TestFramework_8h_1a36936b10eceab520bb9d3d95534a00db" kind="define"><name>RUN_TEST</name></member>
@@ -268,10 +269,10 @@
     <member refid="TestFramework_8h_1a5c46ab8dc59b071f0843bc287145d5f1" kind="function"><name>print_test_section_header</name></member>
     <member refid="TestFramework_8h_1a5fe4d7658c49a1f3999cd09c0db952c0" kind="function"><name>print_test_section_footer</name></member>
   </compound>
-  <compound refid="TLE92466ED__TestConfig_8hpp" kind="file"><name>TLE92466ED_TestConfig.hpp</name>
-    <member refid="TLE92466ED__TestConfig_8hpp_1a8fb5b9bce3cb52f60c3eadce0f87afcc" kind="define"><name>ESP32_TLE_COMM_ENABLE_DETAILED_SPI_LOGGING</name></member>
-    <member refid="TLE92466ED__TestConfig_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
-    <member refid="TLE92466ED__TestConfig_8hpp_1a144227c8f24118002432fbaf425eca87" kind="define"><name>TLE92466ED_VALIDATE_GPIO</name></member>
+  <compound refid="tle92466ed__test__config_8hpp" kind="file"><name>tle92466ed_test_config.hpp</name>
+    <member refid="tle92466ed__test__config_8hpp_1a8fb5b9bce3cb52f60c3eadce0f87afcc" kind="define"><name>ESP32_TLE_COMM_ENABLE_DETAILED_SPI_LOGGING</name></member>
+    <member refid="tle92466ed__test__config_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
+    <member refid="tle92466ed__test__config_8hpp_1a144227c8f24118002432fbaf425eca87" kind="define"><name>TLE92466ED_VALIDATE_GPIO</name></member>
   </compound>
   <compound refid="README_8md" kind="file"><name>README.md</name>
   </compound>

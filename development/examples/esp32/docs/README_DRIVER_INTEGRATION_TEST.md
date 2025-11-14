@@ -860,7 +860,7 @@ idf.py -p /dev/ttyUSB0 flash
 ## Related Documentation
 
 ### ESP32 Examples
-- [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md) - Real hardware solenoid testing
+- [Solenoid Control Test](readme_solenoid_control_test.md) - Real hardware solenoid testing
 - [Test Framework Reference](../main/TLE92466ED_TestFramework.hpp) - Framework API
 - [Hardware Configuration](../main/TLE92466ED_TestConfig.hpp) - Pin and parameter config
 - [ESP32-C6 CommInterface](../main/Esp32TleCommInterface.hpp) - CommInterface implementation details

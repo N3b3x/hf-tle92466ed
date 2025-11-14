@@ -10,16 +10,16 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 | Document | Purpose | When to Read |
 |----------|---------|--------------|
-| **[Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)** | Driver API validation | Start here for driver testing |
-| **[Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)** | Real hardware solenoid testing | For actual solenoid operation |
-| **[Configuration Guide](README_CONFIGURATION.md)** | All configuration options | Before customizing |
+| **[Driver Integration Test](readme_driver_integration_test.md)** | Driver API validation | Start here for driver testing |
+| **[Solenoid Control Test](readme_solenoid_control_test.md)** | Real hardware solenoid testing | For actual solenoid operation |
+| **[Configuration Guide](readme_configuration.md)** | All configuration options | Before customizing |
 | **[Test Framework Reference](README_TEST_FRAMEWORK.md)** | Framework API details | Writing custom tests |
 
 ---
 
 ## 📖 Documentation Structure
 
-### 1. [Driver Integration Test Suite](README_DRIVER_INTEGRATION_TEST.md)
+### 1. [Driver Integration Test Suite](readme_driver_integration_test.md)
 
 **Guide to the driver integration test suite**
 
@@ -40,7 +40,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ---
 
-### 2. [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
+### 2. [Solenoid Control Test](readme_solenoid_control_test.md)
 
 **Complete guide to real hardware solenoid testing**
 
@@ -60,7 +60,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 ---
 
-### 3. [Configuration Guide](README_CONFIGURATION.md)
+### 3. [Configuration Guide](readme_configuration.md)
 
 **Complete reference for all configuration files and options**
 
@@ -178,7 +178,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 - ✅ No actual solenoids required
 
 
-**Read**: [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)
+**Read**: [Driver Integration Test](readme_driver_integration_test.md)
 
 ---
 
@@ -197,7 +197,7 @@ Complete documentation for TLE92466ED driver examples on ESP32-C6.
 
 **Hardware Required**: TLE92466ED IC + Two Solenoids + Power Supplies
 
-**Read**: [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
+**Read**: [Solenoid Control Test](readme_solenoid_control_test.md)
 
 ---
 
@@ -224,7 +224,7 @@ struct SPIPins {
 };
 ```text
 
-**Read**: [Configuration Guide - Hardware Configuration](README_CONFIGURATION.md#1-hardware-configuration-maintle92466ed_confighpp)
+**Read**: [Configuration Guide - Hardware Configuration](readme_configuration.md#1-hardware-configuration-maintle92466ed_confighpp)
 
 ---
 
@@ -248,7 +248,7 @@ apps:
     build_types: ["Debug", "Release"]
 ```text
 
-**Read**: [Configuration Guide - Application Configuration](README_CONFIGURATION.md#2-application-configuration-app_configyml)
+**Read**: [Configuration Guide - Application Configuration](readme_configuration.md#2-application-configuration-app_configyml)
 
 ---
 
@@ -267,7 +267,7 @@ apps:
 #define ENABLE_CURRENT_CONTROL_TESTS 0    // Disable
 ```text
 
-**Read**: [Configuration Guide - Test Section Configuration](README_CONFIGURATION.md#3-test-section-configuration)
+**Read**: [Configuration Guide - Test Section Configuration](readme_configuration.md#3-test-section-configuration)
 
 ---
 
@@ -349,12 +349,12 @@ I (5000) TLE92466ED_Basic: ✅ ALL TESTS PASSED!
 
 | Issue | Quick Fix | Full Guide |
 |-------|-----------|------------|
-| **All tests fail** | Check VIO power (3.0-5.5V, typical 3.3V) and wiring | [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting) |
-| **HAL init fails** | Verify GPIO pins in `TLE92466ED_TestConfig.hpp` | [Configuration - GPIO Conflict](README_CONFIGURATION.md#gpio-conflict) |
-| **Chip ID read fails** | Check SPI wiring, CS pin, RESN pin | [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting) |
-| **Solenoids not working** | Check VBAT, EN pin, channel enable | [Solenoid Control Test - Troubleshooting](README_SOLENOID_CONTROL_TEST.md#troubleshooting) |
-| **Stack overflow** | Increase stack size in `RUN_TEST_IN_TASK` | [Configuration - Stack Overflow](README_CONFIGURATION.md#stack-overflow) |
-| **Build errors** | Clean and rebuild: `idf.py fullclean && idf.py build` | [Configuration - Build Type Issues](README_CONFIGURATION.md#build-type-issues) |
+| **All tests fail** | Check VIO power (3.0-5.5V, typical 3.3V) and wiring | [Driver Integration Test - Troubleshooting](readme_driver_integration_test.md#troubleshooting) |
+| **HAL init fails** | Verify GPIO pins in `TLE92466ED_TestConfig.hpp` | [Configuration - GPIO Conflict](readme_configuration.md#gpio-conflict) |
+| **Chip ID read fails** | Check SPI wiring, CS pin, RESN pin | [Driver Integration Test - Troubleshooting](readme_driver_integration_test.md#troubleshooting) |
+| **Solenoids not working** | Check VBAT, EN pin, channel enable | [Solenoid Control Test - Troubleshooting](readme_solenoid_control_test.md#troubleshooting) |
+| **Stack overflow** | Increase stack size in `RUN_TEST_IN_TASK` | [Configuration - Stack Overflow](readme_configuration.md#stack-overflow) |
+| **Build errors** | Clean and rebuild: `idf.py fullclean && idf.py build` | [Configuration - Build Type Issues](readme_configuration.md#build-type-issues) |
 
 ---
 
@@ -382,9 +382,9 @@ examples/esp32/
 │
 ├── docs/                           # Documentation
 │   ├── README.md                          # This file
-│   ├── README_DRIVER_INTEGRATION_TEST.md  # Driver integration test guide
-│   ├── README_SOLENOID_CONTROL_TEST.md    # Solenoid control test guide
-│   ├── README_CONFIGURATION.md            # Configuration reference
+│   ├── readme_driver_integration_test.md  # Driver integration test guide
+│   ├── readme_solenoid_control_test.md    # Solenoid control test guide
+│   ├── readme_configuration.md            # Configuration reference
 │   └── README_TEST_FRAMEWORK.md           # Test framework API
 │
 └── scripts/                        # Build/flash scripts (submodule)
@@ -419,7 +419,7 @@ examples/esp32/
 
 ### Beginner Path
 
-1. **Read**: [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md)
+1. **Read**: [Driver Integration Test](readme_driver_integration_test.md)
 2. **Build**: Driver integration test (Debug mode)
 3. **Run**: Flash to ESP32-C6 and observe output
 4. **Verify**: All tests should pass (100% success rate)
@@ -427,7 +427,7 @@ examples/esp32/
 
 ### Intermediate Path
 
-1. **Read**: [Solenoid Control Test](README_SOLENOID_CONTROL_TEST.md)
+1. **Read**: [Solenoid Control Test](readme_solenoid_control_test.md)
 2. **Setup**: Connect solenoids and power supplies
 3. **Configure**: Adjust solenoid current ranges if needed
 4. **Test**: Run solenoid control test with real hardware
@@ -484,7 +484,7 @@ If documentation is unclear or incomplete:
 ### Build/Configuration Issues
 
 If you have build or configuration problems:
-1. Check [Configuration Guide - Troubleshooting](README_CONFIGURATION.md#troubleshooting-configuration)
+1. Check [Configuration Guide - Troubleshooting](readme_configuration.md#troubleshooting-configuration)
 2. Verify ESP-IDF version (v5.3+)
 3. Clean and rebuild: `idf.py fullclean && idf.py build`
 4. Check `sdkconfig` for conflicts
@@ -492,8 +492,8 @@ If you have build or configuration problems:
 ### Hardware/Test Issues
 
 If tests fail or hardware doesn't work:
-1. **Driver Integration Test**: Check [Driver Integration Test - Troubleshooting](README_DRIVER_INTEGRATION_TEST.md#troubleshooting)
-2. **Solenoid Control Test**: Check [Solenoid Control Test - Troubleshooting](README_SOLENOID_CONTROL_TEST.md#troubleshooting)
+1. **Driver Integration Test**: Check [Driver Integration Test - Troubleshooting](readme_driver_integration_test.md#troubleshooting)
+2. **Solenoid Control Test**: Check [Solenoid Control Test - Troubleshooting](readme_solenoid_control_test.md#troubleshooting)
 3. Verify wiring against pin configuration
 4. Measure power supplies (VDD: 5V for central logic; VIO: 3.0-5.5V for SPI I/O levels; VBAT: 5.5-41V for solenoids)
 5. Test SPI communication with logic analyzer
@@ -584,4 +584,4 @@ Example success output:
 **Last Updated**: 2025-10-21  
 **Status**: ✅ Complete
 
-**Next**: Start with [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md) →
+**Next**: Start with [Driver Integration Test](readme_driver_integration_test.md) →

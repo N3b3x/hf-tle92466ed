@@ -608,7 +608,7 @@ diagnostics support with a clean hardware-agnostic HAL interface.</p>
 15
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"inc/TLE92466ED_CommInterface.hpp"</span><span class="cp">
 </span>
-<span class="k">class</span> <span class="nc">YourPlatformHAL</span> <span class="o">:</span> <span class="k">public</span> <span class="n">TLE92466ED</span><span class="o">::</span><span class="n">HAL</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">YourPlatformHAL</span> <span class="o">:</span> <span class="k">public</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">YourPlatformHAL</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">public:</span>
     <span class="k">auto</span> <span class="n">spiTransfer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="n">txData</span><span class="p">,</span> 
                      <span class="n">std</span><span class="o">::</span><span class="n">span</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="n">rxData</span><span class="p">)</span> <span class="k">noexcept</span> 
@@ -989,7 +989,7 @@ navigation</li>
   <li>🎛️ <a href="/hf-tle92466ed-driver/development/docs/07_Driver_API/">Driver API</a> - C++ API reference</li>
   <li>🔧 <a href="/hf-tle92466ed-driver/development/docs/08_HAL_Implementation/">HAL Implementation</a> - Platform porting
 guide</li>
-  <li>💻 <a href="/hf-tle92466ed-driver/development/docs/09_Usage_Examples/">Usage Examples</a> - Practical code examples</li>
+  <li>💻 <a href="docs/09_Usage_examples.md">Usage Examples</a> - Practical code examples</li>
 </ul>
 <h3 id="development">
   

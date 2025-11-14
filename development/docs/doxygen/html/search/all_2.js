@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['calculate_5fcurrent_5ffrom_5fpercentage_0',['calculate_current_from_percentage',['../SolenoidControlTest_8cpp.html#a684b069c84ce5dc67835571c78d5759c',1,'SolenoidControlTest.cpp']]],
+  ['calculate_5fcurrent_5ffrom_5fpercentage_0',['calculate_current_from_percentage',['../solenoid__control__test_8cpp.html#a684b069c84ce5dc67835571c78d5759c',1,'solenoid_control_test.cpp']]],
   ['capabilities_20strong_1',['&lt;strong&gt;Hardware Capabilities&lt;/strong&gt;',['../index.html#autotoc_md6',1,'']]],
   ['channel_2',['CHANNEL',['../structADCConfig.html#a50cbf9858ed09cf95bc20587757328f4',1,'ADCConfig::CHANNEL'],['../structSolenoid1Config.html#a7a5e0d6d3f9f53ad0d8ca2ebfe88e205',1,'Solenoid1Config::CHANNEL']]],
   ['channel_20control_20strong_3',['&lt;strong&gt;Channel Control&lt;/strong&gt;',['../index.html#autotoc_md12',1,'']]],
@@ -9,12 +9,12 @@ var searchData=
   ['completion_5fsemaphore_6',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
   ['concepts_20strong_7',['&lt;strong&gt;Key Concepts&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]],
   ['config_5f_8',['config_',['../classEsp32TleCommInterface.html#a2b404e46be41c058f04d34f5870717f0',1,'Esp32TleCommInterface']]],
-  ['configure_9',['Configure',['../classEsp32TleCommInterface.html#a0f15445d49d963d0c8596852cad38a38',1,'Esp32TleCommInterface']]],
+  ['configure_9',['Configure',['../classEsp32TleCommInterface.html#a5edc38a9be8700ae9d1e2771154a25bb',1,'Esp32TleCommInterface']]],
   ['control_20interface_20for_20multi_20mcu_20development_10',['🎯 Modern Solenoid Control Interface for Multi-MCU Development',['../index.html#autotoc_md1',1,'']]],
   ['control_20strong_11',['&lt;strong&gt;Channel Control&lt;/strong&gt;',['../index.html#autotoc_md12',1,'']]],
   ['controlpins_12',['ControlPins',['../structTLE92466ED__TestConfig_1_1ControlPins.html',1,'TLE92466ED_TestConfig']]],
   ['core_20benefits_20strong_13',['🏆 &lt;strong&gt;Core Benefits&lt;/strong&gt;',['../index.html#autotoc_md3',1,'']]],
-  ['createesp32tlecomminterface_14',['CreateEsp32TleCommInterface',['../Esp32TleCommInterface_8hpp.html#aeade4dbff3786b7971a573f81397e4fb',1,'Esp32TleCommInterface.hpp']]],
+  ['createesp32tlecomminterface_14',['CreateEsp32TleCommInterface',['../esp32__tle__comm__interface_8cpp.html#aeade4dbff3786b7971a573f81397e4fb',1,'CreateEsp32TleCommInterface() noexcept -&gt; std::unique_ptr&lt; Esp32TleCommInterface &gt;:&#160;esp32_tle_comm_interface.cpp'],['../esp32__tle__comm__interface_8hpp.html#aeade4dbff3786b7971a573f81397e4fb',1,'CreateEsp32TleCommInterface() noexcept -&gt; std::unique_ptr&lt; Esp32TleCommInterface &gt;:&#160;esp32_tle_comm_interface.cpp']]],
   ['cs_15',['CS',['../structTLE92466ED__TestConfig_1_1SPIPins.html#a144454730100985c5bc1ad819cfa0ddf',1,'TLE92466ED_TestConfig::SPIPins']]],
   ['cs_5fena_5fposttrans_16',['cs_ena_posttrans',['../structEsp32TleCommInterface_1_1SPIConfig.html#abee4742344264d6dea7a731d73b8c848',1,'Esp32TleCommInterface::SPIConfig']]],
   ['cs_5fena_5fposttrans_17',['CS_ENA_POSTTRANS',['../structTLE92466ED__TestConfig_1_1SPIParams.html#abbc31a95b8b58b08104aecc97a94f3f3',1,'TLE92466ED_TestConfig::SPIParams']]],

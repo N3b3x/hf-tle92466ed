@@ -165,7 +165,7 @@
 <codeline><highlight class="normal">```cpp</highlight></codeline>
 <codeline><highlight class="normal">#include<sp/>&quot;inc/TLE92466ED_CommInterface.hpp&quot;</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">class<sp/>YourPlatformHAL<sp/>:<sp/>public<sp/>TLE92466ED::HAL<sp/>{</highlight></codeline>
+<codeline><highlight class="normal">class<sp/>YourPlatformHAL<sp/>:<sp/>public<sp/>tle92466ed::SpiInterface&lt;YourPlatformHAL&gt;<sp/>{</highlight></codeline>
 <codeline><highlight class="normal">public:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>auto<sp/>spiTransfer(std::span&lt;const<sp/>uint8_t&gt;<sp/>txData,<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::span&lt;uint8_t&gt;<sp/>rxData)<sp/>noexcept<sp/></highlight></codeline>
@@ -349,7 +349,7 @@
 <codeline><highlight class="normal">-<sp/>🎛️<sp/>[Driver<sp/>API](docs/07_Driver_API.md)<sp/>-<sp/>C++<sp/>API<sp/>reference</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>🔧<sp/>[HAL<sp/>Implementation](docs/08_HAL_Implementation.md)<sp/>-<sp/>Platform<sp/>porting</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/>guide</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>💻<sp/>[Usage<sp/>Examples](docs/09_Usage_Examples.md)<sp/>-<sp/>Practical<sp/>code<sp/>examples</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>💻<sp/>[Usage<sp/>Examples](docs/09_Usage_examples.md)<sp/>-<sp/>Practical<sp/>code<sp/>examples</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>**Development**</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>🚀<sp/>[Examples](examples/esp32/)<sp/>-<sp/>Test<sp/>applications<sp/>and<sp/>usage<sp/>examples</highlight></codeline>

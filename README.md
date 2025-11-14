@@ -304,7 +304,19 @@ if (auto diag = driver.readDiagnostics(); diag) {
 
 Contributions are welcome! For detailed contribution guidelines, coding standards, and development workflow, please visit the **[HardFOC Organization GitHub page](https://github.com/hardfoc)**.
 
-We appreciate your interest in improving this driver and look forward to your contributions!
+### **Development Workflow**
+1. **Fork** the repository
+2. **Create** feature branch (`feature/new-feature`)
+3. **Implement** following coding standards
+4. **Test** with existing applications
+5. **Document** your changes
+6. **Submit** pull request
+
+### **Coding Standards**
+- **Functions**: PascalCase (`SetChannelCurrent`, `ReadDiagnostics`)
+- **Types**: snake_case with `*t` suffix (`hal_error_t`)
+- **Error Handling**: Use `std::expected` for type safety
+- **Code Formatting**: Use `clang-format`
 
 ---
 

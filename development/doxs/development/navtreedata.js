@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "TLE92466ED Driver", "index.html", [
-    [ "🔧 HardFOC TLE92466ED Driver", "index.html", "index" ],
+    [ "HF-TLE92466ED Driver", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -58,7 +58,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "TLE92466ED_8cpp.html",
-"structTLE92466ED__TestConfig_1_1ControlPins.html#aea4b6762eaab6ac731f1f22b207d2f9a"
+"structTLE92466ED__TestConfig_1_1CurrentLimits.html#a8809a699bc2464e910742e10609e546a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

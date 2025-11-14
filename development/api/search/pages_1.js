@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hardfoc_20tle92466ed_20driver_0',['🔧 HardFOC TLE92466ED Driver',['../index.html',1,'']]]
+  ['hf_20tle92466ed_20driver_0',['HF-TLE92466ED Driver',['../index.html',1,'']]]
 ];

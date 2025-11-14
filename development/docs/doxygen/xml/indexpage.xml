@@ -2,212 +2,133 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="indexpage" kind="page">
     <compoundname>index</compoundname>
-    <title>🔧 HardFOC TLE92466ED Driver</title>
+    <title>HF-TLE92466ED Driver</title>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><anchor id="index_1md_README"/><bold>Six-Channel Low-Side Solenoid Driver</bold></para>
-<para><image type="html" name="https://img.shields.io/badge/TLE92466ED-Solenoid%20Driver-blue?style=for-the-badge&amp;logo=microchip" alt="TLE92466ED" inline="yes"></image>
- <image type="html" name="https://img.shields.io/badge/C%2B%2B-23-blue?style=for-the-badge&amp;logo=cplusplus" alt="C++23" inline="yes"></image>
- <image type="html" name="https://img.shields.io/badge/Hardware--Agnostic-Universal-green?style=for-the-badge&amp;logo=hardware" alt="Hardware-Agnostic" inline="yes"></image>
- <image type="html" name="https://img.shields.io/badge/license-Public%20Domain-green?style=for-the-badge&amp;logo=opensourceinitiative" alt="License" inline="yes"></image>
-</para>
+<para><anchor id="index_1md_README"/><bold>C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC</bold></para>
+<para>[<image type="html" name="https://img.shields.io/badge/license-Public%20Domain-green.svg" alt="License: Public Domain" inline="yes"></image>
+](LICENSE)</para>
 <sect1 id="index_1autotoc_md1">
-<title>🎯 Modern Solenoid Control Interface for Multi-MCU Development</title><para><emphasis>A production-ready C++23 driver implementation for the Infineon TLE92466ED with comprehensive SPI interface, precision current control, and extensive diagnostics support</emphasis></para>
+<title>📚 Table of Contents</title><para><orderedlist>
+<listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Overview</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Features</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Quick Start</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Installation</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">API Reference</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Examples</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Documentation</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">Contributing</ref></para>
+</listitem><listitem><para><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">License</ref></para>
+</listitem></orderedlist>
+</para>
 </sect1>
 <sect1 id="index_1autotoc_md2">
-<title>🎯 <bold>Overview</bold></title><para><blockquote><para><zwj/><bold>📖 <ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</ulink></bold> - Interactive guides, examples, and step-by-step tutorials </para>
-</blockquote><bold>TLE92466ED Driver</bold> is a modern, production-ready C++23 driver implementation for the Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC. The driver provides comprehensive SPI interface, precision current control, and extensive diagnostics support with a clean hardware-agnostic HAL interface.</para>
-<sect2 id="index_1autotoc_md3">
-<title>🏆 <bold>Core Benefits</bold></title><para><itemizedlist>
-<listitem><para><bold>🔄 Hardware Portability</bold> - Clean HAL interface for easy platform porting</para>
-</listitem><listitem><para><bold>🎯 Modern C++23</bold> - Using <computeroutput>std::expected</computeroutput> for type-safe error handling</para>
-</listitem><listitem><para><bold>⚡ Precision Control</bold> - 15-bit current resolution (0.061mA steps)</para>
-</listitem><listitem><para><bold>🛡️ Safety Features</bold> - Comprehensive diagnostics and protection systems</para>
-</listitem><listitem><para><bold>📈 Zero Dependencies</bold> - Freestanding-compatible, suitable for bare-metal</para>
-</listitem><listitem><para><bold>🔌 Complete Coverage</bold> - Full access to all 108 registers and features</para>
+<title>📦 Overview</title><para><blockquote><para><zwj/><bold>📖 <ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">📚🌐 Live Complete Documentation</ulink></bold> - Interactive guides, examples, and step-by-step tutorials </para>
+</blockquote><bold>HF-TLE92466ED</bold> is a modern C++23 driver for the <bold>Infineon TLE92466ED</bold> Six-Channel Low-Side Solenoid Driver IC. The TLE92466ED provides six independent low-side outputs for controlling solenoids, valves, and other inductive loads with precision current regulation. Each channel supports up to 2A in single mode or 4A in parallel mode, with 15-bit resolution (0.061mA steps) for precise current control.</para>
+<para>The driver uses a hardware-agnostic communication interface design, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It implements all major features from the TLE92466ED datasheet including Integrated Current Control (ICC), PWM frequency control, dither support, parallel channel operation, comprehensive diagnostics, and protection features.</para>
+</sect1>
+<sect1 id="index_1autotoc_md3">
+<title>✨ Features</title><para><itemizedlist>
+<listitem><para>✅ <bold>Six Independent Channels</bold>: Low-side outputs for solenoid/inductive load control</para>
+</listitem><listitem><para>✅ <bold>Precision Current Control</bold>: 15-bit resolution (0.061mA steps), 0-2A single channel, 0-4A parallel mode</para>
+</listitem><listitem><para>✅ <bold>Integrated Current Controller (ICC)</bold>: Automatic current regulation with configurable PWM frequency</para>
+</listitem><listitem><para>✅ <bold>Parallel Operation</bold>: Channel pairs (0/3, 1/2, 4/5) for doubled current capability</para>
+</listitem><listitem><para>✅ <bold>Dither Support</bold>: Configurable amplitude and frequency for precise current shaping</para>
+</listitem><listitem><para>✅ <bold>Comprehensive Diagnostics</bold>: Overcurrent, overtemperature, open load, short-to-ground detection</para>
+</listitem><listitem><para>✅ <bold>Supply Monitoring</bold>: VBAT, VIO, and VDD voltage monitoring with configurable thresholds</para>
+</listitem><listitem><para>✅ <bold>Hardware Agnostic</bold>: SPI interface for platform independence</para>
+</listitem><listitem><para>✅ <bold>Modern C++23</bold>: Using <computeroutput>std::expected</computeroutput> for type-safe error handling without exceptions</para>
+</listitem><listitem><para>✅ <bold>Zero Overhead</bold>: All functions <computeroutput>noexcept</computeroutput>, freestanding-compatible</para>
 </listitem></itemizedlist>
 </para>
-</sect2>
-<sect2 id="index_1autotoc_md4">
-<title>🎨 <bold>Design Philosophy</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Write<sp/>hardware-agnostic<sp/>solenoid<sp/>control<sp/>code</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">YourPlatformHAL</ref><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>Your<sp/>SPI<sp/>implementation</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">TLE92466ED</ref><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">hal</ref>);</highlight></codeline>
+</sect1>
+<sect1 id="index_1autotoc_md4">
+<title>🚀 Quick Start</title><para><programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;inc/tle92466ed.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;inc/tle92466ed_spi_interface.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Initialize<sp/>and<sp/>control<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.initialize();</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
-</programlisting></para>
-</sect2>
-</sect1>
-<sect1 id="index_1autotoc_md5">
-<title>🔌 <bold>Features</bold></title><sect2 id="index_1autotoc_md6">
-<title><bold>Hardware Capabilities</bold></title><para><table rows="8" cols="3"><row>
-<entry thead="yes"><para><bold>Feature</bold>   </para>
-</entry><entry thead="yes"><para><bold>Specification</bold>   </para>
-</entry><entry thead="yes"><para><bold>Details</bold>    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Channels</bold>   </para>
-</entry><entry thead="no"><para>6 independent outputs   </para>
-</entry><entry thead="no"><para>Low-side solenoid/load control    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Current Range</bold>   </para>
-</entry><entry thead="no"><para>0-2A per channel   </para>
-</entry><entry thead="no"><para>Single channel operation    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Current Range</bold>   </para>
-</entry><entry thead="no"><para>0-4A per channel   </para>
-</entry><entry thead="no"><para>Parallel mode operation    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Resolution</bold>   </para>
-</entry><entry thead="no"><para>15-bit (0.061mA)   </para>
-</entry><entry thead="no"><para>Precision current control    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>SPI Interface</bold>   </para>
-</entry><entry thead="no"><para>32-bit frames   </para>
-</entry><entry thead="no"><para>With CRC-8 (SAE J1850)    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>PWM &amp; Dither</bold>   </para>
-</entry><entry thead="no"><para>Configurable   </para>
-</entry><entry thead="no"><para>Noise reduction and precision    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Diagnostics</bold>   </para>
-</entry><entry thead="no"><para>Comprehensive   </para>
-</entry><entry thead="no"><para>Overcurrent, overtemperature, load detection   </para>
-</entry></row>
-</table>
-</para>
-</sect2>
-<sect2 id="index_1autotoc_md7">
-<title><bold>Driver Features</bold></title><para><table rows="6" cols="3"><row>
-<entry thead="yes"><para><bold>Feature</bold>   </para>
-</entry><entry thead="yes"><para><bold>Description</bold>   </para>
-</entry><entry thead="yes"><para><bold>Benefits</bold>    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Modern C++23</bold>   </para>
-</entry><entry thead="no"><para>Using <computeroutput>std::expected</computeroutput>   </para>
-</entry><entry thead="no"><para>Type-safe error handling    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Hardware Agnostic</bold>   </para>
-</entry><entry thead="no"><para>Clean HAL interface   </para>
-</entry><entry thead="no"><para>Easy platform porting    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Zero Dependencies</bold>   </para>
-</entry><entry thead="no"><para>Freestanding-compatible   </para>
-</entry><entry thead="no"><para>Suitable for bare-metal    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>noexcept Guarantee</bold>   </para>
-</entry><entry thead="no"><para>All functions noexcept   </para>
-</entry><entry thead="no"><para>Embedded safety    </para>
-</entry></row>
-<row>
-<entry thead="no"><para><bold>Production Ready</bold>   </para>
-</entry><entry thead="no"><para>Thoroughly documented   </para>
-</entry><entry thead="no"><para>Industry-grade quality   </para>
-</entry></row>
-</table>
-</para>
-</sect2>
-</sect1>
-<sect1 id="index_1autotoc_md8">
-<title>📖 <bold>API Documentation</bold></title><sect2 id="index_1autotoc_md9">
-<title><bold>Generated Documentation</bold></title><para><itemizedlist>
-<listitem><para><bold><ulink url="https://n3b3x.github.io/hf-tle92466ed-driver/">📚 Complete Documentation</ulink></bold> - Interactive guides and tutorials</para>
-</listitem><listitem><para><bold>API Reference</bold> - Complete driver API documentation</para>
-</listitem><listitem><para><bold>IC Overview</bold> - Hardware specifications</para>
-</listitem></itemizedlist>
-</para>
-</sect2>
-<sect2 id="index_1autotoc_md10">
-<title><bold>Key Concepts</bold></title><sect3 id="index_1autotoc_md11">
-<title><bold>Initialization</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Initialize<sp/>the<sp/>driver</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref><sp/>=<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.initialize();<sp/>!<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref>)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>initialization<sp/>error</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>1.<sp/>Implement<sp/>the<sp/>SPI<sp/>interface<sp/>(see<sp/>platform_integration.md)</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">MySpi</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>tle92466ed::SpiInterface&lt;MySpi&gt;<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>...<sp/>implement<sp/>required<sp/>methods</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>2.<sp/>Create<sp/>driver<sp/>instance</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">MySpi</ref><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">spi</ref>;</highlight></codeline>
+<codeline><highlight class="normal">tle92466ed::Driver<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">spi</ref>);</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>3.<sp/>Initialize<sp/>and<sp/>use</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref><sp/>=<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.Init();<sp/>!<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">result</ref>)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>error</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
 <codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-</sect3>
-<sect3 id="index_1autotoc_md12">
-<title><bold>Channel Control</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Set<sp/>current<sp/>(0-2000<sp/>mA)</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
 <codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Enable/disable<sp/>channels</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.disableChannel(0);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.EnterMissionMode();</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.SetChannelMode(tle92466ed::Channel::CH0,<sp/>tle92466ed::ChannelMode::ICC);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.SetCurrentSetpoint(tle92466ed::Channel::CH0,<sp/>1500);<sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.EnableChannel(tle92466ed::Channel::CH0,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
 </programlisting></para>
-</sect3>
-<sect3 id="index_1autotoc_md13">
-<title><bold>Diagnostics</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Read<sp/>diagnostics</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref><sp/>=<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.readDiagnostics();<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>overcurrent<sp/>condition</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-</sect3>
-</sect2>
+<para>For detailed setup, see Installation and Quick Start Guide.</para>
 </sect1>
-<sect1 id="index_1autotoc_md14">
-<title>📊 <bold>Examples</bold></title><sect2 id="index_1autotoc_md15">
-<title><bold>Available Test Applications</bold></title><para><table rows="4" cols="3"><row>
-<entry thead="yes"><para><bold>Application</bold>   </para>
-</entry><entry thead="yes"><para><bold>Tests</bold>   </para>
-</entry><entry thead="yes"><para><bold>Purpose</bold>    </para>
+<sect1 id="index_1autotoc_md5">
+<title>🔧 Installation</title><para><orderedlist>
+<listitem><para><bold>Clone or copy</bold> the driver files into your project</para>
+</listitem><listitem><para><bold>Implement the SPI interface</bold> for your platform (see Platform Integration)</para>
+</listitem><listitem><para><bold>Include the header</bold> in your code: <programlisting filename=".cpp"><codeline><highlight class="preprocessor">#include<sp/>&quot;inc/tle92466ed.hpp&quot;</highlight></codeline>
+</programlisting></para>
+</listitem><listitem><para>Compile with a <bold>C++23</bold> or newer compiler with <computeroutput>std::expected</computeroutput> support</para>
+</listitem></orderedlist>
+</para>
+<para>For detailed installation instructions, see docs/installation.md.</para>
+</sect1>
+<sect1 id="index_1autotoc_md6">
+<title>📖 API Reference</title><para><table rows="8" cols="2"><row>
+<entry thead="yes"><para>Method   </para>
+</entry><entry thead="yes"><para>Description    </para>
 </entry></row>
 <row>
-<entry thead="no"><para><bold>basic_usage</bold>   </para>
-</entry><entry thead="no"><para>Single channel control   </para>
-</entry><entry thead="no"><para>Basic current setting and enable    </para>
+<entry thead="no"><para><computeroutput>Init()</computeroutput>   </para>
+</entry><entry thead="no"><para>Initialize the driver and hardware    </para>
 </entry></row>
 <row>
-<entry thead="no"><para><bold>multi_channel</bold>   </para>
-</entry><entry thead="no"><para>Multi-channel operation   </para>
-</entry><entry thead="no"><para>Parallel channel control    </para>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">EnterMissionMode()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Enter mission mode (enables channel control)    </para>
 </entry></row>
 <row>
-<entry thead="no"><para><bold>diagnostics</bold>   </para>
-</entry><entry thead="no"><para>Fault detection   </para>
-</entry><entry thead="no"><para>Overcurrent and overtemperature   </para>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">SetChannelMode()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Set channel operation mode (ICC, Direct Drive, etc.)    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">SetCurrentSetpoint()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Set current setpoint for a channel    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">EnableChannel()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Enable or disable a channel    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">GetChannelDiagnostics()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Get channel diagnostic information    </para>
+</entry></row>
+<row>
+<entry thead="no"><para><computeroutput><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">GetAllFaults()</ref></computeroutput>   </para>
+</entry><entry thead="no"><para>Get comprehensive fault report   </para>
 </entry></row>
 </table>
 </para>
-</sect2>
-<sect2 id="index_1autotoc_md16">
-<title><bold>Usage Examples</bold></title><para><programlisting filename=".cpp"><codeline><highlight class="comment">//<sp/>Single<sp/>Channel<sp/>Control</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(0,<sp/>1500);<sp/><sp/></highlight><highlight class="comment">//<sp/>1.5A</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(0);</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Multi-Channel<sp/>Control</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">uint8_t</ref><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref><sp/>=<sp/>0;<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref><sp/>&lt;<sp/>6;<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>++)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.setChannelCurrent(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>,<sp/>1000);<sp/><sp/></highlight><highlight class="comment">//<sp/>1A<sp/>per<sp/>channel</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.enableChannel(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">ch</ref>);</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-<codeline><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="comment">//<sp/>Diagnostics<sp/>Monitoring</highlight><highlight class="normal"></highlight></codeline>
-<codeline><highlight class="normal"></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref><sp/>=<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.readDiagnostics();<sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>)<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">diag</ref>-&gt;hasOvercurrent())<sp/>{</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="solenoid__control__test_8cpp_1a684b069c84ce5dc67835571c78d5759c" kindref="member">driver</ref>.disableChannel(0);</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
-<codeline><highlight class="normal">}</highlight></codeline>
-</programlisting></para>
-</sect2>
+<para>For complete API documentation, see docs/api_reference.md.</para>
 </sect1>
-<sect1 id="index_1autotoc_md17">
-<title>📄 <bold>License</bold></title><para>This software is released into the <bold>Public Domain</bold>. You can use, modify, and distribute it freely without any restrictions.</para>
-<para><bold>Built for the HardFOC ecosystem - Enabling seamless solenoid control</bold></para>
-<para><emphasis>Precision current control that just works™</emphasis> </para>
+<sect1 id="index_1autotoc_md7">
+<title>📊 Examples</title><para>For ESP32 examples, see the <ulink url="examples/esp32/">examples/esp32</ulink> directory.</para>
+<para>Detailed example walkthroughs are available in docs/examples.md.</para>
+</sect1>
+<sect1 id="index_1autotoc_md8">
+<title>📚 Documentation</title><para>For complete documentation, see the docs directory.</para>
+</sect1>
+<sect1 id="index_1autotoc_md9">
+<title>🤝 Contributing</title><para>Pull requests and suggestions are welcome! Please follow the existing code style and include tests for new features.</para>
+</sect1>
+<sect1 id="index_1autotoc_md10">
+<title>📄 License</title><para>This project is released into the <bold>Public Domain</bold>. You can use, modify, and distribute it freely without any restrictions. </para>
 </sect1>
     </detaileddescription>
     <location file="README.md"/>

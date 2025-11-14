@@ -47,19 +47,19 @@
  * TLE92466ED::Driver driver(comm);
  *
  * // Initialize
- * driver.init();
- * driver.enter_mission_mode();
+ * driver.Init();
+ * driver.EnterMissionMode();
  *
  * // Configure channel 0 for 1.5A current control
- * driver.set_channel_mode(Channel::CH0, ChannelMode::ICC);
- * driver.set_current_setpoint(Channel::CH0, 1500); // 1500 mA
+ * driver.SetChannelMode(Channel::CH0, ChannelMode::ICC);
+ * driver.SetCurrentSetpoint(Channel::CH0, 1500); // 1500 mA
  *
  * // Enable channel
- * driver.enable_channel(Channel::CH0, true);
+ * driver.EnableChannel(Channel::CH0, true);
  *
  * // Monitor
- * auto current = driver.get_average_current(Channel::CH0);
- * auto status = driver.get_channel_diagnostics(Channel::CH0);
+ * auto current = driver.GetAverageCurrent(Channel::CH0);
+ * auto status = driver.GetChannelDiagnostics(Channel::CH0);
  */
 
 #ifndef TLE92466ED_HPP

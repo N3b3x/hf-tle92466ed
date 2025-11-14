@@ -302,7 +302,8 @@ if (auto diag = driver.readDiagnostics(); diag) {
 
 ## 🤝 **Contributing**
 
-Contributions are welcome! For detailed contribution guidelines, coding standards, and development workflow, please visit the **[HardFOC Organization GitHub page](https://github.com/hardfoc)**.
+Contributions are welcome! For detailed contribution guidelines, coding standards, and development workflow,
+please visit the **[HardFOC Organization GitHub page](https://github.com/hardfoc)**.
 
 ### **Development Workflow**
 1. **Fork** the repository

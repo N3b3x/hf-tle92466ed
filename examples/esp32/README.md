@@ -91,7 +91,7 @@ idf.py monitor
 ./scripts/flash_app.sh driver_integration_test Debug
 ```
 
-**Documentation**: [Driver Integration Test](docs/README_DRIVER_INTEGRATION_TEST.md)
+**Documentation**: [Driver Integration Test](docs/readme_driver_integration_test.md)
 
 #### `solenoid_control_test`
 **Real Hardware Solenoid Control Test**
@@ -108,7 +108,7 @@ idf.py monitor
 ./scripts/flash_app.sh solenoid_control_test Debug
 ```
 
-**Documentation**: [Solenoid Control Test](docs/README_SOLENOID_CONTROL_TEST.md)
+**Documentation**: [Solenoid Control Test](docs/readme_solenoid_control_test.md)
 
 ### 🟡 Advanced Examples
 
@@ -309,7 +309,7 @@ CONFIG_TLE92466ED_DEBUG_ENABLED=y # Driver debug
 
 Each example has detailed documentation in `docs/`:
 
-- `docs/README_DRIVER_INTEGRATION_TEST.md`
+- `docs/readme_driver_integration_test.md`
 - `docs/README_MULTI_CHANNEL.md`
 - `docs/README_PARALLEL_MODE.md`
 - `docs/README_DIAGNOSTICS.md`

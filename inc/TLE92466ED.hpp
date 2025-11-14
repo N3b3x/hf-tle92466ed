@@ -1,5 +1,5 @@
 /**
- * @file TLE92466ED.hpp
+ * @file tle92466ed.hpp
  * @brief Main driver class for TLE92466ED Six-Channel Low-Side Solenoid Driver IC
 
  * @details
@@ -44,7 +44,7 @@
  * **Usage Example:**
  * @code{.cpp}
  * MyPlatformCommInterface comm;
- * TLE92466ED::Driver driver(comm);
+ * tle92466ed::Driver driver(comm);
  *
  * // Initialize
  * driver.Init();
@@ -68,10 +68,10 @@
 #include <array>
 #include <expected>
 
-#include "TLE92466ED_CommInterface.hpp"
-#include "TLE92466ED_Registers.hpp"
+#include "tle92466ed_spi_interface.hpp"
+#include "tle92466ed_registers.hpp"
 
-namespace TLE92466ED {
+namespace tle92466ed {
 
 /**
  * @brief Driver error codes
@@ -1044,9 +1044,9 @@ private:
 
 // Include template implementation (must be inside namespace before it closes)
 #define TLE92466ED_HEADER_INCLUDED
-#include "../src/TLE92466ED.cpp"
+#include "../src/tle92466ed.cpp"
 #undef TLE92466ED_HEADER_INCLUDED
 
-} // namespace TLE92466ED
+} // namespace tle92466ed
 
 #endif // TLE92466ED_HPP

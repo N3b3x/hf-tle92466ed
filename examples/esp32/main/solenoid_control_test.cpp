@@ -1,5 +1,5 @@
 /**
- * @file SolenoidControlTest.cpp
+ * @file solenoid_control_test.cpp
  * @brief Real Hardware Solenoid Control Test with ADC-Based Current Control
  * 
  * This test demonstrates real-world solenoid control using actual hardware:
@@ -30,11 +30,11 @@
 #include "esp_adc/adc_cali.h"
 #include "esp_adc/adc_cali_scheme.h"
 
-#include "TLE92466ED.hpp"
-#include "Esp32TleCommInterface.hpp"
-#include "TLE92466ED_TestConfig.hpp"
+#include "tle92466ed.hpp"
+#include "esp32_tle_comm_interface.hpp"
+#include "tle92466ed_test_config.hpp"
 
-using namespace TLE92466ED;
+using namespace tle92466ed;
 using namespace TLE92466ED_TestConfig;
 
 static const char* TAG = "SolenoidControl";
@@ -85,7 +85,7 @@ struct Solenoid2Config {
 //=============================================================================
 
 static std::unique_ptr<Esp32TleCommInterface> g_hal;
-static TLE92466ED::Driver<Esp32TleCommInterface>* g_driver = nullptr;
+static tle92466ed::Driver<Esp32TleCommInterface>* g_driver = nullptr;
 static adc_oneshot_unit_handle_t g_adc_handle = nullptr;
 static adc_cali_handle_t g_adc_cali_handle = nullptr;
 
@@ -504,7 +504,7 @@ extern "C" void app_main() {
     
     // Initialize Driver
     ESP_LOGI(TAG, "Initializing TLE92466ED driver...");
-    g_driver = new TLE92466ED::Driver<Esp32TleCommInterface>(*g_hal);
+    g_driver = new tle92466ed::Driver<Esp32TleCommInterface>(*g_hal);
     if (!g_driver) {
         ESP_LOGE(TAG, "Failed to create driver instance");
         return;

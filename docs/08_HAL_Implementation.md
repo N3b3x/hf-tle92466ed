@@ -21,10 +21,10 @@ platform.
     Application Code
          │
          ▼
-    TLE92466ED::Driver ◄──── High-level API
+    tle92466ed::Driver ◄──── High-level API
          │
          ▼
-    TLE92466ED::HAL ◄──────── Abstract interface (YOU IMPLEMENT)
+    tle92466ed::SpiInterface ◄──────── Abstract interface (YOU IMPLEMENT)
          │
          ▼
     Platform SPI ◄────────────  Your hardware (STM32, ESP32, etc.)
@@ -85,7 +85,7 @@ using HALResult = std::expected<T, HALError>;
 ### STM32 HAL Implementation
 
 ```cpp
-class STM32_HAL : public TLE92466ED::HAL {
+class STM32_HAL : public tle92466ed::SpiInterface<STM32_HAL> {
 public:
     STM32_HAL(SPI_HandleTypeDef* hspi, GPIO_TypeDef* cs_port, uint16_t cs_pin)
         : hspi_(hspi), cs_port_(cs_port), cs_pin_(cs_pin), initialized_(false) {}
@@ -170,7 +170,7 @@ private:
 ### ESP32 Implementation
 
 ```cpp
-class ESP32_HAL : public TLE92466ED::HAL {
+class ESP32_HAL : public tle92466ed::SpiInterface<ESP32_HAL> {
 public:
     ESP32_HAL(spi_host_device_t spi_host, int cs_pin)
         : spi_host_(spi_host), cs_pin_(cs_pin), spi_device_(nullptr) {}
@@ -247,7 +247,7 @@ private:
 ### Linux SPI Implementation
 
 ```cpp
-class LinuxSPI_HAL : public TLE92466ED::HAL {
+class LinuxSPI_HAL : public tle92466ed::SpiInterface<LinuxSPI_HAL> {
 public:
     LinuxSPI_HAL(const char* device, int cs_gpio)
         : device_path_(device), cs_gpio_(cs_gpio), spi_fd_(-1) {}
@@ -403,7 +403,7 @@ assert(delay_result.has_value());
 ```cpp
 // Create driver with your HAL
 MyPlatformHAL hal;
-TLE92466ED::Driver driver(hal);
+tle92466ed::Driver driver(hal);
 
 // Test full initialization
 auto result = driver.init();
@@ -507,4 +507,4 @@ HALResult<uint32_t> transfer32(uint32_t data) noexcept override {
 
 ---
 
-**Navigation**: [← Driver API](07_Driver_API.md) | [Next: Usage Examples →](09_Usage_Examples.md)
+**Navigation**: [← Driver API](07_Driver_API.md) | [Next: Usage Examples →](09_Usage_examples.md)

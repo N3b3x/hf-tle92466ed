@@ -22,13 +22,13 @@ apps:
   # --------------------------------------------------------------------------
   driver_integration_test:
     description: "Comprehensive driver integration test suite (no hardware required)"
-    source_file: "DriverIntegrationTest.cpp"
+    source_file: "driver_integration_test.cpp"
     category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-    documentation: "docs/README_DRIVER_INTEGRATION_TEST.md"
+    documentation: "docs/readme_driver_integration_test.md"
     test_sections:
       - "INITIALIZATION_TESTS"
       - "MODE_CONTROL_TESTS"
@@ -60,13 +60,13 @@ apps:
   # --------------------------------------------------------------------------
   solenoid_control_test:
     description: "Real hardware solenoid control test with ADC-based current control"
-    source_file: "SolenoidControlTest.cpp"
+    source_file: "solenoid_control_test.cpp"
     category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]
     ci_enabled: false
     featured: true
-    documentation: "docs/README_SOLENOID_CONTROL_TEST.md"
+    documentation: "docs/readme_solenoid_control_test.md"
     hardware_required: true
     features:
       - "Two solenoids: one single channel, one parallel pair"

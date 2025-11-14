@@ -11,12 +11,12 @@ permalink: /docs/07_Driver_API/
 
 ## Driver Class Overview
 
-The `TLE92466ED::Driver` class provides the complete C++ interface for controlling the IC.
+The `tle92466ed::Driver` class provides the complete C++ interface for controlling the IC.
 
 ### Class Declaration
 
 ```cpp
-namespace TLE92466ED {
+namespace tle92466ed {
     class Driver {
     public:
         explicit Driver(HAL& hal) noexcept;

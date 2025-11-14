@@ -1,5 +1,5 @@
 /**
- * @file Esp32TleCommInterface.hpp
+ * @file esp32_tle_comm_interface.hpp
  * @brief ESP32 Communication Interface implementation for TLE92466ED driver
  * 
  * This file provides the ESP32-specific implementation of the TLE92466ED CommInterface.
@@ -12,15 +12,15 @@
 
 #pragma once
 
-#include "TLE92466ED_CommInterface.hpp"
-#include "TLE92466ED_TestConfig.hpp"
+#include "tle92466ed_spi_interface.hpp"
+#include "tle92466ed_test_config.hpp"
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include "esp_timer.h"
 #include "esp_log.h"
 #include <memory>
 
-using namespace TLE92466ED;
+using namespace tle92466ed;
 
 /**
  * @class Esp32TleCommInterface
@@ -29,10 +29,10 @@ using namespace TLE92466ED;
  * This class provides the platform-specific implementation for ESP32,
  * handling SPI communication with proper timing and error handling.
  */
-class Esp32TleCommInterface : public TLE92466ED::CommInterface<Esp32TleCommInterface> {
+class Esp32TleCommInterface : public tle92466ed::SpiInterface<Esp32TleCommInterface> {
 public:
     // Make base class Log method accessible
-    using CommInterface<Esp32TleCommInterface>::Log;
+    using SpiInterface<Esp32TleCommInterface>::Log;
     /**
      * @brief SPI configuration structure for ESP32
      */
@@ -67,8 +67,20 @@ public:
 
     /**
      * @brief Destructor - cleans up SPI resources
+     * 
+     * Defined inline to avoid incomplete type issues with std::unique_ptr
      */
-    ~Esp32TleCommInterface() noexcept;
+    ~Esp32TleCommInterface() noexcept {
+        if (spi_device_ != nullptr) {
+            spi_bus_remove_device(spi_device_);
+            spi_device_ = nullptr;
+        }
+        
+        if (initialized_) {
+            spi_bus_free(config_.host);
+            initialized_ = false;
+        }
+    }
 
     /**
      * @brief Initialize the CommInterface (must be called before use)
@@ -110,7 +122,7 @@ public:
      * @param config New SPI configuration
      * @return CommResult<void> Success or error
      */
-    auto Configure(const TLE92466ED::SPIConfig& config) noexcept -> CommResult<void>;
+    auto Configure(const tle92466ed::SPIConfig& config) noexcept -> CommResult<void>;
 
     /**
      * @brief Check if hardware is ready for communication
@@ -198,33 +210,8 @@ private:
  * @return Unique pointer to configured CommInterface instance
  * 
  * This function uses the configuration from TLE92466ED_TestConfig.hpp
+ * 
+ * Note: Defined in .cpp file to avoid incomplete type issues with std::unique_ptr
  */
-inline auto CreateEsp32TleCommInterface() noexcept -> std::unique_ptr<Esp32TleCommInterface> {
-    using namespace TLE92466ED_TestConfig;
-    
-    Esp32TleCommInterface::SPIConfig config;
-    
-    // SPI pins from TLE92466ED_TestConfig.hpp
-    config.host = SPI2_HOST;
-    config.miso_pin = SPIPins::MISO;
-    config.mosi_pin = SPIPins::MOSI;
-    config.sclk_pin = SPIPins::SCLK;
-    config.cs_pin = SPIPins::CS;
-    
-    // Control GPIO pins from TLE92466ED_TestConfig.hpp
-    config.resn_pin = ControlPins::RESN;
-    config.en_pin = ControlPins::EN;
-    config.faultn_pin = ControlPins::FAULTN;
-    config.drv0_pin = ControlPins::DRV0;
-    config.drv1_pin = ControlPins::DRV1;
-    
-    // SPI parameters from TLE92466ED_TestConfig.hpp
-    config.frequency = SPIParams::FREQUENCY;
-    config.mode = SPIParams::MODE;
-    config.queue_size = SPIParams::QUEUE_SIZE;
-    config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
-    config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
-    
-    return std::make_unique<Esp32TleCommInterface>(config);
-}
+auto CreateEsp32TleCommInterface() noexcept -> std::unique_ptr<Esp32TleCommInterface>;
 

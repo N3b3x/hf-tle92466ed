@@ -156,7 +156,7 @@ cd hf-tle92466ed-driver
 ```cpp
 #include "inc/TLE92466ED_CommInterface.hpp"
 
-class YourPlatformHAL : public TLE92466ED::HAL {
+class YourPlatformHAL : public tle92466ed::SpiInterface<YourPlatformHAL> {
 public:
     auto spiTransfer(std::span<const uint8_t> txData, 
                      std::span<uint8_t> rxData) noexcept 
@@ -340,7 +340,7 @@ distribute it freely without any restrictions.
 - 🎛️ [Driver API](docs/07_Driver_API.md) - C++ API reference
 - 🔧 [HAL Implementation](docs/08_HAL_Implementation.md) - Platform porting
   guide
-- 💻 [Usage Examples](docs/09_Usage_Examples.md) - Practical code examples
+- 💻 [Usage Examples](docs/09_Usage_examples.md) - Practical code examples
 
 ### **Development**
 - 🚀 [Examples](examples/esp32/) - Test applications and usage examples

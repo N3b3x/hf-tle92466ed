@@ -27,7 +27,7 @@ docs/
 ├── 06_Diagnostics.md              Fault detection and monitoring
 ├── 07_Driver_API.md               C++ driver interface reference
 ├── 08_HAL_Implementation.md       Hardware abstraction guide
-└── 09_Usage_Examples.md           Practical implementation examples
+└── 09_Usage_examples.md           Practical implementation examples
 ```
 
 ### Document Purpose
@@ -50,7 +50,7 @@ For immediate implementation:
 
 1. **Hardware Setup**: Review `01_IC_Overview.md` for pin connections
 2. **HAL Creation**: Follow `08_HAL_Implementation.md` to create your platform HAL
-3. **Basic Usage**: Copy code from `09_Usage_Examples.md`
+3. **Basic Usage**: Copy code from `09_Usage_examples.md`
 4. **Advanced Features**: Consult specific feature documentation as needed
 
 ### Key Specifications

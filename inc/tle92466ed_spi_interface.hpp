@@ -1,5 +1,5 @@
 /**
- * @file TLE92466ED_CommInterface.hpp
+ * @file tle92466ed_spi_interface.hpp
  * @brief Communication Interface base class for TLE92466ED driver
 
  * @details
@@ -28,7 +28,7 @@
 #include <expected>
 #include <span>
 
-namespace TLE92466ED {
+namespace tle92466ed {
 
 /**
  * @brief Error codes for communication interface operations
@@ -376,7 +376,7 @@ enum class SPIStatus : uint8_t {
  *
  * @par Example Implementation:
  * @code{.cpp}
- * class MyPlatformCommInterface : public TLE92466ED::CommInterface<MyPlatformCommInterface> {
+ * class MyPlatformCommInterface : public tle92466ed::SpiInterface<MyPlatformCommInterface> {
  * public:
  *     CommResult<uint32_t> Transfer32(uint32_t data) noexcept {
  *         uint32_t result = spi_transfer_32bit(data);
@@ -402,7 +402,7 @@ enum class SPIStatus : uint8_t {
  * @tparam Derived The derived class type (CRTP pattern)
  */
 template <typename Derived>
-class CommInterface {
+class SpiInterface {
 public:
 
   /**
@@ -694,25 +694,25 @@ protected:
    * @details
    * This class can only be instantiated through derived classes.
    */
-  CommInterface() = default;
+  SpiInterface() = default;
 
   /**
    * @brief Prevent copying
    */
-  CommInterface(const CommInterface&) = delete;
-  CommInterface& operator=(const CommInterface&) = delete;
+  SpiInterface(const SpiInterface&) = delete;
+  SpiInterface& operator=(const SpiInterface&) = delete;
 
   /**
    * @brief Allow moving
    */
-  CommInterface(CommInterface&&) noexcept = default;
-  CommInterface& operator=(CommInterface&&) noexcept = default;
+  SpiInterface(SpiInterface&&) noexcept = default;
+  SpiInterface& operator=(SpiInterface&&) noexcept = default;
 
   /**
    * @brief Protected destructor
    * @note Derived classes can have public destructors
    */
-  ~CommInterface() = default;
+  ~SpiInterface() = default;
 };
 
 /**
@@ -726,7 +726,7 @@ protected:
  * traditional template constraints.
  */
 template <typename T>
-concept CommInterfaceLike =
+concept SpiInterfaceLike =
     requires(T comm, uint32_t data, SPIConfig cfg, ControlPin pin, ActiveLevel level) {
       { comm.Init() } -> std::same_as<CommResult<void>>;
       { comm.Transfer32(data) } -> std::same_as<CommResult<uint32_t>>;
@@ -736,19 +736,19 @@ concept CommInterfaceLike =
       { comm.GetGpioPin(pin) } -> std::same_as<CommResult<ActiveLevel>>;
     };
 
-} // namespace TLE92466ED
+} // namespace tle92466ed
 
 // Include registers header for CRC functions (after SPIFrame is defined)
-#include "TLE92466ED_Registers.hpp"
+#include "tle92466ed_registers.hpp"
 
-namespace TLE92466ED {
+namespace tle92466ed {
 
 //==============================================================================
 // INLINE IMPLEMENTATIONS
 //==============================================================================
 
 template <typename Derived>
-inline CommResult<uint32_t> CommInterface<Derived>::Read(uint16_t address, bool verify_crc) noexcept {
+inline CommResult<uint32_t> SpiInterface<Derived>::Read(uint16_t address, bool verify_crc) noexcept {
   // Create read frame
   SPIFrame tx_frame = SPIFrame::MakeRead(address);
 
@@ -797,7 +797,7 @@ inline CommResult<uint32_t> CommInterface<Derived>::Read(uint16_t address, bool 
 }
 
 template <typename Derived>
-inline CommResult<void> CommInterface<Derived>::Write(uint16_t address, uint16_t value,
+inline CommResult<void> SpiInterface<Derived>::Write(uint16_t address, uint16_t value,
                                                       bool verify_crc) noexcept {
   // Create write frame
   SPIFrame tx_frame = SPIFrame::MakeWrite(address, value);
@@ -845,6 +845,6 @@ inline CommResult<void> CommInterface<Derived>::Write(uint16_t address, uint16_t
   return {};
 }
 
-} // namespace TLE92466ED
+} // namespace tle92466ed
 
 #endif // TLE92466ED_COMMINTERFACE_HPP

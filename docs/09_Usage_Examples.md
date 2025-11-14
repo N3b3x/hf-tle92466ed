@@ -21,7 +21,7 @@ This document provides practical, ready-to-use code examples for common TLE92466
 #include "TLE92466ED.hpp"
 #include "my_platform_hal.hpp"
 
-using namespace TLE92466ED;
+using namespace tle92466ed;
 
 int main() {
     // 1. Create HAL and driver

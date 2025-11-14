@@ -229,7 +229,7 @@ apps:
     build_types: ["Debug", "Release"]
     ci_enabled: true
     featured: true
-    documentation: "docs/README_DRIVER_INTEGRATION_TEST.md"
+    documentation: "docs/readme_driver_integration_test.md"
 ```
 
 ### App Definition Fields
@@ -476,7 +476,7 @@ endif()
 
 # Source files
 set(TLE92466ED_SRCS
-    "${SRC_ROOT}/src/TLE92466ED.cpp"
+    "${SRC_ROOT}/src/tle92466ed.cpp"
 )
 
 # Component registration

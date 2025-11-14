@@ -1,5 +1,5 @@
 /**
- * @file DriverIntegrationTest.cpp
+ * @file driver_integration_test.cpp
  * @brief Comprehensive Integration Test Suite for TLE92466ED Driver
  * 
  * This is a complete integration test suite that tests all functionality
@@ -34,11 +34,11 @@
 #include "esp_log.h"
 #include "esp_system.h"
 
-#include "TLE92466ED.hpp"
-#include "Esp32TleCommInterface.hpp"
+#include "tle92466ed.hpp"
+#include "esp32_tle_comm_interface.hpp"
 #include "TestFramework.h"
 
-using namespace TLE92466ED;
+using namespace tle92466ed;
 
 static const char* TAG = "TLE92466ED_Test";
 
@@ -70,7 +70,7 @@ static TestResults g_test_results;
 //=============================================================================
 
 static std::unique_ptr<Esp32TleCommInterface> g_hal;
-static TLE92466ED::Driver<Esp32TleCommInterface>* g_driver = nullptr;
+static tle92466ed::Driver<Esp32TleCommInterface>* g_driver = nullptr;
 
 //=============================================================================
 // TEST HELPER FUNCTIONS
@@ -190,7 +190,7 @@ static bool test_driver_initialization() noexcept {
     }
     
     ESP_LOGI(TAG, "Creating TLE92466ED driver instance...");
-    g_driver = new TLE92466ED::Driver<Esp32TleCommInterface>(*g_hal);
+    g_driver = new tle92466ed::Driver<Esp32TleCommInterface>(*g_hal);
     
     if (!g_driver) {
         ESP_LOGE(TAG, "Failed to create driver instance");

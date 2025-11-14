@@ -457,7 +457,7 @@ The solenoid control test requires the `esp_adc` component, which is automatical
 │     └─> Configure GPIO pins                                  │
 │                                                             │
 │  2. Initialize Driver                                       │
-│     └─> Create TLE92466ED::Driver instance                  │
+│     └─> Create tle92466ed::Driver instance                  │
 │     └─> Call Init() (resets device, verifies communication) │
 │                                                             │
 │  3. Initialize ADC                                          │
@@ -923,7 +923,7 @@ Checklist:
 ## Related Documentation
 
 ### ESP32 Examples
-- [Driver Integration Test](README_DRIVER_INTEGRATION_TEST.md) - Driver API validation (no hardware)
+- [Driver Integration Test](readme_driver_integration_test.md) - Driver API validation (no hardware)
 - [Test Framework Reference](../main/TLE92466ED_TestFramework.hpp) - Framework API
 - [Hardware Configuration](../main/TLE92466ED_TestConfig.hpp) - Pin and parameter config
 - [ESP32-C6 CommInterface](../main/Esp32TleCommInterface.hpp) - CommInterface implementation

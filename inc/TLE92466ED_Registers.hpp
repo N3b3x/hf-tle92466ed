@@ -1,5 +1,5 @@
 /**
- * @file TLE92466ED_Registers.hpp
+ * @file tle92466ed_registers.hpp
  * @brief Register definitions and bit field mappings for TLE92466ED
  *
  * @detail
@@ -34,7 +34,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace TLE92466ED {
+namespace tle92466ed {
 
 //==============================================================================
 // REGISTER ADDRESSES - CENTRAL/GLOBAL REGISTERS
@@ -1318,7 +1318,7 @@ enum class ParallelPair : uint8_t {
  * @param frame SPI frame (CRC field should be 0)
  * @return Calculated CRC value
  */
-[[nodiscard]] inline uint8_t CalculateFrameCrc(const SPIFrame& frame) noexcept {
+[[nodiscard]] inline uint8_t CalculateFrameCrc(const tle92466ed::SPIFrame& frame) noexcept {
   const uint8_t* bytes = reinterpret_cast<const uint8_t*>(&frame);
   // Calculate CRC on bytes 0-2 (excluding CRC byte itself at position 3)
   return CalculateCrc8J1850(bytes, 3);
@@ -1329,14 +1329,14 @@ enum class ParallelPair : uint8_t {
  * @param frame Received SPI frame
  * @return true if CRC is valid
  */
-[[nodiscard]] inline bool VerifyFrameCrc(const SPIFrame& frame) noexcept {
-  SPIFrame temp = frame;
+[[nodiscard]] inline bool VerifyFrameCrc(const tle92466ed::SPIFrame& frame) noexcept {
+  tle92466ed::SPIFrame temp = frame;
   uint8_t received_crc = temp.tx_fields.crc;
   temp.tx_fields.crc = 0;
   uint8_t calculated_crc = CalculateFrameCrc(temp);
   return (received_crc == calculated_crc);
 }
 
-} // namespace TLE92466ED
+} // namespace tle92466ed
 
 #endif // TLE92466ED_REGISTERS_HPP

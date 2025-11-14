@@ -1,5 +1,5 @@
 /**
- * @file TLE92466ED_TestConfig.hpp
+ * @file tle92466ed_test_config.hpp
  * @brief Hardware configuration for TLE92466ED driver on ESP32-C6
  * 
  * This file contains the actual hardware configuration that is used by the HAL

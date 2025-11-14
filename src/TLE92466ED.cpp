@@ -1,5 +1,5 @@
 /**
- * @file TLE92466ED.cpp
+ * @file tle92466ed.cpp
  * @brief Template implementation of TLE92466ED driver class
 
  * @details
@@ -18,11 +18,11 @@
 // We're inside the namespace, so we can access the template class
 #else
 // Not included from header (shouldn't happen for template implementation)
-#include "../inc/TLE92466ED.hpp"
-namespace TLE92466ED {
+#include "../inc/tle92466ed.hpp"
+namespace tle92466ed {
 #endif
 
-// Note: When included from header, this file is processed inside namespace TLE92466ED
+// Note: When included from header, this file is processed inside namespace tle92466ed
 //       When compiled directly (shouldn't happen), we open the namespace here
 
 //==============================================================================
@@ -2065,7 +2065,7 @@ void Driver<CommType>::diagnoseClockConfiguration() noexcept {
 // Included from header - namespace is already open, don't close it
 #else
 // Compiled directly (shouldn't happen) - close the namespace
-} // namespace TLE92466ED
+} // namespace tle92466ed
 #endif
 
 #endif // TLE92466ED_IMPL

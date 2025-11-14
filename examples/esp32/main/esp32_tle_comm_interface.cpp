@@ -1,5 +1,5 @@
 /**
- * @file Esp32TleCommInterface.cpp
+ * @file esp32_tle_comm_interface.cpp
  * @brief ESP32 Communication Interface implementation for TLE92466ED driver
  * 
  * @author N3b3x
@@ -7,13 +7,13 @@
  * @version 2.0.0
  */
 
-#include "Esp32TleCommInterface.hpp"
-#include "TLE92466ED_Registers.hpp"  // For CRC calculation functions
+#include "esp32_tle_comm_interface.hpp"
+#include "tle92466ed_registers.hpp"  // For CRC calculation functions
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include <cstdarg>
 
-using namespace TLE92466ED;
+using namespace tle92466ed;
 
 namespace {
     /**
@@ -66,19 +66,7 @@ Esp32TleCommInterface::Esp32TleCommInterface(const SPIConfig& config) noexcept :
     }
 }
 
-Esp32TleCommInterface::~Esp32TleCommInterface() noexcept {
-    if (spi_device_ != nullptr) {
-        spi_bus_remove_device(spi_device_);
-        spi_device_ = nullptr;
-    }
-    
-    if (initialized_) {
-        spi_bus_free(config_.host);
-        initialized_ = false;
-    }
-    
-    ESP_LOGI(TAG, "Esp32TleCommInterface destroyed");
-}
+// Destructor moved inline to header to avoid incomplete type issues with std::unique_ptr
 
 auto Esp32TleCommInterface::Init() noexcept -> CommResult<void> {
     if (initialized_) {
@@ -584,7 +572,7 @@ auto Esp32TleCommInterface::Delay(uint32_t microseconds) noexcept -> CommResult<
     return {};
 }
 
-auto Esp32TleCommInterface::Configure(const TLE92466ED::SPIConfig& config) noexcept -> CommResult<void> {
+auto Esp32TleCommInterface::Configure(const tle92466ed::SPIConfig& config) noexcept -> CommResult<void> {
     // Note: ESP-IDF SPI configuration requires reinitialization
     // For now, we'll just update our internal config
     // In a real implementation, you might want to deinit and reinit
@@ -730,5 +718,34 @@ void Esp32TleCommInterface::Log(LogLevel level, const char* tag, const char* for
     
     // Use esp_log_writev which accepts va_list
     esp_log_writev(esp_level, tag, format, args);
+}
+
+auto CreateEsp32TleCommInterface() noexcept -> std::unique_ptr<Esp32TleCommInterface> {
+    using namespace TLE92466ED_TestConfig;
+    
+    Esp32TleCommInterface::SPIConfig config;
+    
+    // SPI pins from TLE92466ED_TestConfig.hpp
+    config.host = SPI2_HOST;
+    config.miso_pin = SPIPins::MISO;
+    config.mosi_pin = SPIPins::MOSI;
+    config.sclk_pin = SPIPins::SCLK;
+    config.cs_pin = SPIPins::CS;
+    
+    // Control GPIO pins from TLE92466ED_TestConfig.hpp
+    config.resn_pin = ControlPins::RESN;
+    config.en_pin = ControlPins::EN;
+    config.faultn_pin = ControlPins::FAULTN;
+    config.drv0_pin = ControlPins::DRV0;
+    config.drv1_pin = ControlPins::DRV1;
+    
+    // SPI parameters from TLE92466ED_TestConfig.hpp
+    config.frequency = SPIParams::FREQUENCY;
+    config.mode = SPIParams::MODE;
+    config.queue_size = SPIParams::QUEUE_SIZE;
+    config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
+    config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
+    
+    return std::make_unique<Esp32TleCommInterface>(config);
 }
 

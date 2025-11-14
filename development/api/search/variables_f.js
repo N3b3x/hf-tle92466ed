@@ -6,5 +6,5 @@ var searchData=
   ['resn_3',['RESN',['../structTLE92466ED__TestConfig_1_1ControlPins.html#a4ecb4cfcaf908b1a16bbb436093c268b',1,'TLE92466ED_TestConfig::ControlPins']]],
   ['resn_5fpin_4',['resn_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a9b3000b1076cec4f955d6d5e21445f8a',1,'Esp32TleCommInterface::SPIConfig']]],
   ['resolution_5',['RESOLUTION',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a62d49ba58d58330a2007f5632c4d18c2',1,'TLE92466ED_TestConfig::CurrentLimits']]],
-  ['results_6',['results',['../structTestTaskContext.html#a149a31dfc1c8ccf5cd7720ae94e1c434',1,'TestTaskContext']]]
+  ['results_6',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]]
 ];

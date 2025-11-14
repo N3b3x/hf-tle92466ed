@@ -18,7 +18,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="38" column="27" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="38" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="40" column="27" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="40" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1aba81c44b3babb1e7032cf25a23565b64" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -34,7 +34,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="39" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="39" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="41" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="41" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a45400b0a4d06692a383295269d67f1a1" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -50,7 +50,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="40" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="40" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="42" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="42" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a1daa1da38006a8151a6616a2ea5e6794" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -66,7 +66,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="41" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="41" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="43" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="43" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a06729ed688460df3b652f104bbcc6f93" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -82,7 +82,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="42" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="42" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="44" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="44" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a9b3000b1076cec4f955d6d5e21445f8a" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -98,7 +98,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="43" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="43" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="45" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="45" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a648f48729a53eeb2fdfaabec0006884e" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="44" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="44" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="46" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="46" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a07ce16cb9d074e5f98955c150e4a98ac" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -130,7 +130,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="45" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="45" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="47" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="47" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a9a0511a2c33c0330142fee477e5c053c" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -146,7 +146,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="46" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="46" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="48" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="48" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1ab154e3052ebd993b581dac41ea1ea53d" prot="public" static="no" mutable="no">
         <type>int16_t</type>
@@ -162,7 +162,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="47" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="47" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="49" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="49" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a74056b2cb52a216ad251bc8d603fc0b8" prot="public" static="no" mutable="no">
         <type>uint32_t</type>
@@ -178,7 +178,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="48" column="18" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="48" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="50" column="18" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="50" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1a038154dcae9fb4f3ab07bc10017f7570" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -194,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="49" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="49" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="51" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="51" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1aa2a36d6fe244594bcb7daf6ae5c4c8ed" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -210,7 +210,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="50" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="50" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="52" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="52" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1ac6271dc4c163c0be67cc73375a57e760" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -226,7 +226,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="51" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="51" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="53" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="53" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="structEsp32TleCommInterface_1_1SPIConfig_1abee4742344264d6dea7a731d73b8c848" prot="public" static="no" mutable="no">
         <type>uint8_t</type>
@@ -242,7 +242,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="52" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="52" bodyend="-1"/>
+        <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="54" column="17" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="54" bodyend="-1"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
@@ -250,7 +250,7 @@
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="37" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="37" bodyend="53"/>
+    <location file="examples/esp32/main/Esp32TleCommInterface.hpp" line="39" column="5" bodyfile="examples/esp32/main/Esp32TleCommInterface.hpp" bodystart="39" bodyend="55"/>
     <listofallmembers>
       <member refid="structEsp32TleCommInterface_1_1SPIConfig_1abee4742344264d6dea7a731d73b8c848" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface::SPIConfig</scope><name>cs_ena_posttrans</name></member>
       <member refid="structEsp32TleCommInterface_1_1SPIConfig_1ac6271dc4c163c0be67cc73375a57e760" prot="public" virt="non-virtual"><scope>Esp32TleCommInterface::SPIConfig</scope><name>cs_ena_pretrans</name></member>

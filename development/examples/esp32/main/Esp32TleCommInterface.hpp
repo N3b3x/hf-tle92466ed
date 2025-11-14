@@ -29,8 +29,10 @@ using namespace TLE92466ED;
  * This class provides the platform-specific implementation for ESP32,
  * handling SPI communication with proper timing and error handling.
  */
-class Esp32TleCommInterface : public TLE92466ED::CommInterface {
+class Esp32TleCommInterface : public TLE92466ED::CommInterface<Esp32TleCommInterface> {
 public:
+    // Make base class Log method accessible
+    using CommInterface<Esp32TleCommInterface>::Log;
     /**
      * @brief SPI configuration structure for ESP32
      */
@@ -61,31 +63,31 @@ public:
      * @brief Constructor with custom SPI configuration
      * @param config SPI configuration parameters
      */
-    explicit Esp32TleCommInterface(const SPIConfig& config);
+    explicit Esp32TleCommInterface(const SPIConfig& config) noexcept;
 
     /**
      * @brief Destructor - cleans up SPI resources
      */
-    ~Esp32TleCommInterface() override;
+    ~Esp32TleCommInterface() noexcept;
 
     /**
      * @brief Initialize the CommInterface (must be called before use)
      * @return CommResult<void> Success or error
      */
-    auto Init() noexcept -> CommResult<void> override;
+    auto Init() noexcept -> CommResult<void>;
 
     /**
      * @brief Deinitialize the CommInterface
      * @return CommResult<void> Success or error
      */
-    auto Deinit() noexcept -> CommResult<void> override;
+    auto Deinit() noexcept -> CommResult<void>;
 
     /**
      * @brief Transfer 32-bit data via SPI (full-duplex)
      * @param tx_data The 32-bit data to transmit
      * @return CommResult<uint32_t> Received 32-bit data or error
      */
-    auto Transfer32(uint32_t tx_data) noexcept -> CommResult<uint32_t> override;
+    auto Transfer32(uint32_t tx_data) noexcept -> CommResult<uint32_t>;
 
     /**
      * @brief Transfer multiple 32-bit words via SPI
@@ -94,39 +96,39 @@ public:
      * @return CommResult<void> Success or error
      */
     auto TransferMulti(std::span<const uint32_t> tx_data,
-                       std::span<uint32_t> rx_data) noexcept -> CommResult<void> override;
+                       std::span<uint32_t> rx_data) noexcept -> CommResult<void>;
 
     /**
      * @brief Delay for specified duration
      * @param microseconds Duration to delay in microseconds
      * @return CommResult<void> Success or error
      */
-    auto Delay(uint32_t microseconds) noexcept -> CommResult<void> override;
+    auto Delay(uint32_t microseconds) noexcept -> CommResult<void>;
 
     /**
      * @brief Configure SPI parameters
      * @param config New SPI configuration
      * @return CommResult<void> Success or error
      */
-    auto Configure(const TLE92466ED::SPIConfig& config) noexcept -> CommResult<void> override;
+    auto Configure(const TLE92466ED::SPIConfig& config) noexcept -> CommResult<void>;
 
     /**
      * @brief Check if hardware is ready for communication
      * @return true if ready, false otherwise
      */
-    bool IsReady() const noexcept override;
+    bool IsReady() const noexcept;
 
     /**
      * @brief Get the last error that occurred
      * @return CommError The last error code
      */
-    CommError GetLastError() const noexcept override;
+    CommError GetLastError() const noexcept;
 
     /**
      * @brief Clear any pending errors
      * @return CommResult<void> Success or error
      */
-    auto ClearErrors() noexcept -> CommResult<void> override;
+    auto ClearErrors() noexcept -> CommResult<void>;
 
     /**
      * @brief Get the current SPI configuration
@@ -140,23 +142,23 @@ public:
      * @param level Active level (HIGH or LOW)
      * @return CommResult<void> Success or error
      */
-    auto SetGpioPin(ControlPin pin, ActiveLevel level) noexcept -> CommResult<void> override;
+    auto SetGpioPin(ControlPin pin, ActiveLevel level) noexcept -> CommResult<void>;
 
     /**
      * @brief Get GPIO control pin level
      * @param pin Control pin to read (FAULTN)
      * @return CommResult<ActiveLevel> Pin level or error
      */
-    auto GetGpioPin(ControlPin pin) noexcept -> CommResult<ActiveLevel> override;
+    auto GetGpioPin(ControlPin pin) noexcept -> CommResult<ActiveLevel>;
 
     /**
      * @brief Log a message with specified severity level and tag (ESP_LOG implementation)
      * @param level Log severity level
      * @param tag Tag/component name for the log message
      * @param format Format string (printf-style)
-     * @param ... Variable arguments for format string
+     * @param args va_list of arguments
      */
-    void Log(LogLevel level, const char* tag, const char* format, ...) noexcept override;
+    void Log(LogLevel level, const char* tag, const char* format, va_list args) noexcept;
 
     /**
      * @brief Check if CommInterface is initialized
@@ -197,7 +199,7 @@ private:
  * 
  * This function uses the configuration from TLE92466ED_TestConfig.hpp
  */
-inline auto CreateEsp32TleCommInterface() -> std::unique_ptr<Esp32TleCommInterface> {
+inline auto CreateEsp32TleCommInterface() noexcept -> std::unique_ptr<Esp32TleCommInterface> {
     using namespace TLE92466ED_TestConfig;
     
     Esp32TleCommInterface::SPIConfig config;

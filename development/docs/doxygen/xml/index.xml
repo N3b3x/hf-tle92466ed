@@ -49,21 +49,21 @@
     <member refid="classEsp32TleCommInterface_1a6f15bfa4f81b66e087011f9d63e736a9" kind="variable"><name>last_error_</name></member>
     <member refid="classEsp32TleCommInterface_1a150d8ac326e8be8978d32be9d94c903c" kind="variable"><name>TAG</name></member>
     <member refid="classEsp32TleCommInterface_1a73a62c3876f60db1a102b5faff29c0b4" kind="function"><name>Esp32TleCommInterface</name></member>
-    <member refid="classEsp32TleCommInterface_1a163b3f4d8b5972d1a2dbea17c826172a" kind="function"><name>Esp32TleCommInterface</name></member>
-    <member refid="classEsp32TleCommInterface_1aa0bbb6a8fd460945f8c0c53c44b1ca90" kind="function"><name>~Esp32TleCommInterface</name></member>
-    <member refid="classEsp32TleCommInterface_1a4fe06c7070fb6f0f88d2cc3a90bb2278" kind="function"><name>Init</name></member>
-    <member refid="classEsp32TleCommInterface_1a9c953720bd6c812712ebf22877298e54" kind="function"><name>Deinit</name></member>
-    <member refid="classEsp32TleCommInterface_1a9c2eba0bffd44d9ea5cfdaed7cb47781" kind="function"><name>Transfer32</name></member>
-    <member refid="classEsp32TleCommInterface_1a94f432105947283210c39d4377808a5e" kind="function"><name>TransferMulti</name></member>
-    <member refid="classEsp32TleCommInterface_1a56ff45b8a5f486e8b143262c70772274" kind="function"><name>Delay</name></member>
-    <member refid="classEsp32TleCommInterface_1a391c8d63ebb0df614712f981448ded10" kind="function"><name>Configure</name></member>
-    <member refid="classEsp32TleCommInterface_1ad66112859fb1431df34345084dfc510b" kind="function"><name>IsReady</name></member>
-    <member refid="classEsp32TleCommInterface_1a768b503b10a2889ab49b53219a41a2be" kind="function"><name>GetLastError</name></member>
-    <member refid="classEsp32TleCommInterface_1aa5c489ed049a4b36b3d34b902726467d" kind="function"><name>ClearErrors</name></member>
+    <member refid="classEsp32TleCommInterface_1ae6db9fb597c7c5f0544b5a93da31241c" kind="function"><name>Esp32TleCommInterface</name></member>
+    <member refid="classEsp32TleCommInterface_1a9ea5cdfd9492290839f09bc07a3310f9" kind="function"><name>~Esp32TleCommInterface</name></member>
+    <member refid="classEsp32TleCommInterface_1ab226371a213e721982b8fb8b44cb817a" kind="function"><name>Init</name></member>
+    <member refid="classEsp32TleCommInterface_1ace087a68e524499e0948bad1901abd88" kind="function"><name>Deinit</name></member>
+    <member refid="classEsp32TleCommInterface_1ab5f7c06936fa0cde6d682778993c4af1" kind="function"><name>Transfer32</name></member>
+    <member refid="classEsp32TleCommInterface_1a18bad257c45ff0f43384555f97d45eca" kind="function"><name>TransferMulti</name></member>
+    <member refid="classEsp32TleCommInterface_1a31edd503bbf1a1db7aa20b2475e66026" kind="function"><name>Delay</name></member>
+    <member refid="classEsp32TleCommInterface_1a0f15445d49d963d0c8596852cad38a38" kind="function"><name>Configure</name></member>
+    <member refid="classEsp32TleCommInterface_1af1461cdead0b4743bb71dab55c9ea36f" kind="function"><name>IsReady</name></member>
+    <member refid="classEsp32TleCommInterface_1a1173fdbda741381bed6ee777ae27fd0f" kind="function"><name>GetLastError</name></member>
+    <member refid="classEsp32TleCommInterface_1a7aac348ec07e96dd168bbd73a6c01794" kind="function"><name>ClearErrors</name></member>
     <member refid="classEsp32TleCommInterface_1a8216498d7d1b270b06a4a711bd2a21ef" kind="function"><name>getConfig</name></member>
-    <member refid="classEsp32TleCommInterface_1a7570d11c78eca435af4892447891f0fd" kind="function"><name>SetGpioPin</name></member>
-    <member refid="classEsp32TleCommInterface_1aaba77fee74ef43454bf28cb9aff0c704" kind="function"><name>GetGpioPin</name></member>
-    <member refid="classEsp32TleCommInterface_1ad42bff82ecd69a28fccb4d81ab6236e0" kind="function"><name>Log</name></member>
+    <member refid="classEsp32TleCommInterface_1a5c422019ce795e30e8cef7c4efe0a425" kind="function"><name>SetGpioPin</name></member>
+    <member refid="classEsp32TleCommInterface_1abd1d9136759271e29d1be9752aec4322" kind="function"><name>GetGpioPin</name></member>
+    <member refid="classEsp32TleCommInterface_1a8c194512dee133d50442d1ef78452bf7" kind="function"><name>Log</name></member>
     <member refid="classEsp32TleCommInterface_1a50a2a8f016a83d2e2d582bcdbcf289ce" kind="function"><name>isInitialized</name></member>
     <member refid="classEsp32TleCommInterface_1a576a8c2e5361a2da0e16cf243964a93e" kind="function"><name>initializeGPIO</name></member>
     <member refid="classEsp32TleCommInterface_1a63620e1f8b810d6af7ef51080db91979" kind="function"><name>initializeSPI</name></member>
@@ -138,16 +138,12 @@
     <member refid="structTestResults_1a257eba3a9005a5c19c68ae27774948f7" kind="function"><name>add_result</name></member>
     <member refid="structTestResults_1ab98f9ad5f994aa31bd7c0cd8ae551fb8" kind="function"><name>get_success_percentage</name></member>
     <member refid="structTestResults_1a6d2e718d81a8b4a4dcca515ee858de57" kind="function"><name>get_total_time_ms</name></member>
-    <member refid="structTestResults_1a257eba3a9005a5c19c68ae27774948f7" kind="function"><name>add_result</name></member>
-    <member refid="structTestResults_1abd312f39dea9e43056ca161f315c7569" kind="function"><name>get_success_percentage</name></member>
-    <member refid="structTestResults_1a7466f28f6ee19443a8c8510588c7844e" kind="function"><name>get_total_time_ms</name></member>
-    <member refid="structTestResults_1a630453426a26294b000f09ecc9063329" kind="function"><name>print_summary</name></member>
   </compound>
   <compound refid="structTestTaskContext" kind="struct"><name>TestTaskContext</name>
-    <member refid="structTestTaskContext_1a5c77ed44fb48ace5e2b200c0e8d2209a" kind="variable"><name>test_name</name></member>
-    <member refid="structTestTaskContext_1a6064975974ef4e01a63df68792e88c9d" kind="variable"><name>test_func</name></member>
-    <member refid="structTestTaskContext_1a149a31dfc1c8ccf5cd7720ae94e1c434" kind="variable"><name>results</name></member>
-    <member refid="structTestTaskContext_1af7d2b95264861b235151fdd2ca110c75" kind="variable"><name>tag</name></member>
+    <member refid="structTestTaskContext_1abcf19d2762ab98990c3fdc1eacf86130" kind="variable"><name>test_name</name></member>
+    <member refid="structTestTaskContext_1aa72faa223fd0ff992772b12458f62ec8" kind="variable"><name>test_func</name></member>
+    <member refid="structTestTaskContext_1a1c97680bd267a35637278ea10a3fae0e" kind="variable"><name>results</name></member>
+    <member refid="structTestTaskContext_1ae51f49c33ea802bc7f8bdde560a27304" kind="variable"><name>tag</name></member>
     <member refid="structTestTaskContext_1ab82bee11b198be2f2b4d6c908573ddb6" kind="variable"><name>completion_semaphore</name></member>
   </compound>
   <compound refid="structTLE92466ED__TestConfig_1_1Timing" kind="struct"><name>TLE92466ED_TestConfig::Timing</name>
@@ -182,8 +178,9 @@
     <member refid="DriverIntegrationTest_8cpp_1a13fa69e119ecc502376e99ad59d488d3" kind="define"><name>ENABLE_PARALLEL_OPERATION_TESTS</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a529316bff799bb47de7b992c298cff8c" kind="define"><name>ENABLE_ERROR_CONDITION_TESTS</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1aaff89257c54366921eebb8ec1348b1fd" kind="variable"><name>g_test_results</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
-    <member refid="DriverIntegrationTest_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
+    <member refid="DriverIntegrationTest_8cpp_1adc7b455320b851067d00fc9470ab773d" kind="variable"><name>g_driver</name></member>
     <member refid="DriverIntegrationTest_8cpp_1ae884f3c8e83e03b4cc6c9c4ccd686f4a" kind="function"><name>ensure_config_mode</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a6a1a43d07287e49047f360bf0faedac8" kind="function"><name>ensure_mission_mode</name></member>
     <member refid="DriverIntegrationTest_8cpp_1a80233776e6e686d797ce641472542b03" kind="function"><name>print_device_status</name></member>
@@ -229,12 +226,12 @@
   <compound refid="Esp32TleCommInterface_8cpp" kind="file"><name>Esp32TleCommInterface.cpp</name>
   </compound>
   <compound refid="Esp32TleCommInterface_8hpp" kind="file"><name>Esp32TleCommInterface.hpp</name>
-    <member refid="Esp32TleCommInterface_8hpp_1a7d0b7c8ff8bfdaf5acce19bed1af30e8" kind="function"><name>CreateEsp32TleCommInterface</name></member>
+    <member refid="Esp32TleCommInterface_8hpp_1aeade4dbff3786b7971a573f81397e4fb" kind="function"><name>CreateEsp32TleCommInterface</name></member>
   </compound>
   <compound refid="SolenoidControlTest_8cpp" kind="file"><name>SolenoidControlTest.cpp</name>
     <member refid="SolenoidControlTest_8cpp_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
     <member refid="SolenoidControlTest_8cpp_1a24db71501f93a69b4c6eea17c2b6bd36" kind="variable"><name>g_hal</name></member>
-    <member refid="SolenoidControlTest_8cpp_1ac1757f06a5de1272b64a63221d447a7c" kind="variable"><name>g_driver</name></member>
+    <member refid="SolenoidControlTest_8cpp_1adc7b455320b851067d00fc9470ab773d" kind="variable"><name>g_driver</name></member>
     <member refid="SolenoidControlTest_8cpp_1acefbb4b5237cd7692227db14429b5dff" kind="variable"><name>g_adc_handle</name></member>
     <member refid="SolenoidControlTest_8cpp_1ae17bd7fdeae9b708d352e36672e0b72e" kind="variable"><name>g_adc_cali_handle</name></member>
     <member refid="SolenoidControlTest_8cpp_1ada173abbf00fbde83e3b902c93b35bd4" kind="function"><name>initialize_adc</name></member>
@@ -276,26 +273,10 @@
     <member refid="TLE92466ED__TestConfig_8hpp_1a20a718906e99a0c63907e61221cdeb85" kind="define"><name>TLE92466ED_VALIDATE_CURRENT</name></member>
     <member refid="TLE92466ED__TestConfig_8hpp_1a144227c8f24118002432fbaf425eca87" kind="define"><name>TLE92466ED_VALIDATE_GPIO</name></member>
   </compound>
-  <compound refid="TLE92466ED__TestFramework_8hpp" kind="file"><name>TLE92466ED_TestFramework.hpp</name>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a36936b10eceab520bb9d3d95534a00db" kind="define"><name>RUN_TEST</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a214e38e25939e45e31ae73a073fca47f" kind="define"><name>RUN_TEST_IN_TASK</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a474e37ca2ab214a02b4a2718aa8b4e5b" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a67d0268939c5e2304d0d649bb1fc6d0b" kind="define"><name>RUN_TEST_SECTION_IF_ENABLED_WITH_PATTERN</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a0897f1535fcbb73063a032f07550b12e" kind="variable"><name>TEST_PROGRESS_PIN</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1ae2244c7a6c3cf5cc171264032838bed1" kind="variable"><name>g_gpio14_initialized</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a0f5de63264bd9a08624fa9d89b4248a2" kind="variable"><name>g_gpio14_state</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1aaff89257c54366921eebb8ec1348b1fd" kind="variable"><name>g_test_results</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a3967179ac699a5b02ef9787b549409fe" kind="function"><name>init_test_progress_indicator</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a7bb80345e5681c19686df292fa897daf" kind="function"><name>flip_test_progress_indicator</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a0b263a245b65a247ab95a28992b8cc4c" kind="function"><name>output_section_indicator</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a5c86314094f10701c597cf07a95a4bae" kind="function"><name>cleanup_test_progress_indicator</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1a57a48f91a141d98e45f82937581e1a97" kind="function"><name>ensure_gpio14_initialized</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1ae0c6ad85cd439fc16572fe4b495e5479" kind="function"><name>test_task_trampoline</name></member>
-    <member refid="TLE92466ED__TestFramework_8hpp_1aae72eb91e8194f94255a11e08192ac11" kind="function"><name>print_test_section_status</name></member>
-  </compound>
   <compound refid="README_8md" kind="file"><name>README.md</name>
   </compound>
   <compound refid="TLE92466ED_8cpp" kind="file"><name>TLE92466ED.cpp</name>
+    <member refid="TLE92466ED_8cpp_1a2b7b8ad7e4273230c89e364611dffe36" kind="define"><name>TLE92466ED_IMPL</name></member>
   </compound>
   <compound refid="dir_74be4f6a8c360206df72b1bb4057fb39" kind="dir"><name>examples/esp32</name>
   </compound>

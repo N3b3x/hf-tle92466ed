@@ -15,7 +15,7 @@ var SolenoidControlTest_8cpp =
     [ "update_solenoid_currents", "SolenoidControlTest_8cpp.html#ae75b9efaa99cfa8c2b9295288cf8304d", null ],
     [ "g_adc_cali_handle", "SolenoidControlTest_8cpp.html#ae17bd7fdeae9b708d352e36672e0b72e", null ],
     [ "g_adc_handle", "SolenoidControlTest_8cpp.html#acefbb4b5237cd7692227db14429b5dff", null ],
-    [ "g_driver", "SolenoidControlTest_8cpp.html#ac1757f06a5de1272b64a63221d447a7c", null ],
+    [ "g_driver", "SolenoidControlTest_8cpp.html#adc7b455320b851067d00fc9470ab773d", null ],
     [ "g_hal", "SolenoidControlTest_8cpp.html#a24db71501f93a69b4c6eea17c2b6bd36", null ],
     [ "TAG", "SolenoidControlTest_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c", null ]
 ];

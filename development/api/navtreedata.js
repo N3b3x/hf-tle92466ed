@@ -58,7 +58,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "DriverIntegrationTest_8cpp.html",
-"structTLE92466ED__TestConfig_1_1AppConfig.html#a73d040921dd27c8d9446c7aa0848c66f"
+"structTLE92466ED__TestConfig_1_1ControlPins.html#a9d17758f1c459951f04a5e932f6b9157"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

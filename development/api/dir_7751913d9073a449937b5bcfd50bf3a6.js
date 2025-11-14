@@ -5,6 +5,5 @@ var dir_7751913d9073a449937b5bcfd50bf3a6 =
     [ "Esp32TleCommInterface.hpp", "Esp32TleCommInterface_8hpp.html", "Esp32TleCommInterface_8hpp" ],
     [ "SolenoidControlTest.cpp", "SolenoidControlTest_8cpp.html", "SolenoidControlTest_8cpp" ],
     [ "TestFramework.h", "TestFramework_8h.html", "TestFramework_8h" ],
-    [ "TLE92466ED_TestConfig.hpp", "TLE92466ED__TestConfig_8hpp.html", "TLE92466ED__TestConfig_8hpp" ],
-    [ "TLE92466ED_TestFramework.hpp", "TLE92466ED__TestFramework_8hpp.html", "TLE92466ED__TestFramework_8hpp" ]
+    [ "TLE92466ED_TestConfig.hpp", "TLE92466ED__TestConfig_8hpp.html", "TLE92466ED__TestConfig_8hpp" ]
 ];

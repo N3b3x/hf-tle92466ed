@@ -2,7 +2,7 @@ var searchData=
 [
   ['adc_5fmax_0',['ADC_MAX',['../structADCConfig.html#a50bc4d09543221f73674c5f950fbe3b7',1,'ADCConfig']]],
   ['adcconfig_1',['ADCConfig',['../structADCConfig.html',1,'ADCConfig'],['../structTLE92466ED__TestConfig_1_1ADCConfig.html',1,'TLE92466ED_TestConfig::ADCConfig']]],
-  ['add_5fresult_2',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults::add_result(bool passed, uint64_t execution_time) noexcept'],['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults::add_result(bool passed, uint64_t execution_time) noexcept']]],
+  ['add_5fresult_2',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
   ['addspidevice_3',['addSPIDevice',['../classEsp32TleCommInterface.html#a96518d50ae1b94bd9f98687ee1241fc9',1,'Esp32TleCommInterface']]],
   ['anonymous_5fnamespace_7besp32tlecomminterface_2ecpp_7d_4',['anonymous_namespace{Esp32TleCommInterface.cpp}',['../namespaceanonymous__namespace_02Esp32TleCommInterface_8cpp_03.html',1,'']]],
   ['api_20documentation_20strong_5',['📖 &lt;strong&gt;API Documentation&lt;/strong&gt;',['../index.html#autotoc_md8',1,'']]],

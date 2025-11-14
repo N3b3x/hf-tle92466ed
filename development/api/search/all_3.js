@@ -1,8 +1,8 @@
 var searchData=
 [
   ['default_5ftest_5fcurrent_0',['DEFAULT_TEST_CURRENT',['../structTLE92466ED__TestConfig_1_1TestConfig.html#a7fb0173a5edf16d673974b9cc0d0956e',1,'TLE92466ED_TestConfig::TestConfig']]],
-  ['deinit_1',['Deinit',['../classEsp32TleCommInterface.html#a9c953720bd6c812712ebf22877298e54',1,'Esp32TleCommInterface']]],
-  ['delay_2',['Delay',['../classEsp32TleCommInterface.html#a56ff45b8a5f486e8b143262c70772274',1,'Esp32TleCommInterface']]],
+  ['deinit_1',['Deinit',['../classEsp32TleCommInterface.html#ace087a68e524499e0948bad1901abd88',1,'Esp32TleCommInterface']]],
+  ['delay_2',['Delay',['../classEsp32TleCommInterface.html#a31edd503bbf1a1db7aa20b2475e66026',1,'Esp32TleCommInterface']]],
   ['design_20philosophy_20strong_3',['🎨 &lt;strong&gt;Design Philosophy&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]],
   ['development_4',['🎯 Modern Solenoid Control Interface for Multi-MCU Development',['../index.html#autotoc_md1',1,'']]],
   ['diagnostics_5',['Diagnostics',['../structTLE92466ED__TestConfig_1_1Diagnostics.html',1,'TLE92466ED_TestConfig']]],

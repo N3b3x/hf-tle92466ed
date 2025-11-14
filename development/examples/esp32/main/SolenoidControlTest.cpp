@@ -85,7 +85,7 @@ struct Solenoid2Config {
 //=============================================================================
 
 static std::unique_ptr<Esp32TleCommInterface> g_hal;
-static TLE92466ED::Driver* g_driver = nullptr;
+static TLE92466ED::Driver<Esp32TleCommInterface>* g_driver = nullptr;
 static adc_oneshot_unit_handle_t g_adc_handle = nullptr;
 static adc_cali_handle_t g_adc_cali_handle = nullptr;
 
@@ -504,7 +504,7 @@ extern "C" void app_main() {
     
     // Initialize Driver
     ESP_LOGI(TAG, "Initializing TLE92466ED driver...");
-    g_driver = new TLE92466ED::Driver(*g_hal);
+    g_driver = new TLE92466ED::Driver<Esp32TleCommInterface>(*g_hal);
     if (!g_driver) {
         ESP_LOGE(TAG, "Failed to create driver instance");
         return;

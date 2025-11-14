@@ -113,7 +113,7 @@ $(function(){initNavTree('DriverIntegrationTest_8cpp.html',''); initResizable();
 <code>#include &quot;esp_system.h&quot;</code><br />
 <code>#include &quot;TLE92466ED.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="Esp32TleCommInterface_8hpp_source.html">Esp32TleCommInterface.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="TLE92466ED__TestFramework_8hpp_source.html">TLE92466ED_TestFramework.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="TestFramework_8h_source.html">TestFramework.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for DriverIntegrationTest.cpp:</div>
 <div class="dyncontent">
@@ -280,10 +280,12 @@ Functions</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a5a85b9c772bbeb480b209a3e6ea92b4c" id="r_a5a85b9c772bbeb480b209a3e6ea92b4c"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a85b9c772bbeb480b209a3e6ea92b4c">TAG</a> = &quot;TLE92466ED_Test&quot;</td></tr>
 <tr class="separator:a5a85b9c772bbeb480b209a3e6ea92b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaff89257c54366921eebb8ec1348b1fd" id="r_aaff89257c54366921eebb8ec1348b1fd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structTestResults.html">TestResults</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaff89257c54366921eebb8ec1348b1fd">g_test_results</a></td></tr>
+<tr class="separator:aaff89257c54366921eebb8ec1348b1fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24db71501f93a69b4c6eea17c2b6bd36" id="r_a24db71501f93a69b4c6eea17c2b6bd36"><td class="memItemLeft" align="right" valign="top">static std::unique_ptr&lt; <a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24db71501f93a69b4c6eea17c2b6bd36">g_hal</a></td></tr>
 <tr class="separator:a24db71501f93a69b4c6eea17c2b6bd36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1757f06a5de1272b64a63221d447a7c" id="r_ac1757f06a5de1272b64a63221d447a7c"><td class="memItemLeft" align="right" valign="top">static TLE92466ED::Driver *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac1757f06a5de1272b64a63221d447a7c">g_driver</a> = nullptr</td></tr>
-<tr class="separator:ac1757f06a5de1272b64a63221d447a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc7b455320b851067d00fc9470ab773d" id="r_adc7b455320b851067d00fc9470ab773d"><td class="memItemLeft" align="right" valign="top">static TLE92466ED::Driver&lt; <a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc7b455320b851067d00fc9470ab773d">g_driver</a> = nullptr</td></tr>
+<tr class="separator:adc7b455320b851067d00fc9470ab773d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Comprehensive Integration Test Suite for <a class="el" href="namespaceTLE92466ED.html">TLE92466ED</a> Driver. </p>
@@ -1607,8 +1609,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ac1757f06a5de1272b64a63221d447a7c" name="ac1757f06a5de1272b64a63221d447a7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1757f06a5de1272b64a63221d447a7c">&#9670;&#160;</a></span>g_driver</h2>
+<a id="adc7b455320b851067d00fc9470ab773d" name="adc7b455320b851067d00fc9470ab773d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc7b455320b851067d00fc9470ab773d">&#9670;&#160;</a></span>g_driver</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1617,7 +1619,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">TLE92466ED::Driver* g_driver = nullptr</td>
+          <td class="memname">TLE92466ED::Driver&lt;<a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a>&gt;* g_driver = nullptr</td>
         </tr>
       </table>
   </td>
@@ -1640,6 +1642,28 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::unique_ptr&lt;<a class="el" href="classEsp32TleCommInterface.html">Esp32TleCommInterface</a>&gt; g_hal</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaff89257c54366921eebb8ec1348b1fd" name="aaff89257c54366921eebb8ec1348b1fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaff89257c54366921eebb8ec1348b1fd">&#9670;&#160;</a></span>g_test_results</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structTestResults.html">TestResults</a> g_test_results</td>
         </tr>
       </table>
   </td>

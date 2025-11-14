@@ -13,9 +13,8 @@ var searchData=
   ['print_5fdevice_5fstatus_10',['print_device_status',['../DriverIntegrationTest_8cpp.html#a80233776e6e686d797ce641472542b03',1,'DriverIntegrationTest.cpp']]],
   ['print_5fdevice_5ftelemetry_11',['print_device_telemetry',['../SolenoidControlTest_8cpp.html#adec0a6b3616c9e4cabb444bff299ac8e',1,'SolenoidControlTest.cpp']]],
   ['print_5fsolenoid_5ftelemetry_12',['print_solenoid_telemetry',['../SolenoidControlTest_8cpp.html#a17ca04cd9442f88cbb4e8b981742280f',1,'SolenoidControlTest.cpp']]],
-  ['print_5fsummary_13',['print_summary',['../structTestResults.html#a630453426a26294b000f09ecc9063329',1,'TestResults']]],
-  ['print_5ftest_5fsection_5ffooter_14',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fheader_15',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fstatus_16',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'print_test_section_status(const char *tag, const char *test_suite_name) noexcept:&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#aae72eb91e8194f94255a11e08192ac11',1,'print_test_section_status(const char *tag, const char *module_name):&#160;TLE92466ED_TestFramework.hpp']]],
-  ['print_5ftest_5fsummary_17',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
+  ['print_5ftest_5fsection_5ffooter_13',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fheader_14',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fstatus_15',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
+  ['print_5ftest_5fsummary_16',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
 ];

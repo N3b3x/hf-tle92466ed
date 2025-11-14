@@ -55,7 +55,8 @@ var DriverIntegrationTest_8cpp =
     [ "test_telemetry_with_active_channel", "DriverIntegrationTest_8cpp.html#a01f3dc5889509fa100606c90ef1930d6", null ],
     [ "test_vbat_thresholds", "DriverIntegrationTest_8cpp.html#a522cb8d7da6197e14bb1b3823cd72dbe", null ],
     [ "test_voltage_reading", "DriverIntegrationTest_8cpp.html#a33ced9d335d2f2d33969d7180f88fa43", null ],
-    [ "g_driver", "DriverIntegrationTest_8cpp.html#ac1757f06a5de1272b64a63221d447a7c", null ],
+    [ "g_driver", "DriverIntegrationTest_8cpp.html#adc7b455320b851067d00fc9470ab773d", null ],
     [ "g_hal", "DriverIntegrationTest_8cpp.html#a24db71501f93a69b4c6eea17c2b6bd36", null ],
+    [ "g_test_results", "DriverIntegrationTest_8cpp.html#aaff89257c54366921eebb8ec1348b1fd", null ],
     [ "TAG", "DriverIntegrationTest_8cpp.html#a5a85b9c772bbeb480b209a3e6ea92b4c", null ]
 ];

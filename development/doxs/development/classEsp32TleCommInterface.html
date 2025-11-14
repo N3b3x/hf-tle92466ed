@@ -112,12 +112,12 @@ $(function(){initNavTree('classEsp32TleCommInterface.html',''); initResizable();
 <div class="dynheader">
 Inheritance diagram for Esp32TleCommInterface:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32TleCommInterface__inherit__graph.svg" width="276" height="120"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32TleCommInterface__inherit__graph.svg" width="276" height="140"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Esp32TleCommInterface:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32TleCommInterface__coll__graph.svg" width="523" height="160"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classEsp32TleCommInterface__coll__graph.svg" width="611" height="136"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -131,51 +131,51 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a73a62c3876f60db1a102b5faff29c0b4" id="r_a73a62c3876f60db1a102b5faff29c0b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73a62c3876f60db1a102b5faff29c0b4">Esp32TleCommInterface</a> ()</td></tr>
 <tr class="memdesc:a73a62c3876f60db1a102b5faff29c0b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with default SPI configuration.  <br /></td></tr>
 <tr class="separator:a73a62c3876f60db1a102b5faff29c0b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a163b3f4d8b5972d1a2dbea17c826172a" id="r_a163b3f4d8b5972d1a2dbea17c826172a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a163b3f4d8b5972d1a2dbea17c826172a">Esp32TleCommInterface</a> (const <a class="el" href="structEsp32TleCommInterface_1_1SPIConfig.html">SPIConfig</a> &amp;config)</td></tr>
-<tr class="memdesc:a163b3f4d8b5972d1a2dbea17c826172a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with custom SPI configuration.  <br /></td></tr>
-<tr class="separator:a163b3f4d8b5972d1a2dbea17c826172a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0bbb6a8fd460945f8c0c53c44b1ca90" id="r_aa0bbb6a8fd460945f8c0c53c44b1ca90"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0bbb6a8fd460945f8c0c53c44b1ca90">~Esp32TleCommInterface</a> () override</td></tr>
-<tr class="memdesc:aa0bbb6a8fd460945f8c0c53c44b1ca90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor - cleans up SPI resources.  <br /></td></tr>
-<tr class="separator:aa0bbb6a8fd460945f8c0c53c44b1ca90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fe06c7070fb6f0f88d2cc3a90bb2278" id="r_a4fe06c7070fb6f0f88d2cc3a90bb2278"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fe06c7070fb6f0f88d2cc3a90bb2278">Init</a> () noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a4fe06c7070fb6f0f88d2cc3a90bb2278"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the CommInterface (must be called before use)  <br /></td></tr>
-<tr class="separator:a4fe06c7070fb6f0f88d2cc3a90bb2278"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c953720bd6c812712ebf22877298e54" id="r_a9c953720bd6c812712ebf22877298e54"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c953720bd6c812712ebf22877298e54">Deinit</a> () noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a9c953720bd6c812712ebf22877298e54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the CommInterface.  <br /></td></tr>
-<tr class="separator:a9c953720bd6c812712ebf22877298e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2eba0bffd44d9ea5cfdaed7cb47781" id="r_a9c2eba0bffd44d9ea5cfdaed7cb47781"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c2eba0bffd44d9ea5cfdaed7cb47781">Transfer32</a> (uint32_t tx_data) noexcept -&gt; CommResult&lt; uint32_t &gt; override</td></tr>
-<tr class="memdesc:a9c2eba0bffd44d9ea5cfdaed7cb47781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer 32-bit data via SPI (full-duplex)  <br /></td></tr>
-<tr class="separator:a9c2eba0bffd44d9ea5cfdaed7cb47781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94f432105947283210c39d4377808a5e" id="r_a94f432105947283210c39d4377808a5e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a94f432105947283210c39d4377808a5e">TransferMulti</a> (std::span&lt; const uint32_t &gt; tx_data, std::span&lt; uint32_t &gt; rx_data) noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a94f432105947283210c39d4377808a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer multiple 32-bit words via SPI.  <br /></td></tr>
-<tr class="separator:a94f432105947283210c39d4377808a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56ff45b8a5f486e8b143262c70772274" id="r_a56ff45b8a5f486e8b143262c70772274"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a56ff45b8a5f486e8b143262c70772274">Delay</a> (uint32_t microseconds) noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a56ff45b8a5f486e8b143262c70772274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay for specified duration.  <br /></td></tr>
-<tr class="separator:a56ff45b8a5f486e8b143262c70772274"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a391c8d63ebb0df614712f981448ded10" id="r_a391c8d63ebb0df614712f981448ded10"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a391c8d63ebb0df614712f981448ded10">Configure</a> (const TLE92466ED::SPIConfig &amp;config) noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a391c8d63ebb0df614712f981448ded10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SPI parameters.  <br /></td></tr>
-<tr class="separator:a391c8d63ebb0df614712f981448ded10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad66112859fb1431df34345084dfc510b" id="r_ad66112859fb1431df34345084dfc510b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad66112859fb1431df34345084dfc510b">IsReady</a> () const noexcept override</td></tr>
-<tr class="memdesc:ad66112859fb1431df34345084dfc510b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if hardware is ready for communication.  <br /></td></tr>
-<tr class="separator:ad66112859fb1431df34345084dfc510b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a768b503b10a2889ab49b53219a41a2be" id="r_a768b503b10a2889ab49b53219a41a2be"><td class="memItemLeft" align="right" valign="top">CommError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a768b503b10a2889ab49b53219a41a2be">GetLastError</a> () const noexcept override</td></tr>
-<tr class="memdesc:a768b503b10a2889ab49b53219a41a2be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error that occurred.  <br /></td></tr>
-<tr class="separator:a768b503b10a2889ab49b53219a41a2be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c489ed049a4b36b3d34b902726467d" id="r_aa5c489ed049a4b36b3d34b902726467d"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa5c489ed049a4b36b3d34b902726467d">ClearErrors</a> () noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:aa5c489ed049a4b36b3d34b902726467d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear any pending errors.  <br /></td></tr>
-<tr class="separator:aa5c489ed049a4b36b3d34b902726467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6db9fb597c7c5f0544b5a93da31241c" id="r_ae6db9fb597c7c5f0544b5a93da31241c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6db9fb597c7c5f0544b5a93da31241c">Esp32TleCommInterface</a> (const <a class="el" href="structEsp32TleCommInterface_1_1SPIConfig.html">SPIConfig</a> &amp;config) noexcept</td></tr>
+<tr class="memdesc:ae6db9fb597c7c5f0544b5a93da31241c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with custom SPI configuration.  <br /></td></tr>
+<tr class="separator:ae6db9fb597c7c5f0544b5a93da31241c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ea5cdfd9492290839f09bc07a3310f9" id="r_a9ea5cdfd9492290839f09bc07a3310f9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ea5cdfd9492290839f09bc07a3310f9">~Esp32TleCommInterface</a> () noexcept</td></tr>
+<tr class="memdesc:a9ea5cdfd9492290839f09bc07a3310f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor - cleans up SPI resources.  <br /></td></tr>
+<tr class="separator:a9ea5cdfd9492290839f09bc07a3310f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab226371a213e721982b8fb8b44cb817a" id="r_ab226371a213e721982b8fb8b44cb817a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab226371a213e721982b8fb8b44cb817a">Init</a> () noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:ab226371a213e721982b8fb8b44cb817a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the CommInterface (must be called before use)  <br /></td></tr>
+<tr class="separator:ab226371a213e721982b8fb8b44cb817a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace087a68e524499e0948bad1901abd88" id="r_ace087a68e524499e0948bad1901abd88"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace087a68e524499e0948bad1901abd88">Deinit</a> () noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:ace087a68e524499e0948bad1901abd88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the CommInterface.  <br /></td></tr>
+<tr class="separator:ace087a68e524499e0948bad1901abd88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5f7c06936fa0cde6d682778993c4af1" id="r_ab5f7c06936fa0cde6d682778993c4af1"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5f7c06936fa0cde6d682778993c4af1">Transfer32</a> (uint32_t tx_data) noexcept -&gt; CommResult&lt; uint32_t &gt;</td></tr>
+<tr class="memdesc:ab5f7c06936fa0cde6d682778993c4af1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer 32-bit data via SPI (full-duplex)  <br /></td></tr>
+<tr class="separator:ab5f7c06936fa0cde6d682778993c4af1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18bad257c45ff0f43384555f97d45eca" id="r_a18bad257c45ff0f43384555f97d45eca"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18bad257c45ff0f43384555f97d45eca">TransferMulti</a> (std::span&lt; const uint32_t &gt; tx_data, std::span&lt; uint32_t &gt; rx_data) noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:a18bad257c45ff0f43384555f97d45eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transfer multiple 32-bit words via SPI.  <br /></td></tr>
+<tr class="separator:a18bad257c45ff0f43384555f97d45eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31edd503bbf1a1db7aa20b2475e66026" id="r_a31edd503bbf1a1db7aa20b2475e66026"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31edd503bbf1a1db7aa20b2475e66026">Delay</a> (uint32_t microseconds) noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:a31edd503bbf1a1db7aa20b2475e66026"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay for specified duration.  <br /></td></tr>
+<tr class="separator:a31edd503bbf1a1db7aa20b2475e66026"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f15445d49d963d0c8596852cad38a38" id="r_a0f15445d49d963d0c8596852cad38a38"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f15445d49d963d0c8596852cad38a38">Configure</a> (const TLE92466ED::SPIConfig &amp;config) noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:a0f15445d49d963d0c8596852cad38a38"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure SPI parameters.  <br /></td></tr>
+<tr class="separator:a0f15445d49d963d0c8596852cad38a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1461cdead0b4743bb71dab55c9ea36f" id="r_af1461cdead0b4743bb71dab55c9ea36f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1461cdead0b4743bb71dab55c9ea36f">IsReady</a> () const noexcept</td></tr>
+<tr class="memdesc:af1461cdead0b4743bb71dab55c9ea36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if hardware is ready for communication.  <br /></td></tr>
+<tr class="separator:af1461cdead0b4743bb71dab55c9ea36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1173fdbda741381bed6ee777ae27fd0f" id="r_a1173fdbda741381bed6ee777ae27fd0f"><td class="memItemLeft" align="right" valign="top">CommError&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1173fdbda741381bed6ee777ae27fd0f">GetLastError</a> () const noexcept</td></tr>
+<tr class="memdesc:a1173fdbda741381bed6ee777ae27fd0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the last error that occurred.  <br /></td></tr>
+<tr class="separator:a1173fdbda741381bed6ee777ae27fd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aac348ec07e96dd168bbd73a6c01794" id="r_a7aac348ec07e96dd168bbd73a6c01794"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7aac348ec07e96dd168bbd73a6c01794">ClearErrors</a> () noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:a7aac348ec07e96dd168bbd73a6c01794"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear any pending errors.  <br /></td></tr>
+<tr class="separator:a7aac348ec07e96dd168bbd73a6c01794"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8216498d7d1b270b06a4a711bd2a21ef" id="r_a8216498d7d1b270b06a4a711bd2a21ef"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8216498d7d1b270b06a4a711bd2a21ef">getConfig</a> () const noexcept -&gt; const <a class="el" href="structEsp32TleCommInterface_1_1SPIConfig.html">SPIConfig</a> &amp;</td></tr>
 <tr class="memdesc:a8216498d7d1b270b06a4a711bd2a21ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current SPI configuration.  <br /></td></tr>
 <tr class="separator:a8216498d7d1b270b06a4a711bd2a21ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7570d11c78eca435af4892447891f0fd" id="r_a7570d11c78eca435af4892447891f0fd"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7570d11c78eca435af4892447891f0fd">SetGpioPin</a> (ControlPin pin, ActiveLevel level) noexcept -&gt; CommResult&lt; void &gt; override</td></tr>
-<tr class="memdesc:a7570d11c78eca435af4892447891f0fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set GPIO control pin level.  <br /></td></tr>
-<tr class="separator:a7570d11c78eca435af4892447891f0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaba77fee74ef43454bf28cb9aff0c704" id="r_aaba77fee74ef43454bf28cb9aff0c704"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaba77fee74ef43454bf28cb9aff0c704">GetGpioPin</a> (ControlPin pin) noexcept -&gt; CommResult&lt; ActiveLevel &gt; override</td></tr>
-<tr class="memdesc:aaba77fee74ef43454bf28cb9aff0c704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get GPIO control pin level.  <br /></td></tr>
-<tr class="separator:aaba77fee74ef43454bf28cb9aff0c704"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad42bff82ecd69a28fccb4d81ab6236e0" id="r_ad42bff82ecd69a28fccb4d81ab6236e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad42bff82ecd69a28fccb4d81ab6236e0">Log</a> (LogLevel level, const char *tag, const char *format,...) noexcept override</td></tr>
-<tr class="memdesc:ad42bff82ecd69a28fccb4d81ab6236e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message with specified severity level and tag (ESP_LOG implementation)  <br /></td></tr>
-<tr class="separator:ad42bff82ecd69a28fccb4d81ab6236e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c422019ce795e30e8cef7c4efe0a425" id="r_a5c422019ce795e30e8cef7c4efe0a425"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c422019ce795e30e8cef7c4efe0a425">SetGpioPin</a> (ControlPin pin, ActiveLevel level) noexcept -&gt; CommResult&lt; void &gt;</td></tr>
+<tr class="memdesc:a5c422019ce795e30e8cef7c4efe0a425"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set GPIO control pin level.  <br /></td></tr>
+<tr class="separator:a5c422019ce795e30e8cef7c4efe0a425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd1d9136759271e29d1be9752aec4322" id="r_abd1d9136759271e29d1be9752aec4322"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd1d9136759271e29d1be9752aec4322">GetGpioPin</a> (ControlPin pin) noexcept -&gt; CommResult&lt; ActiveLevel &gt;</td></tr>
+<tr class="memdesc:abd1d9136759271e29d1be9752aec4322"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get GPIO control pin level.  <br /></td></tr>
+<tr class="separator:abd1d9136759271e29d1be9752aec4322"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c194512dee133d50442d1ef78452bf7" id="r_a8c194512dee133d50442d1ef78452bf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c194512dee133d50442d1ef78452bf7">Log</a> (LogLevel level, const char *tag, const char *format, va_list args) noexcept</td></tr>
+<tr class="memdesc:a8c194512dee133d50442d1ef78452bf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log a message with specified severity level and tag (ESP_LOG implementation)  <br /></td></tr>
+<tr class="separator:a8c194512dee133d50442d1ef78452bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50a2a8f016a83d2e2d582bcdbcf289ce" id="r_a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50a2a8f016a83d2e2d582bcdbcf289ce">isInitialized</a> () const noexcept -&gt; bool</td></tr>
 <tr class="memdesc:a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if CommInterface is initialized.  <br /></td></tr>
 <tr class="separator:a50a2a8f016a83d2e2d582bcdbcf289ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,8 +244,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a163b3f4d8b5972d1a2dbea17c826172a" name="a163b3f4d8b5972d1a2dbea17c826172a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a163b3f4d8b5972d1a2dbea17c826172a">&#9670;&#160;</a></span>Esp32TleCommInterface() <span class="overload">[2/2]</span></h2>
+<a id="ae6db9fb597c7c5f0544b5a93da31241c" name="ae6db9fb597c7c5f0544b5a93da31241c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6db9fb597c7c5f0544b5a93da31241c">&#9670;&#160;</a></span>Esp32TleCommInterface() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,7 +262,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -277,8 +277,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa0bbb6a8fd460945f8c0c53c44b1ca90" name="aa0bbb6a8fd460945f8c0c53c44b1ca90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa0bbb6a8fd460945f8c0c53c44b1ca90">&#9670;&#160;</a></span>~Esp32TleCommInterface()</h2>
+<a id="a9ea5cdfd9492290839f09bc07a3310f9" name="a9ea5cdfd9492290839f09bc07a3310f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ea5cdfd9492290839f09bc07a3310f9">&#9670;&#160;</a></span>~Esp32TleCommInterface()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +295,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -334,8 +334,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa5c489ed049a4b36b3d34b902726467d" name="aa5c489ed049a4b36b3d34b902726467d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa5c489ed049a4b36b3d34b902726467d">&#9670;&#160;</a></span>ClearErrors()</h2>
+<a id="a7aac348ec07e96dd168bbd73a6c01794" name="a7aac348ec07e96dd168bbd73a6c01794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aac348ec07e96dd168bbd73a6c01794">&#9670;&#160;</a></span>ClearErrors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -352,7 +352,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -362,8 +362,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a391c8d63ebb0df614712f981448ded10" name="a391c8d63ebb0df614712f981448ded10"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a391c8d63ebb0df614712f981448ded10">&#9670;&#160;</a></span>Configure()</h2>
+<a id="a0f15445d49d963d0c8596852cad38a38" name="a0f15445d49d963d0c8596852cad38a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f15445d49d963d0c8596852cad38a38">&#9670;&#160;</a></span>Configure()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -380,7 +380,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -396,8 +396,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9c953720bd6c812712ebf22877298e54" name="a9c953720bd6c812712ebf22877298e54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c953720bd6c812712ebf22877298e54">&#9670;&#160;</a></span>Deinit()</h2>
+<a id="ace087a68e524499e0948bad1901abd88" name="ace087a68e524499e0948bad1901abd88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace087a68e524499e0948bad1901abd88">&#9670;&#160;</a></span>Deinit()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -414,7 +414,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -424,8 +424,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a56ff45b8a5f486e8b143262c70772274" name="a56ff45b8a5f486e8b143262c70772274"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a56ff45b8a5f486e8b143262c70772274">&#9670;&#160;</a></span>Delay()</h2>
+<a id="a31edd503bbf1a1db7aa20b2475e66026" name="a31edd503bbf1a1db7aa20b2475e66026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31edd503bbf1a1db7aa20b2475e66026">&#9670;&#160;</a></span>Delay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -442,7 +442,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -486,8 +486,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aaba77fee74ef43454bf28cb9aff0c704" name="aaba77fee74ef43454bf28cb9aff0c704"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaba77fee74ef43454bf28cb9aff0c704">&#9670;&#160;</a></span>GetGpioPin()</h2>
+<a id="abd1d9136759271e29d1be9752aec4322" name="abd1d9136759271e29d1be9752aec4322"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd1d9136759271e29d1be9752aec4322">&#9670;&#160;</a></span>GetGpioPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -504,7 +504,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -520,8 +520,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a768b503b10a2889ab49b53219a41a2be" name="a768b503b10a2889ab49b53219a41a2be"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a768b503b10a2889ab49b53219a41a2be">&#9670;&#160;</a></span>GetLastError()</h2>
+<a id="a1173fdbda741381bed6ee777ae27fd0f" name="a1173fdbda741381bed6ee777ae27fd0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1173fdbda741381bed6ee777ae27fd0f">&#9670;&#160;</a></span>GetLastError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,7 +538,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -548,8 +548,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4fe06c7070fb6f0f88d2cc3a90bb2278" name="a4fe06c7070fb6f0f88d2cc3a90bb2278"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4fe06c7070fb6f0f88d2cc3a90bb2278">&#9670;&#160;</a></span>Init()</h2>
+<a id="ab226371a213e721982b8fb8b44cb817a" name="ab226371a213e721982b8fb8b44cb817a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab226371a213e721982b8fb8b44cb817a">&#9670;&#160;</a></span>Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -566,7 +566,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -660,8 +660,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad66112859fb1431df34345084dfc510b" name="ad66112859fb1431df34345084dfc510b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad66112859fb1431df34345084dfc510b">&#9670;&#160;</a></span>IsReady()</h2>
+<a id="af1461cdead0b4743bb71dab55c9ea36f" name="af1461cdead0b4743bb71dab55c9ea36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1461cdead0b4743bb71dab55c9ea36f">&#9670;&#160;</a></span>IsReady()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -678,7 +678,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -688,8 +688,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ad42bff82ecd69a28fccb4d81ab6236e0" name="ad42bff82ecd69a28fccb4d81ab6236e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad42bff82ecd69a28fccb4d81ab6236e0">&#9670;&#160;</a></span>Log()</h2>
+<a id="a8c194512dee133d50442d1ef78452bf7" name="a8c194512dee133d50442d1ef78452bf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c194512dee133d50442d1ef78452bf7">&#9670;&#160;</a></span>Log()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -715,12 +715,12 @@ Static Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+          <td class="paramtype">va_list</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -731,15 +731,15 @@ Static Private Attributes</h2></td></tr>
     <tr><td class="paramname">level</td><td>Log severity level </td></tr>
     <tr><td class="paramname">tag</td><td>Tag/component name for the log message </td></tr>
     <tr><td class="paramname">format</td><td>Format string (printf-style) </td></tr>
-    <tr><td class="paramname">...</td><td>Variable arguments for format string </td></tr>
+    <tr><td class="paramname">args</td><td>va_list of arguments </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a7570d11c78eca435af4892447891f0fd" name="a7570d11c78eca435af4892447891f0fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7570d11c78eca435af4892447891f0fd">&#9670;&#160;</a></span>SetGpioPin()</h2>
+<a id="a5c422019ce795e30e8cef7c4efe0a425" name="a5c422019ce795e30e8cef7c4efe0a425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c422019ce795e30e8cef7c4efe0a425">&#9670;&#160;</a></span>SetGpioPin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -760,7 +760,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -777,8 +777,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9c2eba0bffd44d9ea5cfdaed7cb47781" name="a9c2eba0bffd44d9ea5cfdaed7cb47781"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c2eba0bffd44d9ea5cfdaed7cb47781">&#9670;&#160;</a></span>Transfer32()</h2>
+<a id="ab5f7c06936fa0cde6d682778993c4af1" name="ab5f7c06936fa0cde6d682778993c4af1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5f7c06936fa0cde6d682778993c4af1">&#9670;&#160;</a></span>Transfer32()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -795,7 +795,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -811,8 +811,8 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a94f432105947283210c39d4377808a5e" name="a94f432105947283210c39d4377808a5e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94f432105947283210c39d4377808a5e">&#9670;&#160;</a></span>TransferMulti()</h2>
+<a id="a18bad257c45ff0f43384555f97d45eca" name="a18bad257c45ff0f43384555f97d45eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18bad257c45ff0f43384555f97d45eca">&#9670;&#160;</a></span>TransferMulti()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -833,7 +833,7 @@ Static Private Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">noexcept</span></span>  </td>
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">

@@ -17,9 +17,10 @@ message(STATUS "TLE92466ED Driver - ESP32 Component Configuration")
 message(STATUS "Project Root: ${PROJECT_ROOT}")
 message(STATUS "Source Root: ${SRC_ROOT}")
 
-# List all TLE92466ED driver source files
+# TLE92466ED is now a header-only template library
+# Template implementation is included in the header file
 set(TLE92466ED_SRCS
-    "${SRC_ROOT}/src/TLE92466ED.cpp"
+    # No source files - template implementation is included in header
 )
 
 # Check which source files actually exist and add them
@@ -61,36 +62,36 @@ idf_component_register(
 )
 
 # Set C++ standard (TLE92466ED requires C++23)
-target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_23)
+target_compile_features(${COMPONENT_LIB} INTERFACE cxx_std_23)
 
 # Add ESP32 family definitions based on target
 if(CONFIG_IDF_TARGET_ESP32)
-    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+    target_compile_definitions(${COMPONENT_LIB} INTERFACE
         TLE92466ED_TARGET_ESP32=1
         TLE92466ED_MCU_FAMILY_ESP32=1
         ESP32=1
     )
 elseif(CONFIG_IDF_TARGET_ESP32C6)
-    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+    target_compile_definitions(${COMPONENT_LIB} INTERFACE
         TLE92466ED_TARGET_ESP32C6=1
         TLE92466ED_MCU_FAMILY_ESP32=1
         ESP32C6=1
     )
 elseif(CONFIG_IDF_TARGET_ESP32S3)
-    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+    target_compile_definitions(${COMPONENT_LIB} INTERFACE
         TLE92466ED_TARGET_ESP32S3=1
         TLE92466ED_MCU_FAMILY_ESP32=1
         ESP32S3=1
     )
 elseif(CONFIG_IDF_TARGET_ESP32C3)
-    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+    target_compile_definitions(${COMPONENT_LIB} INTERFACE
         TLE92466ED_TARGET_ESP32C3=1
         TLE92466ED_MCU_FAMILY_ESP32=1
         ESP32C3=1
     )
 else()
     # Default to ESP32
-    target_compile_definitions(${COMPONENT_LIB} PUBLIC
+    target_compile_definitions(${COMPONENT_LIB} INTERFACE
         TLE92466ED_TARGET_ESP32=1
         TLE92466ED_MCU_FAMILY_ESP32=1
         ESP32=1
@@ -98,7 +99,7 @@ else()
 endif()
 
 # Compiler flags for optimization
-target_compile_options(${COMPONENT_LIB} PRIVATE
+target_compile_options(${COMPONENT_LIB} INTERFACE
     -Wall
     -Wextra
     -Wpedantic
@@ -109,7 +110,7 @@ target_compile_options(${COMPONENT_LIB} PRIVATE
 )
 
 # Add specific flags for C++ files
-target_compile_options(${COMPONENT_LIB} PRIVATE
+target_compile_options(${COMPONENT_LIB} INTERFACE
     $<$<COMPILE_LANGUAGE:CXX>:-std=gnu++23>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-rtti>
     $<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
@@ -118,7 +119,7 @@ target_compile_options(${COMPONENT_LIB} PRIVATE
 
 # Link time optimization for better performance
 if(CONFIG_COMPILER_OPTIMIZATION_SIZE OR CONFIG_COMPILER_OPTIMIZATION_PERF)
-    target_compile_options(${COMPONENT_LIB} PRIVATE -flto)
+    target_compile_options(${COMPONENT_LIB} INTERFACE -flto)
     target_link_options(${COMPONENT_LIB} PRIVATE -flto)
 endif()
 

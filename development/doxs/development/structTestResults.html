@@ -118,14 +118,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6d2e718d81a8b4a4dcca515ee858de57" id="r_a6d2e718d81a8b4a4dcca515ee858de57"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d2e718d81a8b4a4dcca515ee858de57">get_total_time_ms</a> () const noexcept</td></tr>
 <tr class="memdesc:a6d2e718d81a8b4a4dcca515ee858de57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get total execution time in milliseconds.  <br /></td></tr>
 <tr class="separator:a6d2e718d81a8b4a4dcca515ee858de57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a257eba3a9005a5c19c68ae27774948f7" id="r_a257eba3a9005a5c19c68ae27774948f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a257eba3a9005a5c19c68ae27774948f7">add_result</a> (bool passed, uint64_t execution_time) noexcept</td></tr>
-<tr class="separator:a257eba3a9005a5c19c68ae27774948f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd312f39dea9e43056ca161f315c7569" id="r_abd312f39dea9e43056ca161f315c7569"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd312f39dea9e43056ca161f315c7569">get_success_percentage</a> () const noexcept</td></tr>
-<tr class="separator:abd312f39dea9e43056ca161f315c7569"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7466f28f6ee19443a8c8510588c7844e" id="r_a7466f28f6ee19443a8c8510588c7844e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7466f28f6ee19443a8c8510588c7844e">get_total_time_ms</a> () const noexcept</td></tr>
-<tr class="separator:a7466f28f6ee19443a8c8510588c7844e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a630453426a26294b000f09ecc9063329" id="r_a630453426a26294b000f09ecc9063329"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630453426a26294b000f09ecc9063329">print_summary</a> (const char *tag) const noexcept</td></tr>
-<tr class="separator:a630453426a26294b000f09ecc9063329"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -142,7 +134,7 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>Test execution tracking and results accumulation. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a257eba3a9005a5c19c68ae27774948f7" name="a257eba3a9005a5c19c68ae27774948f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a257eba3a9005a5c19c68ae27774948f7">&#9670;&#160;</a></span>add_result() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a257eba3a9005a5c19c68ae27774948f7">&#9670;&#160;</a></span>add_result()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,37 +171,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a257eba3a9005a5c19c68ae27774948f7" name="a257eba3a9005a5c19c68ae27774948f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a257eba3a9005a5c19c68ae27774948f7">&#9670;&#160;</a></span>add_result() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TestResults::add_result </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>passed</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>execution_time</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab98f9ad5f994aa31bd7c0cd8ae551fb8" name="ab98f9ad5f994aa31bd7c0cd8ae551fb8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab98f9ad5f994aa31bd7c0cd8ae551fb8">&#9670;&#160;</a></span>get_success_percentage() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab98f9ad5f994aa31bd7c0cd8ae551fb8">&#9670;&#160;</a></span>get_success_percentage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -236,33 +199,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="abd312f39dea9e43056ca161f315c7569" name="abd312f39dea9e43056ca161f315c7569"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd312f39dea9e43056ca161f315c7569">&#9670;&#160;</a></span>get_success_percentage() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double TestResults::get_success_percentage </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a6d2e718d81a8b4a4dcca515ee858de57" name="a6d2e718d81a8b4a4dcca515ee858de57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d2e718d81a8b4a4dcca515ee858de57">&#9670;&#160;</a></span>get_total_time_ms() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d2e718d81a8b4a4dcca515ee858de57">&#9670;&#160;</a></span>get_total_time_ms()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,56 +224,6 @@ Public Attributes</h2></td></tr>
 
 <p>Get total execution time in milliseconds. </p>
 <dl class="section return"><dt>Returns</dt><dd>Total execution time in milliseconds </dd></dl>
-
-</div>
-</div>
-<a id="a7466f28f6ee19443a8c8510588c7844e" name="a7466f28f6ee19443a8c8510588c7844e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7466f28f6ee19443a8c8510588c7844e">&#9670;&#160;</a></span>get_total_time_ms() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">double TestResults::get_total_time_ms </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a630453426a26294b000f09ecc9063329" name="a630453426a26294b000f09ecc9063329"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a630453426a26294b000f09ecc9063329">&#9670;&#160;</a></span>print_summary()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TestResults::print_summary </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -396,9 +284,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following files:<ul>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>examples/esp32/main/<a class="el" href="TestFramework_8h_source.html">TestFramework.h</a></li>
-<li>examples/esp32/main/<a class="el" href="TLE92466ED__TestFramework_8hpp_source.html">TLE92466ED_TestFramework.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

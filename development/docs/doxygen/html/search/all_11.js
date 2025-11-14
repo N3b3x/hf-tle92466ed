@@ -4,7 +4,7 @@ var searchData=
   ['sclk_1',['SCLK',['../structTLE92466ED__TestConfig_1_1SPIPins.html#a41782c91af07fc43521527f1ada311ef',1,'TLE92466ED_TestConfig::SPIPins']]],
   ['sclk_5fpin_2',['sclk_pin',['../structEsp32TleCommInterface_1_1SPIConfig.html#a1daa1da38006a8151a6616a2ea5e6794',1,'Esp32TleCommInterface::SPIConfig']]],
   ['set_5fsolenoids_5fenabled_3',['set_solenoids_enabled',['../SolenoidControlTest_8cpp.html#a8beedbcdc4953c460d1e38286a1883ae',1,'SolenoidControlTest.cpp']]],
-  ['setgpiopin_4',['SetGpioPin',['../classEsp32TleCommInterface.html#a7570d11c78eca435af4892447891f0fd',1,'Esp32TleCommInterface']]],
+  ['setgpiopin_4',['SetGpioPin',['../classEsp32TleCommInterface.html#a5c422019ce795e30e8cef7c4efe0a425',1,'Esp32TleCommInterface']]],
   ['single_5fchannel_5fmax_5',['SINGLE_CHANNEL_MAX',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#aa6e214ca2a7e8aae7fbf3ac68be1ee1d',1,'TLE92466ED_TestConfig::CurrentLimits']]],
   ['single_5fchannel_5fmin_6',['SINGLE_CHANNEL_MIN',['../structTLE92466ED__TestConfig_1_1CurrentLimits.html#a8809a699bc2464e910742e10609e546a',1,'TLE92466ED_TestConfig::CurrentLimits']]],
   ['solenoid_20control_20interface_20for_20multi_20mcu_20development_7',['🎯 Modern Solenoid Control Interface for Multi-MCU Development',['../index.html#autotoc_md1',1,'']]],

@@ -1,7 +1,7 @@
 <map id="Esp32TleCommInterface" name="Esp32TleCommInterface">
-<area shape="rect" id="Node000001" title="ESP32 implementation of the TLE92466ED CommInterface." alt="" coords="160,124,383,155"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,15,271,46"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="168,53,255,122,252,126,165,57"/>
-<area shape="rect" id="Node000003" href="$structEsp32TleCommInterface_1_1SPIConfig.html" title="SPI configuration structure for ESP32." alt="" coords="295,5,517,56"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="366,67,291,126,288,122,363,62"/>
+<area shape="rect" id="Node000001" title="ESP32 implementation of the TLE92466ED CommInterface." alt="" coords="383,53,605,83"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,271,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="285,43,383,54,382,59,284,49"/>
+<area shape="rect" id="Node000003" href="$structEsp32TleCommInterface_1_1SPIConfig.html" title="SPI configuration structure for ESP32." alt="" coords="27,80,249,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,90,382,77,383,82,264,95"/>
 </map>

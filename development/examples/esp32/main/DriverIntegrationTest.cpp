@@ -36,11 +36,14 @@
 
 #include "TLE92466ED.hpp"
 #include "Esp32TleCommInterface.hpp"
-#include "TLE92466ED_TestFramework.hpp"
+#include "TestFramework.h"
 
 using namespace TLE92466ED;
 
 static const char* TAG = "TLE92466ED_Test";
+
+// Test results tracking (required by TestFramework.h)
+static TestResults g_test_results;
 
 //=============================================================================
 // TEST CONFIGURATION
@@ -67,7 +70,7 @@ static const char* TAG = "TLE92466ED_Test";
 //=============================================================================
 
 static std::unique_ptr<Esp32TleCommInterface> g_hal;
-static TLE92466ED::Driver* g_driver = nullptr;
+static TLE92466ED::Driver<Esp32TleCommInterface>* g_driver = nullptr;
 
 //=============================================================================
 // TEST HELPER FUNCTIONS
@@ -187,7 +190,7 @@ static bool test_driver_initialization() noexcept {
     }
     
     ESP_LOGI(TAG, "Creating TLE92466ED driver instance...");
-    g_driver = new TLE92466ED::Driver(*g_hal);
+    g_driver = new TLE92466ED::Driver<Esp32TleCommInterface>(*g_hal);
     
     if (!g_driver) {
         ESP_LOGE(TAG, "Failed to create driver instance");

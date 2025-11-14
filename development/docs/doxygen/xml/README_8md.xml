@@ -311,6 +311,9 @@
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>🤝<sp/>**Contributing**</highlight></codeline>
 <codeline></codeline>
+<codeline><highlight class="normal">Contributions<sp/>are<sp/>welcome!<sp/>For<sp/>detailed<sp/>contribution<sp/>guidelines,<sp/>coding<sp/>standards,<sp/>and<sp/>development<sp/>workflow,</highlight></codeline>
+<codeline><highlight class="normal">please<sp/>visit<sp/>the<sp/>**[HardFOC<sp/>Organization<sp/>GitHub<sp/>page](https://github.com/hardfoc)**.</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">###<sp/>**Development<sp/>Workflow**</highlight></codeline>
 <codeline><highlight class="normal">1.<sp/>**Fork**<sp/>the<sp/>repository</highlight></codeline>
 <codeline><highlight class="normal">2.<sp/>**Create**<sp/>feature<sp/>branch<sp/>(`feature/new-feature`)</highlight></codeline>
@@ -357,7 +360,7 @@
 <codeline><highlight class="normal"><sp/><sp/>settings</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>**Community**</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>🤝<sp/>[Contributing](CONTRIBUTING.md)<sp/>-<sp/>Development<sp/>guidelines</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>🤝<sp/>[Contributing](#-contributing)<sp/>-<sp/>How<sp/>to<sp/>contribute</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>🐛<sp/>[Issue<sp/>Tracker](https://github.com/n3b3x/hf-tle92466ed-driver/issues)</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>💬<sp/>[Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)</highlight></codeline>
 <codeline></codeline>

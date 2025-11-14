@@ -27,5 +27,5 @@ var searchData=
   ['esp32_5ftle_5fcomm_5finterface_2ecpp_24',['esp32_tle_comm_interface.cpp',['../esp32__tle__comm__interface_8cpp.html',1,'']]],
   ['esp32_5ftle_5fcomm_5finterface_2ehpp_25',['esp32_tle_comm_interface.hpp',['../esp32__tle__comm__interface_8hpp.html',1,'']]],
   ['esp32tlecomminterface_26',['Esp32TleCommInterface',['../classEsp32TleCommInterface.html',1,'Esp32TleCommInterface'],['../classEsp32TleCommInterface.html#a73a62c3876f60db1a102b5faff29c0b4',1,'Esp32TleCommInterface::Esp32TleCommInterface()'],['../classEsp32TleCommInterface.html#ae6db9fb597c7c5f0544b5a93da31241c',1,'Esp32TleCommInterface::Esp32TleCommInterface(const SPIConfig &amp;config) noexcept']]],
-  ['examples_20strong_27',['Examples strong',['../index.html#autotoc_md14',1,'📊 &lt;strong&gt;Examples&lt;/strong&gt;'],['../index.html#autotoc_md16',1,'&lt;strong&gt;Usage Examples&lt;/strong&gt;']]]
+  ['examples_27',['📊 Examples',['../index.html#autotoc_md7',1,'']]]
 ];

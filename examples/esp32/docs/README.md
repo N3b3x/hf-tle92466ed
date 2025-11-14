@@ -502,6 +502,7 @@ If tests fail or hardware doesn't work:
 ### Support Channels
 
 - **GitHub Issues**: Bug reports, feature requests
+- **GitHub Discussions**: Questions, general help
 - **Driver Documentation**: Technical reference
 
 ---

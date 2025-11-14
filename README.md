@@ -302,6 +302,9 @@ if (auto diag = driver.readDiagnostics(); diag) {
 
 ## 🤝 **Contributing**
 
+Contributions are welcome! For detailed contribution guidelines, coding standards, and development workflow,
+please visit the **[HardFOC Organization GitHub page](https://github.com/hardfoc)**.
+
 ### **Development Workflow**
 1. **Fork** the repository
 2. **Create** feature branch (`feature/new-feature`)
@@ -348,7 +351,7 @@ distribute it freely without any restrictions.
   settings
 
 ### **Community**
-- 🤝 [Contributing](CONTRIBUTING.md) - Development guidelines
+- 🤝 [Contributing](#-contributing) - How to contribute
 - 🐛 [Issue Tracker](https://github.com/n3b3x/hf-tle92466ed-driver/issues)
 - 💬 [Discussions](https://github.com/n3b3x/hf-tle92466ed-driver/discussions)
 

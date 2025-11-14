@@ -29,7 +29,7 @@ namespace {
     }
 }
 
-Esp32TleCommInterface::Esp32TleCommInterface(const SPIConfig& config) : config_(config) {
+Esp32TleCommInterface::Esp32TleCommInterface(const SPIConfig& config) noexcept : config_(config) {
     ESP_LOGI(TAG, "Esp32TleCommInterface created with SPI config:");
     ESP_LOGI(TAG, "  Host: %d", static_cast<int>(config_.host));
     ESP_LOGI(TAG, "  MISO: GPIO%d", config_.miso_pin);
@@ -66,7 +66,7 @@ Esp32TleCommInterface::Esp32TleCommInterface(const SPIConfig& config) : config_(
     }
 }
 
-Esp32TleCommInterface::~Esp32TleCommInterface() {
+Esp32TleCommInterface::~Esp32TleCommInterface() noexcept {
     if (spi_device_ != nullptr) {
         spi_bus_remove_device(spi_device_);
         spi_device_ = nullptr;
@@ -704,10 +704,7 @@ auto Esp32TleCommInterface::GetGpioPin(ControlPin pin) noexcept -> CommResult<Ac
     return level;
 }
 
-void Esp32TleCommInterface::Log(LogLevel level, const char* tag, const char* format, ...) noexcept {
-    va_list args;
-    va_start(args, format);
-    
+void Esp32TleCommInterface::Log(LogLevel level, const char* tag, const char* format, va_list args) noexcept {
     // Map LogLevel to ESP-IDF log level
     esp_log_level_t esp_level;
     switch (level) {
@@ -733,7 +730,5 @@ void Esp32TleCommInterface::Log(LogLevel level, const char* tag, const char* for
     
     // Use esp_log_writev which accepts va_list
     esp_log_writev(esp_level, tag, format, args);
-    
-    va_end(args);
 }
 

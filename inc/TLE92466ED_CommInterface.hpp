@@ -23,6 +23,7 @@
 #define TLE92466ED_COMMINTERFACE_HPP
 
 #include <concepts>
+#include <cstdarg>
 #include <cstdint>
 #include <expected>
 #include <span>
@@ -347,13 +348,18 @@ enum class SPIStatus : uint8_t {
 };
 
 /**
- * @brief Abstract Communication Interface base class
+ * @brief CRTP-based Communication Interface template class
  *
  * @details
- * This pure virtual base class defines the interface that must be implemented
- * for hardware-specific SPI communication. Users must derive from this class
- * and implement the virtual functions for their specific hardware platform
- * (e.g., STM32, ESP32, Arduino, Linux, etc.).
+ * This template class provides a hardware-agnostic interface for SPI communication
+ * using the CRTP (Curiously Recurring Template Pattern) for compile-time polymorphism.
+ * Platform-specific implementations should inherit from this template with themselves
+ * as the template parameter.
+ *
+ * Benefits of CRTP:
+ * - Compile-time polymorphism (no virtual function overhead)
+ * - Static dispatch instead of dynamic dispatch
+ * - Better optimization opportunities for the compiler
  *
  * The CommInterface uses modern C++20/23 features including:
  * - Concepts for compile-time constraints
@@ -370,16 +376,16 @@ enum class SPIStatus : uint8_t {
  *
  * @par Example Implementation:
  * @code{.cpp}
- * class MyPlatformCommInterface : public TLE92466ED::CommInterface {
+ * class MyPlatformCommInterface : public TLE92466ED::CommInterface<MyPlatformCommInterface> {
  * public:
- *     CommResult<uint32_t> transfer32(uint32_t data) noexcept override {
+ *     CommResult<uint32_t> Transfer32(uint32_t data) noexcept {
  *         uint32_t result = spi_transfer_32bit(data);
  *         if (spi_error()) {
  *             return std::unexpected(CommError::TransferError);
  *         }
  *         return result;
  *     }
- *     // ... implement other virtual functions
+ *     // ... implement other required methods
  * };
  * @endcode
  *
@@ -392,13 +398,12 @@ enum class SPIStatus : uint8_t {
  * - Maximum frequency: 10 MHz
  * - Support for SPI Mode 1 (CPOL=0, CPHA=1)
  * - CRC calculation capability (hardware or software)
+ *
+ * @tparam Derived The derived class type (CRTP pattern)
  */
+template <typename Derived>
 class CommInterface {
 public:
-  /**
-   * @brief Virtual destructor for polymorphic behavior
-   */
-  virtual ~CommInterface() = default;
 
   /**
    * @brief Initialize the hardware interface
@@ -413,7 +418,9 @@ public:
    * @retval CommError::HardwareNotReady Hardware initialization failed
    * @retval CommError::InvalidParameter Invalid configuration
    */
-  [[nodiscard]] virtual CommResult<void> Init() noexcept = 0;
+  [[nodiscard]] CommResult<void> Init() noexcept {
+    return static_cast<Derived*>(this)->Init();
+  }
 
   /**
    * @brief Deinitialize the hardware interface
@@ -424,7 +431,9 @@ public:
    *
    * @return CommResult<void> Success or error code
    */
-  [[nodiscard]] virtual CommResult<void> Deinit() noexcept = 0;
+  [[nodiscard]] CommResult<void> Deinit() noexcept {
+    return static_cast<Derived*>(this)->Deinit();
+  }
 
   /**
    * @brief Transfer 32-bit data via SPI (full-duplex)
@@ -455,7 +464,9 @@ public:
    *       The implementation should assert CS before the transfer and deassert it after.
    *       CRC calculation is handled by the driver layer, not CommInterface.
    */
-  [[nodiscard]] virtual CommResult<uint32_t> Transfer32(uint32_t tx_data) noexcept = 0;
+  [[nodiscard]] CommResult<uint32_t> Transfer32(uint32_t tx_data) noexcept {
+    return static_cast<Derived*>(this)->Transfer32(tx_data);
+  }
 
   /**
    * @brief Transfer multiple 32-bit words via SPI
@@ -473,8 +484,10 @@ public:
    * @pre tx_data.size() == rx_data.size()
    * @pre Both spans must be valid for the duration of the transfer
    */
-  [[nodiscard]] virtual CommResult<void> TransferMulti(std::span<const uint32_t> tx_data,
-                                                       std::span<uint32_t> rx_data) noexcept = 0;
+  [[nodiscard]] CommResult<void> TransferMulti(std::span<const uint32_t> tx_data,
+                                               std::span<uint32_t> rx_data) noexcept {
+    return static_cast<Derived*>(this)->TransferMulti(tx_data, rx_data);
+  }
 
   /**
    * @brief Delay for specified duration
@@ -490,7 +503,9 @@ public:
    * - Reset pulse width: minimum 1µs
    * - Power-up delay: minimum 1ms
    */
-  [[nodiscard]] virtual CommResult<void> Delay(uint32_t microseconds) noexcept = 0;
+  [[nodiscard]] CommResult<void> Delay(uint32_t microseconds) noexcept {
+    return static_cast<Derived*>(this)->Delay(microseconds);
+  }
 
   /**
    * @brief Configure SPI parameters
@@ -509,7 +524,9 @@ public:
    * - Bit order: MSB first
    * - Frame size: 32 bits (4 bytes)
    */
-  [[nodiscard]] virtual CommResult<void> Configure(const SPIConfig& config) noexcept = 0;
+  [[nodiscard]] CommResult<void> Configure(const SPIConfig& config) noexcept {
+    return static_cast<Derived*>(this)->Configure(config);
+  }
 
   /**
    * @brief Check if hardware is ready for communication
@@ -520,7 +537,9 @@ public:
    *
    * @return true if ready, false otherwise
    */
-  [[nodiscard]] virtual bool IsReady() const noexcept = 0;
+  [[nodiscard]] bool IsReady() const noexcept {
+    return static_cast<const Derived*>(this)->IsReady();
+  }
 
   /**
    * @brief Get the last error that occurred
@@ -531,7 +550,9 @@ public:
    *
    * @return CommError The last error code
    */
-  [[nodiscard]] virtual CommError GetLastError() const noexcept = 0;
+  [[nodiscard]] CommError GetLastError() const noexcept {
+    return static_cast<const Derived*>(this)->GetLastError();
+  }
 
   /**
    * @brief Clear any pending errors
@@ -542,7 +563,9 @@ public:
    *
    * @return CommResult<void> Success or error code
    */
-  [[nodiscard]] virtual CommResult<void> ClearErrors() noexcept = 0;
+  [[nodiscard]] CommResult<void> ClearErrors() noexcept {
+    return static_cast<Derived*>(this)->ClearErrors();
+  }
 
   /**
    * @brief Set GPIO control pin level
@@ -563,7 +586,9 @@ public:
    * @note RESN must be ACTIVE for SPI communication to work.
    * @note EN only affects output channels, not SPI communication.
    */
-  [[nodiscard]] virtual CommResult<void> SetGpioPin(ControlPin pin, ActiveLevel level) noexcept = 0;
+  [[nodiscard]] CommResult<void> SetGpioPin(ControlPin pin, ActiveLevel level) noexcept {
+    return static_cast<Derived*>(this)->SetGpioPin(pin, level);
+  }
 
   /**
    * @brief Get GPIO control pin level
@@ -581,7 +606,9 @@ public:
    *
    * @note Only FAULTN can be read. RESN and EN are output-only.
    */
-  [[nodiscard]] virtual CommResult<ActiveLevel> GetGpioPin(ControlPin pin) noexcept = 0;
+  [[nodiscard]] CommResult<ActiveLevel> GetGpioPin(ControlPin pin) noexcept {
+    return static_cast<Derived*>(this)->GetGpioPin(pin);
+  }
 
   /**
    * @brief Log a message with specified severity level and tag
@@ -598,30 +625,13 @@ public:
    * @note Implementations should use platform-specific logging (e.g., ESP_LOG for ESP32)
    * @note The format string and arguments follow printf-style formatting
    */
-  virtual void Log(LogLevel level, const char* tag, const char* format, ...) noexcept = 0;
+  void Log(LogLevel level, const char* tag, const char* format, ...) noexcept {
+    va_list args;
+    va_start(args, format);
+    static_cast<Derived*>(this)->Log(level, tag, format, args);
+    va_end(args);
+  }
 
-protected:
-  /**
-   * @brief Protected constructor to prevent direct instantiation
-   *
-   * @details
-   * This class can only be instantiated through derived classes.
-   */
-  CommInterface() = default;
-
-  /**
-   * @brief Prevent copying
-   */
-  CommInterface(const CommInterface&) = delete;
-  CommInterface& operator=(const CommInterface&) = delete;
-
-  /**
-   * @brief Allow moving
-   */
-  CommInterface(CommInterface&&) noexcept = default;
-  CommInterface& operator=(CommInterface&&) noexcept = default;
-
-private:
   /**
    * @brief Read a register from the TLE92466ED (High-Level API)
    *
@@ -643,8 +653,9 @@ private:
    *       uses Transfer32() internally. Frame construction and CRC calculation are
    *       handled automatically.
    *
-   * @note This is a private helper function for internal use by the Driver class (friend).
-   *       External code should use the Driver API, not CommInterface directly.
+   * @note This is a public helper function for use by the Driver class.
+   *       External code should typically use the Driver API, but this method is
+   *       available for advanced use cases.
    */
   [[nodiscard]] CommResult<uint32_t> Read(uint16_t address, bool verify_crc = true) noexcept;
 
@@ -669,15 +680,39 @@ private:
    *       uses Transfer32() internally. Frame construction and CRC calculation are
    *       handled automatically.
    *
-   * @note This is a private helper function for internal use by the Driver class (friend).
-   *       External code should use the Driver API, not CommInterface directly.
+   * @note This is a public helper function for use by the Driver class.
+   *       External code should typically use the Driver API, but this method is
+   *       available for advanced use cases.
    */
   [[nodiscard]] CommResult<void> Write(uint16_t address, uint16_t value,
                                        bool verify_crc = true) noexcept;
 
-  // Forward declaration for friend class
-  // Driver class is declared in TLE92466ED.hpp
-  friend class Driver;
+protected:
+  /**
+   * @brief Protected constructor to prevent direct instantiation
+   *
+   * @details
+   * This class can only be instantiated through derived classes.
+   */
+  CommInterface() = default;
+
+  /**
+   * @brief Prevent copying
+   */
+  CommInterface(const CommInterface&) = delete;
+  CommInterface& operator=(const CommInterface&) = delete;
+
+  /**
+   * @brief Allow moving
+   */
+  CommInterface(CommInterface&&) noexcept = default;
+  CommInterface& operator=(CommInterface&&) noexcept = default;
+
+  /**
+   * @brief Protected destructor
+   * @note Derived classes can have public destructors
+   */
+  ~CommInterface() = default;
 };
 
 /**
@@ -692,7 +727,6 @@ private:
  */
 template <typename T>
 concept CommInterfaceLike =
-    std::is_base_of_v<CommInterface, T> &&
     requires(T comm, uint32_t data, SPIConfig cfg, ControlPin pin, ActiveLevel level) {
       { comm.Init() } -> std::same_as<CommResult<void>>;
       { comm.Transfer32(data) } -> std::same_as<CommResult<uint32_t>>;
@@ -713,7 +747,8 @@ namespace TLE92466ED {
 // INLINE IMPLEMENTATIONS
 //==============================================================================
 
-inline CommResult<uint32_t> CommInterface::Read(uint16_t address, bool verify_crc) noexcept {
+template <typename Derived>
+inline CommResult<uint32_t> CommInterface<Derived>::Read(uint16_t address, bool verify_crc) noexcept {
   // Create read frame
   SPIFrame tx_frame = SPIFrame::MakeRead(address);
 
@@ -721,7 +756,7 @@ inline CommResult<uint32_t> CommInterface::Read(uint16_t address, bool verify_cr
   tx_frame.tx_fields.crc = CalculateFrameCrc(tx_frame);
 
   // First transfer: Send command (device processes command, returns dummy/previous data)
-  auto first_result = Transfer32(tx_frame.word);
+  auto first_result = static_cast<Derived*>(this)->Transfer32(tx_frame.word);
   if (!first_result) {
     return std::unexpected(first_result.error());
   }
@@ -731,7 +766,7 @@ inline CommResult<uint32_t> CommInterface::Read(uint16_t address, bool verify_cr
   SPIFrame dummy_frame = SPIFrame::MakeRead(0);
   dummy_frame.tx_fields.crc = CalculateFrameCrc(dummy_frame);
 
-  auto rx_result = Transfer32(dummy_frame.word);
+  auto rx_result = static_cast<Derived*>(this)->Transfer32(dummy_frame.word);
   if (!rx_result) {
     return std::unexpected(rx_result.error());
   }
@@ -761,8 +796,9 @@ inline CommResult<uint32_t> CommInterface::Read(uint16_t address, bool verify_cr
   }
 }
 
-inline CommResult<void> CommInterface::Write(uint16_t address, uint16_t value,
-                                             bool verify_crc) noexcept {
+template <typename Derived>
+inline CommResult<void> CommInterface<Derived>::Write(uint16_t address, uint16_t value,
+                                                      bool verify_crc) noexcept {
   // Create write frame
   SPIFrame tx_frame = SPIFrame::MakeWrite(address, value);
 
@@ -770,7 +806,7 @@ inline CommResult<void> CommInterface::Write(uint16_t address, uint16_t value,
   tx_frame.tx_fields.crc = CalculateFrameCrc(tx_frame);
 
   // First transfer: Send command (device processes command, returns dummy/previous data)
-  auto first_result = Transfer32(tx_frame.word);
+  auto first_result = static_cast<Derived*>(this)->Transfer32(tx_frame.word);
   if (!first_result) {
     return std::unexpected(first_result.error());
   }
@@ -780,7 +816,7 @@ inline CommResult<void> CommInterface::Write(uint16_t address, uint16_t value,
   SPIFrame dummy_frame = SPIFrame::MakeRead(0);
   dummy_frame.tx_fields.crc = CalculateFrameCrc(dummy_frame);
 
-  auto rx_result = Transfer32(dummy_frame.word);
+  auto rx_result = static_cast<Derived*>(this)->Transfer32(dummy_frame.word);
   if (!rx_result) {
     return std::unexpected(rx_result.error());
   }

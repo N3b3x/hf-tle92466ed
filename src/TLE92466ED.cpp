@@ -1,6 +1,6 @@
 /**
  * @file TLE92466ED.cpp
- * @brief Implementation of TLE92466ED driver class
+ * @brief Template implementation of TLE92466ED driver class
 
  * @details
  * This file contains the complete implementation of all driver methods
@@ -8,15 +8,29 @@
  * CRC calculation/verification, and validation.
  */
 
-#include "TLE92466ED.hpp"
+#ifndef TLE92466ED_IMPL
+#define TLE92466ED_IMPL
 
+// Always include the header to get the template class definition
+// The guard TLE92466ED_IMPL prevents this file from being processed twice
+#ifdef TLE92466ED_HEADER_INCLUDED
+// Already included from header - the class definition is available in the current context
+// We're inside the namespace, so we can access the template class
+#else
+// Not included from header (shouldn't happen for template implementation)
+#include "../inc/TLE92466ED.hpp"
 namespace TLE92466ED {
+#endif
+
+// Note: When included from header, this file is processed inside namespace TLE92466ED
+//       When compiled directly (shouldn't happen), we open the namespace here
 
 //==============================================================================
 // INITIALIZATION
 //==============================================================================
 
-DriverResult<void> Driver::Init() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::Init() noexcept {
   // 1. Initialize CommInterface (GPIO and SPI bus only)
   if (auto result = comm_.Init(); !result) {
     return std::unexpected(DriverError::HardwareError);
@@ -101,7 +115,8 @@ DriverResult<void> Driver::Init() noexcept {
   return {};
 }
 
-DriverResult<void> Driver::applyDefaultConfig() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::applyDefaultConfig() noexcept {
   // Configure GLOBAL_CONFIG: Enable CRC and clock watchdog
   // Note: SPI watchdog is DISABLED by default because it requires periodic reloading
   //       If enabled without periodic reload, the device will timeout and enter Config Mode
@@ -168,7 +183,8 @@ DriverResult<void> Driver::applyDefaultConfig() noexcept {
 // MODE CONTROL
 //==========================================================================
 
-DriverResult<void> Driver::EnterMissionMode() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::EnterMissionMode() noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -187,7 +203,8 @@ DriverResult<void> Driver::EnterMissionMode() noexcept {
   return {};
 }
 
-DriverResult<void> Driver::EnterConfigMode() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::EnterConfigMode() noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -210,7 +227,8 @@ DriverResult<void> Driver::EnterConfigMode() noexcept {
 // GLOBAL CONFIGURATION
 //==========================================================================
 
-DriverResult<void> Driver::ConfigureGlobal(const GlobalConfig& config) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigureGlobal(const GlobalConfig& config) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -283,7 +301,8 @@ DriverResult<void> Driver::ConfigureGlobal(const GlobalConfig& config) noexcept 
   return {};
 }
 
-DriverResult<void> Driver::SetCrcEnabled(bool enabled) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetCrcEnabled(bool enabled) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -303,7 +322,8 @@ DriverResult<void> Driver::SetCrcEnabled(bool enabled) noexcept {
   return result;
 }
 
-DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetVbatThresholds(float uv_voltage, float ov_voltage) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -314,7 +334,8 @@ DriverResult<void> Driver::SetVbatThresholds(float uv_voltage, float ov_voltage)
   return setVbatThresholdsInternal(uv_voltage, ov_voltage);
 }
 
-DriverResult<void> Driver::setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept {
   // Validate voltage range
   if (uv_voltage < 0.0f || uv_voltage > 41.4f || ov_voltage < 0.0f || ov_voltage > 41.4f) {
     return std::unexpected(DriverError::InvalidParameter);
@@ -350,7 +371,8 @@ DriverResult<void> Driver::setVbatThresholdsInternal(float uv_voltage, float ov_
   return {};
 }
 
-DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetVbatThresholdsRaw(uint8_t uv_threshold,
                                                 uint8_t ov_threshold) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
@@ -370,7 +392,8 @@ DriverResult<void> Driver::SetVbatThresholdsRaw(uint8_t uv_threshold,
 // CHANNEL CONTROL
 //==========================================================================
 
-DriverResult<void> Driver::EnableChannel(Channel channel, bool enabled) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::EnableChannel(Channel channel, bool enabled) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -408,7 +431,8 @@ DriverResult<void> Driver::EnableChannel(Channel channel, bool enabled) noexcept
   return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
 }
 
-DriverResult<void> Driver::EnableChannels(uint8_t channel_mask) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::EnableChannels(uint8_t channel_mask) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -443,17 +467,20 @@ DriverResult<void> Driver::EnableChannels(uint8_t channel_mask) noexcept {
   return WriteRegister(CentralReg::CH_CTRL, ch_ctrl_value, false, false);
 }
 
-DriverResult<void> Driver::EnableAllChannels() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::EnableAllChannels() noexcept {
   comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling all channels\n");
   return EnableChannels(CH_CTRL::ALL_CH_MASK);
 }
 
-DriverResult<void> Driver::DisableAllChannels() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::DisableAllChannels() noexcept {
   comm_.Log(LogLevel::Info, "TLE92466ED", "Disabling all channels\n");
   return EnableChannels(0);
 }
 
-DriverResult<void> Driver::SetChannelMode(Channel channel, ChannelMode mode) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetChannelMode(Channel channel, ChannelMode mode) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -475,7 +502,8 @@ DriverResult<void> Driver::SetChannelMode(Channel channel, ChannelMode mode) noe
   return WriteRegister(ch_addr, static_cast<uint16_t>(mode));
 }
 
-DriverResult<void> Driver::SetParallelOperation(ParallelPair pair, bool enabled) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetParallelOperation(ParallelPair pair, bool enabled) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -520,7 +548,8 @@ DriverResult<void> Driver::SetParallelOperation(ParallelPair pair, bool enabled)
 // CURRENT CONTROL
 //==========================================================================
 
-DriverResult<void> Driver::SetCurrentSetpoint(Channel channel, uint16_t current_ma,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetCurrentSetpoint(Channel channel, uint16_t current_ma,
                                               bool parallel_mode) noexcept {
 
   if (auto result = checkInitialized(); !result) {
@@ -555,7 +584,8 @@ DriverResult<void> Driver::SetCurrentSetpoint(Channel channel, uint16_t current_
   return WriteRegister(ch_addr, target);
 }
 
-DriverResult<uint16_t> Driver::GetCurrentSetpoint(Channel channel, bool parallel_mode) noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetCurrentSetpoint(Channel channel, bool parallel_mode) noexcept {
 
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
@@ -579,7 +609,8 @@ DriverResult<uint16_t> Driver::GetCurrentSetpoint(Channel channel, bool parallel
   return current_ma;
 }
 
-DriverResult<void> Driver::ConfigurePwmPeriod(Channel channel, float period_us) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigurePwmPeriod(Channel channel, float period_us) noexcept {
 
   if (auto result = checkInitialized(); !result) {
     return result;
@@ -614,7 +645,8 @@ DriverResult<void> Driver::ConfigurePwmPeriod(Channel channel, float period_us) 
   return WriteRegister(ch_addr, value);
 }
 
-DriverResult<void> Driver::ConfigurePwmPeriodRaw(Channel channel, uint8_t period_mantissa,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigurePwmPeriodRaw(Channel channel, uint8_t period_mantissa,
                                                  uint8_t period_exponent,
                                                  bool low_freq_range) noexcept {
 
@@ -641,7 +673,8 @@ DriverResult<void> Driver::ConfigurePwmPeriodRaw(Channel channel, uint8_t period
   return WriteRegister(ch_addr, value);
 }
 
-DriverResult<void> Driver::ConfigureDither(Channel channel, float amplitude_ma, float frequency_hz,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigureDither(Channel channel, float amplitude_ma, float frequency_hz,
                                            bool parallel_mode) noexcept {
 
   if (auto result = checkInitialized(); !result) {
@@ -678,7 +711,8 @@ DriverResult<void> Driver::ConfigureDither(Channel channel, float amplitude_ma, 
   return ConfigureDitherRaw(channel, config.step_size, config.num_steps, config.flat_steps);
 }
 
-DriverResult<void> Driver::ConfigureDitherRaw(Channel channel, uint16_t step_size,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigureDitherRaw(Channel channel, uint16_t step_size,
                                               uint8_t num_steps, uint8_t flat_steps) noexcept {
 
   if (auto result = checkInitialized(); !result) {
@@ -710,7 +744,8 @@ DriverResult<void> Driver::ConfigureDitherRaw(Channel channel, uint16_t step_siz
   return {};
 }
 
-DriverResult<void> Driver::ConfigureChannel(Channel channel, const ChannelConfig& config) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ConfigureChannel(Channel channel, const ChannelConfig& config) noexcept {
 
   if (auto result = checkInitialized(); !result) {
     return result;
@@ -807,7 +842,8 @@ DriverResult<void> Driver::ConfigureChannel(Channel channel, const ChannelConfig
 // STATUS AND DIAGNOSTICS
 //==========================================================================
 
-DriverResult<DeviceStatus> Driver::GetDeviceStatus() noexcept {
+template <typename CommType>
+DriverResult<DeviceStatus> Driver<CommType>::GetDeviceStatus() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -868,7 +904,8 @@ DriverResult<DeviceStatus> Driver::GetDeviceStatus() noexcept {
   return status;
 }
 
-DriverResult<ChannelDiagnostics> Driver::GetChannelDiagnostics(Channel channel) noexcept {
+template <typename CommType>
+DriverResult<ChannelDiagnostics> Driver<CommType>::GetChannelDiagnostics(Channel channel) noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -931,7 +968,8 @@ DriverResult<ChannelDiagnostics> Driver::GetChannelDiagnostics(Channel channel) 
   return diag;
 }
 
-DriverResult<uint16_t> Driver::GetAverageCurrent(Channel channel, bool parallel_mode) noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetAverageCurrent(Channel channel, bool parallel_mode) noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -952,7 +990,8 @@ DriverResult<uint16_t> Driver::GetAverageCurrent(Channel channel, bool parallel_
   return current_ma;
 }
 
-DriverResult<uint16_t> Driver::GetDutyCycle(Channel channel) noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetDutyCycle(Channel channel) noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -965,7 +1004,8 @@ DriverResult<uint16_t> Driver::GetDutyCycle(Channel channel) noexcept {
   return ReadRegister(ch_addr);
 }
 
-DriverResult<uint16_t> Driver::GetVbatVoltage() noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetVbatVoltage() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -981,7 +1021,8 @@ DriverResult<uint16_t> Driver::GetVbatVoltage() noexcept {
   return VOLTAGE_FEEDBACK::ExtractVbatMillivolts(*result);
 }
 
-DriverResult<uint16_t> Driver::GetVioVoltage() noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetVioVoltage() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -997,7 +1038,8 @@ DriverResult<uint16_t> Driver::GetVioVoltage() noexcept {
   return VOLTAGE_FEEDBACK::ExtractVioMillivolts(*result);
 }
 
-DriverResult<uint16_t> Driver::GetVddVoltage() noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetVddVoltage() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -1013,7 +1055,8 @@ DriverResult<uint16_t> Driver::GetVddVoltage() noexcept {
   return VOLTAGE_FEEDBACK::ExtractVddMillivolts(*result);
 }
 
-DriverResult<void> Driver::GetVbatThresholds(uint16_t& uv_threshold,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::GetVbatThresholds(uint16_t& uv_threshold,
                                              uint16_t& ov_threshold) noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
@@ -1039,7 +1082,8 @@ DriverResult<void> Driver::GetVbatThresholds(uint16_t& uv_threshold,
 // FAULT MANAGEMENT
 //==========================================================================
 
-DriverResult<void> Driver::ClearFaults() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ClearFaults() noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -1048,7 +1092,8 @@ DriverResult<void> Driver::ClearFaults() noexcept {
   return clearFaultsInternal();
 }
 
-DriverResult<void> Driver::clearFaultsInternal() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::clearFaultsInternal() noexcept {
   // Write 1s to clear fault bits in GLOBAL_DIAG0 (rwh type - clear on write 1)
   // Note: Fault flags are latched. Writing 1 clears the latch, but if the underlying
   // condition still exists (or existed recently), the fault may be re-asserted immediately.
@@ -1071,7 +1116,8 @@ DriverResult<void> Driver::clearFaultsInternal() noexcept {
   return {};
 }
 
-DriverResult<bool> Driver::HasAnyFault() noexcept {
+template <typename CommType>
+DriverResult<bool> Driver<CommType>::HasAnyFault() noexcept {
   auto status_result = GetDeviceStatus();
   if (!status_result) {
     return std::unexpected(status_result.error());
@@ -1080,7 +1126,8 @@ DriverResult<bool> Driver::HasAnyFault() noexcept {
   return status_result->any_fault;
 }
 
-DriverResult<FaultReport> Driver::GetAllFaults() noexcept {
+template <typename CommType>
+DriverResult<FaultReport> Driver<CommType>::GetAllFaults() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -1244,7 +1291,8 @@ static void getVddThresholds(uint16_t& uv_threshold, uint16_t& ov_threshold) noe
   ov_threshold = 5950; // Mid-range estimate (5.5-6.4V range)
 }
 
-DriverResult<void> Driver::PrintAllFaults() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::PrintAllFaults() noexcept {
   auto fault_result = GetAllFaults();
   if (!fault_result) {
     return std::unexpected(fault_result.error());
@@ -1499,7 +1547,8 @@ DriverResult<void> Driver::PrintAllFaults() noexcept {
   return {};
 }
 
-DriverResult<void> Driver::SoftwareReset() noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SoftwareReset() noexcept {
   comm_.Log(LogLevel::Info, "TLE92466ED",
             "Performing software reset (entering config mode and clearing channel enable cache)\n");
   // Software reset would require toggling RESN pin or power cycle
@@ -1526,7 +1575,8 @@ DriverResult<void> Driver::SoftwareReset() noexcept {
 // WATCHDOG MANAGEMENT
 //==========================================================================
 
-DriverResult<void> Driver::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
   if (auto result = checkInitialized(); !result) {
     return result;
   }
@@ -1546,7 +1596,8 @@ DriverResult<void> Driver::ReloadSpiWatchdog(uint16_t reload_value) noexcept {
 // DEVICE INFORMATION
 //==========================================================================
 
-DriverResult<uint16_t> Driver::GetIcVersion() noexcept {
+template <typename CommType>
+DriverResult<uint16_t> Driver<CommType>::GetIcVersion() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -1554,7 +1605,8 @@ DriverResult<uint16_t> Driver::GetIcVersion() noexcept {
   return ReadRegister(CentralReg::ICVID);
 }
 
-DriverResult<std::array<uint16_t, 3>> Driver::GetChipId() noexcept {
+template <typename CommType>
+DriverResult<std::array<uint16_t, 3>> Driver<CommType>::GetChipId() noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -1582,7 +1634,8 @@ DriverResult<std::array<uint16_t, 3>> Driver::GetChipId() noexcept {
   return chip_id;
 }
 
-DriverResult<bool> Driver::VerifyDevice() noexcept {
+template <typename CommType>
+DriverResult<bool> Driver<CommType>::VerifyDevice() noexcept {
   // Read ICVID register to verify device is responding and check device type
   auto id_result = ReadRegister(CentralReg::ICVID, false); // Don't verify CRC during init
 
@@ -1626,7 +1679,8 @@ DriverResult<bool> Driver::VerifyDevice() noexcept {
 // REGISTER ACCESS
 //==========================================================================
 
-DriverResult<uint32_t> Driver::ReadRegister(uint16_t address, bool verify_crc) noexcept {
+template <typename CommType>
+DriverResult<uint32_t> Driver<CommType>::ReadRegister(uint16_t address, bool verify_crc) noexcept {
   if (!comm_.IsReady()) {
     return std::unexpected(DriverError::HardwareError);
   }
@@ -1656,7 +1710,8 @@ DriverResult<uint32_t> Driver::ReadRegister(uint16_t address, bool verify_crc) n
   return *result;
 }
 
-DriverResult<void> Driver::WriteRegister(uint16_t address, uint16_t value, bool verify_crc,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::WriteRegister(uint16_t address, uint16_t value, bool verify_crc,
                                          bool verify_write) noexcept {
   if (!comm_.IsReady()) {
     return std::unexpected(DriverError::HardwareError);
@@ -1752,7 +1807,8 @@ DriverResult<void> Driver::WriteRegister(uint16_t address, uint16_t value, bool 
   return {};
 }
 
-DriverResult<void> Driver::ModifyRegister(uint16_t address, uint16_t mask,
+template <typename CommType>
+DriverResult<void> Driver<CommType>::ModifyRegister(uint16_t address, uint16_t mask,
                                           uint16_t value) noexcept {
 
   // Read current value
@@ -1772,7 +1828,8 @@ DriverResult<void> Driver::ModifyRegister(uint16_t address, uint16_t mask,
 // PRIVATE METHODS
 //==========================================================================
 
-DriverResult<SPIFrame> Driver::transferFrame(const SPIFrame& tx_frame, bool verify_crc) noexcept {
+template <typename CommType>
+DriverResult<SPIFrame> Driver<CommType>::transferFrame(const SPIFrame& tx_frame, bool verify_crc) noexcept {
   // Transfer 32-bit frame via CommInterface
   auto comm_result = comm_.Transfer32(tx_frame.word);
   if (!comm_result) {
@@ -1808,7 +1865,8 @@ DriverResult<SPIFrame> Driver::transferFrame(const SPIFrame& tx_frame, bool veri
   return rx_frame;
 }
 
-DriverResult<void> Driver::checkSpiStatus(const SPIFrame& rx_frame) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::checkSpiStatus(const SPIFrame& rx_frame) noexcept {
   // Status field only exists in 16-bit reply frames
   if (rx_frame.rx_common.reply_mode != 0x00) {
     // For non-16-bit frames, check if it's a critical fault
@@ -1841,7 +1899,8 @@ DriverResult<void> Driver::checkSpiStatus(const SPIFrame& rx_frame) noexcept {
   }
 }
 
-DriverResult<bool> Driver::isChannelParallel(Channel channel) noexcept {
+template <typename CommType>
+DriverResult<bool> Driver<CommType>::isChannelParallel(Channel channel) noexcept {
   if (auto result = checkInitialized(); !result) {
     return std::unexpected(result.error());
   }
@@ -1879,7 +1938,8 @@ DriverResult<bool> Driver::isChannelParallel(Channel channel) noexcept {
 // GPIO CONTROL (Reset, Enable, Fault Status)
 //==========================================================================
 
-DriverResult<void> Driver::SetReset(bool reset) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetReset(bool reset) noexcept {
   comm_.Log(LogLevel::Info, "TLE92466ED", "Setting reset pin: %s\n",
             reset ? "LOW (in reset)" : "HIGH (released)");
   // RESN is active low: reset=true means hold in reset (GPIO LOW), reset=false means release (GPIO
@@ -1894,7 +1954,8 @@ DriverResult<void> Driver::SetReset(bool reset) noexcept {
   return {};
 }
 
-DriverResult<void> Driver::SetEnable(bool enable) noexcept {
+template <typename CommType>
+DriverResult<void> Driver<CommType>::SetEnable(bool enable) noexcept {
   comm_.Log(LogLevel::Info, "TLE92466ED", "Setting enable pin: %s\n",
             enable ? "HIGH (enabled)" : "LOW (disabled)");
   // EN is active high: enable=true means enable outputs (GPIO HIGH), enable=false means disable
@@ -1909,7 +1970,8 @@ DriverResult<void> Driver::SetEnable(bool enable) noexcept {
   return {};
 }
 
-DriverResult<bool> Driver::IsFault(bool print_faults) noexcept {
+template <typename CommType>
+DriverResult<bool> Driver<CommType>::IsFault(bool print_faults) noexcept {
   auto result = comm_.GetGpioPin(ControlPin::FAULTN);
   if (!result) {
     return std::unexpected(DriverError::HardwareError);
@@ -1938,7 +2000,8 @@ DriverResult<bool> Driver::IsFault(bool print_faults) noexcept {
 // DIAGNOSTIC HELPERS
 //==========================================================================
 
-void Driver::diagnoseClockConfiguration() noexcept {
+template <typename CommType>
+void Driver<CommType>::diagnoseClockConfiguration() noexcept {
   // Read CLK_DIV register to check clock configuration
   // This helps diagnose clock-related critical faults early
   auto clk_div_result = ReadRegister(CentralReg::CLK_DIV, false); // Don't verify CRC during init
@@ -1998,4 +2061,11 @@ void Driver::diagnoseClockConfiguration() noexcept {
             "═══════════════════════════════════════════════════════════\n");
 }
 
+#ifdef TLE92466ED_HEADER_INCLUDED
+// Included from header - namespace is already open, don't close it
+#else
+// Compiled directly (shouldn't happen) - close the namespace
 } // namespace TLE92466ED
+#endif
+
+#endif // TLE92466ED_IMPL

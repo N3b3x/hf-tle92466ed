@@ -286,6 +286,7 @@ struct GlobalConfig {
  * 6. Enable outputs with enable_channel()
  * 7. Monitor with get diagnostics functions
  */
+template <typename CommType>
 class Driver {
 public:
   /**
@@ -296,7 +297,7 @@ public:
    * @pre CommInterface must remain valid for the lifetime of the Driver
    * @post Driver is constructed but not initialized
    */
-  explicit Driver(CommInterface& comm) noexcept
+  explicit Driver(CommType& comm) noexcept
       : comm_(comm), initialized_(false), mission_mode_(false) {}
 
   /**
@@ -1031,7 +1032,7 @@ private:
   // MEMBER VARIABLES
   //==========================================================================
 
-  CommInterface& comm_;    ///< Communication interface
+  CommType& comm_;         ///< Communication interface
   bool initialized_;       ///< Initialization status
   bool mission_mode_;      ///< Mission mode flag (vs config mode)
   bool crc_enabled_;       ///< CRC enable state (tracks GLOBAL_CONFIG::CRC_EN)
@@ -1040,6 +1041,11 @@ private:
   uint16_t channel_enable_cache_;             ///< Cached channel enable state
   std::array<uint16_t, 6> channel_setpoints_; ///< Cached current setpoints
 };
+
+// Include template implementation (must be inside namespace before it closes)
+#define TLE92466ED_HEADER_INCLUDED
+#include "../src/TLE92466ED.cpp"
+#undef TLE92466ED_HEADER_INCLUDED
 
 } // namespace TLE92466ED
 

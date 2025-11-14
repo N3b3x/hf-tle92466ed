@@ -33,10 +33,10 @@ var searchData=
   ['test_5fsingle_5fchannel_5fcontrol_30',['test_single_channel_control',['../DriverIntegrationTest_8cpp.html#a7d47a21357614fad17a25d7fed341f58',1,'DriverIntegrationTest.cpp']]],
   ['test_5fsoftware_5freset_31',['test_software_reset',['../DriverIntegrationTest_8cpp.html#a5ce0bd503b0c435e033a23779704fe85',1,'DriverIntegrationTest.cpp']]],
   ['test_5fspi_5fwatchdog_32',['test_spi_watchdog',['../DriverIntegrationTest_8cpp.html#ac771b66525d7d0b3c4bef1fd4a96c2b0',1,'DriverIntegrationTest.cpp']]],
-  ['test_5ftask_5ftrampoline_33',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'test_task_trampoline(void *param):&#160;TestFramework.h'],['../TLE92466ED__TestFramework_8hpp.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'test_task_trampoline(void *param):&#160;TLE92466ED_TestFramework.hpp']]],
+  ['test_5ftask_5ftrampoline_33',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
   ['test_5ftelemetry_5fwith_5factive_5fchannel_34',['test_telemetry_with_active_channel',['../DriverIntegrationTest_8cpp.html#a01f3dc5889509fa100606c90ef1930d6',1,'DriverIntegrationTest.cpp']]],
   ['test_5fvbat_5fthresholds_35',['test_vbat_thresholds',['../DriverIntegrationTest_8cpp.html#a522cb8d7da6197e14bb1b3823cd72dbe',1,'DriverIntegrationTest.cpp']]],
   ['test_5fvoltage_5freading_36',['test_voltage_reading',['../DriverIntegrationTest_8cpp.html#a33ced9d335d2f2d33969d7180f88fa43',1,'DriverIntegrationTest.cpp']]],
-  ['transfer32_37',['Transfer32',['../classEsp32TleCommInterface.html#a9c2eba0bffd44d9ea5cfdaed7cb47781',1,'Esp32TleCommInterface']]],
-  ['transfermulti_38',['TransferMulti',['../classEsp32TleCommInterface.html#a94f432105947283210c39d4377808a5e',1,'Esp32TleCommInterface']]]
+  ['transfer32_37',['Transfer32',['../classEsp32TleCommInterface.html#ab5f7c06936fa0cde6d682778993c4af1',1,'Esp32TleCommInterface']]],
+  ['transfermulti_38',['TransferMulti',['../classEsp32TleCommInterface.html#a18bad257c45ff0f43384555f97d45eca',1,'Esp32TleCommInterface']]]
 ];

@@ -271,27 +271,18 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="n">tle92466ed</span><span class="o">::</span><span class="n">GlobalConfig</span> <span class="n">global_config</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">crc_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">spi_watchdog_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">clock_watchdog_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">vio_5v</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>  <span class="c1">// false = 3.3V, true = 5.0V</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">vbat_uv_voltage</span> <span class="o">=</span> <span class="mf">4.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// UV threshold in volts</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">vbat_ov_voltage</span> <span class="o">=</span> <span class="mf">41.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// OV threshold in volts</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">spi_watchdog_reload</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<p>```cpp
+tle92466ed::GlobalConfig global_config;
+global_config.crc_enabled = true;
+global_config.spi_watchdog_enabled = true;
+global_config.clock_watchdog_enabled = true;
+global_config.vio_5v = false;  // false = 3.3V, true = 5.0V
+global_config.vbat_uv_voltage = 4.0f;   // UV threshold in volts
+global_config.vbat_ov_voltage = 41.0f;  // OV threshold in volts
+global_config.spi_watchdog_reload = 1000;</p>
 
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureGlobal</span><span class="p">(</span><span class="n">global_config</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>driver.ConfigureGlobal(global_config);
+```text</p>
 <h3 id="crc-configuration">
   
   
@@ -301,9 +292,9 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetCrcEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">// Enable CRC checking (recommended)</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cpp
+driver.SetCrcEnabled(true);  // Enable CRC checking (recommended)
+</code>cpp</p>
 
 <ul>
   <li><strong>Enabled</strong>: All SPI frames include CRC-8 (SAE J1850) for error detection</li>
@@ -318,17 +309,13 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="c1">// High-level API (recommended)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetVbatThresholds</span><span class="p">(</span><span class="mf">4.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">41.0</span><span class="n">f</span><span class="p">);</span>  <span class="c1">// UV=4V, OV=41V</span>
+<p>```cpp
+// High-level API (recommended)
+driver.SetVbatThresholds(4.0f, 41.0f);  // UV=4V, OV=41V</p>
 
-<span class="c1">// Low-level API (direct register control)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetVbatThresholdsRaw</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">253</span><span class="p">);</span>  <span class="c1">// Register values</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// Low-level API (direct register control)
+driver.SetVbatThresholdsRaw(25, 253);  // Register values
+```cpp</p>
 
 <p><strong>Threshold Range</strong>: 0V to ~41.4V (calculated as <code class="language-plaintext highlighter-rouge">register_value * 0.16208V</code>)</p>
 <h2 id="channel-configuration">
@@ -348,23 +335,16 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">ICC</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">current_setpoint_ma</span> <span class="o">=</span> <span class="mi">1500</span><span class="p">;</span>  <span class="c1">// 1.5A</span>
-<span class="n">config</span><span class="p">.</span><span class="n">slew_rate</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SlewRate</span><span class="o">::</span><span class="n">MEDIUM_2V5_US</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">diag_current</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">DiagCurrent</span><span class="o">::</span><span class="n">I_80UA</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">open_load_threshold</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// 3/8 threshold</span>
+<p>```cpp
+tle92466ed::ChannelConfig config;
+config.mode = tle92466ed::ChannelMode::ICC;
+config.current_setpoint_ma = 1500;  // 1.5A
+config.slew_rate = tle92466ed::SlewRate::MEDIUM_2V5_US;
+config.diag_current = tle92466ed::DiagCurrent::I_80UA;
+config.open_load_threshold = 3;  // 3/8 threshold</p>
 
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>driver.ConfigureChannel(tle92466ed::Channel::CH0, config);
+```cpp</p>
 <h3 id="channel-modes">
   
   
@@ -382,9 +362,9 @@
 </h4>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">ICC</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cpp
+config.mode = tle92466ed::ChannelMode::ICC;
+</code>cpp</p>
 
 <ul>
   <li><strong>Purpose</strong>: Precise current regulation with 15-bit resolution</li>
@@ -400,19 +380,14 @@
 </h4>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="c1">// SPI-controlled on-time</span>
-<span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">DIRECT_DRIVE_SPI</span><span class="p">;</span>
+<p>```cpp
+// SPI-controlled on-time
+config.mode = tle92466ed::ChannelMode::DIRECT_DRIVE_SPI;</p>
 
-<span class="c1">// External pin control</span>
-<span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">DIRECT_DRIVE_DRV0</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">DIRECT_DRIVE_DRV1</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// External pin control
+config.mode = tle92466ed::ChannelMode::DIRECT_DRIVE_DRV0;
+config.mode = tle92466ed::ChannelMode::DIRECT_DRIVE_DRV1;
+```cpp</p>
 
 <ul>
   <li><strong>Purpose</strong>: Direct control via SPI or external pins</li>
@@ -427,9 +402,9 @@
 </h4>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">mode</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">ChannelMode</span><span class="o">::</span><span class="n">FREE_RUN_MEAS</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cpp
+config.mode = tle92466ed::ChannelMode::FREE_RUN_MEAS;
+</code>cpp</p>
 
 <ul>
   <li><strong>Purpose</strong>: Continuous current sensing without output control</li>
@@ -444,19 +419,16 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="c1">// Single channel mode (0-2000 mA)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetCurrentSetpoint</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> <span class="mi">1500</span><span class="p">);</span>  <span class="c1">// 1.5A</span>
+<p>```cpp
+// Single channel mode (0-2000 mA)
+driver.SetCurrentSetpoint(tle92466ed::Channel::CH0, 1500);  // 1.5A</p>
 
-<span class="c1">// Parallel mode (0-4000 mA)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetCurrentSetpoint</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> <span class="mi">3000</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>  <span class="c1">// 3A</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// Parallel mode (0-4000 mA)
+driver.SetCurrentSetpoint(tle92466ed::Channel::CH0, 3000, true);  // 3A
+```cpp</p>
 
 <p><strong>Current Range</strong>:</p>
+
 <ul>
   <li><strong>Single channel</strong>: 0-2000 mA (1.5A typical continuous, 2.0A max)</li>
   <li><strong>Parallel mode</strong>: 0-4000 mA (2.7A typical continuous, 4.0A max)</li>
@@ -471,23 +443,16 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="c1">// High-level API (recommended)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigurePwmPeriod</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> <span class="mf">100.0</span><span class="n">f</span><span class="p">);</span>  <span class="c1">// 100 µs period</span>
+<p>```cpp
+// High-level API (recommended)
+driver.ConfigurePwmPeriod(tle92466ed::Channel::CH0, 100.0f);  // 100 µs period</p>
 
-<span class="c1">// Low-level API (direct control)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigurePwmPeriodRaw</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> 
-                            <span class="mi">100</span><span class="p">,</span>    <span class="c1">// mantissa</span>
-                            <span class="mi">3</span><span class="p">,</span>      <span class="c1">// exponent</span>
-                            <span class="nb">false</span><span class="p">);</span> <span class="c1">// low_freq_range</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// Low-level API (direct control)
+driver.ConfigurePwmPeriodRaw(tle92466ed::Channel::CH0, 
+                            100,    // mantissa
+                            3,      // exponent
+                            false); // low_freq_range
+```cpp</p>
 
 <p><strong>PWM Period Range</strong>: ~0.125 µs to ~32.64 ms</p>
 <h3 id="dither-configuration">
@@ -499,29 +464,19 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="c1">// High-level API (recommended)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureDither</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span> 
-                       <span class="mf">50.0</span><span class="n">f</span><span class="p">,</span>   <span class="c1">// 50 mA amplitude</span>
-                       <span class="mf">1000.0</span><span class="n">f</span><span class="p">,</span> <span class="c1">// 1000 Hz frequency</span>
-                       <span class="nb">false</span><span class="p">);</span>  <span class="c1">// not parallel mode</span>
+<p>```cpp
+// High-level API (recommended)
+driver.ConfigureDither(tle92466ed::Channel::CH0, 
+                       50.0f,   // 50 mA amplitude
+                       1000.0f, // 1000 Hz frequency
+                       false);  // not parallel mode</p>
 
-<span class="c1">// Low-level API (direct control)</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureDitherRaw</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">Channel</span><span class="o">::</span><span class="n">CH0</span><span class="p">,</span>
-                          <span class="mi">100</span><span class="p">,</span>  <span class="c1">// step_size</span>
-                          <span class="mi">10</span><span class="p">,</span>   <span class="c1">// num_steps</span>
-                          <span class="mi">5</span><span class="p">);</span>   <span class="c1">// flat_steps</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// Low-level API (direct control)
+driver.ConfigureDitherRaw(tle92466ed::Channel::CH0,
+                          100,  // step_size
+                          10,   // num_steps
+                          5);   // flat_steps
+```text</p>
 
 <p><strong>Dither Amplitude</strong>: 0-1800 mA (configurable)</p>
 <h3 id="slew-rate">
@@ -533,15 +488,12 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">slew_rate</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SlewRate</span><span class="o">::</span><span class="n">SLOW_1V0_US</span><span class="p">;</span>      <span class="c1">// 1.0 V/µs (low EMI)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">slew_rate</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SlewRate</span><span class="o">::</span><span class="n">MEDIUM_2V5_US</span><span class="p">;</span>    <span class="c1">// 2.5 V/µs (standard)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">slew_rate</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SlewRate</span><span class="o">::</span><span class="n">FAST_5V0_US</span><span class="p">;</span>      <span class="c1">// 5.0 V/µs (fast)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">slew_rate</span> <span class="o">=</span> <span class="n">tle92466ed</span><span class="o">::</span><span class="n">SlewRate</span><span class="o">::</span><span class="n">FASTEST_10V0_US</span><span class="p">;</span>  <span class="c1">// 10.0 V/µs (maximum)</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cpp
+config.slew_rate = tle92466ed::SlewRate::SLOW_1V0_US;      // 1.0 V/µs (low EMI)
+config.slew_rate = tle92466ed::SlewRate::MEDIUM_2V5_US;    // 2.5 V/µs (standard)
+config.slew_rate = tle92466ed::SlewRate::FAST_5V0_US;      // 5.0 V/µs (fast)
+config.slew_rate = tle92466ed::SlewRate::FASTEST_10V0_US;  // 10.0 V/µs (maximum)
+</code>cpp</p>
 <h2 id="parallel-operation">
   
   
@@ -559,25 +511,19 @@
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="rouge-code"><pre><span class="c1">// Pair channels 0 and 3</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetParallelOperation</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">ParallelPair</span><span class="o">::</span><span class="n">CH0_CH3</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<p>```cpp
+// Pair channels 0 and 3
+driver.SetParallelOperation(tle92466ed::ParallelPair::CH0_CH3, true);</p>
 
-<span class="c1">// Pair channels 1 and 2</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetParallelOperation</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">ParallelPair</span><span class="o">::</span><span class="n">CH1_CH2</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<p>// Pair channels 1 and 2
+driver.SetParallelOperation(tle92466ed::ParallelPair::CH1_CH2, true);</p>
 
-<span class="c1">// Pair channels 4 and 5</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetParallelOperation</span><span class="p">(</span><span class="n">tle92466ed</span><span class="o">::</span><span class="n">ParallelPair</span><span class="o">::</span><span class="n">CH4_CH5</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>// Pair channels 4 and 5
+driver.SetParallelOperation(tle92466ed::ParallelPair::CH4_CH5, true);
+```cpp</p>
 
 <p><strong>Parallel Pairs</strong>:</p>
+
 <ul>
   <li>CH0/CH3: Doubles current capability (up to 4A)</li>
   <li>CH1/CH2: Doubles current capability (up to 4A)</li>

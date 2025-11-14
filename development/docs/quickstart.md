@@ -50,7 +50,7 @@ driver.SetCurrentSetpoint(tle92466ed::Channel::CH0, 1500); // 1500 mA
 
 // 6. Enable channel
 driver.EnableChannel(tle92466ed::Channel::CH0, true);
-```
+```cpp
 
 ## Step-by-Step Explanation
 
@@ -58,7 +58,7 @@ driver.EnableChannel(tle92466ed::Channel::CH0, true);
 
 ```cpp
 #include "tle92466ed.hpp"
-```
+```cpp
 
 This includes the main driver class and all necessary types.
 
@@ -80,14 +80,14 @@ public:
         // Implement microsecond delay
     }
 };
-```
+```cpp
 
 ### Step 3: Create Driver Instance
 
 ```cpp
 MySpi spi;
 tle92466ed::Driver driver(spi);
-```
+```cpp
 
 The constructor takes a reference to your SPI interface implementation.
 
@@ -98,13 +98,13 @@ if (auto result = driver.Init(); !result) {
     // Handle error - result.error() contains DriverError
     return;
 }
-```
+```cpp
 
 ### Step 5: Enter Mission Mode
 
 ```cpp
 driver.EnterMissionMode();
-```
+```text
 
 Mission mode enables channel control. Configuration changes require Config Mode.
 
@@ -113,13 +113,13 @@ Mission mode enables channel control. Configuration changes require Config Mode.
 ```cpp
 driver.SetChannelMode(tle92466ed::Channel::CH0, tle92466ed::ChannelMode::ICC);
 driver.SetCurrentSetpoint(tle92466ed::Channel::CH0, 1500); // 1500 mA
-```
+```cpp
 
 ### Step 7: Enable Channel
 
 ```cpp
 driver.EnableChannel(tle92466ed::Channel::CH0, true);
-```
+```cpp
 
 ## Complete Example with Error Handling
 
@@ -166,15 +166,15 @@ void app_main() {
         printf("Channel 0 current: %u mA\n", diag->average_current);
     }
 }
-```
+```cpp
 
 ## Expected Output
 
 When running this example, you should see:
 
-```
+```cpp
 Channel 0 current: 1500 mA
-```
+```cpp
 
 ## Troubleshooting
 
@@ -195,4 +195,3 @@ If you encounter issues:
 
 **Navigation**
 ⬅️ [Installation](installation.md) | [Next: Hardware Setup ➡️](hardware_setup.md) | [Back to Index](index.md)
-

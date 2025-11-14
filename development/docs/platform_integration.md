@@ -4,21 +4,25 @@ This guide explains how to implement the hardware abstraction interface for the 
 
 ## Understanding the SPI Interface
 
-The TLE92466ED driver uses a **polymorphic SPI interface** design for hardware abstraction. This design choice provides several critical benefits for embedded systems:
+The TLE92466ED driver uses a **polymorphic SPI interface** design for hardware abstraction.
+This design choice provides several critical benefits for embedded systems:
 
 ### Why This Design?
 
 #### 1. **Hardware Portability**
+
 - Write driver code once, run on any platform
 - Easy migration between MCUs (ESP32, STM32, Arduino, etc.)
 - Platform-specific code isolated in one class
 
 #### 2. **Type Safety**
+
 - Compile-time interface checking
 - Clear contract for required methods
 - Catch implementation errors at compile time
 
 #### 3. **Modern C++23**
+
 - Uses `std::expected` for error handling (no exceptions)
 - All functions `noexcept` for embedded safety
 - Zero-overhead abstractions
@@ -50,7 +54,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```cpp
 
 ## Interface Definition
 
@@ -73,7 +77,7 @@ public:
     virtual auto GetGpioPin(ControlPin pin) noexcept 
         -> std::expected<ActiveLevel, CommError>;
 };
-```
+```cpp
 
 ## Implementation Steps
 
@@ -104,7 +108,7 @@ public:
         // Your delay implementation
     }
 };
-```
+```cpp
 
 ### Step 2: Platform-Specific Examples
 
@@ -151,7 +155,7 @@ public:
         esp_rom_delay_us(us);
     }
 };
-```
+```cpp
 
 #### STM32 (HAL)
 
@@ -198,7 +202,7 @@ public:
         HAL_Delay((us + 999) / 1000);  // Convert to milliseconds
     }
 };
-```
+```cpp
 
 #### Arduino
 
@@ -236,7 +240,7 @@ public:
         delayMicroseconds(us);
     }
 };
-```
+```cpp
 
 ## SPI Frame Format
 
@@ -244,21 +248,21 @@ The TLE92466ED uses **32-bit SPI frames** with CRC-8 (SAE J1850):
 
 ### Write Frame Format
 
-```
+```cpp
 Bits 31-24 | Bits 23-17 | Bit 16 | Bits 15-0
 -----------+------------+--------+-----------
 CRC (8-bit)| Address(7) |  R/W   | Data (16)
            |            |  1=W   |
-```
+```cpp
 
 ### Read Frame Format
 
-```
+```cpp
 Bits 31-24 | Bits 23-17 | Bit 16 | Bits 15-0
 -----------+------------+--------+-----------
 CRC (8-bit)| Don't Care |  R/W   | Address (16-bit)
            |            |  0=R   |
-```
+```text
 
 ### SPI Configuration
 
@@ -293,7 +297,7 @@ auto SetGpioPin(tle92466ed::ControlPin pin, tle92466ed::ActiveLevel level) noexc
     }
     return {};
 }
-```
+```cpp
 
 ## Error Handling
 
@@ -314,7 +318,7 @@ if (auto result = spi_interface.spiTransfer(tx, rx); !result) {
             break;
     }
 }
-```
+```cpp
 
 ## Testing Your Implementation
 
@@ -333,4 +337,3 @@ if (auto result = spi_interface.spiTransfer(tx, rx); !result) {
 
 **Navigation**
 ⬅️ [Hardware Setup](hardware_setup.md) | [Next: Configuration ➡️](configuration.md) | [Back to Index](index.md)
-

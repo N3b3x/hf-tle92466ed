@@ -287,11 +287,10 @@
 </h3>
     
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>git clone https://github.com/n3b3x/hf-tle92466ed-driver.git
-<span class="nb">cd </span>hf-tle92466ed-driver
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">bash
+git clone https://github.com/n3b3x/hf-tle92466ed-driver.git
+cd hf-tle92466ed-driver
+</code>text</p>
 <h3 id="option-2-copy-files">
   
   
@@ -303,19 +302,14 @@
 
 <p>Copy the following files into your project:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre>inc/
+<p><code class="language-plaintext highlighter-rouge">cpp
+inc/
   ├── tle92466ed.hpp
   ├── tle92466ed_spi_interface.hpp
   └── tle92466ed_registers.hpp
 src/
   └── tle92466ed.cpp
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h2 id="integration-methods">
   
   
@@ -335,17 +329,13 @@ src/
 
 <p>Add the driver as a subdirectory in your <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>:</p>
 
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="nb">add_subdirectory</span><span class="p">(</span>external/hf-tle92466ed-driver<span class="p">)</span>
-<span class="nb">target_link_libraries</span><span class="p">(</span>your_target PRIVATE hf_tle92466ed<span class="p">)</span>
-<span class="nb">target_include_directories</span><span class="p">(</span>your_target PRIVATE 
-    <span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span>/external/hf-tle92466ed-driver/inc
-<span class="p">)</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cmake
+add_subdirectory(external/hf-tle92466ed-driver)
+target_link_libraries(your_target PRIVATE hf_tle92466ed)
+target_include_directories(your_target PRIVATE 
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/hf-tle92466ed-driver/inc
+)
+</code>cpp</p>
 <h3 id="using-esp-idf-component">
   
   
@@ -357,19 +347,21 @@ src/
 
 <p>The driver can be used as an ESP-IDF component. Add it to your <code class="language-plaintext highlighter-rouge">components</code> directory:</p>
 
-<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="c1"># In your main CMakeLists.txt</span>
-<span class="nf">idf_component_register</span><span class="p">(</span>
-    SRCS <span class="s2">"your_code.cpp"</span>
-    INCLUDE_DIRS <span class="s2">"."</span>
+<p>```cmake</p>
+<h1 id="in-your-main-cmakeliststxt">
+  
+  
+    <a href="#in-your-main-cmakeliststxt" class="anchor-heading" aria-labelledby="in-your-main-cmakeliststxt"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> In your main CMakeLists.txt
+  
+  
+</h1>
+    
+<p>idf_component_register(
+    SRCS “your_code.cpp”
+    INCLUDE_DIRS “.”
     REQUIRES hf_tle92466ed
-<span class="p">)</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+)
+```cpp</p>
 <h3 id="manual-integration">
   
   
@@ -382,15 +374,19 @@ src/
 <ol>
   <li>Copy the driver files to your project</li>
   <li>Add the <code class="language-plaintext highlighter-rouge">inc/</code> directory to your include path</li>
-  <li>Include the header:
-    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"tle92466ed.hpp"</span><span class="cp">
-</span></pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  <li>
+    <p>Include the header:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">cpp
+#include "tle92466ed.hpp"
+</code>cpp</p>
   </li>
-  <li>Compile with C++23 support:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>g++ <span class="nt">-std</span><span class="o">=</span>c++23 <span class="nt">-I</span> inc/ your_code.cpp src/tle92466ed.cpp
-</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  <li>
+    <p>Compile with C++23 support:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">bash
+g++ -std=c++23 -I inc/ your_code.cpp src/tle92466ed.cpp
+</code>cpp</p>
   </li>
 </ol>
 <h2 id="verification">
@@ -405,17 +401,23 @@ src/
 <p>To verify the installation:</p>
 
 <ol>
-  <li>Include the header in a test file:
-    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"tle92466ed.hpp"</span><span class="cp">
-</span></pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  <li>
+    <p>Include the header in a test file:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">cpp
+#include "tle92466ed.hpp"
+</code>cpp</p>
   </li>
-  <li>Compile a simple test:
-    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>g++ <span class="nt">-std</span><span class="o">=</span>c++23 <span class="nt">-I</span> inc/ <span class="nt">-c</span> src/tle92466ed.cpp <span class="nt">-o</span> test.o
-</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  <li>
+    <p>Compile a simple test:</p>
+
+    <p><code class="language-plaintext highlighter-rouge">bash
+g++ -std=c++23 -I inc/ -c src/tle92466ed.cpp -o test.o
+</code>cpp</p>
   </li>
-  <li>If compilation succeeds, the library is properly installed.</li>
+  <li>
+    <p>If compilation succeeds, the library is properly installed.</p>
+  </li>
 </ol>
 <h2 id="next-steps">
   

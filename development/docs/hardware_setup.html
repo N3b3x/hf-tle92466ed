@@ -253,7 +253,8 @@
 </h1>
     
 
-<p>This guide covers the physical connections and hardware requirements for the TLE92466ED Six-Channel Low-Side Solenoid Driver IC.</p>
+<p>This guide covers the physical connections and hardware requirements for the TLE92466ED
+Six-Channel Low-Side Solenoid Driver IC.</p>
 <h2 id="pin-connections">
   
   
@@ -271,16 +272,8 @@
 </h3>
     
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre>MCU              TLE92466ED
+<p><code class="language-plaintext highlighter-rouge">text
+MCU              TLE92466ED
 ─────────────────────────
 3.3V/5V   ────── VIO
 GND       ────── GND
@@ -289,7 +282,7 @@ SCK       ────── SCK
 MOSI      ────── SI
 MISO      ────── SO
 CS        ────── CSN
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h3 id="control-pins">
   
   
@@ -299,17 +292,13 @@ CS        ────── CSN
 </h3>
     
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>MCU              TLE92466ED
+<p><code class="language-plaintext highlighter-rouge">text
+MCU              TLE92466ED
 ─────────────────────────
 GPIO      ────── RESN (optional, active low reset)
 GPIO      ────── EN (optional, active high enable)
 GPIO      ────── FAULTN (optional, active low fault output)
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h3 id="pin-descriptions">
   
   
@@ -455,9 +444,9 @@ GPIO      ────── FAULTN (optional, active low fault output)
 
 <p>Connect the load between OUTx and VBAT (or positive supply):</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>VBAT ────[Load]──── OUTx ──── GND
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">cpp
+VBAT ────[Load]──── OUTx ──── GND
+</code>cpp</p>
 <h3 id="parallel-channel-mode">
   
   
@@ -469,11 +458,10 @@ GPIO      ────── FAULTN (optional, active low fault output)
 
 <p>For higher current, connect channels in parallel (pairs: 0/3, 1/2, 4/5):</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>VBAT ────[Load]──── OUT0 ──── GND
+<p><code class="language-plaintext highlighter-rouge">cpp
+VBAT ────[Load]──── OUT0 ──── GND
                   └──── OUT3 ──── GND
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h2 id="physical-layout-recommendations">
   
   
@@ -501,23 +489,8 @@ GPIO      ────── FAULTN (optional, active low fault output)
 </h2>
     
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre>                    TLE92466ED
+<p><code class="language-plaintext highlighter-rouge">text
+                    TLE92466ED
                     ┌─────────┐
        12V/24V ─────┤ VBAT    │
        3.3V    ─────┤ VIO     │
@@ -533,7 +506,7 @@ GPIO      ────── FAULTN (optional, active low fault output)
                       │
                       │ OUT1
                       ├───[Valve]─── VBAT
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h2 id="protection-components">
   
   
@@ -553,11 +526,10 @@ GPIO      ────── FAULTN (optional, active low fault output)
 
 <p>For inductive loads (solenoids, valves), the TLE92466ED has internal protection, but external flyback diodes may be needed for very high inductance loads:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-</pre></td><td class="rouge-code"><pre>VBAT ────[Flyback Diode]─── OUTx
+<p><code class="language-plaintext highlighter-rouge">cpp
+VBAT ────[Flyback Diode]─── OUTx
          (cathode to VBAT)
-</pre></td></tr></tbody></table></div></code></pre></div></div>
+</code>cpp</p>
 <h3 id="current-limiting">
   
   

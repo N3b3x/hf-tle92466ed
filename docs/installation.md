@@ -17,20 +17,20 @@ Before installing the driver, ensure you have:
 ```bash
 git clone https://github.com/n3b3x/hf-tle92466ed-driver.git
 cd hf-tle92466ed-driver
-```
+```text
 
 ### Option 2: Copy Files
 
 Copy the following files into your project:
 
-```
+```cpp
 inc/
   ├── tle92466ed.hpp
   ├── tle92466ed_spi_interface.hpp
   └── tle92466ed_registers.hpp
 src/
   └── tle92466ed.cpp
-```
+```cpp
 
 ## Integration Methods
 
@@ -44,7 +44,7 @@ target_link_libraries(your_target PRIVATE hf_tle92466ed)
 target_include_directories(your_target PRIVATE 
     ${CMAKE_CURRENT_SOURCE_DIR}/external/hf-tle92466ed-driver/inc
 )
-```
+```cpp
 
 ### Using ESP-IDF Component
 
@@ -57,34 +57,39 @@ idf_component_register(
     INCLUDE_DIRS "."
     REQUIRES hf_tle92466ed
 )
-```
+```cpp
 
 ### Manual Integration
 
 1. Copy the driver files to your project
 2. Add the `inc/` directory to your include path
 3. Include the header:
+
    ```cpp
    #include "tle92466ed.hpp"
-   ```
+```cpp
+
 4. Compile with C++23 support:
+
    ```bash
    g++ -std=c++23 -I inc/ your_code.cpp src/tle92466ed.cpp
-   ```
+```cpp
 
 ## Verification
 
 To verify the installation:
 
 1. Include the header in a test file:
+
    ```cpp
    #include "tle92466ed.hpp"
-   ```
+```cpp
 
 2. Compile a simple test:
+
    ```bash
    g++ -std=c++23 -I inc/ -c src/tle92466ed.cpp -o test.o
-   ```
+```cpp
 
 3. If compilation succeeds, the library is properly installed.
 
@@ -98,4 +103,3 @@ To verify the installation:
 
 **Navigation**
 ⬅️ [Back to Index](index.md) | [Next: Quick Start ➡️](quickstart.md)
-

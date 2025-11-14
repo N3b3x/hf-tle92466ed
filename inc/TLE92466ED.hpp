@@ -239,7 +239,8 @@ struct FaultReport {
     bool current_regulation_warning{false}; ///< Current regulation warning
     bool pwm_regulation_warning{false};     ///< PWM regulation warning
     bool olsg_warning{false};               ///< OLSG warning
-  } channels[6];                            ///< Faults for each channel (CH0-CH5)
+    std::array<ChannelFaults, 6> channels{}; ///< Faults for each channel (CH0-CH5)
+  };
 
   // Summary flags from FB_STAT
   bool supply_nok_internal{false}; ///< Internal supply fault summary
@@ -254,8 +255,8 @@ struct GlobalConfig {
   bool spi_watchdog_enabled{true};    ///< Enable SPI watchdog
   bool clock_watchdog_enabled{true};  ///< Enable clock watchdog
   bool vio_5v{false};                 ///< VIO voltage (false=3.3V, true=5.0V)
-  float vbat_uv_voltage{4.0f};        ///< VBAT UV threshold voltage in volts (default: ~4V)
-  float vbat_ov_voltage{41.0f};       ///< VBAT OV threshold voltage in volts (default: ~41V)
+  float vbat_uv_voltage{4.0F};        ///< VBAT UV threshold voltage in volts (default: ~4V)
+  float vbat_ov_voltage{41.0F};       ///< VBAT OV threshold voltage in volts (default: ~41V)
   uint16_t spi_watchdog_reload{1000}; ///< SPI watchdog reload value
 };
 
@@ -298,7 +299,7 @@ public:
    * @post Driver is constructed but not initialized
    */
   explicit Driver(CommType& comm) noexcept
-      : comm_(comm), initialized_(false), mission_mode_(false) {}
+      : comm_(comm) {}
 
   /**
    * @brief Destructor - ensures clean shutdown
@@ -1033,12 +1034,12 @@ private:
   //==========================================================================
 
   CommType& comm_;         ///< Communication interface
-  bool initialized_;       ///< Initialization status
-  bool mission_mode_;      ///< Mission mode flag (vs config mode)
-  bool crc_enabled_;       ///< CRC enable state (tracks GLOBAL_CONFIG::CRC_EN)
-  bool vio_5v_mode_;       ///< VIO mode state (tracks GLOBAL_CONFIG::VIO_SEL, false=3.3V, true=5V)
-  uint16_t ch_ctrl_cache_; ///< Cached CH_CTRL register value (reads return 0x0000)
-  uint16_t channel_enable_cache_;             ///< Cached channel enable state
+  bool initialized_{false};       ///< Initialization status
+  bool mission_mode_{false};      ///< Mission mode flag (vs config mode)
+  bool crc_enabled_{false};       ///< CRC enable state (tracks GLOBAL_CONFIG::CRC_EN)
+  bool vio_5v_mode_{false};       ///< VIO mode state (tracks GLOBAL_CONFIG::VIO_SEL, false=3.3V, true=5V)
+  uint16_t ch_ctrl_cache_{0U}; ///< Cached CH_CTRL register value (reads return 0x0000)
+  uint16_t channel_enable_cache_{0U};             ///< Cached channel enable state
   std::array<uint16_t, 6> channel_setpoints_; ///< Cached current setpoints
 };
 

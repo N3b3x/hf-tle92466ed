@@ -1,12 +1,13 @@
 # Hardware Setup
 
-This guide covers the physical connections and hardware requirements for the TLE92466ED Six-Channel Low-Side Solenoid Driver IC.
+This guide covers the physical connections and hardware requirements for the TLE92466ED
+Six-Channel Low-Side Solenoid Driver IC.
 
 ## Pin Connections
 
 ### Basic SPI Connections
 
-```
+```text
 MCU              TLE92466ED
 ─────────────────────────
 3.3V/5V   ────── VIO
@@ -16,17 +17,17 @@ SCK       ────── SCK
 MOSI      ────── SI
 MISO      ────── SO
 CS        ────── CSN
-```
+```cpp
 
 ### Control Pins
 
-```
+```text
 MCU              TLE92466ED
 ─────────────────────────
 GPIO      ────── RESN (optional, active low reset)
 GPIO      ────── EN (optional, active high enable)
 GPIO      ────── FAULTN (optional, active low fault output)
-```
+```cpp
 
 ### Pin Descriptions
 
@@ -68,18 +69,18 @@ GPIO      ────── FAULTN (optional, active low fault output)
 
 Connect the load between OUTx and VBAT (or positive supply):
 
-```
+```cpp
 VBAT ────[Load]──── OUTx ──── GND
-```
+```cpp
 
 ### Parallel Channel Mode
 
 For higher current, connect channels in parallel (pairs: 0/3, 1/2, 4/5):
 
-```
+```cpp
 VBAT ────[Load]──── OUT0 ──── GND
                   └──── OUT3 ──── GND
-```
+```cpp
 
 ## Physical Layout Recommendations
 
@@ -93,7 +94,7 @@ VBAT ────[Load]──── OUT0 ──── GND
 
 ## Example Wiring Diagram
 
-```
+```text
                     TLE92466ED
                     ┌─────────┐
        12V/24V ─────┤ VBAT    │
@@ -110,7 +111,7 @@ VBAT ────[Load]──── OUT0 ──── GND
                       │
                       │ OUT1
                       ├───[Valve]─── VBAT
-```
+```cpp
 
 ## Protection Components
 
@@ -118,10 +119,10 @@ VBAT ────[Load]──── OUT0 ──── GND
 
 For inductive loads (solenoids, valves), the TLE92466ED has internal protection, but external flyback diodes may be needed for very high inductance loads:
 
-```
+```cpp
 VBAT ────[Flyback Diode]─── OUTx
          (cathode to VBAT)
-```
+```cpp
 
 ### Current Limiting
 
@@ -137,4 +138,3 @@ The TLE92466ED has built-in overcurrent protection (OCP) and current regulation 
 
 **Navigation**
 ⬅️ [Quick Start](quickstart.md) | [Next: Platform Integration ➡️](platform_integration.md) | [Back to Index](index.md)
-

@@ -45,7 +45,7 @@ void app_main() {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
-```
+```cpp
 
 ## Example 2: Parallel Operation (High Current)
 
@@ -79,7 +79,7 @@ void configure_high_current_solenoid() {
     
     printf("High-current mode active: 3.5A\n");
 }
-```
+```cpp
 
 ## Example 3: Fault Monitoring
 
@@ -118,7 +118,7 @@ void monitor_faults() {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
-```
+```cpp
 
 ## Example 4: Multi-Channel Control
 
@@ -152,7 +152,7 @@ void multi_channel_control() {
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
-```
+```text
 
 ## Example 5: PWM and Dither Configuration
 
@@ -179,7 +179,7 @@ void advanced_current_control() {
     driver.EnterMissionMode();
     driver.EnableChannel(tle92466ed::Channel::CH0, true);
 }
-```
+```text
 
 ## Example 6: Complete Channel Configuration
 
@@ -210,7 +210,7 @@ void complete_channel_setup() {
     driver.EnterMissionMode();
     driver.EnableChannel(tle92466ed::Channel::CH0, true);
 }
-```
+```cpp
 
 ## Example 7: Voltage Monitoring
 
@@ -238,7 +238,7 @@ void monitor_voltages() {
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
-```
+```cpp
 
 ## Next Steps
 
@@ -250,4 +250,3 @@ void monitor_voltages() {
 
 **Navigation**
 ⬅️ [Configuration](configuration.md) | [Next: Troubleshooting ➡️](troubleshooting.md) | [Back to Index](index.md)
-

@@ -626,7 +626,7 @@ public:
    * @note The format string and arguments follow printf-style formatting
    */
   void Log(LogLevel level, const char* tag, const char* format, ...) noexcept {
-    va_list args;
+    va_list args{};
     va_start(args, format);
     static_cast<Derived*>(this)->Log(level, tag, format, args);
     va_end(args);
@@ -687,6 +687,12 @@ public:
   [[nodiscard]] CommResult<void> Write(uint16_t address, uint16_t value,
                                        bool verify_crc = true) noexcept;
 
+  /**
+   * @brief Prevent copying
+   */
+  SpiInterface(const SpiInterface&) = delete;
+  SpiInterface& operator=(const SpiInterface&) = delete;
+
 protected:
   /**
    * @brief Protected constructor to prevent direct instantiation
@@ -695,12 +701,6 @@ protected:
    * This class can only be instantiated through derived classes.
    */
   SpiInterface() = default;
-
-  /**
-   * @brief Prevent copying
-   */
-  SpiInterface(const SpiInterface&) = delete;
-  SpiInterface& operator=(const SpiInterface&) = delete;
 
   /**
    * @brief Allow moving
@@ -772,7 +772,7 @@ inline CommResult<uint32_t> SpiInterface<Derived>::Read(uint16_t address, bool v
   }
 
   // Parse response frame from second transfer
-  SPIFrame rx_frame;
+  SPIFrame rx_frame{};
   rx_frame.word = *rx_result;
 
   // Verify CRC if requested
@@ -782,18 +782,21 @@ inline CommResult<uint32_t> SpiInterface<Derived>::Read(uint16_t address, bool v
 
   // Extract data from response based on reply mode
   if (rx_frame.rx_common.reply_mode == 0x00) {
-    // 16-bit reply frame
+    // 16-bit reply frame - data is 16 bits, zero-extend to uint32_t
+    // NOLINTNEXTLINE(bugprone-narrowing-conversions) - Bitfield extraction is safe, zero-extends to uint32_t
     return static_cast<uint32_t>(rx_frame.rx_16bit.data);
-  } else if (rx_frame.rx_common.reply_mode == 0x01) {
-    // 22-bit reply frame - return full 22-bit data (for feedback registers)
+  }
+  if (rx_frame.rx_common.reply_mode == 0x01) {
+    // 22-bit reply frame - data is 22 bits, zero-extend to uint32_t
+    // NOLINTNEXTLINE(bugprone-narrowing-conversions) - Bitfield extraction is safe, zero-extends to uint32_t
     return static_cast<uint32_t>(rx_frame.rx_22bit.data);
-  } else if (rx_frame.rx_common.reply_mode == 0x02) {
+  }
+  if (rx_frame.rx_common.reply_mode == 0x02) {
     // Critical fault frame - this shouldn't happen during normal read
     return std::unexpected(CommError::BusError);
-  } else {
-    // Reserved/unknown reply mode
-    return std::unexpected(CommError::TransferError);
   }
+  // Reserved/unknown reply mode
+  return std::unexpected(CommError::TransferError);
 }
 
 template <typename Derived>
@@ -822,7 +825,7 @@ inline CommResult<void> SpiInterface<Derived>::Write(uint16_t address, uint16_t 
   }
 
   // Parse response frame from second transfer
-  SPIFrame rx_frame;
+  SPIFrame rx_frame{};
   rx_frame.word = *rx_result;
 
   // Verify CRC if requested

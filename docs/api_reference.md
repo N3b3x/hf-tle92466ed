@@ -20,9 +20,10 @@ Main driver class for interfacing with the TLE92466ED Six-Channel Low-Side Solen
 **Location**: [`inc/tle92466ed.hpp#L289`](../inc/tle92466ed.hpp#L289)
 
 **Constructor:**
+
 ```cpp
 explicit Driver(CommType& comm) noexcept;
-```
+```text
 
 **Location**: [`inc/tle92466ed.hpp#L300`](../inc/tle92466ed.hpp#L300)
 
@@ -186,4 +187,3 @@ explicit Driver(CommType& comm) noexcept;
 
 **Navigation**
 ⬅️ [Configuration](configuration.md) | [Next: Examples ➡️](examples.md) | [Back to Index](index.md)
-

@@ -149,7 +149,7 @@ DriverResult<void> Driver<CommType>::applyDefaultConfig() noexcept {
 
   // Configure all channels with default settings (ICC mode, 1V/us slew, disabled)
   for (uint8_t ch = 0; ch < static_cast<uint8_t>(Channel::COUNT); ++ch) {
-    Channel channel = static_cast<Channel>(ch);
+    auto channel = static_cast<Channel>(ch);
     uint16_t ch_base = GetChannelBase(channel);
 
     // Set mode to ICC (0x0001)
@@ -253,14 +253,18 @@ DriverResult<void> Driver<CommType>::ConfigureGlobal(const GlobalConfig& config)
 
   // Build GLOBAL_CONFIG register value
   uint16_t global_cfg = 0;
-  if (config.clock_watchdog_enabled)
+  if (config.clock_watchdog_enabled) {
     global_cfg |= GLOBAL_CONFIG::CLK_WD_EN;
-  if (config.spi_watchdog_enabled)
+  }
+  if (config.spi_watchdog_enabled) {
     global_cfg |= GLOBAL_CONFIG::SPI_WD_EN;
-  if (config.crc_enabled)
+  }
+  if (config.crc_enabled) {
     global_cfg |= GLOBAL_CONFIG::CRC_EN;
-  if (config.vio_5v)
+  }
+  if (config.vio_5v) {
     global_cfg |= GLOBAL_CONFIG::VIO_SEL;
+  }
 
   if (auto result = WriteRegister(CentralReg::GLOBAL_CONFIG, global_cfg); !result) {
     return std::unexpected(result.error());
@@ -337,7 +341,7 @@ DriverResult<void> Driver<CommType>::SetVbatThresholds(float uv_voltage, float o
 template <typename CommType>
 DriverResult<void> Driver<CommType>::setVbatThresholdsInternal(float uv_voltage, float ov_voltage) noexcept {
   // Validate voltage range
-  if (uv_voltage < 0.0f || uv_voltage > 41.4f || ov_voltage < 0.0f || ov_voltage > 41.4f) {
+  if (uv_voltage < 0.0F || uv_voltage > 41.4F || ov_voltage < 0.0F || ov_voltage > 41.4F) {
     return std::unexpected(DriverError::InvalidParameter);
   }
 
@@ -346,10 +350,10 @@ DriverResult<void> Driver<CommType>::setVbatThresholdsInternal(float uv_voltage,
   uint8_t ov_threshold = VBAT_THRESHOLD::CalculateFromVoltage(ov_voltage);
 
   // Check if calculation was successful (non-zero values)
-  if (uv_threshold == 0 && uv_voltage > 0.0f) {
+  if (uv_threshold == 0 && uv_voltage > 0.0F) {
     return std::unexpected(DriverError::InvalidParameter);
   }
-  if (ov_threshold == 0 && ov_voltage > 0.0f) {
+  if (ov_threshold == 0 && ov_voltage > 0.0F) {
     return std::unexpected(DriverError::InvalidParameter);
   }
 
@@ -448,9 +452,10 @@ DriverResult<void> Driver<CommType>::EnableChannels(uint8_t channel_mask) noexce
   comm_.Log(LogLevel::Info, "TLE92466ED", "Enabling channels: Mask=0x%02X (", channel_mask);
   bool first = true;
   for (uint8_t ch = 0; ch < 6; ++ch) {
-    if (channel_mask & (1 << ch)) {
-      if (!first)
+    if ((channel_mask & (1 << ch)) != 0) {
+      if (!first) {
         comm_.Log(LogLevel::Info, "TLE92466ED", ", ");
+      }
       comm_.Log(LogLevel::Info, "TLE92466ED", "%s", ToString(static_cast<Channel>(ch)));
       first = false;
     }
@@ -621,7 +626,7 @@ DriverResult<void> Driver<CommType>::ConfigurePwmPeriod(Channel channel, float p
   }
 
   // Validate period range
-  if (period_us < 0.125f || period_us > 32640.0f) {
+  if (period_us < 0.125F || period_us > 32640.0F) {
     return std::unexpected(DriverError::InvalidParameter);
   }
 
@@ -686,7 +691,7 @@ DriverResult<void> Driver<CommType>::ConfigureDither(Channel channel, float ampl
   }
 
   // Validate parameters
-  if (amplitude_ma < 0.0f || frequency_hz <= 0.0f) {
+  if (amplitude_ma < 0.0F || frequency_hz <= 0.0F) {
     return std::unexpected(DriverError::InvalidParameter);
   }
 
@@ -1072,8 +1077,8 @@ DriverResult<void> Driver<CommType>::GetVbatThresholds(uint16_t& uv_threshold,
   uint8_t uv_th = (vbat_th >> 0) & 0xFF;
   uint8_t ov_th = (vbat_th >> 8) & 0xFF;
 
-  uv_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(uv_th) * 1000.0f + 0.5f);
-  ov_threshold = static_cast<uint16_t>(VBAT_THRESHOLD::CalculateVoltage(ov_th) * 1000.0f + 0.5f);
+  uv_threshold = static_cast<uint16_t>(std::lround(VBAT_THRESHOLD::CalculateVoltage(uv_th) * 1000.0F));
+  ov_threshold = static_cast<uint16_t>(std::lround(VBAT_THRESHOLD::CalculateVoltage(ov_th) * 1000.0F));
 
   return {};
 }
@@ -1446,69 +1451,88 @@ DriverResult<void> Driver<CommType>::PrintAllFaults() noexcept {
                              report.hvadc_err;
   if (has_internal_faults) {
     comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Internal Supply Faults:\n");
-    if (report.vr_iref_uv)
+    if (report.vr_iref_uv) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Undervoltage\n");
-    if (report.vr_iref_ov)
+    }
+    if (report.vr_iref_ov) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Bias Current Overvoltage\n");
-    if (report.vdd2v5_uv)
+    }
+    if (report.vdd2v5_uv) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Undervoltage\n");
-    if (report.vdd2v5_ov)
+    }
+    if (report.vdd2v5_ov) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal 2.5V Supply Overvoltage\n");
-    if (report.ref_uv)
+    }
+    if (report.ref_uv) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Undervoltage\n");
-    if (report.ref_ov)
+    }
+    if (report.ref_ov) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Reference Overvoltage\n");
-    if (report.vpre_ov)
+    }
+    if (report.vpre_ov) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Pre-Regulator Overvoltage\n");
-    if (report.hvadc_err)
+    }
+    if (report.hvadc_err) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Monitoring ADC Error\n");
+    }
   }
 
   // System Faults
   if (report.clock_fault || report.spi_wd_error) {
     comm_.Log(LogLevel::Warn, "TLE92466ED", "║ System Faults:\n");
-    if (report.clock_fault)
+    if (report.clock_fault) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Clock Fault\n");
-    if (report.spi_wd_error)
+    }
+    if (report.spi_wd_error) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ SPI Watchdog Error\n");
+    }
   }
 
   // Temperature Faults
   if (report.ot_error || report.ot_warning) {
     comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Temperature Faults:\n");
-    if (report.ot_error)
+    if (report.ot_error) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Central Over-Temperature Error\n");
-    if (report.ot_warning)
+    }
+    if (report.ot_warning) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  Central Over-Temperature Warning\n");
+    }
   }
 
   // Reset Events
   if (report.por_event || report.reset_event) {
     comm_.Log(LogLevel::Info, "TLE92466ED", "║ Reset Events:\n");
-    if (report.por_event)
+    if (report.por_event) {
       comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  Power-On Reset Event\n");
-    if (report.reset_event)
+    }
+    if (report.reset_event) {
       comm_.Log(LogLevel::Info, "TLE92466ED", "║   ℹ️  External Reset Event (RESN pin)\n");
+    }
   }
 
   // Memory/ECC Faults
   if (report.reg_ecc_err || report.otp_ecc_err || report.otp_virgin) {
     comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Memory/ECC Faults:\n");
-    if (report.reg_ecc_err)
+    if (report.reg_ecc_err) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Register ECC Error\n");
-    if (report.otp_ecc_err)
+    }
+    if (report.otp_ecc_err) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ OTP ECC Error\n");
-    if (report.otp_virgin)
+    }
+    if (report.otp_virgin) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ⚠️  OTP Virgin/Unconfigured\n");
+    }
   }
 
   // Summary Flags
   if (report.supply_nok_internal || report.supply_nok_external) {
     comm_.Log(LogLevel::Warn, "TLE92466ED", "║ Supply Summary:\n");
-    if (report.supply_nok_external)
+    if (report.supply_nok_external) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ External Supply Fault Summary\n");
-    if (report.supply_nok_internal)
+    }
+    if (report.supply_nok_internal) {
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   ❌ Internal Supply Fault Summary\n");
+    }
   }
 
   // Channel-specific faults
@@ -1520,24 +1544,33 @@ DriverResult<void> Driver<CommType>::PrintAllFaults() noexcept {
         has_channel_faults = true;
       }
       comm_.Log(LogLevel::Warn, "TLE92466ED", "║   Channel %u:\n", ch);
-      if (report.channels[ch].overcurrent)
+      if (report.channels[ch].overcurrent) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Current\n");
-      if (report.channels[ch].short_to_ground)
+      }
+      if (report.channels[ch].short_to_ground) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Short to Ground\n");
-      if (report.channels[ch].open_load)
+      }
+      if (report.channels[ch].open_load) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load\n");
-      if (report.channels[ch].over_temperature)
+      }
+      if (report.channels[ch].over_temperature) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Over-Temperature\n");
-      if (report.channels[ch].open_load_short_ground)
+      }
+      if (report.channels[ch].open_load_short_ground) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ❌ Open Load or Short to Ground\n");
-      if (report.channels[ch].ot_warning)
+      }
+      if (report.channels[ch].ot_warning) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Over-Temperature Warning\n");
-      if (report.channels[ch].current_regulation_warning)
+      }
+      if (report.channels[ch].current_regulation_warning) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  Current Regulation Warning\n");
-      if (report.channels[ch].pwm_regulation_warning)
+      }
+      if (report.channels[ch].pwm_regulation_warning) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  PWM Regulation Warning\n");
-      if (report.channels[ch].olsg_warning)
+      }
+      if (report.channels[ch].olsg_warning) {
         comm_.Log(LogLevel::Warn, "TLE92466ED", "║     ⚠️  OLSG Warning\n");
+      }
     }
   }
 
@@ -1652,7 +1685,7 @@ DriverResult<bool> Driver<CommType>::VerifyDevice() noexcept {
   if (icvid == 0x0000 || icvid == 0xFFFF) {
     comm_.Log(LogLevel::Error, "TLE92466ED",
               "Device verification failed: Invalid ICVID response (0x%04X)\n", icvid);
-    return false;
+    return DriverResult<bool>{false};
   }
 
   // Validate device ID
@@ -1672,7 +1705,7 @@ DriverResult<bool> Driver<CommType>::VerifyDevice() noexcept {
               icvid, device_type, revision);
   }
 
-  return valid;
+  return static_cast<bool>(valid);
 }
 
 //==========================================================================
@@ -1746,7 +1779,7 @@ DriverResult<void> Driver<CommType>::WriteRegister(uint16_t address, uint16_t va
 
     auto read_result = ReadRegister(address, verify_crc);
     if (read_result) {
-      uint16_t read_value = static_cast<uint16_t>(*read_result);
+      auto read_value = static_cast<uint16_t>(*read_result);
 
       // Special handling for known problematic registers
       // CH_CTRL (0x0000): Reads may return 0x0000 even after write due to device behavior
@@ -1847,7 +1880,7 @@ DriverResult<SPIFrame> Driver<CommType>::transferFrame(const SPIFrame& tx_frame,
     }
   }
 
-  SPIFrame rx_frame;
+  SPIFrame rx_frame{};
   rx_frame.word = *comm_result;
 
   // Verify CRC if requested
@@ -1881,7 +1914,7 @@ DriverResult<void> Driver<CommType>::checkSpiStatus(const SPIFrame& rx_frame) no
   }
 
   // 16-bit reply frame - check status field
-  SPIStatus status = static_cast<SPIStatus>(rx_frame.rx_16bit.status);
+  auto status = static_cast<SPIStatus>(rx_frame.rx_16bit.status);
 
   switch (status) {
   case SPIStatus::NO_ERROR:
@@ -1922,15 +1955,15 @@ DriverResult<bool> Driver<CommType>::isChannelParallel(Channel channel) noexcept
   switch (ch_index) {
   case 0:
   case 3:
-    return (ch_ctrl & CH_CTRL::CH_PAR_0_3) != 0;
+    return DriverResult<bool>{(ch_ctrl & CH_CTRL::CH_PAR_0_3) != 0};
   case 1:
   case 2:
-    return (ch_ctrl & CH_CTRL::CH_PAR_1_2) != 0;
+    return DriverResult<bool>{(ch_ctrl & CH_CTRL::CH_PAR_1_2) != 0};
   case 4:
   case 5:
-    return (ch_ctrl & CH_CTRL::CH_PAR_4_5) != 0;
+    return DriverResult<bool>{(ch_ctrl & CH_CTRL::CH_PAR_4_5) != 0};
   default:
-    return false;
+    return DriverResult<bool>{false};
   }
 }
 
@@ -1993,7 +2026,7 @@ DriverResult<bool> Driver<CommType>::IsFault(bool print_faults) noexcept {
     }
   }
 
-  return fault_detected;
+  return DriverResult<bool>{fault_detected};
 }
 
 //==========================================================================
@@ -2013,7 +2046,7 @@ void Driver<CommType>::diagnoseClockConfiguration() noexcept {
     return;
   }
 
-  uint16_t clk_div = static_cast<uint16_t>(*clk_div_result);
+  auto clk_div = static_cast<uint16_t>(*clk_div_result);
 
   // Parse CLK_DIV register fields
   bool ext_clk = (clk_div & 0x8000) != 0;     // Bit 15: EXT_CLK
@@ -2034,7 +2067,7 @@ void Driver<CommType>::diagnoseClockConfiguration() noexcept {
   if (ext_clk && pll_refdiv > 0 && pll_fbdiv > 0) {
     // fSYS = fCLK * (PLL_FBDIV) / (2 * PLL_REFDIV)
     // We don't know fCLK, but we can show the divider ratio
-    float divider_ratio = static_cast<float>(pll_fbdiv) / (2.0f * static_cast<float>(pll_refdiv));
+    float divider_ratio = static_cast<float>(pll_fbdiv) / (2.0F * static_cast<float>(pll_refdiv));
     comm_.Log(LogLevel::Info, "TLE92466ED", "  PLL Divider Ratio: %.3f (fSYS = fCLK * %.3f)\n",
               divider_ratio, divider_ratio);
     comm_.Log(LogLevel::Info, "TLE92466ED",
@@ -2042,7 +2075,7 @@ void Driver<CommType>::diagnoseClockConfiguration() noexcept {
 
     // Show expected fSYS for common fCLK values
     comm_.Log(LogLevel::Info, "TLE92466ED", "  Expected fSYS for common fCLK values:\n");
-    for (float fclk_mhz = 1.0f; fclk_mhz <= 8.0f; fclk_mhz += 0.5f) {
+    for (float fclk_mhz = 1.0F; fclk_mhz <= 8.0F; fclk_mhz += 0.5F) {
       float fsys_mhz = fclk_mhz * divider_ratio;
       comm_.Log(LogLevel::Info, "TLE92466ED", "    fCLK=%.1f MHz -> fSYS=%.2f MHz\n", fclk_mhz,
                 fsys_mhz);

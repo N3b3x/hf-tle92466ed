@@ -31,6 +31,8 @@
 #ifndef TLE92466ED_REGISTERS_HPP
 #define TLE92466ED_REGISTERS_HPP
 
+#include <algorithm>
+#include <cmath>
 #include <cstddef>
 #include <cstdint>
 
@@ -508,8 +510,7 @@ constexpr uint16_t MAX_TARGET = 0x6000;
   // (current_ma * 32767 / max_current + 0.5)
   uint32_t target = (static_cast<uint32_t>(current_ma) * 32767UL + (max_current / 2)) / max_current;
   // Saturate at MAX_TARGET
-  if (target > MAX_TARGET)
-    target = MAX_TARGET;
+  target = std::min(target, static_cast<uint32_t>(MAX_TARGET));
   return static_cast<uint16_t>(target);
 }
 
@@ -560,7 +561,7 @@ constexpr uint8_t EXP_VALUE_MASK = 0x07;     ///< Exponent value mask (3 bits: 0
 constexpr uint16_t LOW_FREQ_BIT = (1 << 11); ///< Low frequency range bit
 
 constexpr uint32_t F_SYS_HZ = 8'000'000UL; ///< System clock frequency (8 MHz)
-constexpr float F_SYS_PERIOD_US = 0.125f;  ///< System clock period (0.125 µs)
+constexpr float F_SYS_PERIOD_US = 0.125F;  ///< System clock period (0.125 µs)
 
 /**
  * @brief Calculate PWM period register values from desired period in microseconds
@@ -587,7 +588,7 @@ struct PeriodConfig {
   [[nodiscard]] constexpr float CalculatePeriodUs() const noexcept {
     float base_period =
         static_cast<float>(mantissa) * static_cast<float>(1ULL << exponent) * F_SYS_PERIOD_US;
-    return low_freq_range ? (base_period * 8.0f) : base_period;
+    return low_freq_range ? (base_period * 8.0F) : base_period;
   }
 };
 
@@ -604,8 +605,8 @@ struct PeriodConfig {
     float divisor = static_cast<float>(1ULL << exp) * F_SYS_PERIOD_US;
     float mantissa_f = period_us / divisor;
 
-    if (mantissa_f <= 255.0f && mantissa_f >= 1.0f) {
-      config.mantissa = static_cast<uint8_t>(mantissa_f + 0.5f); // Round
+    if (mantissa_f <= 255.0F && mantissa_f >= 1.0F) {
+      config.mantissa = static_cast<uint8_t>(std::lround(mantissa_f)); // Round
       config.exponent = exp;
       config.low_freq_range = false;
       return config;
@@ -614,11 +615,11 @@ struct PeriodConfig {
 
   // Try low frequency range (8x multiplier)
   for (uint8_t exp = 0; exp <= 7; ++exp) {
-    float divisor = static_cast<float>(1ULL << exp) * F_SYS_PERIOD_US * 8.0f;
+    float divisor = static_cast<float>(1ULL << exp) * F_SYS_PERIOD_US * 8.0F;
     float mantissa_f = period_us / divisor;
 
-    if (mantissa_f <= 255.0f && mantissa_f >= 1.0f) {
-      config.mantissa = static_cast<uint8_t>(mantissa_f + 0.5f); // Round
+    if (mantissa_f <= 255.0F && mantissa_f >= 1.0F) {
+      config.mantissa = static_cast<uint8_t>(std::lround(mantissa_f)); // Round
       config.exponent = exp;
       config.low_freq_range = true;
       return config;
@@ -824,8 +825,8 @@ constexpr uint16_t DEFAULT = 0x0000; ///< Default value
  * For default DITHER_CLK_DIV = 0, t_ref_clk = 1/f_sys = 0.125 µs
  */
 namespace DITHER {
-constexpr float F_SYS_HZ = 8'000'000.0f;       ///< System clock frequency (8 MHz)
-constexpr float DEFAULT_T_REF_CLK_US = 0.125f; ///< Default reference clock period (µs)
+constexpr float F_SYS_HZ = 8'000'000.0F;       ///< System clock frequency (8 MHz)
+constexpr float DEFAULT_T_REF_CLK_US = 0.125F; ///< Default reference clock period (µs)
 
 /**
  * @brief Dither configuration structure
@@ -844,7 +845,7 @@ struct DitherConfig {
     uint32_t max_current = parallel_mode ? 4000 : 2000;
     float amplitude = (static_cast<float>(num_steps) * static_cast<float>(step_size) *
                        static_cast<float>(max_current)) /
-                      32767.0f;
+                      32767.0F;
     return amplitude;
   }
 
@@ -855,7 +856,7 @@ struct DitherConfig {
    */
   [[nodiscard]] constexpr float CalculatePeriodUs(
       float t_ref_clk_us = DEFAULT_T_REF_CLK_US) const noexcept {
-    return (4.0f * static_cast<float>(num_steps) + 2.0f * static_cast<float>(flat_steps)) *
+    return (4.0F * static_cast<float>(num_steps) + 2.0F * static_cast<float>(flat_steps)) *
            t_ref_clk_us;
   }
 };
@@ -875,31 +876,31 @@ struct DitherConfig {
  * and flat period if not specified.
  */
 [[nodiscard]] inline DitherConfig CalculateFromAmplitudeFrequency(
-    float amplitude_ma, float frequency_hz, bool parallel_mode = false,
+    float amplitude_ma,  // Current amplitude in milliamperes
+    float frequency_hz,  // Dither frequency in hertz
+    bool parallel_mode = false,
     float t_ref_clk_us = DEFAULT_T_REF_CLK_US) noexcept {
 
   DitherConfig config{};
 
   // Calculate desired period from frequency
-  float period_us = 1'000'000.0f / frequency_hz;
+  float period_us = 1'000'000.0F / frequency_hz;
 
   // Calculate dither period from formula: T_dither = [4×STEPS + 2×FLAT] × t_ref_clk
   // Use reasonable defaults: num_steps = 16, flat_steps = 2
   constexpr uint8_t default_steps = 16;
   constexpr uint8_t default_flat = 2;
 
-  float calculated_period = (4.0f * default_steps + 2.0f * default_flat) * t_ref_clk_us;
+  float calculated_period = (4.0F * default_steps + 2.0F * default_flat) * t_ref_clk_us;
 
   // If calculated period doesn't match desired, adjust steps
-  if (calculated_period < period_us * 0.9f || calculated_period > period_us * 1.1f) {
+  if (calculated_period < period_us * 0.9F || calculated_period > period_us * 1.1F) {
     // Adjust num_steps to get closer to desired period
-    float target_steps = (period_us / t_ref_clk_us - 2.0f * default_flat) / 4.0f;
+    float target_steps = (period_us / t_ref_clk_us - 2.0F * default_flat) / 4.0F;
     // Clamp to valid range before casting to uint8_t
-    if (target_steps < 1.0f)
-      target_steps = 1.0f;
-    if (target_steps > 255.0f)
-      target_steps = 255.0f;
-    config.num_steps = static_cast<uint8_t>(target_steps + 0.5f);
+    target_steps = std::max(1.0F, target_steps);
+    target_steps = std::min(255.0F, target_steps);
+    config.num_steps = static_cast<uint8_t>(std::lround(target_steps));
   } else {
     config.num_steps = default_steps;
   }
@@ -908,13 +909,11 @@ struct DitherConfig {
 
   // Calculate step_size from amplitude formula: I_dither = STEPS × STEP_SIZE × 2A / 32767
   uint32_t max_current = parallel_mode ? 4000 : 2000;
-  float step_size_f = (amplitude_ma * 32767.0f) /
+  float step_size_f = (amplitude_ma * 32767.0F) /
                       (static_cast<float>(config.num_steps) * static_cast<float>(max_current));
 
-  config.step_size = static_cast<uint16_t>(step_size_f + 0.5f);
-  if (config.step_size > DITHER_CTRL::STEP_SIZE_MASK) {
-    config.step_size = DITHER_CTRL::STEP_SIZE_MASK;
-  }
+  config.step_size = static_cast<uint16_t>(std::lround(step_size_f));
+  config.step_size = std::min(config.step_size, static_cast<uint16_t>(DITHER_CTRL::STEP_SIZE_MASK));
 
   return config;
 }
@@ -936,9 +935,9 @@ struct DitherConfig {
  * Valid range: 0V to ~41.4V (255 × 0.16208V)
  */
 namespace VBAT_THRESHOLD {
-constexpr float LSB_VOLTAGE = 0.16208f; ///< Voltage per LSB (0.16208V)
-constexpr float MIN_VOLTAGE = 0.0f;     ///< Minimum voltage (0V)
-constexpr float MAX_VOLTAGE = 41.4f;    ///< Maximum voltage (255 × 0.16208V)
+constexpr float LSB_VOLTAGE = 0.16208F; ///< Voltage per LSB (0.16208V)
+constexpr float MIN_VOLTAGE = 0.0F;     ///< Minimum voltage (0V)
+constexpr float MAX_VOLTAGE = 41.4F;    ///< Maximum voltage (255 × 0.16208V)
 
 /**
  * @brief Calculate register value from voltage
@@ -951,11 +950,9 @@ constexpr float MAX_VOLTAGE = 41.4f;    ///< Maximum voltage (255 × 0.16208V)
   }
   float register_value_f = voltage_volts / LSB_VOLTAGE;
   // Clamp to valid range before casting to uint8_t
-  if (register_value_f < 0.0f)
-    register_value_f = 0.0f;
-  if (register_value_f > 255.0f)
-    register_value_f = 255.0f;
-  return static_cast<uint8_t>(register_value_f + 0.5f); // Round
+  register_value_f = std::max(0.0F, register_value_f);
+  register_value_f = std::min(255.0F, register_value_f);
+  return static_cast<uint8_t>(std::lround(register_value_f)); // Round
 }
 
 /**
@@ -989,12 +986,12 @@ constexpr float MAX_VOLTAGE = 41.4f;    ///< Maximum voltage (255 × 0.16208V)
  */
 namespace VOLTAGE_FEEDBACK {
 // VIO/VDD conversion constants (from FB_VOLTAGE1)
-constexpr float VIO_VDD_LSB_VOLTAGE = 0.0034534f; ///< Voltage per LSB for VIO/VDD (0.0034534V)
+constexpr float VIO_VDD_LSB_VOLTAGE = 0.0034534F; ///< Voltage per LSB for VIO/VDD (0.0034534V)
 constexpr uint32_t VIO_VDD_MASK = 0x7FF;          ///< 11-bit mask (bits 10:0)
 constexpr uint32_t VDD_SHIFT = 11;                ///< VDD is in bits [21:11]
 
 // VBAT conversion constants (from FB_VOLTAGE2)
-constexpr float VBAT_MAX_VOLTAGE = 41.47f; ///< Maximum VBAT voltage (41.47V)
+constexpr float VBAT_MAX_VOLTAGE = 41.47F; ///< Maximum VBAT voltage (41.47V)
 constexpr uint32_t VBAT_MAX_COUNT = 2047;  ///< Maximum count (2^11 - 1)
 constexpr uint32_t VBAT_MASK = 0x7FF;      ///< 11-bit mask (bits 10:0)
 constexpr uint32_t VBAT_SHIFT = 11;        ///< VBAT is in bits [21:11]
@@ -1007,7 +1004,7 @@ constexpr uint32_t VBAT_SHIFT = 11;        ///< VBAT is in bits [21:11]
 [[nodiscard]] constexpr uint16_t ExtractVioMillivolts(uint32_t register_value) noexcept {
   uint32_t vio_raw = (register_value >> 0) & VIO_VDD_MASK; // Bits [10:0]
   float vio_volts = static_cast<float>(vio_raw) * VIO_VDD_LSB_VOLTAGE;
-  return static_cast<uint16_t>(vio_volts * 1000.0f + 0.5f); // Convert to mV and round
+  return static_cast<uint16_t>(std::lround(vio_volts * 1000.0F)); // Convert to mV and round
 }
 
 /**
@@ -1018,7 +1015,7 @@ constexpr uint32_t VBAT_SHIFT = 11;        ///< VBAT is in bits [21:11]
 [[nodiscard]] constexpr uint16_t ExtractVddMillivolts(uint32_t register_value) noexcept {
   uint32_t vdd_raw = (register_value >> VDD_SHIFT) & VIO_VDD_MASK; // Bits [21:11]
   float vdd_volts = static_cast<float>(vdd_raw) * VIO_VDD_LSB_VOLTAGE;
-  return static_cast<uint16_t>(vdd_volts * 1000.0f + 0.5f); // Convert to mV and round
+  return static_cast<uint16_t>(std::lround(vdd_volts * 1000.0F)); // Convert to mV and round
 }
 
 /**
@@ -1030,7 +1027,7 @@ constexpr uint32_t VBAT_SHIFT = 11;        ///< VBAT is in bits [21:11]
   uint32_t vbat_raw = (register_value >> VBAT_SHIFT) & VBAT_MASK; // Bits [21:11]
   float vbat_volts =
       (static_cast<float>(vbat_raw) / static_cast<float>(VBAT_MAX_COUNT)) * VBAT_MAX_VOLTAGE;
-  return static_cast<uint16_t>(vbat_volts * 1000.0f + 0.5f); // Convert to mV and round
+  return static_cast<uint16_t>(std::lround(vbat_volts * 1000.0F)); // Convert to mV and round
 }
 
 /**
@@ -1302,7 +1299,7 @@ enum class ParallelPair : uint8_t {
   for (std::size_t i = 0; i < length; ++i) {
     crc ^= data[i];
     for (uint8_t bit = 0; bit < 8; ++bit) {
-      if (crc & 0x80) {
+      if ((crc & 0x80) != 0) {
         crc = (crc << 1) ^ POLY;
       } else {
         crc = (crc << 1);
@@ -1319,7 +1316,8 @@ enum class ParallelPair : uint8_t {
  * @return Calculated CRC value
  */
 [[nodiscard]] inline uint8_t CalculateFrameCrc(const tle92466ed::SPIFrame& frame) noexcept {
-  const uint8_t* bytes = reinterpret_cast<const uint8_t*>(&frame);
+  // NOLINTNEXTLINE(cppcoreguidelines-pro-type-reinterpret-cast) - Required for hardware register byte access
+  const auto* bytes = reinterpret_cast<const uint8_t*>(&frame);
   // Calculate CRC on bytes 0-2 (excluding CRC byte itself at position 3)
   return CalculateCrc8J1850(bytes, 3);
 }
@@ -1333,7 +1331,8 @@ enum class ParallelPair : uint8_t {
   tle92466ed::SPIFrame temp = frame;
   uint8_t received_crc = temp.tx_fields.crc;
   temp.tx_fields.crc = 0;
-  uint8_t calculated_crc = CalculateFrameCrc(temp);
+  uint8_t calculated_crc{}; // Initialize to zero
+  calculated_crc = CalculateFrameCrc(temp);
   return (received_crc == calculated_crc);
 }
 

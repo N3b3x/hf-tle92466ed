@@ -1,3 +1,12 @@
+---
+layout: default
+title: "🔧 Platform Integration"
+description: "How to implement the SPI interface for your platform"
+nav_order: 4
+parent: "📚 Documentation"
+permalink: /docs/platform_integration/
+---
+
 # Platform Integration Guide
 
 This guide explains how to implement the hardware abstraction interface for the TLE92466ED driver on your platform.

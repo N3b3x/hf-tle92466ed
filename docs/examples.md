@@ -1,3 +1,12 @@
+---
+layout: default
+title: "💡 Examples"
+description: "Complete example walkthroughs for the TLE92466ED driver"
+nav_order: 7
+parent: "📚 Documentation"
+permalink: /docs/examples/
+---
+
 # Examples
 
 This guide provides complete, working examples demonstrating various use cases for the TLE92466ED driver.

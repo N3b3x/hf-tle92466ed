@@ -7,6 +7,14 @@
     <detaileddescription>
     </detaileddescription>
     <programlisting>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline><highlight class="normal">layout:<sp/>default</highlight></codeline>
+<codeline><highlight class="normal">title:<sp/>&quot;HardFOC<sp/>TLE92466ED<sp/>Driver&quot;</highlight></codeline>
+<codeline><highlight class="normal">description:<sp/>&quot;C++23<sp/>driver<sp/>for<sp/>Infineon<sp/>TLE92466ED<sp/>Six-Channel<sp/>Low-Side<sp/>Solenoid<sp/>Driver<sp/>IC&quot;</highlight></codeline>
+<codeline><highlight class="normal">nav_order:<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">permalink:<sp/>/</highlight></codeline>
+<codeline><highlight class="normal">---</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">#<sp/>HF-TLE92466ED<sp/>Driver</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">**C++23<sp/>driver<sp/>for<sp/>Infineon<sp/>TLE92466ED<sp/>Six-Channel<sp/>Low-Side<sp/>Solenoid<sp/>Driver<sp/>IC**</highlight></codeline>

@@ -14,9 +14,10 @@
   <style id="jtd-nav-activation">
   
 
+    .site-nav > ul.nav-list:first-child > li > a,
     
-    .site-nav > ul.nav-list:first-child > li:not(:nth-child(6)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -25,12 +26,14 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(6) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(6) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(6) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
       display: block;
     }
   </style>
@@ -50,21 +53,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>HF-TLE92466ED Documentation | HardFOC TLE92466ED Driver - development</title>
+<title>📚 Documentation | HardFOC TLE92466ED Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="HF-TLE92466ED Documentation" />
+<meta property="og:title" content="📚 Documentation" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics" />
-<meta property="og:description" content="C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics" />
+<meta name="description" content="Complete documentation for the HardFOC TLE92466ED Driver" />
+<meta property="og:description" content="Complete documentation for the HardFOC TLE92466ED Driver" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/" />
 <meta property="og:site_name" content="HardFOC TLE92466ED Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="HF-TLE92466ED Documentation" />
+<meta property="twitter:title" content="📚 Documentation" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"C++23 driver for Infineon TLE92466ED Six-Channel Low-Side Solenoid Driver IC with comprehensive SPI interface, current control, and diagnostics","headline":"HF-TLE92466ED Documentation","url":"https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Complete documentation for the HardFOC TLE92466ED Driver","headline":"📚 Documentation","url":"https://n3b3x.github.io/hf-tle92466ed-driver/development/docs/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -166,7 +169,11 @@
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration.html" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples.html" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">HF-TLE92466ED Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HF-TLE92466ED Driver</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/hardware_setup.html" class="nav-list-link">Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/installation.html" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/platform_integration.html" class="nav-list-link">Platform Integration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/quickstart.html" class="nav-list-link">Quick Start</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/hf_tle92466ed/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting.html" class="nav-list-link">Troubleshooting</a></li></ul>
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in HardFOC TLE92466ED Driver category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/" class="nav-list-link">HardFOC TLE92466ED Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-tle92466ed-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/api_reference/" class="nav-list-link">📖 API Reference</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_DRIVER_INTEGRATION_TEST.html" class="nav-list-link">Driver Integration Test Suite - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_CONFIGURATION.html" class="nav-list-link">ESP32 Examples Configuration Guide</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_SOLENOID_CONTROL_TEST.html" class="nav-list-link">Solenoid Control Test - TLE92466ED ESP32-C6</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/components/hf_tle92466ed/" class="nav-list-link">TLE92466ED ESP-IDF Component</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/" class="nav-list-link">TLE92466ED ESP32 Examples Documentation</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/" class="nav-list-link">TLE92466ED ESP32-C6 Examples</a></li><li class="nav-list-item"><a href="/hf-tle92466ed-driver/development/examples/esp32/docs/README_TEST_FRAMEWORK.html" class="nav-list-link">TLE92466ED Test Framework Documentation</a></li></ul>
   
 </nav>
 
@@ -240,7 +247,14 @@
 </div>
 
     <div class="main-content-wrap">
-      
+      <nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb-nav-list">
+    <li class="breadcrumb-nav-list-item"><a href="/hf-tle92466ed-driver/development/">HardFOC TLE92466ED Driver</a></li>
+    <li class="breadcrumb-nav-list-item"><span>📚 Documentation</span></li>
+  </ol>
+</nav>
+
+
       <div id="main-content" class="main-content">
         <main>
           
@@ -272,9 +286,9 @@
     
 
 <ol>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/installation.html">🛠️ Installation</a></strong> – Prerequisites and how to obtain the source</li>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/quickstart.html">⚡ Quick Start</a></strong> – Minimal working example to get you running</li>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/hardware_setup.html">🔌 Hardware Setup</a></strong> – Wiring diagrams and pin connections</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/installation/">🛠️ Installation</a></strong> – Prerequisites and how to obtain the source</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/quickstart/">⚡ Quick Start</a></strong> – Minimal working example to get you running</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a></strong> – Wiring diagrams and pin connections</li>
 </ol>
 <h3 id="integration">
   
@@ -286,8 +300,8 @@
     
 
 <ol>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/platform_integration.html">🔧 Platform Integration</a></strong> – Implement the SPI interface for your platform</li>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/configuration.html">⚙️ Configuration</a></strong> – Configuration options and settings</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/platform_integration/">🔧 Platform Integration</a></strong> – Implement the SPI interface for your platform</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/configuration/">⚙️ Configuration</a></strong> – Configuration options and settings</li>
 </ol>
 <h3 id="reference">
   
@@ -299,8 +313,8 @@
     
 
 <ol>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/api_reference.html">📖 API Reference</a></strong> – Complete API documentation</li>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/examples.html">💡 Examples</a></strong> – Detailed example walkthroughs</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/api_reference/">📖 API Reference</a></strong> – Complete API documentation</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/examples/">💡 Examples</a></strong> – Detailed example walkthroughs</li>
 </ol>
 <h3 id="troubleshooting">
   
@@ -312,7 +326,7 @@
     
 
 <ol>
-  <li><strong><a href="/hf-tle92466ed-driver/development/docs/troubleshooting.html">🐛 Troubleshooting</a></strong> – Common issues and solutions</li>
+  <li><strong><a href="/hf-tle92466ed-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a></strong> – Common issues and solutions</li>
 </ol><hr />
 <h2 id="-quick-start-path">
   
@@ -326,11 +340,11 @@
 <p><strong>New to TLE92466ED?</strong> Follow this recommended path:</p>
 
 <ol>
-  <li>Start with <strong><a href="/hf-tle92466ed-driver/development/docs/installation.html">Installation</a></strong> to prepare your environment</li>
-  <li>Follow <strong><a href="/hf-tle92466ed-driver/development/docs/hardware_setup.html">Hardware Setup</a></strong> to wire your hardware</li>
-  <li>Read <strong><a href="/hf-tle92466ed-driver/development/docs/quickstart.html">Quick Start</a></strong> for a minimal working example</li>
-  <li>Check <strong><a href="/hf-tle92466ed-driver/development/docs/platform_integration.html">Platform Integration</a></strong> to implement the SPI interface</li>
-  <li>Explore <strong><a href="/hf-tle92466ed-driver/development/docs/examples.html">Examples</a></strong> for more advanced usage</li>
+  <li>Start with <strong><a href="/hf-tle92466ed-driver/development/docs/installation/">Installation</a></strong> to prepare your environment</li>
+  <li>Follow <strong><a href="/hf-tle92466ed-driver/development/docs/hardware_setup/">Hardware Setup</a></strong> to wire your hardware</li>
+  <li>Read <strong><a href="/hf-tle92466ed-driver/development/docs/quickstart/">Quick Start</a></strong> for a minimal working example</li>
+  <li>Check <strong><a href="/hf-tle92466ed-driver/development/docs/platform_integration/">Platform Integration</a></strong> to implement the SPI interface</li>
+  <li>Explore <strong><a href="/hf-tle92466ed-driver/development/docs/examples/">Examples</a></strong> for more advanced usage</li>
 </ol><hr />
 <h2 id="-need-help">
   
@@ -342,18 +356,55 @@
     
 
 <ul>
-  <li><strong>🐛 Found a bug?</strong> Check the <a href="/hf-tle92466ed-driver/development/docs/troubleshooting.html">Troubleshooting</a> guide</li>
-  <li><strong>❓ Have questions?</strong> Review the <a href="/hf-tle92466ed-driver/development/docs/api_reference.html">API Reference</a></li>
+  <li><strong>🐛 Found a bug?</strong> Check the <a href="/hf-tle92466ed-driver/development/docs/troubleshooting/">Troubleshooting</a> guide</li>
+  <li><strong>❓ Have questions?</strong> Review the <a href="/hf-tle92466ed-driver/development/docs/api_reference/">API Reference</a></li>
   <li><strong>📝 Want to contribute?</strong> See the contributing guidelines in the main README</li>
 </ul><hr />
 
 <p><strong>Navigation</strong>
-➡️ <a href="/hf-tle92466ed-driver/development/docs/installation.html">Installation</a></p>
+➡️ <a href="/hf-tle92466ed-driver/development/docs/installation/">Installation</a></p>
 
           
 
           
-            
+            <hr>
+<h2 class="text-delta">Table of contents</h2>
+
+<ul>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/installation/">🛠️ Installation</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/quickstart/">⚡ Quick Start</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/platform_integration/">🔧 Platform Integration</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/configuration/">⚙️ Configuration</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/api_reference/">📖 API Reference</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/examples/">💡 Examples</a>
+  </li>
+  
+  <li>
+    <a href="/hf-tle92466ed-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a>
+  </li>
+  
+</ul>
           
         </main>
         

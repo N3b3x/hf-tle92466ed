@@ -276,8 +276,8 @@
   </compound>
   <compound refid="README_8md" kind="file"><name>README.md</name>
   </compound>
-  <compound refid="TLE92466ED_8cpp" kind="file"><name>TLE92466ED.cpp</name>
-    <member refid="TLE92466ED_8cpp_1a2b7b8ad7e4273230c89e364611dffe36" kind="define"><name>TLE92466ED_IMPL</name></member>
+  <compound refid="tle92466ed_8cpp" kind="file"><name>tle92466ed.cpp</name>
+    <member refid="tle92466ed_8cpp_1a2b7b8ad7e4273230c89e364611dffe36" kind="define"><name>TLE92466ED_IMPL</name></member>
   </compound>
   <compound refid="dir_74be4f6a8c360206df72b1bb4057fb39" kind="dir"><name>examples/esp32</name>
   </compound>

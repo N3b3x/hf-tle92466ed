@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.10.0" xml:lang="en-US">
   <compounddef id="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir">
     <compoundname>src</compoundname>
-    <innerfile refid="TLE92466ED_8cpp">TLE92466ED.cpp</innerfile>
+    <innerfile refid="tle92466ed_8cpp">tle92466ed.cpp</innerfile>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

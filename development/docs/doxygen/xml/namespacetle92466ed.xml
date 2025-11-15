@@ -61,7 +61,7 @@ The datasheet provides min-max ranges, not typical values. We use mid-range esti
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/TLE92466ED.cpp" line="1264" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1264" bodyend="1274"/>
+        <location file="src/tle92466ed.cpp" line="1264" column="13" bodyfile="src/tle92466ed.cpp" bodystart="1264" bodyend="1274"/>
       </memberdef>
       <memberdef kind="function" id="namespacetle92466ed_1a63183dc1e07ba814cc8b07de53f1163d" prot="public" static="yes" const="no" explicit="no" inline="no" noexcept="yes" virt="non-virtual">
         <type>void</type>
@@ -105,13 +105,13 @@ The datasheet provides min-max ranges, not typical values. We use mid-range esti
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="src/TLE92466ED.cpp" line="1293" column="13" bodyfile="src/TLE92466ED.cpp" bodystart="1293" bodyend="1297"/>
+        <location file="src/tle92466ed.cpp" line="1293" column="13" bodyfile="src/tle92466ed.cpp" bodystart="1293" bodyend="1297"/>
       </memberdef>
     </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="src/TLE92466ED.cpp" line="22" column="1"/>
+    <location file="src/tle92466ed.cpp" line="22" column="1"/>
   </compounddef>
 </doxygen>

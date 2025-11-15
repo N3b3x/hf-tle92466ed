@@ -57,8 +57,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"TLE92466ED_8cpp.html",
-"structTLE92466ED__TestConfig_1_1CurrentLimits.html#a8809a699bc2464e910742e10609e546a"
+"TestFramework_8h.html",
+"structTLE92466ED__TestConfig_1_1Diagnostics.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

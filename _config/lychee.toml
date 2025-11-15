@@ -59,6 +59,9 @@ exclude = [
   '^https?://(www\.)?gnu\.org/licenses/.*',
   '^https?://img\.shields\.io/badge/License-.*',
   
-  # GitHub Pages URLs - may not be deployed yet
-  '^https://n3b3x\.github\.io/hf-tle92466ed-driver/?.*',
+  # GitHub Actions badge URLs (may not exist yet)
+  '^https://github\.com/N3b3x/hf-tle92466ed-driver/actions/workflows/.*',
+  
+  # Documentation site URLs (may not be published yet)
+  '^https://n3b3x\.github\.io/hf-tle92466ed-driver/.*',
 ]

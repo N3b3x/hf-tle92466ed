@@ -239,8 +239,9 @@ struct FaultReport {
     bool current_regulation_warning{false}; ///< Current regulation warning
     bool pwm_regulation_warning{false};     ///< PWM regulation warning
     bool olsg_warning{false};               ///< OLSG warning
-    std::array<ChannelFaults, 6> channels{}; ///< Faults for each channel (CH0-CH5)
   };
+
+  std::array<ChannelFaults, 6> channels{}; ///< Faults for each channel (CH0-CH5)
 
   // Summary flags from FB_STAT
   bool supply_nok_internal{false}; ///< Internal supply fault summary
